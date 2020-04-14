@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  //- check if a data attribute exists, if so use it to set the values of the respective fields
+  //- If it doesn’t exist, we’ll initialize it to an empty object
+  //- javascript in pug is denoted by a - sign
+  -data = data || {}
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+  form(action="." method="POST" class="form-registration")
+    label(for="name") Name:
+    input(
+      type="text"
+      id="name"
+      name="name"
+      class="form-control"
+      value=data.name
+    )
+
+    label(for="email") Email:
+    input(
+      type="email"
+      id="email"
+      name="email"
+      class="form-control"
+      value=data.email
+    )
+
+    input(
+      type="submit"
+      value="Submit"
+      class="btn btn-lg btn-primary btn-block"
+    )

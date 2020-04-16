@@ -20,16 +20,8 @@ https://github.com/validatorjs/validator.js#validators
 -the gist is its a node-express server, with pug templating engine, and bootstrap for frontend css.  
 -to run it cd into the directory and then: ```npm run watch```. it should show up on ```localhost:3000```.  
 -the file _create.js_ is to create a random database called humans with fields name and email.
--tried to make the form 
 
 **what is our_site**  
-this is our actual site. :P
+this is our actual site. :P  
 -has ians server with pug templating, and bootstrap css  
--have created a database thats for animals 
--to start our server is also the same, run ```npm run watch```, and go to ```localhost:8080```. (in our case it watches the file server.js) 
-
-
-### TO DO:
-- create a new server
-- create the databases
-- create a homepage
+-to start our server is also the same, run ```npm run watch```, and go to ```localhost:8080```. (in this site it watches the file server.js) 

@@ -43,7 +43,7 @@
     * ProductionID
     * Member stuff
     * Price
-5. TransactionTickets -> stoes info about ticket booking and selling 
+5. Booking -> stores info about ticket booking and selling shiz
     * ID
     * ProductionID
     * ShowID

@@ -6,8 +6,12 @@ const path = require('path');
 
 const app = express();
 
-app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
-app.set('view engine', 'pug');
+//app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
+//app.set('view engine', 'pug');
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/views/navbar.html'));
+});
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/', routes);

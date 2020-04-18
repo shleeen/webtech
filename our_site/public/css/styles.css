@@ -16,35 +16,17 @@ html {
   
   body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; /* [2] */
+    background-color: #F5F5F5;
   }
-  
-  
-  
-  /* Header
-     ========================================================================== */
-  
-  .header {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    background-color: #525286;
-    color: #FFFFFF;
-    margin-bottom: 50px;
-  }
-  
+
   
   
   /* Homepage Container
      ========================================================================== */
   
   .container {
-    width: 960px;
+    width: 85%;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
   }
   
   

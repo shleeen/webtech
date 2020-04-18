@@ -8,7 +8,11 @@
         height: 80px;
         background-color: #371545;
         color: #FFFFFF;
-        border-bottom:2px solid #313131
+        position: fixed;
+        top: 0px;
+        -webkit-box-shadow: 0 8px 6px -6px black;
+	    -moz-box-shadow: 0 8px 6px -6px black;
+	    box-shadow: 0 8px 6px -6px black;
       }
 
 
@@ -49,7 +53,6 @@
     }
 
     nav a {
-        height: 20px;
         color: #F5F5F5;
         text-decoration: none;
         text-transform: uppercase;

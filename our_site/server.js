@@ -10,7 +10,7 @@ const app = express();
 //app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/views/navbar.html'));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 // app.use(bodyParser.urlencoded({ extended: true }));

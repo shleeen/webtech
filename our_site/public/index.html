@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sample homepage</title>
+    <title> Home </title>
 
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
 
     <script src="/js/index.js"></script>
 </head>
@@ -16,24 +17,65 @@
     <header>
         <div class="container">
             <div id="logo">TICK.ET</div>
-            <div id="login">Register/ Login</div>
-            <nav>
+            <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
+            
+            <nav>    
                 <ul>
                     <li ><a id ="home">Home</a></li>
                     <li ><a id ="shows">Shows</a></li>
+                    <li ><a id ="contact">Contact Us</a></li>
                 </ul>
             </nav>
 
-            
-
         </div>
     </header>
+
+    <!-- Modal Login (overlays over any page) -->
+    <div id="modal-login" class="modal">
+        <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span>
+    
+        <!-- TODO: write data to db -->
+        <form class="modal-content animate" action="" style=> <!-- action: where to send the form when its submitted -->
+            <div class="modal-container">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Email Address" name="email" required>
+        
+                <label for="pwd"><b>Password</b></label>
+                <input type="password" placeholder="Password" name="pwd" required>
+        
+                <button type="submit">Login</button>
+                <!-- TODO: MAKE REMEMBER ME ACTUALLY REMEMBER ME? -->
+                <!-- <label><input type="checkbox" checked="checked" name="remember"> Remember me </label> -->
+            </div>
+
+            <span class="register" >
+                <a href="register.html"> New User? Click here to Register for an account. </a> 
+            </span>
+        
+            <div class="modal-container" style="background-color:#b6b6b6">
+                <button type="button" onclick="document.getElementById('modal-login').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw"> <a href="#"> Forgot password?</a></span> 
+            </div>
+        </form>
+    </div>
+    
+    
+    <!-- When the user clicks anywhere outside of the modal, close it -->
+    <!-- this can also be added in the login.js file I think?? -->
+    <script>
+        var modal = document.getElementById('modal-login');
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+    </script>
+
 
     <div class="content_container">
         <div id=content>
             <p> DUMMY CONTENT</p>
         </div>
-        
     </div>
 
 

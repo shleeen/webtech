@@ -1,49 +1,45 @@
 
 html {
-    box-sizing: border-box;
-    min-height:100%;
-  }
+  box-sizing: border-box;
+  min-height:100%;
+}
   
-  *, *::before, *::after {
-    box-sizing: inherit; /* [1] */
-    margin: 0;
-    padding: 0;
-  }
+*, *::before, *::after {
+  box-sizing: inherit; /* [1] */
+  margin: 0;
+  padding: 0;
+}
   
   
   
-  /* FONTS
-     ========================================================================== */
-  
-  body {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; /* [2] */
-    background-color: #F5F5F5;
-    height:100%;
+/* FONTS ========================================================================== */
 
-  }
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; /* [2] */
+  background-color: #F5F5F5;
+  height:100%;
+}
 
   
-  
-  /* Homepage Container
-     ========================================================================== */
-  
-  .container {
-    width: 85%;
-    margin: 0 auto;
+/* Homepage Container ========================================================================== */
 
-  }
+.container {
+  width: 85%;
+  margin: 0 auto;
 
-  .content_container {
-    margin: 0 auto;
-    padding-top: 6em;
+}
 
-  }
+.content_container {
+  margin: 0 auto;
+  padding-top: 6em;
 
-  object{
-    width: 100%;
-    height:100vh;
-    align-self: center;
-  }
+}
+
+object{
+  width: 100%;
+  height:100vh;
+  align-self: center;
+}
 
 
 

@@ -3,3 +3,33 @@
     height: max-content;
     margin: 0 5%;
 }
+
+.bg-image {
+    /* Full height */
+    height: 10%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Images used */
+/* .img1 { background-image: url("../img/pegg.jpeg"); }
+.img2 { background-image: url("../img/roxie1.jpg"); }
+.img3 { background-image: url("../img/shrek.jpg"); } */
+
+  
+/* Position text in the middle of the page/image */
+.bg-text {
+    color: white;
+    font-weight: bold;
+    font-size: 80px;
+    border: 12px solid #f1f1f1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+}

@@ -9,7 +9,11 @@
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
     <link href="css/login.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="/js/redirect.js"></script>
+    <script type="text/javascript">recieveRedirect()</script>
+
     <script src="/js/index.js"></script>
+    <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
 
 
@@ -21,9 +25,10 @@
             
             <nav>    
                 <ul>
-                    <li ><a id ="home">Home</a></li>
-                    <li ><a id ="shows">Shows</a></li>
-                    <li ><a id ="contact">Contact Us</a></li>
+
+                    <li><a id ="home_tab">Home</a></li>
+                    <li><a id ="shows_tab">Shows</a></li>
+                  
                 </ul>
             </nav>
 
@@ -74,7 +79,12 @@
 
     <div class="content_container">
         <div id=content>
-            <p> DUMMY CONTENT</p>
+            
+        </div>
+        <div id="home">
+        </div>
+
+        <div id="shows" class="none_active">
         </div>
     </div>
 

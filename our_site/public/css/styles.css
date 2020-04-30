@@ -45,6 +45,14 @@ html {
     align-self: center;
   }
 
+  .active{
+    display: inline;
+  }
+
+  .none_active{
+    display: none;
+  }
+
 
 
   

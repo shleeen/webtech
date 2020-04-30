@@ -1,34 +1,69 @@
 "use strict";
 addEventListener('load', start);
+
 function start() {
+
+    var path = window.location.pathname;
+    console.log(path);
+    if (path == '/Home') {
+        displayHome();
+    } else {
+        displayShows();
+    }
+    addContent();
     addListeners();
-    document.getElementById("shows").click();
 } 
 
-// he says do not use
-/*window.onload = function() {
-    console.log("getting index(homepage) data stuff");
-
-    loadNavbar();
-    console.log("load done");
-    
-};*/
-
+// This gets params like url/?a=?
+//var dynamicContent = getParameterByName('dc');
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
 function addListeners(){
-    document.getElementById("shows").addEventListener("click", function(){
+
+    document.getElementById("shows_tab").addEventListener("click", function(){
         console.log('click');
-        var element = document.getElementById("content");
-        console.log(element);
-        element.innerHTML ='<object type="text/html" data="shows.html" ></object>';
+        displayShows();
     });
 
-    document.getElementById("home").addEventListener("click", function(){
+    document.getElementById("home_tab").addEventListener("click", function(){
         console.log('click');
-        var element = document.getElementById("content");
-        console.log(element);
-        element.innerHTML ='<object type="text/html" data="home.html" ></object>';
+        displayHome();
+    });
+
+    window.addEventListener('popstate', function (event) {
+        // The URL changed...
+        console.log("LOO");
     });
 }
-   
 
+function addContent(){
+    document.getElementById("shows").innerHTML = '<object type="text/html" data="shows.html" ></object>';
+    document.getElementById("home").innerHTML = '<object type="text/html" data="home.html" ></object>';
+}
+
+function displayHome() {
+    document.getElementById("shows").classList.remove('active');
+    document.getElementById("shows").classList.add('none_active');
+    document.getElementById("home").classList.remove('none_active');
+    document.getElementById("home").classList.add('active');
+
+    window.history.pushState({}, '', 'Home');
+}
+
+function displayShows() {
+    document.getElementById("home").classList.remove('active');
+    document.getElementById("home").classList.add('none_active');
+    document.getElementById("shows").classList.remove('none_active');
+    document.getElementById("shows").classList.add('active');
+    
+    window.history.pushState({}, '', 'Shows');
+}
+   

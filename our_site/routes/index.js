@@ -1,6 +1,7 @@
 "use strict"
 const express = require('express');
 const router = express.Router();
+const dbHelper = require('../database/database');
 // for validation
 const { check, validationResult } = require('express-validator');
 // db stuff
@@ -11,6 +12,14 @@ router.get('/', (req, res) => {
   res.render('index', {title: 'Homepage'});
 });
 
+router.post('/login', async (req, res) => {
+  console.log(await dbHelper.authenticate(req.body.email, req.body.pwd, "salt"));
+  res.send('Got a POST request');
+});
+
+router.use((req, res, next) => {
+  res.status(404).send("Sorry can't find that!")
+})
 
 // router.post('/', 
 //   [ check('name')

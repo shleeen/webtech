@@ -10,6 +10,7 @@ const server = app.listen(8080, async () => {
     const result = await db.all("SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%';");
     console.log(result);
     await db.close();
+    await dbHelper.addUser("john", "John", "Smith", "jsmith@gmail.com", "johnpass");
   } catch (err) {
     console.log(err);
   }

@@ -40,10 +40,10 @@
         <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span>
     
         <!-- TODO: write data to db -->
-        <form class="modal-content animate" action="" style=> <!-- action: where to send the form when its submitted -->
+        <form class="modal-content animate" method="post" action="/login"> <!-- action: where to send the form when its submitted -->
             <div class="modal-container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Email Address" name="email" required>
+                <input type="email" placeholder="Email Address" name="email" required>
         
                 <label for="pwd"><b>Password</b></label>
                 <input type="password" placeholder="Password" name="pwd" required>

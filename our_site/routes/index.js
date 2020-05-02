@@ -4,9 +4,6 @@ const router = express.Router();
 const dbHelper = require('../database/database');
 // for validation
 const { check, validationResult } = require('express-validator');
-// db stuff
-// const sqlite3 = require('sqlite3');
-// let db = new sqlite3.Database('./database/human.db', sqlite3.OPEN_READWRITE);  // connect to db
 
 router.get('/', (req, res) => {
   res.render('index', {title: 'Homepage'});

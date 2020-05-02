@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Home </title>
+    <title> TICK.ET </title>
 
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
@@ -20,27 +20,30 @@
 <body>
     <header>
         <div class="container">
-            <div id="logo">TICK.ET</div>
-            <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
-            
-            <nav>    
-                <ul>
+            <section class="half">
+                <div id="header_top"> CONTACT US </div>
+            </section>
 
-                    <li><a id ="home_tab">Home</a></li>
-                    <li><a id ="shows_tab">Shows</a></li>
-                  
-                </ul>
-            </nav>
-
+            <section class="half">
+                <div id="logo">TICK.ET</div>
+                <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
+                
+                <nav>    
+                    <ul>
+                        <li><a id ="home_tab">Home</a></li>
+                        <li><a id ="shows_tab">Shows</a></li>
+                    </ul>
+                </nav>
+            </section>
         </div>
+
     </header>
 
     <!-- Modal Login (overlays over any page) -->
     <div id="modal-login" class="modal">
         <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span>
     
-        <!-- TODO: write data to db -->
-        <form class="modal-content animate" method="post" action="/login"> <!-- action: where to send the form when its submitted -->
+        <form class="modal-content animate" method="post" action="/login">
             <div class="modal-container">
                 <label for="email"><b>Email</b></label>
                 <input type="email" placeholder="Email Address" name="email" required>
@@ -66,7 +69,6 @@
     
     
     <!-- When the user clicks anywhere outside of the modal, close it -->
-    <!-- this can also be added in the login.js file I think?? -->
     <script>
         var modal = document.getElementById('modal-login');
         window.onclick = function(event) {

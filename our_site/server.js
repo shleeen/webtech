@@ -10,9 +10,6 @@ app.use(helmet());
 
 app.use(express.urlencoded({ extended: false }))
 
-//app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
-//app.set('view engine', 'pug');
-
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });

@@ -1,6 +1,6 @@
 -- Drop/Create script to initialise the database tables.
 .open database.db
-PRAGMA foreign_keys = ON;
+PRAGMA foreign_keys = OFF;
 
 DROP TABLE IF EXISTS user_type;
 DROP TABLE IF EXISTS user;
@@ -46,7 +46,8 @@ CREATE TABLE production (
     blurb         TEXT,
     warnings      TEXT,
     special_note  TEXT,
-    FOREIGN KEY(user_id) REFERENCES user(id)
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    UNIQUE(user_id, name)
 );
 
 CREATE TABLE show (
@@ -56,7 +57,8 @@ CREATE TABLE show (
     doors_open     TEXT     NOT NULL,
     total_seats    INTEGER  NOT NULL,
     sold           INTEGER  DEFAULT 0,
-    FOREIGN KEY(production_id) REFERENCES production(id)
+    FOREIGN KEY(production_id) REFERENCES production(id),
+    UNIQUE(production_id, date, doors_open)
 );
 
 CREATE TABLE ticket_type (

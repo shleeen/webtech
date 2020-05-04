@@ -5,13 +5,17 @@ function start() {
 
     var path = window.location.pathname;
     console.log(path);
-    if (path == '/Home') {
-        displayHome();
-    } else {
+    if (path == '/Shows') {
         displayShows();
+    } else {
+        displayHome();
     }
     addContent();
     addListeners();
+    setTimeout(function () {
+        removeOverlaySpashScreen();
+    }, 3500);
+    
 } 
 
 // This gets params like url/?a=?
@@ -24,6 +28,13 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function removeOverlaySpashScreen(){
+    document.getElementById("overlay").classList.add('fade');
+    setTimeout(function () {
+        document.getElementById("overlay").style.display = 'none';
+    }, 900);
 }
 
 function addListeners(){

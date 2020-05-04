@@ -30,7 +30,7 @@ CREATE TABLE user (
     email          TEXT     UNIQUE NOT NULL,
     password_hash  TEXT     NOT NULL,
     password_salt  TEXT     NOT NULL,
-    -- I'm assuming the purpose of this is to check we've verified someone's email
+    -- I'm assuming the purpose of this is to check we've verified someone's email // yes.
     activated      INTEGER  DEFAULT 0,
     FOREIGN KEY(user_type_id) REFERENCES user_type(id)
 );

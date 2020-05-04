@@ -26,15 +26,25 @@
 }
 
 .carousel-nav {
-    width: 15%;
+    width: fit-content;
+    height: 10%;
     cursor: pointer;
     top: 50%;
-    bottom: 10%;
+    bottom: 30%;
     transform: translateY(-50%);
     margin: 0;
     position: absolute;
     z-index: 1;
     height: auto;
+}
+
+.carousel-svg{
+    height: 100px;
+    width: 80px;
+    filter: invert(0.5) sepia(1) hue-rotate(200deg);  
+}
+.carousel-svg:hover{
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(80%) contrast(97%);
 }
 
 .carousel-image{
@@ -43,6 +53,7 @@
     overflow: hidden;
     object-fit: cover;
 }
+
 
 .bg-image {
     /* Full height */

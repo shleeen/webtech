@@ -31,7 +31,7 @@ function getParameterByName(name, url) {
 }
 
 function removeOverlaySpashScreen(){
-    document.getElementById("overlay").classList.add('overlay_fade_out');
+    document.getElementById("overlay").classList.add('fade');
     setTimeout(function () {
         document.getElementById("overlay").style.display = 'none';
     }, 900);

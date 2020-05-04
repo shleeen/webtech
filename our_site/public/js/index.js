@@ -33,7 +33,18 @@ function getParameterByName(name, url) {
 function removeOverlaySpashScreen(){
     document.getElementById("overlay").classList.add('fade');
     setTimeout(function () {
-        document.getElementById("overlay").style.display = 'none';
+        var i = 9;
+        document.getElementById("overlay").style.opacity = 1;
+        var k = window.setInterval(function() {
+            if (i <= 0) {
+              clearInterval(k);
+              document.getElementById("overlay").style.display = 'none';
+            } else {
+                document.getElementById("overlay").style.opacity = i / 10;
+              i--;
+            }
+          }, 100);
+        
     }, 900);
 }
 

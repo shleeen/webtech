@@ -28,6 +28,9 @@ async function openDB() {
 
 async function addUserType(type) {
   const db = await openDB();
+  if (await db.get("SELECT * FROM user_type WHERE type = ?", [type])) {
+    throw "user type '" + type + "' already exists";
+  }
   await db.run("insert into user_type (type) values(?)", [type]);
   await db.close();
 }
@@ -36,10 +39,10 @@ async function addUserType(type) {
 async function addUser(username, first_name, last_name, email, pass) {
   const db = await openDB();
   if (await db.get("SELECT * FROM user WHERE username = ?", [username])) {
-    throw "username already taken";
+    throw "username '" + username + "' already taken";
   }
   if (await db.get("SELECT * FROM user WHERE email = ?", [email])) {
-    throw "email already taken";
+    throw "email '" + email + "' already taken";
   }
   const user = await hash( {password: pass} );
   const user_type = await db.get("SELECT id FROM user_type WHERE type = ?", ["normal"]);

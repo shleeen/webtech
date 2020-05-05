@@ -74,11 +74,11 @@ object{
 }
 
 /* Positions ========================================================================== */
-.left{
+.float-left{
   float: left;
 }
 
-.right{
+.float-right{
   float: right;
   right: 0;
 }

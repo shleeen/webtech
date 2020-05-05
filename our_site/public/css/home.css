@@ -25,23 +25,27 @@
     overflow: hidden;
 }
 
-.carousel-nav {
-    width: fit-content;
-    height: 10%;
+.carousel-arrow {
+    width: 50px;
     cursor: pointer;
     top: 50%;
-    bottom: 30%;
     transform: translateY(-50%);
     margin: 0;
     position: absolute;
     z-index: 1;
-    height: auto;
+    height: 50px;
 }
 
 .carousel-svg{
-    height: 100px;
-    width: 80px;
+    width: fit-content;
     filter: invert(0.5) sepia(1) hue-rotate(200deg);  
+}
+
+.carousel-arrow{
+    fill: none;
+    stroke: #371545;
+    stroke-miterlimit: 20;
+    stroke-width: 2;
 }
 .carousel-svg:hover{
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(80%) contrast(97%);
@@ -54,6 +58,42 @@
     object-fit: cover;
 }
 
+.carousel-nav {
+    width: min-content;
+    margin: 0 auto;
+    padding: 5px; /* leave room for SVG stroke */
+    display:flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.carousel-nav-button {
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    height: var(--button-size);
+    width: var(--button-size);
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    z-index: 1;
+    
+}
+
+
+.nav_svg{
+    
+}
+
+svg { cursor: pointer; }
+
+.svg-left{
+    transform: rotate(-180deg);
+
+}
 
 .bg-image {
     /* Full height */

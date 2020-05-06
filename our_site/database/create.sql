@@ -41,6 +41,8 @@ CREATE TABLE production (
     name          TEXT     NOT NULL,
     venue         TEXT     NOT NULL,
     -- Some of these should probably be NOT NULL, but I don't know which
+    banner_path   TEXT,
+    poster_path   TEXT,
     producer      TEXT,
     director      TEXT,
     blurb         TEXT,

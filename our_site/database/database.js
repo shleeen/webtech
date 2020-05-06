@@ -50,10 +50,10 @@ async function addUser(username, first_name, last_name, email, pass) {
   await db.close();
 }
 
-async function addProductions(creator, name, venue, producer, director, blurb, warnings, special_note) {
+async function addProductions(creator, name, venue, producer, director, blurb, warnings, special_note, banner_path, poster_path) {
   const db = await openDB();
   const user = await db.get("SELECT id FROM user WHERE username = ?", [creator]);
-  await db.run("insert into production (user_id, name, venue, producer, director, blurb, warnings, special_note) values(?, ?, ?, ?, ?, ?, ?, ?)", [user.id, name, venue, producer, director, blurb, warnings, special_note]);
+  await db.run("insert into production (user_id, name, venue, banner_path, poster_path, producer, director, blurb, warnings, special_note) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [user.id, name, venue, banner_path, poster_path, producer, director, blurb, warnings, special_note]);
   await db.close();
 }
 

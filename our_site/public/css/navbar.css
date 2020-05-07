@@ -1,7 +1,16 @@
-/* Header
-    ========================================================================== */
+/* Header ========================================================================== */
 
-    header {
+header{
+    width: 100%;
+    height: 40px;
+    background-color: #ffffff;
+    color: #2c2c2c;
+    position: fixed;
+    top: 0px;
+}
+
+.navbar {
+    top: 40px; /* so it sits below the header */
     width: 100%;
     display: flex;
     align-items: center;
@@ -9,22 +18,29 @@
     background-color: #371545;
     color: #FFFFFF;
     position: fixed;
-    top: 0px;
-    -webkit-box-shadow: 0 8px 6px -6px black;
-    -moz-box-shadow: 0 8px 6px -6px black;
-    box-shadow: 0 10px 12px -8px black;
-    }
-
+}
 
 #logo {
-    float: left;
+    /* float: left; */
     font-size: 3rem;
+    padding: 20px;
 }
 
 #login{
-    float: right;
-    padding-top: 20px;
+    /* float: right; */
     font-size: 2.5ex;
+    padding: 10px 20px;
+}
+
+#login:hover{
+    background-color:#c399d3;
+    color: #371545;
+    border-radius: 5px;
+    /* background-blend-mode: navbar; commenting this out changes nothing :'( */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     cursor: pointer;
 }
 
@@ -32,8 +48,7 @@ nav {
     height: 60px;
     width: 60%;
     top: 0;
-    margin: 0 20%;
-    
+    /* margin:   0 20%; */
 }
 
 nav ul {
@@ -49,7 +64,6 @@ nav li {
     margin-top: 10px;
     display: inline-block;
     margin-left: 25px;
-
 }
 
 nav a {
@@ -65,9 +79,9 @@ nav a {
 /*background: radial-gradient(circle,rgb(255,255,255,0.9), rgba(55, 21, 69, 0.089));
 */
 nav li:hover {
-    background-color:#F5F5F5;
+    background-color:#c399d3;
     border-radius: 5px;
-    background-blend-mode: header;
+    /* background-blend-mode: navbar; */
     cursor: pointer;
 }
 
@@ -81,5 +95,5 @@ nav li:hover::after{
     height: 2px;
     width: 100%;
     padding-top: 3px;
-    background-color: #371545;
+    background-color: #ffffff;
 }

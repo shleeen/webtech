@@ -85,6 +85,20 @@ object{
 
 
 
+/* Footer ========================================================================== */
+/* I kinda dunno where else to put this */
+footer { 
+  width: 100%; 
+  bottom: 0px; 
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #727272; 
+  color: #fff; 
+  text-align:center; 
+  font-size:10px; 
+} 
+
 
 
   

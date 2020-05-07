@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Home </title>
+    <title> Tick.et </title>
 
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <link href="css/navbar.css" rel="stylesheet" type="text/css">
@@ -20,29 +20,27 @@
 
 <body>
     <header>
-        <div class="container">
-            <div id="logo">TICK.ET</div>
-            <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
-            
-            <nav>    
-                <ul>
-
-                    <li><a id ="home_tab">Home</a></li>
-                    <li><a id ="shows_tab">Shows</a></li>
-                  
-                </ul>
-            </nav>
-
-        </div>
+        <!-- can add whatever we want here or nothing at all -->
     </header>
+
+    <div class="navbar">
+        <div id="logo">TICK.ET</div>
+        <nav>    
+            <ul>
+                <li><a id ="home_tab">Home</a></li>
+                <li><a id ="shows_tab">Shows</a></li>
+            </ul>
+        </nav>
+        <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
+    </div>
 
     <div id="overlay" class="overlay">
         <svg class="svg_center" version="1.1" xmlns="http://www.w3.org/2000/svg" height="500" width="500" viewBox="0 0 200 200" preserveAspectRatio="none">  
             <path id="stroke1" class="tstroke_1" d="M 0 0 L 5 15 l 90 0 l 5 -15 l -100 0 "></path>
-            <rect class="tstroke_2" x="45" y="8" width="10" height="125">
-                <!--animate attributeName="height" from="10" to="125" dur="1.5s" fill="freeze" begin="stroke1.end"/-->
+            <rect class="tstroke_2" x="45" y="30" width="10" height="100">
+                <!-- animate attributeName="height" from="10" to="125" dur="1.5s" fill="freeze" begin="stroke1.end"/ -->
             </rect>
-            <!--path class="tstroke_2" d="M 45 8 l 0 120 l 9 0 L 55 8 "></path-->
+            <!-- <path class="tstroke_2" d="M 45 8 l 0 120 l 9 0 L 55 8 "> wee </path> -->
             <Text class="logo_text" x="70" y="130" font-size="35">ICK.ET</Text>
         </svg>
     </div>
@@ -100,6 +98,13 @@
         </div>
     </div>
 
+    <footer>
+        Contact Us
+        <br>
+        Social media links
+        <br>
+        For any queries please contact support@tick.et.com
+    </footer>
 
 </body>
 

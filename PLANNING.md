@@ -1,7 +1,6 @@
 # WEBSTIE PLANNING
 
 ## **List of frontend features that we want**
-
 ### We will need pages for nonuser, user and admin 
 1. Homepage 
     * User account creation & log in 
@@ -12,8 +11,7 @@
 
 
 ## **Tasks to do**
-- Create user flow diagram ?? naaaaaah do we need this is effort
-- Create er diagram (database diagram)
+- ~~Create er diagram (database diagram)~~
 - Make/find a comprehensive list of things uob does bad to show that we've fixed it
 
 
@@ -49,3 +47,18 @@
     * ShowID
     * TicketType = ProductionTicketID
     * hasCollected
+
+
+## UI:
+* MODAL
+    * the modal login, make the cross button animate? like zoom in or fade in or what
+    * fix inline issures
+    * add fade out when the modal is closed
+* Do we want a footer?
+    * Can add social media links
+    * Add contact us links here
+* Fix the double scroll thing? it real uglyyy
+* NAV BAR
+    * Make it snazzy
+    * Make the logo link to the home page
+    * 

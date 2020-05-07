@@ -1,5 +1,21 @@
-.wrap{
+/* .wrap{
     width: 90%;
     height: max-content;
     margin: 0 5%;
+} */
+
+.shows-content{
+    /* width: 100%; */
+    height: max-content;
+    margin: 40px 40px; /* cos page can only start after the nav */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    /* overflow: auto; */
+}
+
+
+.shows-item { 
+    margin: 10px 0;
+    height: 50px; 
 }

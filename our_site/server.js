@@ -1,7 +1,7 @@
 "use strict"
 const express = require('express');
 const path = require('path');
-const routes = require('./routes/index');
+const routes = require('./src/index');
 const helmet = require('helmet')
 // const bodyParser = require('body-parser');
 
@@ -13,10 +13,13 @@ app.use(express.urlencoded({ extended: false }))
 //app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
 //app.set('view engine', 'pug');
 
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
-});
+});*/
 
+
+// This needs to be here so that the url would redirect to index.html 
+    // which will then load home.html or shows.html 
 app.get('/home', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
@@ -37,6 +40,7 @@ app.get('/Shows', function(req, res) {
 */
 
 app.use(express.static('public')); //serve static files from this folder
+
 app.use('/', routes);
 
 /*app.get('/', (req, res) => {

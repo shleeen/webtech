@@ -23,6 +23,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
+    display: none;
 }
 
 .carousel-arrow {
@@ -38,7 +39,7 @@
 
 .carousel-svg{
     width: fit-content;
-    filter: invert(0.5) sepia(1) hue-rotate(200deg);  
+    /* filter: invert(0.5) sepia(1) hue-rotate(200deg);   */
 }
 
 .carousel-arrow{
@@ -86,7 +87,9 @@
     cursor: pointer;
 }
 
-svg { cursor: pointer; }
+svg { 
+    cursor: pointer; 
+}
 
 .svg-left{
     transform: rotate(-180deg);

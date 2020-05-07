@@ -4,6 +4,10 @@ const router = express.Router();
 const dbHelper = require('../database/database');
 // for validation
 const { check, validationResult } = require('express-validator');
+
+
+const homeRouter = require("./routes/home.js")
+
 // db stuff
 // const sqlite3 = require('sqlite3');
 // let db = new sqlite3.Database('./database/human.db', sqlite3.OPEN_READWRITE);  // connect to db
@@ -12,6 +16,20 @@ router.get('/', (req, res) => {
   res.render('index', {title: 'Homepage'});
 });
 
+router.use('/home', homeRouter);
+/*router.get('/home', function(req, res) {
+  res.render('index', {title: 'Homepage'});
+});
+
+router.get('/shows', function(req, res) {
+  res.render('index', {title: 'Homepage'});
+});*/
+
+
+// TODO
+  // This should move to idk a login controller
+  // create loginrouter file in routes
+  // replace with  router.use('/login', loginRouter)
 router.post('/login', async (req, res) => {
   console.log(await dbHelper.authenticate(req.body.email, req.body.pwd, "salt"));
   res.send('Got a POST request');

@@ -70,21 +70,21 @@ span.register{
   
 /* the close button */
 .close {
-/* Position it in the top right corner outside of the modal */
   position: absolute;
-  right: 390px;
-  top: 80px;
-  color: #371545;
-  font-size: 35px;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
   font-weight: bold;
+  text-decoration: none;
+  color: #371545;
 }
   
-/* Close button on hover */
-.close:hover,
-.close:focus {
-color: red;
-cursor: pointer;
+
+.popup .close:hover {
+  color: rgb(141, 141, 141);
 }
+
   
 /* Add Zoom Animation */
 .animate {

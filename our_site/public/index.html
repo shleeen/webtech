@@ -14,47 +14,56 @@
     <script type="text/javascript">recieveRedirect()</script>
 
     <script src="/js/index.js"></script>
+    <!-- <script type="text/javascript" src="/js/login.js"></script> -->
     <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
 
 
 <body>
     <header>
-        <div class="container">
-            <section class="half">
-                <div id="header_top"> CONTACT US </div>
-            </section>
-
-            <section class="half">
-                <div id="logo">TICK.ET</div>
-                <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
-                
-                <nav>    
-                    <ul>
-                        <li><a id ="home_tab">Home</a></li>
-                        <li><a id ="shows_tab">Shows</a></li>
-                    </ul>
-                </nav>
-            </section>
-        </div>
-
+        <!-- text text text -->
     </header>
+        
+    <div class="container"> 
+        <div class="container">
+    <div class="container"> 
+        <div id="contact">CONTACT US</div>
+    </div>
 
-    <div id="overlay" class="overlay">
+    <div class="navbar">
+        <div id="logo">TICK.ET</div>            
+                <div id="logo">TICK.ET</div>
+        <div id="logo">TICK.ET</div>            
+        <nav>    
+                <nav>    
+        <nav>    
+            <ul>
+                <li><a id ="home_tab">Home</a></li>
+                <li><a id ="shows_tab">Shows</a></li>
+            </ul>
+        </nav>
+        <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
+    </div>
+
+    <!-- Splash screen -->
+    <!-- <div id="overlay" class="overlay">
         <svg class="svg_center" version="1.1" xmlns="http://www.w3.org/2000/svg" height="500" width="500" viewBox="0 0 200 200" preserveAspectRatio="none">  
             <path id="stroke1" class="tstroke_1" d="M 0 0 L 5 15 l 90 0 l 5 -15 l -100 0 "></path>
             <rect class="tstroke_2" x="45" y="8" width="10" height="125">
-                <!--animate attributeName="height" from="10" to="125" dur="1.5s" fill="freeze" begin="stroke1.end"/-->
+                <!--animate attributeName="height" from="10" to="125" dur="1.5s" fill="freeze" begin="stroke1.end"
             </rect>
-            <!--path class="tstroke_2" d="M 45 8 l 0 120 l 9 0 L 55 8 "></path-->
+            <!--path class="tstroke_2" d="M 45 8 l 0 120 l 9 0 L 55 8 "></path
             <Text class="logo_text" x="70" y="130" font-size="35">ICK.ET</Text>
         </svg>
-    </div>
+    </div> -->
 
     <!-- Modal Login (overlays over any page) -->
+    <!-- use centered???  -->
     <div id="modal-login" class="modal">
-        <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span>
-    
+        <!-- <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span> -->
+        <a class="close" href="#">×</a>
+
+
         <form class="modal-content animate" method="post" action="/login">
             <div class="modal-container">
                 <label for="email"><b>Email</b></label>
@@ -81,14 +90,9 @@
     
     
     <!-- When the user clicks anywhere outside of the modal, close it -->
-    <script>
-        var modal = document.getElementById('modal-login');
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-    </script>
+    <!-- <script>
+
+    </script> -->
 
 
     <div class="content_container">
@@ -97,11 +101,12 @@
         </div>
         <div id="home">
         </div>
-
         <div id="shows" class="none_active">
         </div>
     </div>
 
+    <!-- maybe we should have a fooooter -->
+    <footer>Footer Section</footer> 
 
 </body>
 

@@ -1,17 +1,16 @@
 "use strict"
 // -- start the server
 const app = require('./server');
-const dbHelper = require('./database/database');
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 
-const server = app.listen(8080, async () => {
-  try {
-    const db = await dbHelper.openDB();
-    // This command just lists all the tables in the database
-    const result = await db.all("SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%';");
-    console.log(result);
-    await db.close();
-  } catch (err) {
-    console.log(err);
-  }
-  console.log(`Express is running on port ${server.address().port}`);
+const key = fs.readFileSync('certs/selfsigned.key');
+const cert = fs.readFileSync('certs/selfsigned.crt');
+
+const httpServer = http.createServer(app).listen(8080, async () => {
+  console.log(`Express is running with HTTP on port ${httpServer.address().port}`);
+});
+const httpsServer = https.createServer({ key: key, cert: cert }, app).listen(8443, async () => {
+  console.log(`Express is running with HTTPS on port ${httpsServer.address().port}`);
 });

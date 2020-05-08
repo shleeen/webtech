@@ -68,7 +68,8 @@ async function authenticate(email, pass) {
   const db = await openDB();
   const user = await db.get("SELECT password_hash, password_salt FROM user WHERE email = ?", [email]);
   await db.close();
-  const result = await  hash( {password: pass, salt: user.password_salt} );
+  if (!user) return false;
+  const result = await hash( {password: pass, salt: user.password_salt} );
   if (result.hash === user.password_hash) return true;
   else return false;
 }

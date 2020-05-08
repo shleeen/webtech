@@ -14,6 +14,7 @@
     <script type="text/javascript">recieveRedirect()</script>
 
     <script src="/js/index.js"></script>
+    <script src="/js/login.js"></script>
     <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
 
@@ -31,7 +32,7 @@
                 <li><a id ="shows_tab">Shows</a></li>
             </ul>
         </nav>
-        <div id="login" onclick="document.getElementById('modal-login').style.display='block' "> LOGIN/REGISTER </div>
+        <div id="login"> LOGIN/REGISTER </div>
     </div>
 
     <!-- Splash screen -->
@@ -48,46 +49,29 @@
 
     <!-- Modal Login (overlays over any page) -->
     <div id="modal-login" class="modal">
-        <span onclick="document.getElementById('modal-login').style.display='none'" class="close animate" title="Close">  &times; </span>
-    
-        <!-- TODO: write data to db -->
-        <form class="modal-content animate" method="post" action="/login"> <!-- action: where to send the form when its submitted -->
-            <div class="modal-container">
-                <label for="email"><b>Email</b></label>
-                <input type="email" placeholder="Email Address" name="email" required>
-        
-                <label for="pwd"><b>Password</b></label>
-                <input type="password" placeholder="Password" name="pwd" required>
-        
-                <button type="submit">Login</button>
-                <!-- TODO: MAKE REMEMBER ME ACTUALLY REMEMBER ME? -->
-                <!-- <label><input type="checkbox" checked="checked" name="remember"> Remember me </label> -->
+        <div class="modal-content animate-in">
+            <div class="close-btn">  &times; </div>
+            <form method="post" action="/login">
+                <div class="modal-container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Email Address" name="email" required>
+            
+                    <label for="pwd"><b>Password</b></label>
+                    <input type="password" placeholder="Password" name="pwd" required>
+            
+                    <button type="submit">Login</button>
+                    <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
+                </div>
+                <div class="modal-register"> <a href="#"> New User? Click here to Register for an account.</a> </div>
+            </form>
+            <div class="modal-footer" >
+                <button class="cancel-btn">Cancel</button>
+                <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
             </div>
-
-            <span class="register" >
-                <a href="register.html"> New User? Click here to Register for an account. </a> 
-            </span>
-        
-            <div class="modal-container" style="background-color:#b6b6b6">
-                <button type="button" onclick="document.getElementById('modal-login').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw"> <a href="#"> Forgot password?</a></span> 
-            </div>
-        </form>
+        </div>
     </div>
-    
-    
-    <!-- When the user clicks anywhere outside of the modal, close it -->
-    <!-- this can also be added in the login.js file I think?? -->
-    <script>
-        var modal = document.getElementById('modal-login');
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-    </script>
 
-
+    
     <div class="content_container">
         <div id=content>
             

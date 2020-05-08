@@ -1,9 +1,9 @@
 const express = require('express');
 const loginRouter = express.Router();
-const dbHelper = require('../../database/database'); // surely theres a better way than '../..'
+const dbHelper = require(process.cwd() + '/database/database');
 
-loginRouter.post('/login', async (req, res) => {
-    console.log(await dbHelper.authenticate(req.body.email, req.body.pwd, "salt"));
+loginRouter.post('/', async (req, res) => {
+    console.log(await dbHelper.authenticate(req.body.email, req.body.pwd));
     res.send('Got a POST request');
 });
 

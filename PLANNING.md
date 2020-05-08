@@ -51,9 +51,13 @@
 
 ## UI:
 * MODAL
-    * the modal login, make the cross button animate? like zoom in or fade in or what
-    * fix inline issures
+    * fix the cross button
+        * make the cross button animate? like zoom in or fade in or what
+    * ~~fix inline issues~~
     * add fade out when the modal is closed
+    * ~~shade out background when clicked~~
+    * should it have rounder edges instead of sharp?
+    * make the remember me actually rememebr me
 * Do we want a footer?
     * Can add social media links
     * Add contact us links here
@@ -61,4 +65,6 @@
 * NAV BAR
     * Make it snazzy
     * Make the logo link to the home page
-    * 
+    * Make logo an image
+    * Create dropdowns for the tabs
+* header is diff colour from body -> do we want to change this

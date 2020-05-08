@@ -1,7 +1,10 @@
 "use strict";
 addEventListener('load', start);
+
+
 function start() {
     // TODO: Get banner images from server
+    getBanners();
 
     // TODO: Add images to carousel content div
         // Set ID 
@@ -18,6 +21,25 @@ function start() {
 
     
 } 
+
+function getBanners() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4) {
+            console.log('ready');
+            if(xhr.status === 200) { 
+                console.log('200');
+            } else {
+                console.log('error');
+            } 
+        } 
+        console.log('This always runs...');
+    };
+  
+    xhr.open("GET", "http://localhost:8080/home/getBanners", true);
+    xhr.send();
+
+}
 
 // THIS DOES NOT WORK on the id number
 function addListeners(){

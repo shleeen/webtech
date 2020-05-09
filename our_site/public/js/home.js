@@ -32,14 +32,15 @@ function getBanners() {
 
                 // This will need a for loop to dynamically create carousel images
                 var banners = res["data"].banner_path;
-                
+
                 console.log(banners);
-                /*
-                for(i = 0; i < arr.length; i++) {
-                    out += '<a href="' + arr[i].url + '">' +
+                 
+                var out = "";
+                for(var i = 0; i < res.length; i++) {
+                    out += '<a href="' + res[i].url + '">' +
                     arr[i].display + '</a><br>';
                 }
-                */
+                
             } else {
                 console.log('error getting banners');
             } 
@@ -50,8 +51,6 @@ function getBanners() {
         
     xhr.open("GET", "http://localhost:8080/home/getBanners", true);
     xhr.send();
-
-    
 
 }
 

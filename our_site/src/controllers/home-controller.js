@@ -8,8 +8,6 @@ exports.getBanners = async function(req, res) {
   console.log('is here is it so stuck');
   try {
     const banners = await homeService.getProductionBanners();
-    console.log('is here is it');
-    console.log(banners)
       res.status(200).json({
         valid: true,
         data: banners

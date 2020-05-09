@@ -6,16 +6,16 @@ exports.getBanners = async function(req, res) {
   //res.send('NOT IMPLEMENTED: Banner update GET');
 
   console.log('is here is it so stuck');
-    var banners = await homeService.getProductionBanners();
+  try {
+    const banners = await homeService.getProductionBanners();
     console.log('is here is it');
-    if (banners instanceof Error){
-      res.status(400).json({ errMessage: 'Unable to get banners.'})
-    } else {
-      console.log(banners)
+    console.log(banners)
       res.status(200).json({
         valid: true,
         data: banners
       });
-    }
+  } catch (err) {
+    res.status(400).json({ errMessage: 'Unable to get banners.'});
   }
+}
     

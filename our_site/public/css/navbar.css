@@ -36,7 +36,7 @@ header{
     background-color:#c399d3;
     color: #371545;
     border-radius: 5px;
-    /* background-blend-mode: navbar; commenting this out changes nothing :'( */
+    /* background-blend-mode: navbar; */
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
@@ -76,8 +76,7 @@ nav a {
     padding-right: 20px;
 }
 
-/*background: radial-gradient(circle,rgb(255,255,255,0.9), rgba(55, 21, 69, 0.089));
-*/
+/*background: radial-gradient(circle,rgb(255,255,255,0.9), rgba(55, 21, 69, 0.089)); */
 nav li:hover {
     background-color:#c399d3;
     border-radius: 5px;

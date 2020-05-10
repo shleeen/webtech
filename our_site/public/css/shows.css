@@ -1,21 +1,67 @@
-/* .wrap{
-    width: 90%;
-    height: max-content;
-    margin: 0 5%;
-} */
 
-.shows-content{
+/* arranges each show below one another */
+.shows-main{
     /* width: 100%; */
-    height: max-content;
-    margin: 40px 40px; /* cos page can only start after the nav */
+    /* height: max-content;*/
+    margin: 40px 40px; /*cos page can only start after the nav */
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    align-items: stretch; /*default is stretch, fills all space available
     /* overflow: auto; */
 }
 
+.shows-filter{
+    
+}
 
-.shows-item { 
+/* contains */
+.show-container { 
     margin: 10px 0;
-    height: 50px; 
+    height: 300px; 
+    display: flex;
+}
+
+.show-container div {
+    padding: .5em;
+    /* add font css here????? */
+}
+
+.show-poster{
+    background: grey;
+    /* margin: 10px 0; */
+    height: 300px; /* so that the poster sits nicely inside it */
+}
+
+.show-info {
+    background: darkgrey;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.show-name {
+    background: lightblue;
+    height: 50px;
+}
+
+.show-details{
+    flex-grow: 1;
+    background: steelblue;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /*default is stretch, fills all space available*/
+}
+
+.show-blurb{
+    width: 500px;
+    margin-right: 10px;
+    flex-grow: 1;
+    background: whitesmoke;
+}
+
+.show-timings{
+    flex-grow: 2;
+    background: pink;
 }

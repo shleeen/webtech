@@ -22,37 +22,22 @@ function start() {
     
 } 
 
-function getBanners() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4) {
-            if(xhr.status === 200) { 
-                console.log(xhr.response);
-                var res = JSON.parse(xhr.responseText);
-
-                // This will need a for loop to dynamically create carousel images
-                var banners = res["data"].banner_path;
-                
-                console.log(banners);
-                /*
-                for(i = 0; i < arr.length; i++) {
-                    out += '<a href="' + arr[i].url + '">' +
-                    arr[i].display + '</a><br>';
-                }
-                */
-            } else {
-                console.log('error getting banners');
-            } 
-        } 
-        console.log('This always runs...');
-        
-    };
-        
-    xhr.open("GET", "http://localhost:8080/home/getBanners", true);
-    xhr.send();
-
-    
-
+async function getBanners() {
+    const result = await fetch("http://localhost:8080/home/getBanners");
+    if (result.ok) {
+        const resultJson = await result.json();
+        // This will need a for loop to dynamically create carousel images
+        const banners = resultJson.data.banner_path;
+        console.log(banners);
+        /*
+        for(i = 0; i < arr.length; i++) {
+            out += '<a href="' + arr[i].url + '">' +
+            arr[i].display + '</a><br>';
+        }
+        */
+    } else {
+        console.log('error getting banners');
+    }
 }
 
 // THIS DOES NOT WORK on the id number

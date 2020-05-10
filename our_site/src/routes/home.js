@@ -1,9 +1,8 @@
 const express = require('express');
-//import { home } from '../controllers/home';
-
-
 const homeRouter = express.Router();
 
-//homeRouter.get('/getBanners', getHomeBanners);
+const homeController = require("../controllers/home-controller");
+
+homeRouter.get('/getBanners', homeController.getBanners);
 
 module.exports = homeRouter;

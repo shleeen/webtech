@@ -50,6 +50,7 @@
 
 
 ## UI:
+* Have a search bar?!
 * MODAL
     * fix the cross button
         * make the cross button animate? like zoom in or fade in or what
@@ -63,8 +64,15 @@
     * Add contact us links here
 * Fix the double scroll thing? it real uglyyy
 * NAV BAR
-    * Make it snazzy
+    * Make it snazzy - LIKE JAMIE OLIVERS WEBSITE :)
     * Make the logo link to the home page
     * Make logo an image
     * Create dropdowns for the tabs
 * header is diff colour from body -> do we want to change this
+* Shows Page
+    * Maybe search just on the shows page
+    * Filter by show/date
+* Box office page 
+    * available to only admins and producers
+    * displays the shows happening on that night
+    * this is where you collect tickets and 

@@ -15,6 +15,7 @@
     width: 100%;
     height: 700px;
     background-color: rgba(187, 187, 187, 0.829);
+    z-index: 4;
 }
 
 .carousel-content {
@@ -23,18 +24,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
+}
+
+.carousel-content-hide{
     display: none;
 }
 
 .carousel-arrow {
     width: 50px;
-    cursor: pointer;
+    height: 40px;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
     position: absolute;
     z-index: 1;
-    height: 50px;
 }
 
 .carousel-svg{
@@ -42,13 +45,13 @@
     /* filter: invert(0.5) sepia(1) hue-rotate(200deg);   */
 }
 
-.carousel-arrow{
+.carousel-arrow-svg{
     fill: none;
     stroke: #371545;
     stroke-miterlimit: 20;
     stroke-width: 2;
 }
-.carousel-svg:hover{
+.carousel-arrow:hover{
     filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(80%) contrast(97%);
 }
 
@@ -92,9 +95,10 @@ svg {
 }
 
 .svg-left{
-    transform: rotate(-180deg);
+    transform: rotateY(180deg);
 
 }
+
 
 .bg-image {
     /* Full height */

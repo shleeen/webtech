@@ -1,6 +1,9 @@
 "use strict";
-addEventListener('load', start);
+//addEventListener('load', start);
+document.addEventListener('DOMContentLoaded', start, false);
 
+// this includes 0 oops
+var numberOfBanners = 0;
 
 function start() {
     // TODO: Get banner images from server
@@ -14,9 +17,6 @@ function start() {
     //document.getElementById('carousel-svg').style.setProperty('fill','white');
     addListeners();
 
-    // variable to keep track of the carousel slide we're on, lets start with 1
-    var carouselNum = 1;
-
     console.log("home.html loaded");
 
     
@@ -27,18 +27,23 @@ function getBanners() {
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4) {
             if(xhr.status === 200) { 
-                console.log(xhr.response);
                 var res = JSON.parse(xhr.responseText);
-
-                // This will need a for loop to dynamically create carousel images
-                var banners = res["data"].banner_path;
-
-                console.log(banners);
-                 
-                var out = "";
-                for(var i = 0; i < res.length; i++) {
-                    out += '<a href="' + res[i].url + '">' +
-                    arr[i].display + '</a><br>';
+                var divID = "";
+                var append = "";
+                for(var x in res["data"]) {
+                    // var imagePath = console.log(res["data"][x].banner_path)
+                
+                    divID = 'carousel-banner-';
+                    if (x == 0){
+                        divID += x;
+                        append = '<div id="'+ divID+'" class="carousel-content"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
+                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + append;
+                    } else {
+                        divID += x;
+                        append = '<div id="'+ divID+'" class="carousel-content-hide"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
+                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + append;
+                        numberOfBanners++;
+                    }
                 }
                 
             } else {
@@ -54,21 +59,56 @@ function getBanners() {
 
 }
 
-// THIS DOES NOT WORK on the id number
+function carouselChange(direction){
+    var elem = document.getElementsByClassName('carousel-content');
+    var id = elem[0].id;
+    id = id.split("-").pop();
+
+    elem = document.getElementById('carousel-banner-' + id)
+
+    if (direction == 'right') {
+        id = parseInt(id, 10) + 1;
+
+        if (id > numberOfBanners) id = 0;
+        
+        elem.classList.remove('carousel-content');
+        elem.classList.add('carousel-content-hide');
+
+        var newID = 'carousel-banner-' + id;
+        console.log(newID);
+        document.getElementById(newID).classList.remove('carousel-content-hide');
+        document.getElementById(newID).classList.add('carousel-content');
+    } else {
+        id = parseInt(id, 10) - 1;
+        if (id < 0) id = numberOfBanners;
+
+        elem.classList.remove('carousel-content');
+        elem.classList.add('carousel-content-hide');
+
+        var newID = 'carousel-banner-' + id;
+        console.log(newID);
+        document.getElementById(newID).classList.remove('carousel-content-hide');
+        document.getElementById(newID).classList.add('carousel-content');
+    }
+}
+
+
 function addListeners(){
     // -------------------------NAV ARROWS--------------------------------
+    // For some reason this doesnt work but in-line on-click does 
+    /*
     var carouselArrows = document.querySelectorAll('.carousel-arrow');
-    for (var i = 0; i < carouselArrows.length; i++) {
-        carouselArrows[i].addEventListener('click', function (event) {
-            // Fade out current
-            // Fade in next
-        }, false);
+    for (var j = 0; j < carouselArrows.length; j++) {
+        console.log('arrows');
+        carouselArrows[j].addEventListener('click', function(event) {
+            alert('f');
+        });
     }
+    */
 
     // -------------------------NAV BUTTONS--------------------------------
     var carouselNav = document.querySelectorAll('.carousel-nav-button');
     for (var i = 0; i < carouselNav.length; i++) {
-        console.log('i is', i);
         carouselNav[i].addEventListener('click', function (event) {
             // What happens when it clicks?
             // Get colour, change colour
@@ -87,9 +127,7 @@ function addListeners(){
             console.log('nav thing is clicked', i);
 
         }, false);
-    }
-
-    
+    }    
 }
 
 function fadeColour(elem, from, to) {

@@ -29,4 +29,13 @@ async function initializeDB() {
     }
 }
 
-initializeDB();
+async function addToDB() {
+    // initializing the database tables with test data
+    let errors = "";
+    try {
+        await dbHelper.addProductions("firstuser", "Test Production1", "Bristol Theatre", "img/banner-sample1.png", "img/pegg.jpg", "Max Whale", "Nicole Li", "This will be the show you will ever see.", "", "");
+    } catch (err) { errors += "  " + err + '\n'; }
+}
+
+// initializeDB();
+addToDB();

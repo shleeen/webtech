@@ -28,7 +28,7 @@ function getBanners() {
                 for(var x in res["data"]) {
                     // var imagePath = console.log(res["data"][x].banner_path)
                     bannerDivID = 'carousel-banner-';
-                    navDivID = 'nav-svg-';
+                    navDivID = 'nav-button-';
                     if (x == 0){
                         bannerDivID += x;
                         navDivID += x;
@@ -36,7 +36,7 @@ function getBanners() {
                         appendBanner = '<div id="'+ bannerDivID+'" class="carousel-content"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
                         document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
 
-                        appendNavBut = '<button class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" x="20" y="20" width="15" height="10" stroke="black" fill="#371545" stroke-width="2"/></svg></button>';
+                        appendNavBut = '<div class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" onclick="navCarouselChange(this)" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" class="nav-button-select" x="20" y="20" width="15" height="10"/></svg></div>';
                         document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
                     } else {
                         bannerDivID += x;
@@ -45,9 +45,9 @@ function getBanners() {
                         appendBanner = '<div id="'+ bannerDivID+'" class="carousel-content-hide"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
                         document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
 
-                        appendNavBut = '<button class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" x="20" y="20" width="15" height="10" stroke="black" fill="#371545" stroke-width="2"/></svg></button>';
+                        appendNavBut = '<div class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" onclick="navCarouselChange(this)" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" class="nav-button-none-select" x="20" y="20" width="15" height="10"/></svg></div>';
                         document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
-                        
+
                         numberOfBanners++;
                     }
                 }
@@ -65,6 +65,7 @@ function getBanners() {
 
 }
 
+// This is triggered by arrows 
 function carouselChange(direction){
     var elem = document.getElementsByClassName('carousel-content');
     var id = elem[0].id;
@@ -99,6 +100,22 @@ function carouselChange(direction){
     }
 }
 
+// This is triggered by the nav buttons
+function navCarouselChange(elem){
+    var nextID = elem.id;
+
+    // deselect current nav
+    var currentElem = document.getElementsByClassName('nav-button-select')[0];
+    currentElem.classList.remove('nav-button-select');
+    currentElem.classList.add('nav-button-none-select');
+
+    // select selected 
+    var nextElem = document.getElementById(nextID).childNodes;
+    nextElem[0].classList.remove('nav-button-none-select');
+    nextElem[0].classList.add('nav-button-select');
+    
+}
+
 function addListeners(){
     // -------------------------NAV ARROWS--------------------------------
     // For some reason this doesnt work but in-line on-click does 
@@ -113,27 +130,26 @@ function addListeners(){
     */
 
     // -------------------------NAV BUTTONS--------------------------------
-    var carouselNav = document.querySelectorAll('.carousel-nav-button');
+    /*var carouselNav = document.querySelectorAll('.carousel-nav-button');
     for (var i = 0; i < carouselNav.length; i++) {
         carouselNav[i].addEventListener('click', function (event) {
-            // What happens when it clicks?
-            // Get colour, change colour
+            //navCarouselChange.call(this, event);
+            //alert(this.id);
+            
             const elem = document.getElementById('nav-svg-rect');
             const colour = elem.style.getPropertyValue('fill');
-            // nah we want the fading of a fill
-            // elem.classList.toggle('fadeOut');
+          
             if (colour == '#FFFFFF') {
                 fadeColour(elem, color, '#371545');
             } else {
                 fadeColour(elem, color, '#FFFFFF');
             }
             
-            // svg animation
-            // move to the one clicked
             console.log('nav thing is clicked', i);
 
         }, false);
-    }    
+    } 
+    */
 }
 
 function fadeColour(elem, from, to) {

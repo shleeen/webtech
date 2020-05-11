@@ -103,6 +103,7 @@ function carouselChange(direction){
 // This is triggered by the nav buttons
 function navCarouselChange(elem){
     var nextID = elem.id;
+    var nextIDNum = nextID.split("-").pop();
 
     // deselect current nav
     var currentElem = document.getElementsByClassName('nav-button-select')[0];
@@ -113,6 +114,23 @@ function navCarouselChange(elem){
     var nextElem = document.getElementById(nextID).childNodes;
     nextElem[0].classList.remove('nav-button-none-select');
     nextElem[0].classList.add('nav-button-select');
+
+    // need to hget current banner id 
+    var carouselElem = document.getElementsByClassName('carousel-content');
+    var currentIDNum = carouselElem[0].id;
+    currentIDNum = currentIDNum.split("-").pop();
+
+    // hide current banner
+    carouselElem = document.getElementById('carousel-banner-' + currentIDNum)
+    carouselElem.classList.remove('carousel-content');
+    carouselElem.classList.add('carousel-content-hide');
+
+    // show selected banner
+    var nextBannerID = 'carousel-banner-' + nextIDNum;
+    document.getElementById(nextBannerID).classList.remove('carousel-content-hide');
+    document.getElementById(nextBannerID).classList.add('carousel-content');
+
+
     
 }
 

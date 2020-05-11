@@ -6,20 +6,12 @@ document.addEventListener('DOMContentLoaded', start, false);
 var numberOfBanners = 0;
 
 function start() {
-    // TODO: Get banner images from server
+    // Get banner images from server and populate html
     getBanners();
 
-    // TODO: Add images to carousel content div
-        // Set ID 
-
-    // TODO: Add listeners to carousel arrows
-
-    //document.getElementById('carousel-svg').style.setProperty('fill','white');
     addListeners();
 
     console.log("home.html loaded");
-
-    
 } 
 function getBanners() {
     var xhr = new XMLHttpRequest();

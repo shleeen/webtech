@@ -19,20 +19,35 @@ function getBanners() {
         if(xhr.readyState === 4) {
             if(xhr.status === 200) { 
                 var res = JSON.parse(xhr.responseText);
-                var divID = "";
-                var append = "";
+                var bannerDivID = "";
+                var appendBanner = "";
+
+                var navDivID = "";
+                var appendNavBut = "";
+
                 for(var x in res["data"]) {
                     // var imagePath = console.log(res["data"][x].banner_path)
-                
-                    divID = 'carousel-banner-';
+                    bannerDivID = 'carousel-banner-';
+                    navDivID = 'nav-svg-';
                     if (x == 0){
-                        divID += x;
-                        append = '<div id="'+ divID+'" class="carousel-content"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
-                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + append;
+                        bannerDivID += x;
+                        navDivID += x;
+
+                        appendBanner = '<div id="'+ bannerDivID+'" class="carousel-content"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
+                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
+
+                        appendNavBut = '<button class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" x="20" y="20" width="15" height="10" stroke="black" fill="#371545" stroke-width="2"/></svg></button>';
+                        document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
                     } else {
-                        divID += x;
-                        append = '<div id="'+ divID+'" class="carousel-content-hide"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
-                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + append;
+                        bannerDivID += x;
+                        navDivID += x;
+
+                        appendBanner = '<div id="'+ bannerDivID+'" class="carousel-content-hide"><img class="carousel-image" src="' + res["data"][x].banner_path + '"></img></div>';
+                        document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
+
+                        appendNavBut = '<button class="carousel-nav-button"><svg id="'+ navDivID+'" class="nav-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" height="50" width="50" preserveAspectRatio="none"><rect id="nav-svg-rect" x="20" y="20" width="15" height="10" stroke="black" fill="#371545" stroke-width="2"/></svg></button>';
+                        document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
+                        
                         numberOfBanners++;
                     }
                 }

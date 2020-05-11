@@ -85,6 +85,18 @@ function carouselChange(direction){
         console.log(newID);
         document.getElementById(newID).classList.remove('carousel-content-hide');
         document.getElementById(newID).classList.add('carousel-content');
+
+        // need to update nav buttons
+        // deselect current
+        var currentElem = document.getElementsByClassName('nav-button-select')[0];
+        currentElem.classList.remove('nav-button-select');
+        currentElem.classList.add('nav-button-none-select');
+
+        // select selected 
+        var navDivID = 'nav-button-' + id;
+        var nextElem = document.getElementById(navDivID).childNodes;
+        nextElem[0].classList.remove('nav-button-none-select');
+        nextElem[0].classList.add('nav-button-select');
     } else {
         id = parseInt(id, 10) - 1;
         if (id < 0) id = numberOfBanners;
@@ -96,6 +108,18 @@ function carouselChange(direction){
         console.log(newID);
         document.getElementById(newID).classList.remove('carousel-content-hide');
         document.getElementById(newID).classList.add('carousel-content');
+
+        // need to update nav buttons
+        // deselect current
+        var currentElem = document.getElementsByClassName('nav-button-select')[0];
+        currentElem.classList.remove('nav-button-select');
+        currentElem.classList.add('nav-button-none-select');
+
+        // select selected 
+        var navDivID = 'nav-button-' + id;
+        var nextElem = document.getElementById(navDivID).childNodes;
+        nextElem[0].classList.remove('nav-button-none-select');
+        nextElem[0].classList.add('nav-button-select');
 
     }
 }

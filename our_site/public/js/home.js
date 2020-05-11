@@ -21,7 +21,6 @@ function start() {
 
     
 } 
-
 function getBanners() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -89,9 +88,9 @@ function carouselChange(direction){
         console.log(newID);
         document.getElementById(newID).classList.remove('carousel-content-hide');
         document.getElementById(newID).classList.add('carousel-content');
+
     }
 }
-
 
 function addListeners(){
     // -------------------------NAV ARROWS--------------------------------

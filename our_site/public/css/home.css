@@ -15,6 +15,7 @@
     width: 90%;
     height: max-content;
     margin: 3% 5%;
+    position: relative;
 }
 
 .carousel {
@@ -117,6 +118,41 @@ svg {
 
 }
 
+.join-section{
+    background-color: #371545dd;
+    color: #e2e2e2;
+    height: 250px;
+}
+
+#join {
+    display:inline-block;
+    left: 0;
+    width: fit-content;
+    font-size: 12em;
+    line-height: 250px;
+    font: "Open Sans";
+    text-shadow: 2px 2px #2c2c2c;
+} 
+
+#join-text{
+    bottom: 0;
+    width: 30%;
+    height: 160px;
+    margin: 1em 0;
+    padding-top: 110px;
+    font-size: 20px;
+    text-align: left;
+}
+
+#join-link{
+    bottom: 0;
+    width: 20%;
+    height: 150px;
+    margin: 1.5em 0;
+    padding-top: 146px;
+    font-size: 20px;
+    text-align: left;
+}
 
 .bg-image {
     /* Full height */

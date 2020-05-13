@@ -2,7 +2,7 @@
 
 header{
     width: 100%;
-    height: 40px;
+    height: 10px;
     background-color: #ffffff;
     color: #2c2c2c;
     position: fixed;
@@ -10,7 +10,7 @@ header{
 }
 
 .navbar {
-    top: 40px; /* so it sits below the header */
+    top: 10px; /* so it sits below the header */
     width: 100%;
     display: flex;
     align-items: center;

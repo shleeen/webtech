@@ -67,7 +67,7 @@ function addListeners(){
 }
 
 function addContent(){
-    document.getElementById("shows").innerHTML = '<object type="text/html" data="shows.html" ></object>';
+    document.getElementById("shows").innerHTML = '<object type="text/html" data="shows.html" height="100%" width="100%"></object>';
     document.getElementById("home").innerHTML = '<object type="text/html" data="home.html" ></object>';
 }
 

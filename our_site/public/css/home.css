@@ -152,7 +152,7 @@ svg {
     height: 160px;
     margin-top: 2.5em;
     margin-bottom: 2em;
-    padding-top: 120px;
+    padding-top: 8.5vh;
     font-size: 1vw;
     text-align: left;
 }
@@ -160,12 +160,12 @@ svg {
 #join-link{
     bottom: 0;
     width: fit-content;
-    margin-top: 2rem;
+    margin-top: 9.5vh;
     margin-bottom: 4rem;
     font-size: 2vw;
     text-align: left;
-    padding-top: 115px;
     border-bottom: 2px solid #f1f1f1;
+    cursor: pointer;
 }
 
 .bg-image {

@@ -15,6 +15,7 @@
 
     <script src="/js/index.js"></script>
     <script src="/js/login.js"></script>
+    
     <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
 
@@ -50,7 +51,16 @@
     <!-- Modal Login (overlays over any page) -->
     <div id="modal-login" class="modal">
         <div class="modal-content animate-in">
-            <div class="close-btn">  &times; </div>
+            <div class="close-btn pad15">  &times; </div>
+            <div class="login-tab active-tab pad15">
+                <p>Login</p>
+            </div>
+
+            <div class="register-tab non-active-tab pad15">
+                <p>Register</p>
+            </div>
+
+
             <form method="post" action="/login">
                 <div class="modal-container">
                     <label for="email"><b>Email</b></label>
@@ -58,15 +68,18 @@
             
                     <label for="pwd"><b>Password</b></label>
                     <input type="password" placeholder="Password" name="pwd" required>
-            
-                    <button type="submit">Login</button>
+
                     <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
+            
+                    <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
+                    
                 </div>
                 <div class="modal-register"> <a href="#"> New User? Click here to Register for an account.</a> </div>
             </form>
             <div class="modal-footer" >
                 <button class="cancel-btn">Cancel</button>
-                <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
+                <button class="submit-btn" type="submit">Submit</button>
+                
             </div>
         </div>
     </div>

@@ -159,6 +159,10 @@ function navCarouselChange(elem){
 }
 
 function addListeners(){
+    document.getElementById("join-link").addEventListener("click", function(){
+        window.parent.document.getElementById("modal-login").style.display = "block"
+    });
+    
     // -------------------------NAV ARROWS--------------------------------
     // For some reason this doesnt work but in-line on-click does 
     /*

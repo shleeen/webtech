@@ -15,6 +15,17 @@ function start() {
     setTimeout(function () {
         removeOverlaySpashScreen();
     }, 3500);
+
+    var homeObj = document.getElementById("home-object");
+    homeObj.onload = function(){
+        homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+    }
+
+    var showObj = document.getElementById("shows-object");
+    showObj.onload = function(){
+        showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+    }
+
     
 } 
 
@@ -67,8 +78,8 @@ function addListeners(){
 }
 
 function addContent(){
-    document.getElementById("shows").innerHTML = '<object type="text/html" data="shows.html" width="100%"></object>';
-    document.getElementById("home").innerHTML = '<object type="text/html" data="home.html" width="100%"></object>';
+    document.getElementById("shows").innerHTML = '<object id="shows-object" type="text/html" data="shows.html" width="100%"></object>';
+    document.getElementById("home").innerHTML = '<object id="home-object" type="text/html" data="home.html" width="100%"></object>';
 }
 
 function displayHome() {
@@ -76,7 +87,7 @@ function displayHome() {
     document.getElementById("shows").classList.add('none_active');
     document.getElementById("home").classList.remove('none_active');
     document.getElementById("home").classList.add('active');
-
+   
     window.history.pushState({}, '', 'Home');
 }
 

@@ -19,19 +19,26 @@ button {
   width: 100%;
 }
 
+form{
+  background-color:#371545;
+  height: 40vh;
+}
 button:hover {
   opacity: 0.8;
 }
 
 .cancel-btn {
-  width: auto;
-  padding: 10px 18px;
+  width: 20vw;
   background-color: #f44336;
+}
+
+.submit-btn{
+  width: 20vw;
 }
   
 .login-psw {
   float: right;
-  padding-top: 16px;
+  padding-top: 8px;
 }
 
 .modal-register{
@@ -46,11 +53,14 @@ button:hover {
   height: 100%;
   padding-top: 100px; /* make it stay in center of page */
   /* background-color: #c7c7c7; */
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
+  
 }
   
 .modal-content {
-  background-color: #fefefe;
+  border-radius: 4px;
+  background-color: #c7c7c7;
+  color: #c7c7c7;
   margin: 60px auto;
   border: 3px solid #371545;
   width: 45%; /* Could be more or less, depending on screen size */
@@ -61,8 +71,9 @@ button:hover {
 }
 
 .modal-footer {
-  padding: 16px;
-  background-color:#c7c7c7;
+  padding: 8px 16px;
+  background-color:#371545;
+  text-align: center;
 }
 
 .close-btn {
@@ -80,6 +91,38 @@ button:hover {
 .animate-in {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
+}
+
+.login-tab{
+  width: 15vw;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 6px;
+  border-radius: 6px 6px 0px 0px;
+  text-align: center;
+}
+
+.register-tab{
+  width: 15vw;
+  display: inline-block;
+  margin-top: 10px;
+  border-radius: 6px 6px 0px 0px;
+  text-align: center;
+}
+
+.active-tab{
+  background-color:#371545;
+}
+
+.non-active-tab{
+  background-color:#c7c7c7;
+  color: #371545;
+  border-color: #371545;
+}
+
+button{
+  border-radius: 6px;
+  
 }
   
 @-webkit-keyframes animatezoom {

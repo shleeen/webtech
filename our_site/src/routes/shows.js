@@ -1,8 +1,9 @@
 const express = require('express');
-//import { home } from '../controllers/home'; // ???????
-
 const showsRouter = express.Router();
 
-//showsRouter.get('/getProduction', getProd?);
+const showsController = require("../controllers/shows-controller");
+showsRouter.get('/getProductionDetails', showsController.getProd);
 
 module.exports = showsRouter;
+
+

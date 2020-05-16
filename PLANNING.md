@@ -50,10 +50,13 @@
 
 
 ## UI:
-* Have a search bar?!
-* MODAL
+* Have a search bar in the nav??!
+* Home Page:  
+    * clicking carousel should take you to the indv show page
+* MODAL  
     * fix the cross button
         * make the cross button animate? like zoom in or fade in or what
+    * make the modal close when clicking ESC key
     * ~~fix inline issues~~
     * add fade out when the modal is closed
     * ~~shade out background when clicked~~

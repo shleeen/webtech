@@ -18,12 +18,17 @@ function start() {
 
     var homeObj = document.getElementById("home-object");
     homeObj.onload = function(){
-        homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+        //homeObj.getElementsByClassName("main");
+        //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+        var data = homeObj.contentDocument.body.scrollHeight;
+        homeObj.style.height = data + 'px';
     }
 
     var showObj = document.getElementById("shows-object");
     showObj.onload = function(){
-        showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+        //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+        var data = showObj.contentDocument.body.scrollHeight;
+        showObj.style.height = data + 'px';
     }
 
     

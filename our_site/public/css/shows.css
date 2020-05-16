@@ -1,5 +1,5 @@
 
-/* arranges each show below one another */
+/* arranges each show-container div below one another */
 .shows-main{
     /* width: 100%; */
     /* height: max-content;*/
@@ -22,19 +22,22 @@
     display: flex;
 }
 
-.show-container div {
-    padding: .5em;
-    /* add font css here????? */
-}
+/* .show-container div {
+    padding: .5em; /* this gives every div container under show-container the same padding */
+    /* add font css here?????
+} */
 
 .show-poster{
-    background: grey;
+    /* background: purple; */
     /* margin: 10px 0; */
+    padding: .5em;
     height: 300px; /* so that the poster sits nicely inside it */
+    width: 216px;
 }
 
 .show-info {
-    background: darkgrey;
+    /* background: darkgrey; */
+    padding: .5em;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -42,19 +45,27 @@
 
 
 .show-name {
-    background: lightblue;
+    padding: .2em;
+    /* background: lightblue; */
     height: 50px;
+    font-size: 30px;
+    align-items: center;
+    color: #371545;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 .show-details{
+    padding: .2em;
     flex-grow: 1;
-    background: steelblue;
+    /* background: steelblue; */
     display: flex;
     flex-direction: row;
     align-items: stretch; /*default is stretch, fills all space available*/
 }
 
 .show-blurb{
+    padding: .2em;
     width: 500px;
     margin-right: 10px;
     flex-grow: 1;
@@ -63,5 +74,5 @@
 
 .show-timings{
     flex-grow: 2;
-    background: pink;
+    /* background: pink; */
 }

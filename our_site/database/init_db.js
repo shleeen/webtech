@@ -13,7 +13,7 @@ async function initializeDB() {
         await dbHelper.addUser("firstuser", "John", "Smith", "jsmith@gmail.com", "johnpass");
     } catch (err) { errors += "  " + err + '\n'; }
     try {
-        await dbHelper.addProductions("firstuser", "Test Production", "Bristol Community Theatre", "img/banner-sample.png", "img/pegg.jpg", "Max Whale", "Nicole Li", "This will be the best show you will ever see.", "", "");
+        await dbHelper.addProductions("firstuser", "Test Production", "Bristol Community Theatre", "img/banner-sample.png", "img/poster-sample.png", "Max Whale", "Nicole Li", "This will be the best show you will ever see.", "", "");
     } catch (err) { errors += "  " + err + '\n'; }
     try {
         await dbHelper.addShows("Test Production", 	"2020-06-20", "19:30", "550", "0");
@@ -33,7 +33,7 @@ async function addToDB() {
     // initializing the database tables with test data
     let errors = "";
     try {
-        await dbHelper.addProductions("firstuser", "Test Production1", "Bristol Theatre", "img/banner-sample1.png", "img/pegg.jpg", "Max Whale", "Nicole Li", "This will be the show you will ever see.", "", "");
+        await dbHelper.addProductions("firstuser", "Test Production1", "Bristol Theatre", "img/banner-sample1.png", "img/poster-sample1.png", "Max Whale", "Nicole Li", "This will be the BEST show you will ever see.", "", "");
     } catch (err) { errors += "  " + err + '\n'; }
 }
 

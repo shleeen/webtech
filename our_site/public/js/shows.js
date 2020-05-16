@@ -13,17 +13,17 @@ function getProductionDetails() {
     xhr.onreadystatechange = function () {
         if(xhr.readyState == 4 && xhr.status === 200) { 
             var res = JSON.parse(xhr.responseText);
-            var showsDiv = ""
-            var posterDiv = ""
-            var infoDiv = ""
-            var nameDiv = ""
-            var blurbDiv = ""
-            var timingsDiv = ""
-            var divStart = ""
-            var divEnd = ""
+            var showsDiv = "";
+            var posterDiv = "";
+            var infoDiv = "";
+            var nameDiv = "";
+            var blurbDiv = "";
+            var timingsDiv = "";
+            var divStart = "";
+            var divEnd = "";
 
-            divStart = '<div class="show-container">'
-            divEnd = '</div></div></div>'
+            divStart = '<div class="show-container">';
+            divEnd = '</div></div></div>';
 
             // console.log("reaching here");
             // console.log(res["data"]);
@@ -37,7 +37,7 @@ function getProductionDetails() {
                 nameDiv = '<div class="show-name">' + res["data"][x].name + '</div>';
                 blurbDiv = '<div class="show-details"> <div class="show-blurb">' + res["data"][x].blurb + '</div>';
                 timingsDiv = '<div class="show-timings">' + res["data"][x].date + '</div>';
-                showsDiv = divStart + posterDiv + infoDiv + nameDiv + blurbDiv + timingsDiv + divEnd
+                showsDiv = divStart + posterDiv + infoDiv + nameDiv + blurbDiv + timingsDiv + divEnd;
                 document.getElementById("shows-main").innerHTML = document.getElementById("shows-main").innerHTML + showsDiv;
 
                 console.log("one prod done");

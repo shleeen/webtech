@@ -16,22 +16,27 @@ function start() {
         removeOverlaySpashScreen();
     }, 3500);
 
+
     var homeObj = document.getElementById("home-object");
+    var indexHeight = window.innerHeight;
     homeObj.onload = function(){
-        //homeObj.getElementsByClassName("main");
         //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
-        var data = homeObj.contentDocument.body.scrollHeight;
-        homeObj.style.height = data + 'px';
+
+        // This gets the height of embedded html
+        var height = homeObj.contentDocument.body.scrollHeight;
+
+        if (height > indexHeight) homeObj.style.height = height + 'px';
+        else homeObj.style.height = indexHeight + 'px';
     }
 
     var showObj = document.getElementById("shows-object");
     showObj.onload = function(){
         //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-        var data = showObj.contentDocument.body.scrollHeight;
-        showObj.style.height = data + 'px';
-    }
+        var height = showObj.contentDocument.body.scrollHeight;
 
-    
+        if (height > indexHeight) showObj.style.height = height + 'px';
+        else showObj.style.height = indexHeight + 'px';
+    }
 } 
 
 // This gets params like url/?a=?

@@ -30,7 +30,7 @@ function getBanners() {
           // var imagePath = console.log(res["data"][x].banner_path)
           bannerDivID = "carousel-banner-";
           navDivID = "nav-button-";
-          if (x === 0){
+          if (x === "0") {
             bannerDivID += x;
             navDivID += x;
 

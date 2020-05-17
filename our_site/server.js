@@ -3,12 +3,18 @@ const express = require('express');
 const path = require('path');
 const routes = require('./src/index');
 const helmet = require('helmet')
+const session = require('express-session');
 // const bodyParser = require('body-parser');
 
 const app = express();
 app.use(helmet());
 
 app.use(express.urlencoded({ extended: false }))
+app.use(session({
+    resave: false, // don't save session if unmodified
+    saveUninitialized: false, // don't create session until something stored
+    secret: 'shhhh, very secret'
+}));
 
 //app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
 //app.set('view engine', 'pug');

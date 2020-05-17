@@ -77,10 +77,10 @@ async function addShows(prodname, date, doors_open, total_seats) {
 
 async function authenticate(email, pass) {
   if (!is_db_open) db = await openDB();
-  const user = await db.get("SELECT password_hash, password_salt FROM user WHERE email = ?", [email]);
+  const user = await db.get("SELECT id, password_hash, password_salt FROM user WHERE email = ?", [email]);
   if (!user) return false;
   const result = await hash( {password: pass, salt: user.password_salt} );
-  if (result.hash === user.password_hash) return true;
+  if (result.hash === user.password_hash) return user.id;
   else return false;
 }
 

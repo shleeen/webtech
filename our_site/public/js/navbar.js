@@ -1,7 +1,7 @@
 "use strict";
-addEventListener('load', start);
+addEventListener("load", start);
 function start() {
-    //loadNavbar();
-    //document.querySelector('.shows').click();
+  //loadNavbar();
+  //document.querySelector('.shows').click();
 } 
 

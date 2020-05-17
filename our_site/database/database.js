@@ -1,6 +1,6 @@
-const sqlite3 = require('sqlite3');
-const sqlite = require('sqlite');
-const hash_callback = require('pbkdf2-password')();
+const sqlite3 = require("sqlite3");
+const sqlite = require("sqlite");
+const hash_callback = require("pbkdf2-password")();
 
 let is_db_open = false;
 let db;
@@ -11,8 +11,8 @@ const hash = (options) => {
     hash_callback(options, (err, pass, salt, hash) => {
       if (err) return reject(err);
       resolve({pass: pass, salt: salt, hash: hash});
-    })
-  })
+    });
+  });
 };
 
 const database_path = "./database/database.db";

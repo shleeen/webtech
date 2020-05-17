@@ -1,5 +1,5 @@
 "use strict";
-addEventListener('load', start);
+addEventListener("load", start);
 function start() {
-    console.log("register.html loaded");
+  console.log("register.html loaded");
 } 

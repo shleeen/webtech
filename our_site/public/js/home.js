@@ -60,7 +60,7 @@ function getBanners() {
         
     };
         
-    xhr.open("GET", "http://localhost:8080/home/getBanners", true);
+    xhr.open("GET", "/home/getBanners", true);
     xhr.send();
 
 }

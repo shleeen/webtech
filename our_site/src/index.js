@@ -5,9 +5,10 @@ const dbHelper = require('../database/database');
 // for validation
 const { check, validationResult } = require('express-validator');
 
-const homeRouter = require("./routes/home.js")
-const showsRouter = require("./routes/shows.js")
-const loginRouter = require("./routes/login.js")
+const homeRouter = require("./routes/home.js");
+const showsRouter = require("./routes/shows.js");
+const loginRouter = require("./routes/login.js");
+const registerRouter = require("./routes/register.js");
 
 router.get('/', (req, res) => {
   res.render('index', {title: 'Homepage'});
@@ -16,10 +17,11 @@ router.get('/', (req, res) => {
 router.use('/home', homeRouter);
 router.use('/shows', showsRouter);
 router.use('/login', loginRouter); // dunno if this is right
+router.use('/register', registerRouter);
 
 
 router.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!")
+  res.status(404).send("Sorry can't find that!");
 })
 
 // router.METHOD(route, (req, res) => {

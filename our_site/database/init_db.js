@@ -24,18 +24,12 @@ async function initializeDB() {
     try {
         await dbHelper.addShows("Test Production", "2020-06-22", "19:30", "550", "0");
     } catch (err) { errors += "  " + err + '\n'; }
+    try {
+        await dbHelper.addProductions("firstuser", "Test Production1", "Bristol Theatre", "img/banner-sample1.png", "img/poster-sample1.png", "Max Whale", "Nicole Li", "This will be the BEST show you will ever see.", "", "");
+    } catch (err) { errors += "  " + err + '\n'; }
     if (errors != "") {
         console.error("Error(s) initalising database:\n" + errors);
     }
 }
 
-async function addToDB() {
-    // initializing the database tables with test data
-    let errors = "";
-    try {
-        await dbHelper.addProductions("firstuser", "Test Production1", "Bristol Theatre", "img/banner-sample1.png", "img/poster-sample1.png", "Max Whale", "Nicole Li", "This will be the BEST show you will ever see.", "", "");
-    } catch (err) { errors += "  " + err + '\n'; }
-}
-
-// initializeDB();
-addToDB();
+initializeDB();

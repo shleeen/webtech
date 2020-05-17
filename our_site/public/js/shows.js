@@ -48,7 +48,7 @@ function getProductionDetails() {
         } 
     }
 
-    xhr.open("GET", "http://localhost:8080/shows/getProductionDetails", true);
+    xhr.open("GET", "/shows/getProductionDetails", true);
     xhr.send();
 
 }

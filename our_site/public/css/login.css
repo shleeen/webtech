@@ -21,7 +21,13 @@ button {
 
 form{
   background-color:#371545;
-  height: 40vh;
+  height: max-content;
+  text-align: center;
+  margin: 16px;
+}
+
+form p{
+  padding: 16px;
 }
 button:hover {
   opacity: 0.8;
@@ -38,11 +44,44 @@ button:hover {
   
 .login-psw {
   float: right;
-  padding-top: 8px;
+}
+
+.login-svg{
+  height: 7vh;
+  animation-name: changeFilter;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes changeFilter {
+  from {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(238deg) brightness(111%) contrast(105%);
+    
+  }
+  to {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
+    
+  }
 }
 
 .modal-register{
   margin: 5px 18px;
+  color: #c7c7c7;
+}
+
+#switch p{
+  margin: 5px 18px;
+  cursor: pointer;
+  color: #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 14px;
+}
+
+#switch p:hover{
+  margin: 5px 16px;
+  cursor: pointer;
+  color: #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
 }
 
 .modal {
@@ -59,15 +98,22 @@ button:hover {
   
 .modal-content {
   border-radius: 4px;
-  background-color: #c7c7c7;
+  background-color: #371545;
   color: #c7c7c7;
   margin: 60px auto;
-  border: 3px solid #371545;
-  width: 45%; /* Could be more or less, depending on screen size */
+  border: 1px solid #371545;
+  width: 30%; /* Could be more or less, depending on screen size */
+  height: max-content;
 }
   
 .modal-container {
   padding: 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.modal-container label{
+  float: left;
 }
 
 .modal-footer {
@@ -78,7 +124,7 @@ button:hover {
 
 .close-btn {
   float: right; 
-  color: #371545;
+  color: #c7c7c7;
   font-size: 24px;
   font-weight: bold;
 }
@@ -94,20 +140,21 @@ button:hover {
 }
 
 .login-tab{
-  width: 15vw;
+  width: 12vw;
+  height: 5vw;
   display: inline-block;
-  margin-top: 10px;
-  border-radius: 6px;
-  border-radius: 6px 6px 0px 0px;
   text-align: center;
+  border: 1px solid #371545;
+  border-radius: 2px;
+  
 }
 
 .register-tab{
-  width: 15vw;
+  width: 12vw;
+  height: 5vw;
   display: inline-block;
-  margin-top: 10px;
-  border-radius: 6px 6px 0px 0px;
   text-align: center;
+  border: 1px solid #ccc;
 }
 
 .active-tab{
@@ -117,7 +164,7 @@ button:hover {
 .non-active-tab{
   background-color:#c7c7c7;
   color: #371545;
-  border-color: #371545;
+  border-color: #c7c7c7;
 }
 
 button{

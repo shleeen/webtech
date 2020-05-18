@@ -98,6 +98,10 @@ object{
   padding: 5px;
 }
 
+.pad10 {
+  padding: 10px;
+}
+
 .pad15 {
   padding: 15px;
 }

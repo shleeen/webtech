@@ -52,17 +52,26 @@
     <!-- Modal Login (overlays over any page) -->
     <div id="modal-login" class="modal">
         <div class="modal-content animate-in">
-            <div class="close-btn pad15">  &times; </div>
-            <div class="login-tab active-tab pad15">
-                <p>Login</p>
-            </div>
+            <div class="close-btn pad10">  &times; </div>
+            <!-- <div class="modal-nav">
+                <div class="close-btn">  &times; </div>
+                <div class="login-tab active-tab">
+                    <p>Login</p>
+                </div>
 
-            <div class="register-tab non-active-tab pad15">
-                <p>Register</p>
-            </div>
+                <div class="register-tab non-active-tab">
+                    <p>Register</p>
+                </div>
+            </div> -->
 
-
-            <form method="post" action="/login">
+            <form id="login-content"  method="post" action="/login">
+                <!-- <p>
+                    LOGIN
+                </p> -->
+                <div>
+                    <object id="login-svg" class="login-svg" data="./img/login.svg" type="image/svg+xml">
+                    </object>
+                </div>
                 <div class="modal-container">
                     <label for="email"><b>Email</b></label>
                     <input type="email" placeholder="Email Address" name="email" required>
@@ -73,12 +82,16 @@
                     <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
             
                     <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
-                    <button class="submit-btn" type="submit">Submit</button>
+                    
                     
                 </div>
-                <div class="modal-register"> <a href="#"> New User? Click here to Register for an account.</a> </div>
+                <div id="switch" class="modal-to-register"> <p> New User? Click here to register!</p> </div>
+
+                <div class="modal-footer" >
+                    <button class="submit-btn" type="submit">Submit</button>            
+                </div>
             </form>
-            <form method="post" action="/register">
+            <form id="register-content" class="none_active" method="post" action="/register">
                 <div class="modal-container">
                     <label for="email"><b>Email</b></label>
                     <input type="email" placeholder="Email Address" name="email" required>
@@ -98,14 +111,16 @@
                     <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
             
                     <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
-                    <button class="submit-btn" type="submit">Submit</button>
+                    
                     
                 </div>
-                <div class="modal-register"> <a href="#"> New User? Click here to Register for an account.</a> </div>
+                <div id="switch" class="modal-to-login"> <p> Have an account? Click here to login.</p> </div>
+
+                <div class="modal-footer" >
+                    <button class="submit-btn" type="submit">Submit</button>           
+                </div>
             </form>
-            <div class="modal-footer" >
-                <button class="cancel-btn">Cancel</button>             
-            </div>
+            
         </div>
     </div>
 

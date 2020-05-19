@@ -63,8 +63,8 @@ function drawLogin(){
 
 
 function startDrawingPath(path){
-  path.style.stroke = '#fff'
-  path.style.strokeWidth = 1.5;
+  path.style.stroke = '#371545'
+  path.style.strokeWidth = 0.7;
   path.style.strokeDasharray = path.getTotalLength() + 20;
   path.style.strokeDashoffset = path.getTotalLength();
   

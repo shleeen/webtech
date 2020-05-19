@@ -29,13 +29,9 @@ form{
 form p{
   padding: 16px;
 }
+
 button:hover {
   opacity: 0.8;
-}
-
-.cancel-btn {
-  width: 20vw;
-  background-color: #f44336;
 }
 
 .submit-btn{

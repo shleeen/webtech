@@ -1,60 +1,15 @@
 "use strict";
-const router = new Router();
-
-router.get('/Home', function(req, router){
-    //displayHome();
-    console.log(req.path); // outputs /about-me to the console
-    console.log('displaying home');
-
-    document.getElementById("shows").classList.remove('active');
-    document.getElementById("shows").classList.add('none_active');
-    document.getElementById("home").classList.remove('none_active');
-    document.getElementById("home").classList.add('active');
-   
-    window.history.pushState({}, '', 'Home');
-
-    console.log('ho' + req.path); // outputs /about-me to the console
-});
-
-router.get('/Shows', function(req, router){
-    //displayShows();
-    console.log('displaying shows');
-
-    console.log(window.document.getElementById('home'))
-
-
-    window.document.getElementById("home").classList.remove('active');
-    window.document.getElementById("home").classList.add('none_active');
-    window.document.getElementById("shows").classList.remove('none_active');
-    window.document.getElementById("shows").classList.add('active');
-    
-    window.history.pushState({}, '', 'Shows');
-
-    console.log(req.path); 
-});
-
-router.init();
-window.router = router;
-// ALL THIS NEEDS TO BE INSIDE START()
-
 // ----------------------------------------------------------------------------
 
 addEventListener('load', start);
 
 function start() {
 
-    var path = window.location.pathname;
-    // console.log(path);
-    if (path == '/Shows') {
-        //displayShows();
-        console.log('this does nothing')
-    } else {
-        // displayHome();
-        
-        console.log('this should also do nothing')
-    }
+    initRouter();
     addContent();
     addListeners();
+
+    // Spash screen there so that the page loads
     setTimeout(function () {
         removeOverlaySpashScreen();
     }, 3500);
@@ -81,6 +36,8 @@ function start() {
         else showObj.style.height = indexHeight + 'px';
     }
 } 
+
+// -------------------------------------------------------------------------------------------------
 
 // This gets params like url/?a=?
 //var dynamicContent = getParameterByName('dc');
@@ -156,4 +113,9 @@ function displayShows() {
     
     window.history.pushState({}, '', 'Shows');
 }
+
+
+// ----------------------------------------------------------------------------------------
+
+
    

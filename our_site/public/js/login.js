@@ -11,7 +11,9 @@ function addLoginListeners() {
   var closeBtn = document.querySelector(".close-btn");
 
   var toRegister = document.querySelector(".modal-to-register");
-  var toLogin = document.querySelector(".modal-to-login");
+  var regToLogin = document.querySelector(".modal-reg-to-login");
+  var forgotToLogin = document.querySelector(".modal-forgot-to-login");
+  var toForget = document.querySelector(".modal-to-forget");
 
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {
@@ -19,43 +21,61 @@ function addLoginListeners() {
     drawLogin();
   };
 
-  // close the modal using the cross button
-  closeBtn.onclick = function() {
+  function closeModal() {
     modal.style.display = "none";
-  };
+    // Set back to default state for next time it is opened
+    document.getElementById("login-content").classList.remove("none_active");
+    document.getElementById("register-content").classList.add("none_active");
+    document.getElementById("forgot-content").classList.add("none_active");
+  }
+
+  // close the modal using the cross button
+  closeBtn.onclick = closeModal;
 
   // close the modal by clicking outside
   window.onclick = function(event) {
     if (event.target === modal){
-      modal.style.display = "none";
+      closeModal();
     }
   };
 
   toRegister.onclick = function() {
-    document.getElementById('login-content').classList.add('none_active');
-    document.getElementById('register-content').classList.remove('none_active');
-  }
+    document.getElementById("register-content").classList.remove("none_active");
+    document.getElementById("login-content").classList.add("none_active");
+  };
 
-  toLogin.onclick = function(){
-    // THIS DOESNT WORK
+  toForget.onclick = function() {
+    document.getElementById("forgot-content").classList.remove("none_active");
+    document.getElementById("login-content").classList.add("none_active");
+  };
+
+  regToLogin.onclick = function(){
+    // seems like the remove has to come first?
+    document.getElementById("login-content").classList.remove("none_active");
+    document.getElementById("register-content").classList.add("none_active");
     drawLogin();
-    document.getElementById('register-content').classList.add('none_active');
-    document.getElementById('login-content').classList.remove('none_active');
-  }
+  };
+
+  forgotToLogin.onclick = function(){
+    // seems like the remove has to come first?
+    document.getElementById("login-content").classList.remove("none_active");
+    document.getElementById("forgot-content").classList.add("none_active");
+    drawLogin();
+  };
 
 }
 
 
 function drawLogin(){
-  var orig = document.getElementById('login-svg');
+  var orig = document.getElementById("login-svg");
   var svgDoc;
 
   orig.addEventListener("load",function() {
     svgDoc = orig.contentDocument;
-    var paths = svgDoc.getElementsByTagName('path'); 
+    var paths = svgDoc.getElementsByTagName("path"); 
     var i;
     for (i=0; i< paths.length; i++){
-      console.log(paths[i])
+      console.log(paths[i]);
       startDrawingPath(paths[i]);
     }
   }, false);
@@ -63,7 +83,7 @@ function drawLogin(){
 
 
 function startDrawingPath(path){
-  path.style.stroke = '#371545'
+  path.style.stroke = "#371545";
   path.style.strokeWidth = 0.7;
   path.style.strokeDasharray = path.getTotalLength() + 20;
   path.style.strokeDashoffset = path.getTotalLength();
@@ -74,7 +94,7 @@ function startDrawingPath(path){
 function animate(path, len) {
   path.style.strokeDashoffset = len - 2;
   if (path.style.strokeDashoffset < 0) path.style.strokeDashoffset = 0;
-  console.log(path.style.strokeDashoffset)
+  console.log(path.style.strokeDashoffset);
 
   if (path.style.strokeDashoffset > 0) {
     // Do another step
@@ -86,12 +106,12 @@ function animate(path, len) {
 function increaseLength(path, length){
   var pathLength = path.getTotalLength();
   length += 1;
-  path.style.strokeDasharray = [length,pathLength].join(' ');
+  path.style.strokeDasharray = [length,pathLength].join(" ");
   if (length >= pathLength) clearInterval(timer);
 }
 
 function stopDrawingPath(){
   clearInterval(timer);
-  orig.style.stroke = '';
-  orig.style.strokeDasharray = '';
+  orig.style.stroke = "";
+  orig.style.strokeDasharray = "";
 }

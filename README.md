@@ -12,8 +12,6 @@ https://github.com/validatorjs/validator.js#validators
 
 * I think ian talked about var vs consts somewhere (cant find it so have ignored thinking about that for now)
 
-### THinsg ive done
-(_things ive done cos it may look like a mess:_  ___(because it is a mess)___)  
 
 **what is website_form**  
 - So in folder *website_form* is a website(?) of a form asking for name & email that I made following a tutorial basically to learn things.  

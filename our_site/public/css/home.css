@@ -120,52 +120,67 @@ svg {
 }
 
 .join-section{
-    height: 250px;
-    background-color: #371545dd;
-    color: #e2e2e2;
     width: 100%;
     position: relative;
-    display: flex;
+    height: 2700px;
 }
 
-.join-inner-section{
-    width: 95%;
-    margin: 0 3%;
+.join-img1{
+    background-image: url('../img/theatre-2.jpg');
     position: relative;
-    height: 250px;
+    opacity: 0.65;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 30%;
+    text-align: center;
 }
 
-#join {
-    display: flex;
+.join-img2{
+    background-image: url('../img/theatre-1.jpg');
+    position: relative;
+    opacity: 0.65;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 30%;
+    text-align: center;
+}
+
+.join-border{
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+}
+
+.join-text{
+    position: absolute;
     left: 0;
-    width: fit-content;
-    font-size: 12vw;
-    line-height: 200px;
-    font: "Open Sans";
-    text-shadow: 2px 2px #2c2c2c;
-    padding: 1.5rem 0;
-} 
-
-#join-text{
-    bottom: 0;
-    width: 30vw;
-    height: 160px;
-    margin-top: 2.5em;
-    margin-bottom: 2em;
-    padding-top: 8.5vh;
-    font-size: 1vw;
-    text-align: left;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
 }
 
-#join-link{
-    bottom: 0;
-    width: fit-content;
-    margin-top: 9.5vh;
-    margin-bottom: 4rem;
-    font-size: 2vw;
-    text-align: left;
-    border-bottom: 2px solid #f1f1f1;
-    cursor: pointer;
+
+.join-desc{
+    background-color: rgb(60, 60, 60);
+    text-align: center;
+    padding: 5% 5%;
+}
+
+.join-desc h3 {
+    color: #c7c7c7;
+    font-size: larger;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.join-desc p {
+    color: #c7c7c7;
+    font-size: large;
 }
 
 .bg-image {

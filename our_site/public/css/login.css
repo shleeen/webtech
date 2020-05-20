@@ -1,12 +1,32 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 /* Full-width input fields */
-input[type=email], input[type=password] {
+input[type=email], input[type=password], input[type=first], input[type=last], input[type=username] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  border-radius:10px;
+  box-shadow: 1px 1px 5px 2px rgba(188, 188, 188, 0.222);
 }
+
+input[type=first], input[type=last] {
+  width: 46%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius:10px;
+  box-shadow: 1px 1px 5px 2px rgba(188, 188, 188, 0.222);
+  margin-right: 10px;
+}
+
+
 
 /* style for all buttons */
 button {
@@ -21,15 +41,17 @@ button {
 
 form{
   background-color:#371545;
-  height: 40vh;
-}
-button:hover {
-  opacity: 0.8;
+  height: max-content;
+  text-align: center;
+  margin: 16px;
 }
 
-.cancel-btn {
-  width: 20vw;
-  background-color: #f44336;
+form p{
+  padding: 16px;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 .submit-btn{
@@ -38,11 +60,51 @@ button:hover {
   
 .login-psw {
   float: right;
-  padding-top: 8px;
+}
+
+.login-svg{
+  height: 7vh;
+  animation-name: changeFilter;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+}
+
+.register-svg{
+  height: 7vh;
+  animation-name: changeFilter;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes changeFilter {
+  from {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(238deg) brightness(111%) contrast(105%);
+    
+  }
+  to {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
+    
+  }
 }
 
 .modal-register{
   margin: 5px 18px;
+  color: #c7c7c7;
+}
+
+#switch p{
+  margin: 5px 18px;
+  cursor: pointer;
+  color: #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 14px;
+}
+
+#switch p:hover{
+  margin: 5px 16px;
+  cursor: pointer;
+  color: #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
 }
 
 .modal {
@@ -59,15 +121,24 @@ button:hover {
   
 .modal-content {
   border-radius: 4px;
-  background-color: #c7c7c7;
+  background-color: #371545;
   color: #c7c7c7;
   margin: 60px auto;
-  border: 3px solid #371545;
-  width: 45%; /* Could be more or less, depending on screen size */
+  border: 1px solid #371545;
+  width: 30%; /* Could be more or less, depending on screen size */
+  height: max-content;
 }
   
 .modal-container {
   padding: 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.modal-container label{
+  width: 50%;
+  float: left;
+  text-align: left;
 }
 
 .modal-footer {
@@ -78,7 +149,7 @@ button:hover {
 
 .close-btn {
   float: right; 
-  color: #371545;
+  color: #c7c7c7;
   font-size: 24px;
   font-weight: bold;
 }
@@ -94,20 +165,21 @@ button:hover {
 }
 
 .login-tab{
-  width: 15vw;
+  width: 12vw;
+  height: 5vw;
   display: inline-block;
-  margin-top: 10px;
-  border-radius: 6px;
-  border-radius: 6px 6px 0px 0px;
   text-align: center;
+  border: 1px solid #371545;
+  border-radius: 2px;
+  
 }
 
 .register-tab{
-  width: 15vw;
+  width: 12vw;
+  height: 5vw;
   display: inline-block;
-  margin-top: 10px;
-  border-radius: 6px 6px 0px 0px;
   text-align: center;
+  border: 1px solid #ccc;
 }
 
 .active-tab{
@@ -117,11 +189,11 @@ button:hover {
 .non-active-tab{
   background-color:#c7c7c7;
   color: #371545;
-  border-color: #371545;
+  border-color: #c7c7c7;
 }
 
 button{
-  border-radius: 6px;
+  border-radius: 10px;
   
 }
   

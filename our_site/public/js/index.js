@@ -1,43 +1,43 @@
 "use strict";
-addEventListener("load", start);
+// ----------------------------------------------------------------------------
+
+addEventListener('load', start);
 
 function start() {
 
-  var path = window.location.pathname;
-  console.log(path);
-  if (path === "/Shows") {
-    displayShows();
-  } else {
-    displayHome();
-  }
-  addContent();
-  addListeners();
-  setTimeout(function() {
-    removeOverlaySpashScreen();
-  }, 3500);
+    initRouter();
+    addContent();
+    addListeners();
+
+    // Spash screen there so that the page loads
+    setTimeout(function () {
+        removeOverlaySpashScreen();
+    }, 3500);
 
 
-  var homeObj = document.getElementById("home-object");
-  var indexHeight = window.innerHeight;
-  homeObj.onload = function() {
-    //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+    var homeObj = document.getElementById("home-object");
+    var indexHeight = window.innerHeight;
+    homeObj.onload = function(){
+        //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
 
-    // This gets the height of embedded html
-    var height = homeObj.contentDocument.body.scrollHeight;
+        // This gets the height of embedded html
+        var height = homeObj.contentDocument.body.scrollHeight;
 
-    if (height > indexHeight) homeObj.style.height = height + "px";
-    else homeObj.style.height = indexHeight + "px";
-  };
+        if (height > indexHeight) homeObj.style.height = height + 'px';
+        else homeObj.style.height = indexHeight + 'px';
+    }
 
-  var showObj = document.getElementById("shows-object");
-  showObj.onload = function() {
-    //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-    var height = showObj.contentDocument.body.scrollHeight;
+    var showObj = document.getElementById("shows-object");
+    showObj.onload = function(){
+        //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+        var height = showObj.contentDocument.body.scrollHeight;
 
-    if (height > indexHeight) showObj.style.height = height + "px";
-    else showObj.style.height = indexHeight + "px";
-  };
+        if (height > indexHeight) showObj.style.height = height + 'px';
+        else showObj.style.height = indexHeight + 'px';
+    }
 } 
+
+// -------------------------------------------------------------------------------------------------
 
 // This gets params like url/?a=?
 //var dynamicContent = getParameterByName('dc');
@@ -93,20 +93,29 @@ function addContent() {
 }
 
 function displayHome() {
-  document.getElementById("shows").classList.remove("active");
-  document.getElementById("shows").classList.add("none_active");
-  document.getElementById("home").classList.remove("none_active");
-  document.getElementById("home").classList.add("active");
+    console.log('displaying home');
+
+    document.getElementById("shows").classList.remove('active');
+    document.getElementById("shows").classList.add('none_active');
+    document.getElementById("home").classList.remove('none_active');
+    document.getElementById("home").classList.add('active');
    
   window.history.pushState({}, "", "Home");
 }
 
 function displayShows() {
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("home").classList.add("none_active");
-  document.getElementById("shows").classList.remove("none_active");
-  document.getElementById("shows").classList.add("active");
+    console.log('displaying shows');
+
+    document.getElementById("home").classList.remove('active');
+    document.getElementById("home").classList.add('none_active');
+    document.getElementById("shows").classList.remove('none_active');
+    document.getElementById("shows").classList.add('active');
     
   window.history.pushState({}, "", "Shows");
 }
+
+
+// ----------------------------------------------------------------------------------------
+
+
    

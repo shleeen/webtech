@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", start, false);
 
 function start() {
   getProductionDetails();
+  addShowsListeners();
   console.log("shows.html loaded");
 }
 
@@ -30,9 +31,10 @@ function getProductionDetails() {
 
       // for each production x, create and fill the container
       for (var x in res.data) {
-        console.log("and reaching here");
 
-        posterDiv = "<div class=\"show-poster\"> <img src=\"" + res.data[x].poster_path + "\"></img></div>"; 
+        // <input type="image" src="logg.png" name="saveForm" class="btTxt submit" id="saveForm" />
+
+        posterDiv = "<div class=\"show-poster\"> <input type=\"image\" src=\"" + res.data[x].poster_path + "\"id=\"show-btn\"/></div>"; 
         infoDiv = "<div class=\"show-info\">";
         nameDiv = "<div class=\"show-name\">" + res.data[x].name + "</div>";
         blurbDiv = "<div class=\"show-details\"> <div class=\"show-blurb\">" + res.data[x].blurb + "</div>";
@@ -50,5 +52,18 @@ function getProductionDetails() {
 
   xhr.open("GET", "/shows/getProductionDetails", true);
   xhr.send();
+
+}
+
+
+function addShowsListeners() {
+  var showPageTrigger = document.getElementById("show-btn"); //this is the trigger
+  // var modal = document.querySelector(".modal");
+
+  // close the modal using the cross button
+  showPageTrigger.onclick = function() {
+    //go to a different page
+    console.log("clickk!!");
+  };
 
 }

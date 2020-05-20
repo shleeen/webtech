@@ -5,6 +5,7 @@ const homeRouter = require("./routes/home.js");
 const showsRouter = require("./routes/shows.js");
 const loginRouter = require("./routes/login.js");
 const registerRouter = require("./routes/register.js");
+const resetRouter = require("./routes/reset.js");
 
 router.get("/", (req, res) => {
   res.render("index", {title: "Homepage"});
@@ -14,6 +15,7 @@ router.use("/home", homeRouter);
 router.use("/shows", showsRouter);
 router.use("/login", loginRouter); // dunno if this is right
 router.use("/register", registerRouter);
+router.use("/reset", resetRouter);
 
 
 router.use((req, res) => {

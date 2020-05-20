@@ -14,8 +14,11 @@
     <script type="text/javascript" src="/js/redirect.js"></script>
     <script type="text/javascript">recieveRedirect()</script>
 
+    <script src="/router/router.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/login.js"></script>
+    <script src="/router/routes.js"></script>
+    
     
     <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
@@ -53,21 +56,9 @@
     <div id="modal-login" class="modal">
         <div class="modal-content animate-in">
             <div class="close-btn pad10">  &times; </div>
-            <!-- <div class="modal-nav">
-                <div class="close-btn">  &times; </div>
-                <div class="login-tab active-tab">
-                    <p>Login</p>
-                </div>
-
-                <div class="register-tab non-active-tab">
-                    <p>Register</p>
-                </div>
-            </div> -->
 
             <form id="login-content"  method="post" action="/login">
-                <!-- <p>
-                    LOGIN
-                </p> -->
+
                 <div>
                     <object id="login-svg" class="login-svg" data="./img/login.svg" type="image/svg+xml">
                     </object>
@@ -91,26 +82,37 @@
                     <button class="submit-btn" type="submit">Submit</button>            
                 </div>
             </form>
+            <form method="post" action="/reset">
+                <div class="modal-container">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Email Address" name="email" required>
+                    <button class="submit-btn" type="submit">Reset password</button>
+                </div>
+            </form>
             <form id="register-content" class="none_active" method="post" action="/register">
                 <div>
                     <object id="register-svg" class="register-svg" data="./img/register.svg" type="image/svg+xml">
                     </object>
                 </div>
                 <div class="modal-container">
+                    <label for="first_name"><b>First Name</b></label>
+                    <label for="last_name"><b>Last Name</b></label>
+                    
+                    <input type="first" placeholder="First Name" name="first_name" required>
+
+                    
+                    <input type="last" placeholder="Last Name" name="last_name" required>
+
                     <label for="email"><b>Email</b></label>
                     <input type="email" placeholder="Email Address" name="email" required>
             
                     <label for="pwd"><b>Password</b></label>
                     <input type="password" placeholder="Password" name="pwd" required>
 
-                    <label for="first_name"><b>First Name</b></label>
-                    <input type="text" placeholder="First Name" name="first_name" required>
-
-                    <label for="last_name"><b>Last Name</b></label>
-                    <input type="text" placeholder="Last Name" name="last_name" required>
+                    
 
                     <label for="username"><b>Username</b></label>
-                    <input type="text" placeholder="First Name" name="username" required>
+                    <input type="username" placeholder="First Name" name="username" required>
 
                     <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
             

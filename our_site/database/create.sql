@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS show;
 DROP TABLE IF EXISTS ticket_type;
 DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS ticket;
+DROP TABLE IF EXISTS password_reset;
 
 -- Use CAPITALS for SQL keywords and snake_case for table and column names.
 -- SQLite reccommends against using the AUTOINCREMENT KEYWORD, it will automatically assign unique id values anyway.
@@ -93,4 +94,12 @@ CREATE TABLE ticket (
     seat_number     INTEGER,
     FOREIGN KEY (booking_id) REFERENCES booking(id),
     FOREIGN KEY (ticket_type_id) REFERENCES ticket_type(id)
+);
+
+CREATE TABLE password_reset (
+    id       INTEGER  PRIMARY KEY,
+    user_id  INTEGER  NOT NULL,
+    token    TEXT     NOT NULL,
+    time     INTEGER  NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );

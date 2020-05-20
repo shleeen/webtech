@@ -42,6 +42,12 @@ async function all(query, params) {
   return result;
 }
 
+async function run(query, params) {
+  if (!is_db_open) db = await openDB();
+  const result = await db.run(query, params);
+  return result;
+}
+
 async function addUserType(type) {
   if (!is_db_open) db = await openDB();
   if (await db.get("SELECT * FROM user_type WHERE type = ?", [type])) {
@@ -88,6 +94,7 @@ async function authenticate(email, pass) {
 exports.openDB = openDB;
 exports.get = get;
 exports.all = all;
+exports.run = run;
 exports.addUserType = addUserType;
 exports.addUser = addUser;
 exports.addProductions = addProductions;

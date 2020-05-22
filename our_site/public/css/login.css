@@ -76,6 +76,13 @@ button:hover {
   animation-fill-mode: forwards;
 }
 
+.reset-svg{
+  height: 7vh;
+  animation-name: changeFilter;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes changeFilter {
   from {
     filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(238deg) brightness(111%) contrast(105%);

@@ -70,23 +70,28 @@
                     <label for="pwd"><b>Password</b></label>
                     <input type="password" placeholder="Password" name="pwd" required>
 
-                    <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
-            
-                    <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
-                    
+                    <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>                  
                     
                 </div>
                 <div id="switch" class="modal-to-register"> <p> New User? Click here to register!</p> </div>
+                <div id="switch" class="modal-to-forget"> <p> Forgot password?</p> </div>
 
                 <div class="modal-footer" >
                     <button class="submit-btn" type="submit">Submit</button>            
                 </div>
             </form>
-            <form method="post" action="/reset">
+            <form id="forgot-content" class="none_active" method="post" action="/reset">
+                <div>
+                    <object id="reset-svg" class="reset-svg" data="./img/resetpassword.svg" type="image/svg+xml">
+                    </object>
+                </div>
                 <div class="modal-container">
                     <label for="email"><b>Email</b></label>
                     <input type="email" placeholder="Email Address" name="email" required>
-                    <button class="submit-btn" type="submit">Reset password</button>
+                </div>
+                <div id="switch" class="modal-forgot-to-login"> <p> Return to login</p> </div>
+                <div class="modal-footer" >
+                    <button class="submit-btn" type="submit">Send password reset link</button>
                 </div>
             </form>
             <form id="register-content" class="none_active" method="post" action="/register">
@@ -115,12 +120,9 @@
                     <input type="username" placeholder="First Name" name="username" required>
 
                     <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
-            
-                    <div class="login-psw"> <a href="#"> Forgot password?</a></div> 
-                    
-                    
+                                        
                 </div>
-                <div id="switch" class="modal-to-login"> <p> Have an account? Click here to login.</p> </div>
+                <div id="switch" class="modal-reg-to-login"> <p> Have an account? Click here to login.</p> </div>
 
                 <div class="modal-footer" >
                     <button class="submit-btn" type="submit">Submit</button>           

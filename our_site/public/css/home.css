@@ -19,6 +19,7 @@
     height: 680px;
     background-color: rgba(187, 187, 187, 0.829);
     z-index: 4;
+    box-shadow: 2px 2px 5px 5px rgba(58, 58, 58, 0.824);
 }
 
 .carousel-content {
@@ -145,7 +146,6 @@ svg {
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: -1%;
     width: 70%;
     height: 100%;
     transform: translateZ(0px);

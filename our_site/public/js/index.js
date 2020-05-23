@@ -1,4 +1,6 @@
 "use strict";
+// ----- Globals so they can be loaded after the entire site is loaded and used throughout------------------------------------------------------------
+var navbar;
 // ----------------------------------------------------------------------------
 
 addEventListener('load', start);
@@ -35,6 +37,8 @@ function start() {
         if (height > indexHeight) showObj.style.height = height + 'px';
         else showObj.style.height = indexHeight + 'px';
     }
+    navbar = document.getElementById('navbar');
+    
 } 
 
 // -------------------------------------------------------------------------------------------------
@@ -85,6 +89,7 @@ function addListeners() {
     // The URL changed...
     console.log("LOO");
   });
+  
 }
 
 function addContent() {
@@ -95,10 +100,43 @@ function addContent() {
 function displayHome() {
     console.log('displaying home');
 
-    document.getElementById("shows").classList.remove('active');
-    document.getElementById("shows").classList.add('none_active');
-    document.getElementById("home").classList.remove('none_active');
-    document.getElementById("home").classList.add('active');
+    setTimeout(function() {
+      var i = 9;
+      document.getElementById("shows").style.opacity = 1;
+      var k = window.setInterval(function() {
+        if (i <= 0) {
+          clearInterval(k);
+          document.getElementById("shows").classList.remove('active');
+          document.getElementById("shows").classList.add('none_active');
+          document.getElementById("home").style.opacity = 0;
+          document.getElementById("home").classList.remove('none_active');
+          document.getElementById("home").classList.add('active');
+
+        } else {
+          document.getElementById("shows").style.opacity = i / 10;
+          i--;
+        }
+      }, 50);
+          
+    }, 300);
+
+    // fade in
+    setTimeout(function() {
+      var i = 0;
+      
+      var k = window.setInterval(function() {
+        if (i >= 10) {
+          clearInterval(k);
+          
+          document.getElementById("home").style.opacity = 1;
+
+        } else {
+          document.getElementById("home").style.opacity = i / 10;
+          i++;
+        }
+      }, 100);
+    }, 600);
+    
    
   window.history.pushState({}, "", "Home");
 }
@@ -106,16 +144,65 @@ function displayHome() {
 function displayShows() {
     console.log('displaying shows');
 
-    document.getElementById("home").classList.remove('active');
-    document.getElementById("home").classList.add('none_active');
-    document.getElementById("shows").classList.remove('none_active');
-    document.getElementById("shows").classList.add('active');
-    
+     setTimeout(function() {
+      var i = 9;
+      document.getElementById("home").style.opacity = 1;
+      var k = window.setInterval(function() {
+        if (i <= 0) {
+          clearInterval(k);
+          document.getElementById("home").classList.remove('active');
+          document.getElementById("home").classList.add('none_active');
+
+          document.getElementById("shows").style.opacity = 0;
+          document.getElementById("shows").classList.remove('none_active');
+          document.getElementById("shows").classList.add('active');
+
+        } else {
+          document.getElementById("home").style.opacity = i / 10;
+          i--;
+        }
+      }, 50);  
+    }, 300);
+
+    // fade in
+    setTimeout(function() {
+      var i = 0;
+      var k = window.setInterval(function() {
+        if (i >= 10) {
+          clearInterval(k);
+          
+          document.getElementById("shows").style.opacity = 1;
+
+        } else {
+          document.getElementById("shows").style.opacity = i / 10;
+          i++;
+        }
+      }, 100);
+    }, 600);
+
   window.history.pushState({}, "", "Shows");
 }
 
 
 // ----------------------------------------------------------------------------------------
 
-
    
+// listener to hide nav when scrolling down and show nav when scrolling up
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  if (window.scrollY == 0){
+    navbar.classList.remove('hover');
+  } else {
+    navbar.classList.add('hover');
+  }
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    
+    // remove hover
+    window.document.getElementById("navbar").style.top = "0";
+
+  } else {
+    window.document.getElementById("navbar").style.top = "-60px";
+  }
+  prevScrollpos = currentScrollPos;
+};

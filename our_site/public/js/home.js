@@ -10,6 +10,7 @@ function start() {
   getBanners();
 
   addListeners();
+  
 
   console.log("home.html loaded");
 }

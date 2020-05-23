@@ -2,6 +2,7 @@
 html {
   box-sizing: border-box;
   height: max-content;
+  
 }
   
 *, *::before, *::after {
@@ -32,7 +33,7 @@ body {
 
 .content_container {
   margin: 0 auto;
-  padding-top: 6.5em;
+  padding-top: 5em;
   overflow: hidden;
 
 }

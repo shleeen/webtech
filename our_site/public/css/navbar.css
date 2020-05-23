@@ -10,7 +10,6 @@ header{
 }
 
 .navbar {
-    top: 10px; /* so it sits below the header */
     width: 100%;
     display: flex;
     align-items: center;
@@ -18,8 +17,25 @@ header{
     background-color: #371545;
     color: #FFFFFF;
     position: fixed;
-    padding: 15px 15px;
+    padding: 15px 85px;
+    transition: 0.5s;
 }
+
+.hover:hover{
+    animation-name: slideDown;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideDown {
+    from {
+      top: -60px;
+    }
+    to {
+      top: 0px;
+    }
+  }
+
 
 #logo {
     /* float: left; */

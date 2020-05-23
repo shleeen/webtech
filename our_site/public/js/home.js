@@ -101,6 +101,7 @@ function carouselChange(direction) {
     var nextElem = document.getElementById(navDivID).childNodes;
     nextElem[1].classList.remove("nav-button-none-select");
     nextElem[1].classList.add("nav-button-select");
+
   } else {
     id = parseInt(id, 10) - 1;
     if (id < 0) id = numberOfBanners;

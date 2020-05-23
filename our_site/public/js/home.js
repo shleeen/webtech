@@ -14,39 +14,6 @@ function start() {
   console.log("home.html loaded");
 }
 
-function render(templateID, replacements) {
-  var html = document.getElementById(templateID).innerHTML;
-  var values = getDynamicValues(html);
-  var new_html = applyDynamicValues(html, values, replacements);
-  return new_html;
-}
-
-function getDynamicValues(str_html) {
-  // Regex Explanation:  In JavaScript, [^] represents a valid character class. Should be the same as .
-  // Regex Explanation:  ([^]*?) -> +? or *?  means it will consume as few characters 
-  // as possible instead of as many as possible (as is the default)
-
-  var result = str_html.match(/{{([^]*?)}}/g);
-  if (result !== null) {
-    // Filter the results to remove duplicates
-    // Then use map to remove brackets in the matches
-    return result.filter(function(item, pos) {
-      return result.indexOf(item) === pos;
-    }).map(function(x) { return x.replace(/({{|}})/g,""); });
-  } else {
-    return [];
-  }
-}
-
-// We create a function to replace the curly braces with data values
-function applyDynamicValues(str_html, values, replacements) {
-  for (var value of values) {
-    var regexp = new RegExp("{{" + value + "}}", "g");
-    str_html = str_html.replace(regexp, replacements[value]);
-  }
-  return str_html;
-}
-
 function getBanners() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -65,18 +32,18 @@ function getBanners() {
             bannerDivID += x;
             navDivID += x;
 
-            document.getElementById("carousel").innerHTML += render("banner", { banner_id: bannerDivID, banner_class: "carousel-content", banner_img: res.data[x].banner_path });
+            document.getElementById("carousel").innerHTML += template.render("banner", { banner_id: bannerDivID, banner_class: "carousel-content", banner_img: res.data[x].banner_path });
 
             // appendBanner = "<div id=\""+ bannerDivID+"\" class=\"carousel-content\"><img class=\"carousel-image\" src=\"" + res.data[x].banner_path + "\"></img></div>";
             // document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
 
             // appendNavBut = "<div class=\"carousel-nav-button\"><svg id=\""+ navDivID+"\" class=\"nav-svg\" onclick=\"navCarouselChange(this)\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" height=\"50\" width=\"50\" preserveAspectRatio=\"none\"><rect id=\"nav-svg-rect\" class=\"nav-button-select\" x=\"20\" y=\"20\" width=\"15\" height=\"10\"/></svg></div>";
-            document.getElementById("carousel-nav").innerHTML += render("nav-button", { nav_id: navDivID, nav_class: "nav-button-select" });
+            document.getElementById("carousel-nav").innerHTML += template.render("nav-button", { nav_id: navDivID, nav_class: "nav-button-select" });
           } else {
             bannerDivID += x;
             navDivID += x;
 
-            document.getElementById("carousel").innerHTML += render("banner", { banner_id: bannerDivID, banner_class: "carousel-content-hide", banner_img: res.data[x].banner_path });
+            document.getElementById("carousel").innerHTML += template.render("banner", { banner_id: bannerDivID, banner_class: "carousel-content-hide", banner_img: res.data[x].banner_path });
 
             // appendBanner = "<div id=\""+ bannerDivID+"\" class=\"carousel-content-hide\"><img class=\"carousel-image\" src=\"" + res.data[x].banner_path + "\"></img></div>";
             // document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
@@ -84,7 +51,7 @@ function getBanners() {
             // appendNavBut = "<div class=\"carousel-nav-button\"><svg id=\""+ navDivID+"\" class=\"nav-svg\" onclick=\"navCarouselChange(this)\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" height=\"50\" width=\"50\" preserveAspectRatio=\"none\"><rect id=\"nav-svg-rect\" class=\"nav-button-none-select\" x=\"20\" y=\"20\" width=\"15\" height=\"10\"/></svg></div>";
             // document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
 
-            document.getElementById("carousel-nav").innerHTML += render("nav-button", { nav_id: navDivID, nav_class: "nav-button-none-select" });
+            document.getElementById("carousel-nav").innerHTML += template.render("nav-button", { nav_id: navDivID, nav_class: "nav-button-none-select" });
 
             numberOfBanners++;
           }
@@ -94,7 +61,6 @@ function getBanners() {
         console.log("error getting banners");
       } 
     } 
-    console.log("This always runs...");
         
   };
         
@@ -120,7 +86,6 @@ function carouselChange(direction) {
     elem.classList.add("carousel-content-hide");
 
     var newID = "carousel-banner-" + id;
-    console.log(newID);
     document.getElementById(newID).classList.remove("carousel-content-hide");
     document.getElementById(newID).classList.add("carousel-content");
 
@@ -143,7 +108,6 @@ function carouselChange(direction) {
     elem.classList.add("carousel-content-hide");
 
     var newID = "carousel-banner-" + id;
-    console.log(newID);
     document.getElementById(newID).classList.remove("carousel-content-hide");
     document.getElementById(newID).classList.add("carousel-content");
 
@@ -169,8 +133,6 @@ function navCarouselChange(elem) {
 
   // deselect current nav
   var currentElem = document.getElementsByClassName("nav-button-select")[0];
-  console.log(currentElem);
-  console.log(elem);
   currentElem.classList.remove("nav-button-select");
   currentElem.classList.add("nav-button-none-select");
 

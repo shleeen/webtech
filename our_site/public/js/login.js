@@ -10,10 +10,10 @@ function addLoginListeners() {
   var modal = document.querySelector(".modal");
   var closeBtn = document.querySelector(".close-btn");
 
-  var toRegister = document.querySelector(".modal-to-register");
-  var regToLogin = document.querySelector(".modal-reg-to-login");
-  var forgotToLogin = document.querySelector(".modal-forgot-to-login");
-  var toForget = document.querySelector(".modal-to-forget");
+  var toRegister = document.getElementById("modal-to-register");
+  var regToLogin = document.getElementById("modal-reg-to-login");
+  var forgotToLogin = document.getElementById("modal-forgot-to-login");
+  var toForget = document.getElementById("modal-to-forget");
 
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {

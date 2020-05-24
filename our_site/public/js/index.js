@@ -14,7 +14,7 @@ function start() {
     // Spash screen there so that the page loads
     setTimeout(function () {
         removeOverlaySpashScreen();
-    }, 3500);
+    }, 1000);
 
 
     // Set height of contents
@@ -57,21 +57,10 @@ function getParameterByName(name, url) {
 }
 
 function removeOverlaySpashScreen() {
-  document.getElementById("overlay").classList.add("fade");
-  setTimeout(function() {
-    var i = 9;
-    document.getElementById("overlay").style.opacity = 1;
-    var k = window.setInterval(function() {
-      if (i <= 0) {
-        clearInterval(k);
-        document.getElementById("overlay").style.display = "none";
-      } else {
-        document.getElementById("overlay").style.opacity = i / 10;
-        i--;
-      }
-    }, 100);
-        
-  }, 900);
+  var splash = document.getElementById("overlay");
+  splash.classList.add("fade");
+  splash.style.opacity = "0";
+  splash.addEventListener("transitionend", function() {document.getElementById("overlay").style.display = "none"; });
 }
 
 function addListeners() {

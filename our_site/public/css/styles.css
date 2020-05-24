@@ -125,7 +125,11 @@ footer {
   font-size:12px; 
   margin: auto;
   
-} 
+}
+
+.fade {
+  transition: opacity 1s;
+}
 
 
 

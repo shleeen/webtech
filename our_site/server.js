@@ -33,6 +33,11 @@ app.get("/shows", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
+app.get("/MyAccount", function(req, res) {
+  // TODO: THIS SHOULD ONLY HAPPEN WHEN A SESSION IS THERE
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
+
 //for these to work need to send resp to frontend to load
 /*
 app.get('/Home', function(req, res) {

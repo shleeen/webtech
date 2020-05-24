@@ -16,29 +16,33 @@ function start() {
         removeOverlaySpashScreen();
     }, 3500);
 
+    setTimeout(function () {
+      // Set height of contents
+      var homeObj = document.getElementById("home-object");
+      var indexHeight = window.innerHeight;
+      homeObj.onload = function(){
+          //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
 
-    // Set height of contents
-    var homeObj = document.getElementById("home-object");
-    var indexHeight = window.innerHeight;
-    homeObj.onload = function(){
-        //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+          // This gets the height of embedded html
+          var height = homeObj.contentDocument.body.scrollHeight;
 
-        // This gets the height of embedded html
-        var height = homeObj.contentDocument.body.scrollHeight;
+          if (height > indexHeight) homeObj.style.height = height + 'px';
+          else homeObj.style.height = indexHeight + 'px';
+      }
 
-        if (height > indexHeight) homeObj.style.height = height + 'px';
-        else homeObj.style.height = indexHeight + 'px';
-    }
+      var showObj = document.getElementById("shows-object");
+      showObj.onload = function(){
+          //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+          var height = showObj.contentDocument.body.scrollHeight;
 
-    var showObj = document.getElementById("shows-object");
-    showObj.onload = function(){
-        //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-        var height = showObj.contentDocument.body.scrollHeight;
+          if (height > indexHeight) showObj.style.height = height + 'px';
+          else showObj.style.height = indexHeight + 'px';
+      }
+      navbar = document.getElementById('navbar');
+    }, 1500);
 
-        if (height > indexHeight) showObj.style.height = height + 'px';
-        else showObj.style.height = indexHeight + 'px';
-    }
-    navbar = document.getElementById('navbar');
+
+    
     
 } 
 
@@ -101,6 +105,7 @@ function addListeners() {
 function addContent() {
   document.getElementById("shows").innerHTML = "<object id=\"shows-object\" type=\"text/html\" data=\"shows.html\" width=\"100%\"></object>";
   document.getElementById("home").innerHTML = "<object id=\"home-object\" type=\"text/html\" data=\"home.html\" width=\"100%\"></object>";
+  document.getElementById("account").innerHTML = "<object id=\"account-object\" type=\"text/html\" data=\"account.html\" width=\"100%\"></object>";
 }
 
 // Display pages

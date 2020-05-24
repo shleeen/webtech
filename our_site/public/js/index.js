@@ -3,42 +3,42 @@
 var navbar;
 // ----------------------------------------------------------------------------
 
-addEventListener('load', start);
+addEventListener("load", start);
 
 function start() {
 
-    initRouter();
-    addListeners();
+  initRouter();
+  addListeners();
 
-    // Spash screen there so that the page loads
-    setTimeout(function () {
-        removeOverlaySpashScreen();
-    }, 1000);
+  // Spash screen there so that the page loads
+  setTimeout(function () {
+    removeOverlaySpashScreen();
+  }, 1000);
 
-    setTimeout(function () {
-      // Set height of contents
-      var homeObj = document.getElementById("home-object");
-      var indexHeight = window.innerHeight;
-      homeObj.onload = function(){
-          //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+  setTimeout(function () {
+    // Set height of contents
+    var homeObj = document.getElementById("home-object");
+    var indexHeight = window.innerHeight;
+    homeObj.onload = function(){
+      //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
 
-          // This gets the height of embedded html
-          var height = homeObj.contentDocument.body.scrollHeight;
+      // This gets the height of embedded html
+      var height = homeObj.contentDocument.body.scrollHeight;
 
-          if (height > indexHeight) homeObj.style.height = height + 'px';
-          else homeObj.style.height = indexHeight + 'px';
-      }
+      if (height > indexHeight) homeObj.style.height = height + "px";
+      else homeObj.style.height = indexHeight + "px";
+    };
 
-      var showObj = document.getElementById("shows-object");
-      showObj.onload = function(){
-          //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-          var height = showObj.contentDocument.body.scrollHeight;
+    var showObj = document.getElementById("shows-object");
+    showObj.onload = function(){
+      //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+      var height = showObj.contentDocument.body.scrollHeight;
 
-          if (height > indexHeight) showObj.style.height = height + 'px';
-          else showObj.style.height = indexHeight + 'px';
-      }
-      navbar = document.getElementById('navbar');
-    }, 1500);
+      if (height > indexHeight) showObj.style.height = height + "px";
+      else showObj.style.height = indexHeight + "px";
+    };
+    navbar = document.getElementById("navbar");
+  }, 1500);
 
 
     
@@ -61,7 +61,6 @@ function getParameterByName(name, url) {
 
 function removeOverlaySpashScreen() {
   var splash = document.getElementById("overlay");
-  splash.classList.add("fade");
   splash.style.opacity = "0";
   splash.addEventListener("transitionend", function() {document.getElementById("overlay").style.display = "none"; });
 }
@@ -70,29 +69,26 @@ function addListeners() {
 
   document.getElementById("shows_tab").addEventListener("click", function() {
     console.log("click");
-    displayShows();
+    displayPage("shows");
   });
 
   document.getElementById("home_tab").addEventListener("click", function() {
     console.log("click");
-    displayHome();
+    displayPage("home");
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
     console.log("click");
-    displayAccount();
+    displayPage("account");
   });
 
 
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
     // The URL changed...
-    if (history.state && history.state.id === "home"){
+    if (history.state) {
       console.log("LOO");
-      displayHome();
-    } else if (history.state && history.state.id == "shows"){
-      console.log("LOOnns");
-      displayShows();
+      displayPage(history.state.id);
     }
   });
   
@@ -101,152 +97,207 @@ function addListeners() {
 
 // Display pages
 
-function displayHome() {
-    console.log('displaying home');
+// function displayHome() {
+//   console.log("displaying home");
 
-    var main = document.getElementById("main");
-    var currentActive = main.getElementsByClassName("active");
+//   var main = document.getElementById("main");
+//   var currentActive = main.getElementsByClassName("active");
 
-    if (currentActive.length == 1){
-      setTimeout(function() {
-        var i = 9;
-        currentActive[0].style.opacity = 1;
-        var k = window.setInterval(function() {
-          if (i <= 0) {
-            clearInterval(k);
-            currentActive[0].classList.add('none_active');
-            currentActive[0].classList.remove('active');
+//   if (currentActive.length == 1){
+//     setTimeout(function() {
+//       var i = 9;
+//       currentActive[0].style.opacity = 1;
+//       var k = window.setInterval(function() {
+//         if (i <= 0) {
+//           clearInterval(k);
+//           currentActive[0].classList.add("none_active");
+//           currentActive[0].classList.remove("active");
             
-            document.getElementById("home").classList.add('active');
-            document.getElementById("home").classList.remove('none_active');
-            document.getElementById("home").style.opacity = 0;
+//           document.getElementById("home").classList.add("active");
+//           document.getElementById("home").classList.remove("none_active");
+//           document.getElementById("home").style.opacity = 0;
             
-          } else {
-            currentActive[0].style.opacity = i / 10;
-            i--;
-          }
-        }, 20);
-      }, 400);
+//         } else {
+//           currentActive[0].style.opacity = i / 10;
+//           i--;
+//         }
+//       }, 20);
+//     }, 400);
 
       
-      // fade in
-      setTimeout(function() {
-        var i = 0;
+//     // fade in
+//     setTimeout(function() {
+//       var i = 0;
         
-        var k = window.setInterval(function() {
-          if (i >= 10) {
-            clearInterval(k);
+//       var k = window.setInterval(function() {
+//         if (i >= 10) {
+//           clearInterval(k);
             
-            document.getElementById("home").style.opacity = 1;
+//           document.getElementById("home").style.opacity = 1;
 
-          } else {
-            document.getElementById("home").style.opacity = i / 10;
-            i++;
-          }
-        }, 60);
-      }, 600);
-    }
-  var stateObj = { id: "home" };
-  window.history.pushState(stateObj, "", "Home");
-}
+//         } else {
+//           document.getElementById("home").style.opacity = i / 10;
+//           i++;
+//         }
+//       }, 60);
+//     }, 600);
+//   }
+//   var stateObj = { id: "home" };
+//   window.history.pushState(stateObj, "", "Home");
+// }
 
-function displayShows() {
-    console.log('displaying shows');
 
-    var main = document.getElementById("main");
-    var currentActive = main.getElementsByClassName("active");
-    
-    if (currentActive.length == 1){
-      
-      setTimeout(function() {
-        var i = 9;
-        currentActive[0].style.opacity = 1.0;
-        var k = window.setInterval(function() {
-          
-          if (i == 1) {
-            clearInterval(k);
-            currentActive[0].classList.add('none_active');
-            currentActive[0].classList.remove('active');
-
-            document.getElementById("shows").classList.remove('none_active');
-            document.getElementById("shows").style.opacity = 0;
-            
-            
-          } else {
-            currentActive[0].style.opacity = i / 10;
-            i--;
-          }
-        }, 20);
-      }, 400);
-      
-      // fade in
-      setTimeout(function() {
-        var i = 0;
-        document.getElementById("shows").classList.add('active');
-        
-        var k = window.setInterval(function() {
-          if (i >= 10) {
-            clearInterval(k);
-            
-            document.getElementById("shows").style.opacity = 1;
-
-          } else {
-            document.getElementById("shows").style.opacity = i / 10;
-            i++;
-          }
-        }, 60);
-      }, 600);
-    }
-  var stateObj = { id: "shows" };
-  window.history.pushState(stateObj, "", "Shows");
-}
-
-function displayAccount() {
-  console.log('displaying account');
+// @nicole seeing the same function pasted 3 times made me sad
+// DRYYYYYYYYYY
+function displayPage(pageName) {
+  console.log("displaying " + pageName);
 
   var main = document.getElementById("main");
   var currentActive = main.getElementsByClassName("active");
-
+    
   if (currentActive.length == 1){
+      
     setTimeout(function() {
       var i = 9;
-      currentActive[0].style.opacity = 1;
+      currentActive[0].style.opacity = 1.0;
       var k = window.setInterval(function() {
-        if (i <= 0) {
+          
+        if (i == 1) {
           clearInterval(k);
-          currentActive[0].classList.add('none_active');
-          currentActive[0].classList.remove('active');
-          
-          document.getElementById("account").classList.add('active');
-          document.getElementById("account").classList.remove('none_active');
-          document.getElementById("account").style.opacity = 0;
-          
+          currentActive[0].classList.add("none_active");
+          currentActive[0].classList.remove("active");
+
+          document.getElementById(pageName).classList.remove("none_active");
+          document.getElementById(pageName).style.opacity = 0;
+            
+            
         } else {
           currentActive[0].style.opacity = i / 10;
           i--;
         }
       }, 20);
     }, 400);
-
-    
+      
     // fade in
     setTimeout(function() {
       var i = 0;
+      document.getElementById(pageName).classList.add("active");
+        
       var k = window.setInterval(function() {
         if (i >= 10) {
           clearInterval(k);
-          
-          document.getElementById("account").style.opacity = 1;
+            
+          document.getElementById(pageName).style.opacity = 1;
 
         } else {
-          document.getElementById("account").style.opacity = i / 10;
+          document.getElementById(pageName).style.opacity = i / 10;
           i++;
         }
       }, 60);
     }, 600);
   }
-window.history.pushState({}, "", "MyAccount");
+  var stateObj = { id: pageName };
+  // Could change later to have url name different to id name
+  window.history.pushState(stateObj, "", pageName);
 }
+
+// function displayShows() {
+//   console.log("displaying shows");
+
+//   var main = document.getElementById("main");
+//   var currentActive = main.getElementsByClassName("active");
+    
+//   if (currentActive.length == 1){
+      
+//     setTimeout(function() {
+//       var i = 9;
+//       currentActive[0].style.opacity = 1.0;
+//       var k = window.setInterval(function() {
+          
+//         if (i == 1) {
+//           clearInterval(k);
+//           currentActive[0].classList.add("none_active");
+//           currentActive[0].classList.remove("active");
+
+//           document.getElementById("shows").classList.remove("none_active");
+//           document.getElementById("shows").style.opacity = 0;
+            
+            
+//         } else {
+//           currentActive[0].style.opacity = i / 10;
+//           i--;
+//         }
+//       }, 20);
+//     }, 400);
+      
+//     // fade in
+//     setTimeout(function() {
+//       var i = 0;
+//       document.getElementById("shows").classList.add("active");
+        
+//       var k = window.setInterval(function() {
+//         if (i >= 10) {
+//           clearInterval(k);
+            
+//           document.getElementById("shows").style.opacity = 1;
+
+//         } else {
+//           document.getElementById("shows").style.opacity = i / 10;
+//           i++;
+//         }
+//       }, 60);
+//     }, 600);
+//   }
+//   var stateObj = { id: "shows" };
+//   window.history.pushState(stateObj, "", "Shows");
+// }
+
+// function displayAccount() {
+//   console.log("displaying account");
+
+//   var main = document.getElementById("main");
+//   var currentActive = main.getElementsByClassName("active");
+
+//   if (currentActive.length == 1){
+//     setTimeout(function() {
+//       var i = 9;
+//       currentActive[0].style.opacity = 1;
+//       var k = window.setInterval(function() {
+//         if (i <= 0) {
+//           clearInterval(k);
+//           currentActive[0].classList.add("none_active");
+//           currentActive[0].classList.remove("active");
+          
+//           document.getElementById("account").classList.add("active");
+//           document.getElementById("account").classList.remove("none_active");
+//           document.getElementById("account").style.opacity = 0;
+          
+//         } else {
+//           currentActive[0].style.opacity = i / 10;
+//           i--;
+//         }
+//       }, 20);
+//     }, 400);
+
+    
+//     // fade in
+//     setTimeout(function() {
+//       var i = 0;
+//       var k = window.setInterval(function() {
+//         if (i >= 10) {
+//           clearInterval(k);
+          
+//           document.getElementById("account").style.opacity = 1;
+
+//         } else {
+//           document.getElementById("account").style.opacity = i / 10;
+//           i++;
+//         }
+//       }, 60);
+//     }, 600);
+//   }
+//   window.history.pushState({}, "", "MyAccount");
+// }
 // ----------------------------------------------------------------------------------------
 
    
@@ -254,9 +305,9 @@ window.history.pushState({}, "", "MyAccount");
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function () {
   if (window.scrollY == 0){
-    navbar.classList.remove('hover');
+    navbar.classList.remove("hover");
   } else {
-    navbar.classList.add('hover');
+    navbar.classList.add("hover");
   }
   var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {

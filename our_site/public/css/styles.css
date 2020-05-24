@@ -65,6 +65,7 @@ object{
   height: 100%;
   background-color: white;
   z-index:1001;
+  transition: opacity 1s;
 }
 
 .overlay-fade-out{
@@ -125,10 +126,6 @@ footer {
   font-size:12px; 
   margin: auto;
   
-}
-
-.fade {
-  transition: opacity 1s;
 }
 
 

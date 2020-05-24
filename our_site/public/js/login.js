@@ -67,9 +67,12 @@ function addLoginListeners() {
   };
 
   // What happens when person tries to login?
-  // This would be neater in a separate function 
+  // This would be neater in separate functions
   loginBtn.onclick = function(){
     // Get email and password
+    var email = document.getElementById('login-email').value;
+    var password = document.getElementById('login-password').value;
+
 
     // Get token
 

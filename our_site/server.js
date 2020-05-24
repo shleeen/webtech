@@ -44,14 +44,18 @@ app.get('/Shows', function(req, res) {
 });
 */
 
-app.use(express.static("public", { //serve static files from this folder
-  setHeaders: function(res, path) {
-    // if file is a .xml file, then set content-type
-    if (path.endsWith(".html")) {
-      res.setHeader("Content-Type", "application/xhtml+xml");
-    }
-  }
-})); //serve static files from this folder
+// Serve as XHTML
+// app.use(express.static("public", { //serve static files from this folder
+//   setHeaders: function(res, path) {
+//     // if file is a .xml file, then set content-type
+//     if (path.endsWith(".html")) {
+//       res.setHeader("Content-Type", "application/xhtml+xml");
+//     }
+//   }
+// })); //serve static files from this folder
+
+// Serve as HTML
+app.use(express.static("public")); //serve static files from this folder
 
 
 app.use("/", routes);

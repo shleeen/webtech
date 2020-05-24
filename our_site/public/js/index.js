@@ -8,7 +8,6 @@ addEventListener('load', start);
 function start() {
 
     initRouter();
-    addContent();
     addListeners();
 
     // Spash screen there so that the page loads
@@ -16,29 +15,33 @@ function start() {
         removeOverlaySpashScreen();
     }, 1000);
 
+    setTimeout(function () {
+      // Set height of contents
+      var homeObj = document.getElementById("home-object");
+      var indexHeight = window.innerHeight;
+      homeObj.onload = function(){
+          //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
 
-    // Set height of contents
-    var homeObj = document.getElementById("home-object");
-    var indexHeight = window.innerHeight;
-    homeObj.onload = function(){
-        //homeObj.style.height = homeObj.contentWindow.document.body.scrollHeight + 'px';
+          // This gets the height of embedded html
+          var height = homeObj.contentDocument.body.scrollHeight;
 
-        // This gets the height of embedded html
-        var height = homeObj.contentDocument.body.scrollHeight;
+          if (height > indexHeight) homeObj.style.height = height + 'px';
+          else homeObj.style.height = indexHeight + 'px';
+      }
 
-        if (height > indexHeight) homeObj.style.height = height + 'px';
-        else homeObj.style.height = indexHeight + 'px';
-    }
+      var showObj = document.getElementById("shows-object");
+      showObj.onload = function(){
+          //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+          var height = showObj.contentDocument.body.scrollHeight;
 
-    var showObj = document.getElementById("shows-object");
-    showObj.onload = function(){
-        //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-        var height = showObj.contentDocument.body.scrollHeight;
+          if (height > indexHeight) showObj.style.height = height + 'px';
+          else showObj.style.height = indexHeight + 'px';
+      }
+      navbar = document.getElementById('navbar');
+    }, 1500);
 
-        if (height > indexHeight) showObj.style.height = height + 'px';
-        else showObj.style.height = indexHeight + 'px';
-    }
-    navbar = document.getElementById('navbar');
+
+    
     
 } 
 
@@ -75,85 +78,157 @@ function addListeners() {
     displayHome();
   });
 
-  window.addEventListener("popstate", function () {
+  document.getElementById("my-account").addEventListener("click", function() {
+    console.log("click");
+    displayAccount();
+  });
+
+
+  // This changes according to things like when back is pressed
+  window.addEventListener("popstate", function (event) {
     // The URL changed...
-    console.log("LOO");
+    if (history.state && history.state.id === "home"){
+      console.log("LOO");
+      displayHome();
+    } else if (history.state && history.state.id == "shows"){
+      console.log("LOOnns");
+      displayShows();
+    }
   });
   
 }
 
-function addContent() {
-  document.getElementById("shows").innerHTML = "<object id=\"shows-object\" type=\"text/html\" data=\"shows.html\" width=\"100%\"></object>";
-  document.getElementById("home").innerHTML = "<object id=\"home-object\" type=\"text/html\" data=\"home.html\" width=\"100%\"></object>";
-}
+
+// Display pages
 
 function displayHome() {
     console.log('displaying home');
 
-    setTimeout(function() {
-      var i = 9;
-      document.getElementById("shows").style.opacity = 1;
-      var k = window.setInterval(function() {
-        if (i <= 0) {
-          clearInterval(k);
-          document.getElementById("shows").classList.remove('active');
-          document.getElementById("shows").classList.add('none_active');
-          document.getElementById("home").style.opacity = 0;
-          document.getElementById("home").classList.remove('none_active');
-          document.getElementById("home").classList.add('active');
+    var main = document.getElementById("main");
+    var currentActive = main.getElementsByClassName("active");
 
-        } else {
-          document.getElementById("shows").style.opacity = i / 10;
-          i--;
-        }
-      }, 50);
-          
-    }, 300);
+    if (currentActive.length == 1){
+      setTimeout(function() {
+        var i = 9;
+        currentActive[0].style.opacity = 1;
+        var k = window.setInterval(function() {
+          if (i <= 0) {
+            clearInterval(k);
+            currentActive[0].classList.add('none_active');
+            currentActive[0].classList.remove('active');
+            
+            document.getElementById("home").classList.add('active');
+            document.getElementById("home").classList.remove('none_active');
+            document.getElementById("home").style.opacity = 0;
+            
+          } else {
+            currentActive[0].style.opacity = i / 10;
+            i--;
+          }
+        }, 20);
+      }, 400);
 
-    // fade in
-    setTimeout(function() {
-      var i = 0;
       
-      var k = window.setInterval(function() {
-        if (i >= 10) {
-          clearInterval(k);
-          
-          document.getElementById("home").style.opacity = 1;
+      // fade in
+      setTimeout(function() {
+        var i = 0;
+        
+        var k = window.setInterval(function() {
+          if (i >= 10) {
+            clearInterval(k);
+            
+            document.getElementById("home").style.opacity = 1;
 
-        } else {
-          document.getElementById("home").style.opacity = i / 10;
-          i++;
-        }
-      }, 100);
-    }, 600);
-    
-   
-  window.history.pushState({}, "", "Home");
+          } else {
+            document.getElementById("home").style.opacity = i / 10;
+            i++;
+          }
+        }, 60);
+      }, 600);
+    }
+  var stateObj = { id: "home" };
+  window.history.pushState(stateObj, "", "Home");
 }
 
 function displayShows() {
     console.log('displaying shows');
 
-     setTimeout(function() {
+    var main = document.getElementById("main");
+    var currentActive = main.getElementsByClassName("active");
+    
+    if (currentActive.length == 1){
+      
+      setTimeout(function() {
+        var i = 9;
+        currentActive[0].style.opacity = 1.0;
+        var k = window.setInterval(function() {
+          
+          if (i == 1) {
+            clearInterval(k);
+            currentActive[0].classList.add('none_active');
+            currentActive[0].classList.remove('active');
+
+            document.getElementById("shows").classList.remove('none_active');
+            document.getElementById("shows").style.opacity = 0;
+            
+            
+          } else {
+            currentActive[0].style.opacity = i / 10;
+            i--;
+          }
+        }, 20);
+      }, 400);
+      
+      // fade in
+      setTimeout(function() {
+        var i = 0;
+        document.getElementById("shows").classList.add('active');
+        
+        var k = window.setInterval(function() {
+          if (i >= 10) {
+            clearInterval(k);
+            
+            document.getElementById("shows").style.opacity = 1;
+
+          } else {
+            document.getElementById("shows").style.opacity = i / 10;
+            i++;
+          }
+        }, 60);
+      }, 600);
+    }
+  var stateObj = { id: "shows" };
+  window.history.pushState(stateObj, "", "Shows");
+}
+
+function displayAccount() {
+  console.log('displaying account');
+
+  var main = document.getElementById("main");
+  var currentActive = main.getElementsByClassName("active");
+
+  if (currentActive.length == 1){
+    setTimeout(function() {
       var i = 9;
-      document.getElementById("home").style.opacity = 1;
+      currentActive[0].style.opacity = 1;
       var k = window.setInterval(function() {
         if (i <= 0) {
           clearInterval(k);
-          document.getElementById("home").classList.remove('active');
-          document.getElementById("home").classList.add('none_active');
-
-          document.getElementById("shows").style.opacity = 0;
-          document.getElementById("shows").classList.remove('none_active');
-          document.getElementById("shows").classList.add('active');
-
+          currentActive[0].classList.add('none_active');
+          currentActive[0].classList.remove('active');
+          
+          document.getElementById("account").classList.add('active');
+          document.getElementById("account").classList.remove('none_active');
+          document.getElementById("account").style.opacity = 0;
+          
         } else {
-          document.getElementById("home").style.opacity = i / 10;
+          currentActive[0].style.opacity = i / 10;
           i--;
         }
-      }, 50);  
-    }, 300);
+      }, 20);
+    }, 400);
 
+    
     // fade in
     setTimeout(function() {
       var i = 0;
@@ -161,19 +236,17 @@ function displayShows() {
         if (i >= 10) {
           clearInterval(k);
           
-          document.getElementById("shows").style.opacity = 1;
+          document.getElementById("account").style.opacity = 1;
 
         } else {
-          document.getElementById("shows").style.opacity = i / 10;
+          document.getElementById("account").style.opacity = i / 10;
           i++;
         }
-      }, 100);
+      }, 60);
     }, 600);
-
-  window.history.pushState({}, "", "Shows");
+  }
+window.history.pushState({}, "", "MyAccount");
 }
-
-
 // ----------------------------------------------------------------------------------------
 
    

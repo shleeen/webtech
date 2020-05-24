@@ -17,6 +17,7 @@ function start() {
     }, 3500);
 
 
+    // Set height of contents
     var homeObj = document.getElementById("home-object");
     var indexHeight = window.innerHeight;
     homeObj.onload = function(){

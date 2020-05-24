@@ -43,6 +43,13 @@ header{
     padding: 5px;
 }
 
+#account-dropdown{
+    position: relative;
+    text-align: end;
+    align-self: end;
+
+}
+
 #login{
     /* float: right; */
     font-size: 2.5ex;
@@ -54,6 +61,48 @@ header{
 
 #login:hover{
     color: #4e3900;
+    cursor: pointer;
+}
+
+
+#login-user{
+    width: 300px;
+    float: right;
+    font-size: 2.5ex;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color:#ffbb00;
+}
+
+
+#login-user:hover + #my-account{
+    display: inline-block;
+    animation-name: slideDown2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes slideDown2 {
+    from {
+      top: 0px;
+    }
+    to {
+      top: 100px;
+    }
+  }
+
+#my-account{
+    font-size: 2.5ex;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color:#c2c2c2;
+}
+
+#my-account:hover{
+    display: inline-block;
     cursor: pointer;
 }
 

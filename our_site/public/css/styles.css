@@ -52,6 +52,10 @@ object{
   display: none;
 }
 
+.non-active{
+  display: none;
+}
+
 .overlay{
   display: block;
   position: fixed;

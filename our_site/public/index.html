@@ -35,7 +35,18 @@
                 <li><a id="shows_tab">Shows</a></li>
             </ul>
         </nav>
-        <div id="login"> LOGIN/REGISTER </div>
+        
+
+        <div id="account-dropdown">
+            <div id="login"> LOGIN/REGISTER </div>
+            <div id="login-user" class="non-active"> 
+                <p>WELCOME, FIRST NAME </p>
+            </div>
+
+            <div id="my-account" class="non-active"> 
+                <p>MY ACCOUNT </p>
+            </div>
+        </div>
     </div>
 
     <!-- Splash screen -->
@@ -75,7 +86,7 @@
                 <div class="switch" id="modal-to-forget"> <p> Forgot password?</p> </div>
 
                 <div class="modal-footer" >
-                    <button class="submit-btn" type="submit">Submit</button>            
+                    <button id="submit-login-btn" type="button">Submit</button>            
                 </div>
             </form>
             <form id="forgot-content" class="none_active" method="post" action="/reset">

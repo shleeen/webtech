@@ -15,11 +15,7 @@ function addLoginListeners() {
   var forgotToLogin = document.getElementById("modal-forgot-to-login");
   var toForget = document.getElementById("modal-to-forget");
 
-  // displays the modal when 'login/register' is clicked
-  loginTrigger.onclick = function() {
-    modal.style.display = "block";
-    drawLogin();
-  };
+  var loginBtn = document.getElementById("submit-login-btn");
 
   function closeModal() {
     modal.style.display = "none";
@@ -28,6 +24,13 @@ function addLoginListeners() {
     document.getElementById("register-content").classList.add("none_active");
     document.getElementById("forgot-content").classList.add("none_active");
   }
+  
+
+  // displays the modal when 'login/register' is clicked
+  loginTrigger.onclick = function() {
+    modal.style.display = "block";
+    drawLogin();
+  };
 
   // close the modal using the cross button
   closeBtn.onclick = closeModal;
@@ -62,6 +65,27 @@ function addLoginListeners() {
     document.getElementById("forgot-content").classList.add("none_active");
     drawLogin();
   };
+
+  // What happens when person tries to login?
+  // This would be neater in a separate function 
+  loginBtn.onclick = function(){
+    // Get email and password
+
+    // Get token
+
+    // Send to server
+
+    // If success show user logged in stuff
+    document.getElementById("login").classList.add("non-active");
+    document.getElementById("login-user").classList.remove("non-active");
+    document.getElementById("login-user").classList.add("active");
+    closeModal();
+
+    // Save token is browswe
+      // localStorage.setItem('token', token);
+    // Get token from browser
+      //localStorage.getItem('token');
+  }
 
 }
 
@@ -100,18 +124,4 @@ function animate(path, len) {
     // Do another step
     setTimeout(function() { animate(path, path.style.strokeDashoffset); }, 100);
   }
-  
-}
-
-function increaseLength(path, length){
-  var pathLength = path.getTotalLength();
-  length += 1;
-  path.style.strokeDasharray = [length,pathLength].join(" ");
-  if (length >= pathLength) clearInterval(timer);
-}
-
-function stopDrawingPath(){
-  clearInterval(timer);
-  orig.style.stroke = "";
-  orig.style.strokeDasharray = "";
 }

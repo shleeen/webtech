@@ -8,7 +8,6 @@ addEventListener('load', start);
 function start() {
 
     initRouter();
-    addContent();
     addListeners();
 
     // Spash screen there so that the page loads
@@ -95,18 +94,21 @@ function addListeners() {
     displayAccount();
   });
 
-  window.addEventListener("popstate", function () {
+
+  // This changes according to things like when back is pressed
+  window.addEventListener("popstate", function (event) {
     // The URL changed...
-    console.log("LOO");
+    if (history.state && history.state.id === "home"){
+      console.log("LOO");
+      displayHome();
+    } else if (history.state && history.state.id == "shows"){
+      console.log("LOOnns");
+      displayShows();
+    }
   });
   
 }
 
-function addContent() {
-  document.getElementById("shows").innerHTML = "<object id=\"shows-object\" type=\"text/html\" data=\"shows.html\" width=\"100%\"></object>";
-  document.getElementById("home").innerHTML = "<object id=\"home-object\" type=\"text/html\" data=\"home.html\" width=\"100%\"></object>";
-  document.getElementById("account").innerHTML = "<object id=\"account-object\" type=\"text/html\" data=\"account.html\" width=\"100%\"></object>";
-}
 
 // Display pages
 
@@ -126,7 +128,6 @@ function displayHome() {
             currentActive[0].classList.add('none_active');
             currentActive[0].classList.remove('active');
             
-
             document.getElementById("home").classList.add('active');
             document.getElementById("home").classList.remove('none_active');
             document.getElementById("home").style.opacity = 0;
@@ -156,7 +157,8 @@ function displayHome() {
         }, 60);
       }, 600);
     }
-  window.history.pushState({}, "", "Home");
+  var stateObj = { id: "home" };
+  window.history.pushState(stateObj, "", "Home");
 }
 
 function displayShows() {
@@ -206,7 +208,8 @@ function displayShows() {
         }, 60);
       }, 600);
     }
-  window.history.pushState({}, "", "Shows");
+  var stateObj = { id: "shows" };
+  window.history.pushState(stateObj, "", "Shows");
 }
 
 function displayAccount() {
@@ -225,7 +228,6 @@ function displayAccount() {
           currentActive[0].classList.add('none_active');
           currentActive[0].classList.remove('active');
           
-
           document.getElementById("account").classList.add('active');
           document.getElementById("account").classList.remove('none_active');
           document.getElementById("account").style.opacity = 0;
@@ -241,7 +243,6 @@ function displayAccount() {
     // fade in
     setTimeout(function() {
       var i = 0;
-      
       var k = window.setInterval(function() {
         if (i >= 10) {
           clearInterval(k);

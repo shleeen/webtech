@@ -113,6 +113,7 @@ li{
 #my-account:hover{
     display: block;
     cursor: pointer;
+    color: #371545;
 }
 
 #my-account:hover ~ #logout{
@@ -132,6 +133,7 @@ li{
 #logout:hover{
     display: block;
     cursor: pointer;
+    color: #371545;
 }
 
 #logout:hover + #my-account{

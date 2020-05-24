@@ -9,6 +9,10 @@ function initRouter() {
     displayShows();
   });
 
+  router.get('/MyAccount', function(req, router){
+    displayAccount();
+  });
+
   router.init();
 }
   

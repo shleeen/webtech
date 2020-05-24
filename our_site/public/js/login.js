@@ -66,6 +66,18 @@ function addLoginListeners() {
     drawLogin();
   };
 
+
+  document.getElementById("logout").addEventListener("mouseover", function( event ) {   
+    document.getElementById("my-account").classList.remove("non-active");
+    document.getElementById("logout").classList.remove("non-active");
+  }, false);
+
+
+  document.getElementById("logout").onmouseout = function()   {
+    document.getElementById("my-account").classList.add("non-active");
+    document.getElementById("logout").classList.add("non-active");
+ }
+
   // What happens when person tries to login?
   // This would be neater in separate functions
   loginBtn.onclick = function(){
@@ -74,7 +86,7 @@ function addLoginListeners() {
     var password = document.getElementById('login-password').value;
 
 
-    // Get token
+    // Get session things
 
     // Send to server
 
@@ -84,14 +96,13 @@ function addLoginListeners() {
     document.getElementById("login-user").classList.add("active");
     closeModal();
 
-    // Save token is browswe
-      // localStorage.setItem('token', token);
-    // Get token from browser
-      //localStorage.getItem('token');
+    // Save session things ..?
+    // Its only just occured to me, how about web tokens
   }
 
 }
 
+// ---- Functions --------------------------------------------------------------------------------------------------
 
 function drawLogin(){
   var orig = document.getElementById("login-svg");

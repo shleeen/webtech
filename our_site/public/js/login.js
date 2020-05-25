@@ -15,7 +15,7 @@ function addLoginListeners() {
   var forgotToLogin = document.getElementById("modal-forgot-to-login");
   var toForget = document.getElementById("modal-to-forget");
 
-  var loginBtn = document.getElementById("submit-login-btn");
+  var loginForm = document.getElementById("login-content");
 
   function closeModal() {
     modal.style.display = "none";
@@ -66,32 +66,49 @@ function addLoginListeners() {
     drawLogin();
   };
 
+
+  document.getElementById("logout").addEventListener("mouseover", function( event ) {   
+    document.getElementById("my-account").classList.remove("non-active");
+    document.getElementById("logout").classList.remove("non-active");
+  }, false);
+
+
+  document.getElementById("logout").onmouseout = function()   {
+    document.getElementById("my-account").classList.add("non-active");
+    document.getElementById("logout").classList.add("non-active");
+  };
+
   // What happens when person tries to login?
   // This would be neater in separate functions
-  loginBtn.onclick = function(){
-    // Get email and password
-    var email = document.getElementById('login-email').value;
-    var password = document.getElementById('login-password').value;
+  loginForm.addEventListener("submit", function(event) {
+  
+    // This sends the form without reloading the page
+    event.preventDefault();
+    var formData = new FormData(event.target);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          // If success show user logged in stuff
+          document.getElementById("login").classList.add("non-active");
+          document.getElementById("login-user").classList.remove("non-active");
+          document.getElementById("login-user").classList.add("active");
+          closeModal();
+        }
+        else if (request.status === 401) {
+          console.log("BAD");
+        }
+      }
+    };
+    request.open("POST", event.target.action);
+    request.send(formData);
 
-
-    // Get token
-
-    // Send to server
-
-    // If success show user logged in stuff
-    document.getElementById("login").classList.add("non-active");
-    document.getElementById("login-user").classList.remove("non-active");
-    document.getElementById("login-user").classList.add("active");
-    closeModal();
-
-    // Save token is browswe
-      // localStorage.setItem('token', token);
-    // Get token from browser
-      //localStorage.getItem('token');
-  }
-
+    // Save session things ..?
+    // Its only just occured to me, how about web tokens
+  }, false);
 }
 
+// ---- Functions --------------------------------------------------------------------------------------------------
 
 function drawLogin(){
   var orig = document.getElementById("login-svg");

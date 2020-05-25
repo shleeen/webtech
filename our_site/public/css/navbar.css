@@ -47,11 +47,15 @@ header{
     position: relative;
     text-align: end;
     align-self: end;
+    display: grid;
+}
 
+li{
+    list-style: none;
 }
 
 #login{
-    /* float: right; */
+    list-style: none;
     font-size: 2.5ex;
     font-weight: 800;
     padding: 10px 20px;
@@ -66,6 +70,7 @@ header{
 
 
 #login-user{
+    list-style: none;
     width: 300px;
     float: right;
     font-size: 2.5ex;
@@ -75,13 +80,16 @@ header{
     background-color:#ffbb00;
 }
 
+#login-user:hover{
+    cursor: pointer;
+}
 
-#login-user:hover + #my-account{
-    display: inline-block;
+#login-user:hover + ul > #my-account,
+#login-user:hover + ul > #logout{
+    display: block;
     animation-name: slideDown2;
     animation-duration: 2s;
     animation-fill-mode: forwards;
-
 }
 
 @keyframes slideDown2 {
@@ -94,6 +102,7 @@ header{
   }
 
 #my-account{
+    list-style: none;
     font-size: 2.5ex;
     font-weight: 800;
     padding: 10px 20px;
@@ -102,7 +111,33 @@ header{
 }
 
 #my-account:hover{
-    display: inline-block;
+    display: block;
+    cursor: pointer;
+    color: #371545;
+}
+
+#my-account:hover ~ #logout{
+    display: block;
+    cursor: pointer;
+}
+
+#logout{
+    list-style: none;
+    font-size: 2.5ex;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color:#c2c2c2;
+}
+
+#logout:hover{
+    display: block;
+    cursor: pointer;
+    color: #371545;
+}
+
+#logout:hover + #my-account{
+    display: block;
     cursor: pointer;
 }
 

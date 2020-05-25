@@ -8,10 +8,7 @@ var numberOfBanners = 0;
 function start() {
   // Get banner images from server and populate html
   getBanners();
-
   addListeners();
-  
-
   console.log("home.html loaded");
 }
 

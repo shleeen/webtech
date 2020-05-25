@@ -12,7 +12,7 @@ function start() {
 function getProductionDetails() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) { 
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = JSON.parse(xhr.responseText);
       var showsDiv = "";
       var posterDiv = "";

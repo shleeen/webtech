@@ -14,33 +14,17 @@ function getProductionDetails() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = JSON.parse(xhr.responseText);
-      var showsDiv = "";
-      var posterDiv = "";
-      var infoDiv = "";
-      var nameDiv = "";
-      var blurbDiv = "";
-      var timingsDiv = "";
-      var divStart = "";
-      var divEnd = "";
+      var prodDivID = "";
 
-      divStart = "<div class=\"show-container\">";
-      divEnd = "</div></div></div>";
-
-      // console.log("reaching here");
-      // console.log(res["data"]);
-
-      // for each production x, create and fill the container
+      // for each production x, create and fill the 'shows' container
       for (var x in res.data) {
+        prodDivID = "prod-container-";
+        prodDivID += x;
 
         // <input type="image" src="logg.png" name="saveForm" class="btTxt submit" id="saveForm" />
 
-        posterDiv = "<div class=\"show-poster\"> <input type=\"image\" src=\"" + res.data[x].poster_path + "\"id=\"show-btn\"/></div>"; 
-        infoDiv = "<div class=\"show-info\">";
-        nameDiv = "<div class=\"show-name\">" + res.data[x].name + "</div>";
-        blurbDiv = "<div class=\"show-details\"> <div class=\"show-blurb\">" + res.data[x].blurb + "</div>";
-        timingsDiv = "<div class=\"show-timings\">" + res.data[x].date + "</div>";
-        showsDiv = divStart + posterDiv + infoDiv + nameDiv + blurbDiv + timingsDiv + divEnd;
-        document.getElementById("shows-main").innerHTML = document.getElementById("shows-main").innerHTML + showsDiv;
+        document.getElementById("shows-main").innerHTML += template.render("display-production", { prod_id: prodDivID, poster_img: res.data[x].poster_path, 
+                                                               name: res.data[x].name, blurb: res.data[x].blurb, dates: res.data[x].date });
 
         console.log("one prod done");
       }
@@ -60,10 +44,10 @@ function addShowsListeners() {
   var showPageTrigger = document.getElementById("show-btn"); //this is the trigger
   // var modal = document.querySelector(".modal");
 
-  // close the modal using the cross button
-  showPageTrigger.onclick = function() {
-    //go to a different page
-    console.log("clickk!!");
-  };
+  // // close the modal using the cross button
+  // showPageTrigger.onclick = function() {
+  //   //go to a different page
+  //   console.log("clickk!!");
+  // };
 
 }

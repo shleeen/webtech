@@ -19,7 +19,6 @@ function getBanners() {
       if (xhr.status === 200) { 
         var res = JSON.parse(xhr.responseText);
         var bannerDivID = "";
-
         var navDivID = "";
 
         for (var x in res.data) {
@@ -31,24 +30,12 @@ function getBanners() {
             navDivID += x;
 
             document.getElementById("carousel").innerHTML += template.render("banner", { banner_id: bannerDivID, banner_class: "carousel-content", banner_img: res.data[x].banner_path });
-
-            // appendBanner = "<div id=\""+ bannerDivID+"\" class=\"carousel-content\"><img class=\"carousel-image\" src=\"" + res.data[x].banner_path + "\"></img></div>";
-            // document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
-
-            // appendNavBut = "<div class=\"carousel-nav-button\"><svg id=\""+ navDivID+"\" class=\"nav-svg\" onclick=\"navCarouselChange(this)\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" height=\"50\" width=\"50\" preserveAspectRatio=\"none\"><rect id=\"nav-svg-rect\" class=\"nav-button-select\" x=\"20\" y=\"20\" width=\"15\" height=\"10\"/></svg></div>";
             document.getElementById("carousel-nav").innerHTML += template.render("nav-button", { nav_id: navDivID, nav_class: "nav-button-select" });
           } else {
             bannerDivID += x;
             navDivID += x;
 
             document.getElementById("carousel").innerHTML += template.render("banner", { banner_id: bannerDivID, banner_class: "carousel-content-hide", banner_img: res.data[x].banner_path });
-
-            // appendBanner = "<div id=\""+ bannerDivID+"\" class=\"carousel-content-hide\"><img class=\"carousel-image\" src=\"" + res.data[x].banner_path + "\"></img></div>";
-            // document.getElementById("carousel").innerHTML = document.getElementById("carousel").innerHTML + appendBanner;
-
-            // appendNavBut = "<div class=\"carousel-nav-button\"><svg id=\""+ navDivID+"\" class=\"nav-svg\" onclick=\"navCarouselChange(this)\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" height=\"50\" width=\"50\" preserveAspectRatio=\"none\"><rect id=\"nav-svg-rect\" class=\"nav-button-none-select\" x=\"20\" y=\"20\" width=\"15\" height=\"10\"/></svg></div>";
-            // document.getElementById("carousel-nav").innerHTML = document.getElementById("carousel-nav").innerHTML + appendNavBut;
-
             document.getElementById("carousel-nav").innerHTML += template.render("nav-button", { nav_id: navDivID, nav_class: "nav-button-none-select" });
 
             numberOfBanners++;

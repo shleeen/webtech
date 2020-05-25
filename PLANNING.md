@@ -75,6 +75,7 @@
 * Shows Page
     * Maybe search just on the shows page
     * Filter by show/date
+    * would be cool for it to display alphabetically
 * Box office page 
     * available to only admins and producers
     * displays the shows happening on that night

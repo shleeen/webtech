@@ -16,7 +16,7 @@
 }
 
 /* contains */
-.show-container { 
+.prod-container { 
     background: #e1bcf0;
     border-radius: 5px;
     margin: 10px 0;
@@ -29,7 +29,7 @@
     /* add font css here?????
 } */
 
-.show-poster{
+.prod-poster{
     /* background: #ffbb00; */
     /* margin: 10px 0; */
     padding: .5em;
@@ -37,7 +37,7 @@
     width: 216px;
 }
 
-.show-info {
+.prod-info {
     /* background: #ffbb00; */
     padding: .5em;
     flex-grow: 1;
@@ -46,7 +46,7 @@
 }
 
 
-.show-name {
+.prod-name {
     padding: .2em;
     /* background: lightblue; */
     height: 50px;
@@ -57,7 +57,7 @@
     font-weight: bold;
 }
 
-.show-details{
+.prod-details{
     padding: .2em;
     flex-grow: 1;
     /* background: steelblue; */
@@ -66,7 +66,7 @@
     align-items: stretch; /*default is stretch, fills all space available*/
 }
 
-.show-blurb{
+.prod-blurb{
     padding: .2em;
     width: 500px;
     margin-right: 10px;
@@ -74,7 +74,7 @@
     /* background: whitesmoke; */
 }
 
-.show-timings{
+.prod-dates{
     flex-grow: 2;
     /* background: pink; */
 }

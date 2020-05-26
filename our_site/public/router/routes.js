@@ -14,6 +14,7 @@ function initRouter() {
     displayPage("account");
   });
 
+
   router.init();
 }
   

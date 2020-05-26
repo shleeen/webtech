@@ -88,7 +88,7 @@ li{
 #login-user:hover + ul > #logout{
     display: block;
     animation-name: slideDown2;
-    animation-duration: 2s;
+    animation-duration: 5s;
     animation-fill-mode: forwards;
 }
 

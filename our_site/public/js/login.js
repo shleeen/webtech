@@ -1,3 +1,5 @@
+// This has everything for the login/ register modal
+
 "use strict";
 addEventListener("load", start);
 function start() {
@@ -16,6 +18,7 @@ function addLoginListeners() {
   var toForget = document.getElementById("modal-to-forget");
 
   var loginForm = document.getElementById("login-content");
+  var registerForm = document.getElementById("register-content");
 
   function closeModal() {
     modal.style.display = "none";
@@ -106,6 +109,30 @@ function addLoginListeners() {
     // Save session things ..?
     // Its only just occured to me, how about web tokens
   }, false);
+
+  registerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(event.target);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          // what needs to be done here hm
+          alert("you're registered");
+
+          // clear form data
+
+          // close modal
+          closeModal();
+        }
+        else if (request.status === 401) {
+          console.log("BAD");
+        }
+      }
+    };
+    request.open("POST", event.target.action);
+    request.send(formData);
+  });
 }
 
 // ---- Functions --------------------------------------------------------------------------------------------------

@@ -149,6 +149,7 @@ function addListeners() {
 
 // @nicole seeing the same function pasted 3 times made me sad
 // DRYYYYYYYYYY
+// Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
 function displayPage(pageName) {
   console.log("displaying " + pageName);
 

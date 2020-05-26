@@ -7,7 +7,7 @@ addEventListener("load", start);
 
 function start() {
 
-  initRouter();
+  // initRouter();
   addListeners();
 
   // Spash screen there so that the page loads

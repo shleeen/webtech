@@ -86,11 +86,9 @@ button:hover {
 @keyframes changeFilter {
   from {
     filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(238deg) brightness(111%) contrast(105%);
-    
   }
   to {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
-    
   }
 }
 
@@ -111,6 +109,7 @@ button:hover {
   margin: 5px 16px;
   cursor: pointer;
   color: #d7d7d7;
+  font-weight: 100;
   border-bottom: 1px solid #d7d7d7;
 }
 
@@ -212,4 +211,73 @@ button{
 @keyframes animatezoom {
   from {transform: scale(0)}
   to {transform: scale(1)}
+}
+
+.label-wrapper {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+label span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 3px;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+
+/* On mouse-over, add a grey background color */
+.label-wrapper:hover input ~ span {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.label-wrapper input:checked ~ span {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.label-wrapper input:checked ~ span:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.label-wrapper span:after {
+  left: 5px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

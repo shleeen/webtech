@@ -1,13 +1,15 @@
 const express = require("express");
 const registerRouter = express.Router();
+const multer = require("multer");
+const upload = multer();
 const dbHelper = require(process.cwd() + "/database/database");
 
-registerRouter.post("/", async (req, res) => {
+registerRouter.post("/", upload.none(), async (req, res) => {
   try {
     await dbHelper.addUser(req.body.username, req.body.first_name, req.body.last_name, req.body.email, req.body.pwd);
   } catch (err) {
     console.log(err);
-    res.redirect("back");
+    res.sendStatus(400);
     return;
   }
   // This is the same as in login.js, maybe it can be moved to a service or something
@@ -18,14 +20,13 @@ registerRouter.post("/", async (req, res) => {
     // to prevent fixation
     req.session.regenerate(() => {
       // Store the user's primary key
-      // in the session store to be retrieved,
-      // or in this case the entire user object
+      // in the session store to be retrieved
       req.session.user_id = user_id;
-      res.redirect("back");
+      res.sendStatus(201);
     });
   } else {
-    console.log("authentication failed");
-    res.redirect("back");
+    console.log("authentication failed after creating user, this is bad");
+    res.sendStatus(500);
   }
 });
 

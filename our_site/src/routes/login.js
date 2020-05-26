@@ -16,7 +16,7 @@ loginRouter.post("/", upload.none(), async (req, res) => {
       // in the session store to be retrieved,
       // or in this case the entire user object
       req.session.user_id = user_id;
-      res.sendStatus(200);
+      res.sendStatus(204);
     });
   } else {
     console.log("authentication failed");

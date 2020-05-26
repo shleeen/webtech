@@ -91,7 +91,7 @@ function addLoginListeners() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 200) {
+        if (request.status === 204) {
           // If success show user logged in stuff
           document.getElementById("login").classList.add("non-active");
           document.getElementById("login-user").classList.remove("non-active");
@@ -116,7 +116,7 @@ function addLoginListeners() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 200) {
+        if (request.status === 201) {
           // what needs to be done here hm
           alert("you're registered");
 
@@ -125,7 +125,7 @@ function addLoginListeners() {
           // close modal
           closeModal();
         }
-        else if (request.status === 401) {
+        else if (request.status === 400) {
           console.log("BAD");
         }
       }

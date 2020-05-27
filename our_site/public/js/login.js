@@ -81,13 +81,15 @@ function addLoginListeners() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 200) {
-          document.getElementById("my-account").classList.remove("non-active");
-          document.getElementById("logout").classList.remove("non-active");
+        if (request.status === 204) {
+          document.getElementById("login-user").classList.add("non-active");
+          document.getElementById("login-user").classList.remove("active");
+          document.getElementById("login").classList.remove("non-active");
+          document.getElementById("login").classList.add("active");
         }
       }
     };
-    request.open("POST", "/logout");
+    request.open("POST", "/api/logout");
     request.send();
   }, false);
 

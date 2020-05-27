@@ -1,4 +1,5 @@
 "use strict";
+
 // ----- Globals so they can be loaded after the entire site is loaded and used throughout------------------------------------------------------------
 var navbar;
 // ----------------------------------------------------------------------------

@@ -56,7 +56,7 @@ async function addUserType(type) {
   await db.run("insert into user_type (type) values(?)", [type]);
 }
 
-async function addUser(username, first_name, last_name, email, pass) {
+async function addUser(username, usertype, first_name, last_name, email, pass) {
   if (!is_db_open) db = await openDB();
   if (await db.get("SELECT * FROM user WHERE username = ?", [username])) {
     throw "username '" + username + "' already taken";
@@ -65,7 +65,7 @@ async function addUser(username, first_name, last_name, email, pass) {
     throw "email '" + email + "' already taken";
   }
   const user = await hash( {password: pass} );
-  const user_type = await db.get("SELECT id FROM user_type WHERE type = ?", ["normal"]);
+  const user_type = await db.get("SELECT id FROM user_type WHERE type = ?", [usertype]);
   await db.run("insert into user (user_type_id, username, first_name, last_name, email, password_hash, password_salt) values(?, ?, ?, ?, ?, ?, ?)", [user_type.id, username, first_name, last_name, email, user.hash, user.salt]);
 }
 

@@ -78,6 +78,9 @@ function addListeners() {
     displayPage("account");
   });
 
+  document.getElementById("home").addEventListener("transitionend", pageFadeEnd);
+  document.getElementById("shows").addEventListener("transitionend", pageFadeEnd);
+  document.getElementById("account").addEventListener("transitionend", pageFadeEnd);
 
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
@@ -100,46 +103,57 @@ function displayPage(pageName) {
   var main = document.getElementById("main");
   var currentActive = main.getElementsByClassName("active");
     
-  if (currentActive.length == 1){
-      
-    setTimeout(function() {
-      var i = 9;
-      currentActive[0].style.opacity = 1.0;
-      var k = window.setInterval(function() {
-          
-        if (i == 1) {
-          clearInterval(k);
-          currentActive[0].classList.add("none_active");
-          currentActive[0].classList.remove("active");
-
-          document.getElementById(pageName).classList.remove("none_active");
-          document.getElementById(pageName).style.opacity = 0;
-            
-            
-        } else {
-          currentActive[0].style.opacity = i / 10;
-          i--;
-        }
-      }, 20);
-    }, 400);
-      
-    // fade in
-    setTimeout(function() {
-      var i = 0;
+  if (currentActive.length === 1) {
+    var old_page = currentActive[0];
+    if (old_page.id === pageName) return;
+    old_page.classList.add("transitioning");
+    old_page.classList.remove("active");
+    document.getElementById(pageName).classList.add("to-transition");
+    document.getElementById(pageName).classList.remove("none_active");
+    document.getElementById(pageName).style.opacity = "0";
+    old_page.style.opacity = "0";
+  }
+  // This is a mess but it robustly handles the page transition behaviour
+  //   case 1, no transitions, display page immediately
+  //   case 2, target page is to-transition, do nothing
+  //   case 3, target page is transitioning
+  //     if to-transition tag exists, remove it and make that page none_active, set target_page opacity to 1
+  //     else, do nothing
+  //   case 4, target page is neither, but both exist
+  //     remove to-transition tag, add none_active, and add to_transition to target page
+  //   case 5, target page is neither, only transition exists
+  //     add to-transition and remove none_active from target page, set transition page opacity to 0
+  else {
+    var transitionElems = main.getElementsByClassName("transitioning");
+    var toTransitionElems = main.getElementsByClassName("to-transition");
+    var haveTransition = (transitionElems.length === 1);
+    var haveToTransition = (toTransitionElems.length === 1);
+    if (!haveTransition && !haveToTransition) {
       document.getElementById(pageName).classList.add("active");
-        
-      var k = window.setInterval(function() {
-        if (i >= 10) {
-          clearInterval(k);
-            
-          document.getElementById(pageName).style.opacity = 1;
-
-        } else {
-          document.getElementById(pageName).style.opacity = i / 10;
-          i++;
-        }
-      }, 60);
-    }, 600);
+      document.getElementById(pageName).style.opacity = "1";
+    }
+    else if (haveTransition && !haveToTransition) {
+      if (transitionElems[0].id !== pageName) {
+        document.getElementById(pageName).classList.add("to-transition");
+        document.getElementById(pageName).classList.remove("none_active");
+        document.getElementById(pageName).style.opacity = "0";
+        transitionElems[0].style.opacity = "0";
+      }
+    }
+    else {
+      if (transitionElems[0].id === pageName) {
+        toTransitionElems[0].classList.add("none_active");
+        toTransitionElems[0].classList.remove("to-transition");
+        document.getElementById(pageName).style.opacity = "1";
+      }
+      else if (toTransitionElems[0].id !== pageName) {
+        toTransitionElems[0].classList.add("none_active");
+        toTransitionElems[0].classList.remove("to-transition");
+        document.getElementById(pageName).classList.add("to-transition");
+        document.getElementById(pageName).classList.remove("none_active");
+        document.getElementById(pageName).style.opacity = "0";
+      }
+    }
   }
   var stateObj = { id: pageName };
   
@@ -147,6 +161,22 @@ function displayPage(pageName) {
 
   // window.history.pushState(stateObj, "", pageName);
   window.history.replaceState({}, document.title, "/" + pageName);
+}
+
+function pageFadeEnd(event) {
+  if (event.target.style.opacity === "0") {
+    event.target.classList.add("none_active");
+    var new_page = document.getElementsByClassName("to-transition")[0];
+    new_page.classList.add("transitioning");
+    new_page.classList.remove("to-transition");
+    window.setTimeout(function() {
+      new_page.style.opacity = "1";
+    }, 10);
+  }
+  else if (event.target.style.opacity === "1") {
+    event.target.classList.add("active");
+  }
+  event.target.classList.remove("transitioning");
 }
 
    

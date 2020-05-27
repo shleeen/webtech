@@ -5,7 +5,7 @@ addEventListener("load", start);
 function start() {
   addLoginListeners(); // uh I dunno if this should be here of 
   console.log("login.html loaded");
-} 
+}
 
 function addLoginListeners() {
   var loginTrigger = document.getElementById("login"); //this is the trigger
@@ -28,6 +28,13 @@ function addLoginListeners() {
     document.getElementById("forgot-content").classList.add("none_active");
   }
   
+  function showAccountMenu(firstName) {
+    document.getElementById("login").classList.add("non-active");
+    document.getElementById("login-user").textContent = "WELCOME, " + firstName;
+    document.getElementById("login-user").classList.remove("non-active");
+    document.getElementById("login-user").classList.add("active");
+    closeModal();
+  }
 
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {
@@ -70,12 +77,21 @@ function addLoginListeners() {
   };
 
 
-  document.getElementById("logout").addEventListener("mouseover", function( event ) {   
-    document.getElementById("my-account").classList.remove("non-active");
-    document.getElementById("logout").classList.remove("non-active");
+  document.getElementById("logout").addEventListener("click", function() {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          document.getElementById("my-account").classList.remove("non-active");
+          document.getElementById("logout").classList.remove("non-active");
+        }
+      }
+    };
+    request.open("POST", "/logout");
+    request.send();
   }, false);
 
-
+  // I'm super confused what this is about, can't get the logout button to stop disappearing
   document.getElementById("logout").onmouseout = function()   {
     document.getElementById("my-account").classList.add("non-active");
     document.getElementById("logout").classList.add("non-active");
@@ -93,23 +109,17 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // If success show user logged in stuff
-          document.getElementById("login").classList.add("non-active");
-          document.getElementById("login-user").textContent = "WELCOME, " + this.response.first_name;
-          document.getElementById("login-user").classList.remove("non-active");
-          document.getElementById("login-user").classList.add("active");
-          closeModal();
+          showAccountMenu(this.response.first_name);
         }
         else if (request.status === 401) {
           console.log("BAD");
+          // TODO: should show a login failed message
         }
       }
     };
     request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
-
-    // Save session things ..?
-    // Its only just occured to me, how about web tokens
   }, false);
 
   registerForm.addEventListener("submit", function(event) {

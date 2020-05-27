@@ -4,6 +4,7 @@ const router = express.Router();
 const homeRouter = require("./routes/home.js");
 const showsRouter = require("./routes/shows.js");
 const loginRouter = require("./routes/login.js");
+const logoutRouter = require("./routes/logout.js");
 const registerRouter = require("./routes/register.js");
 const resetRouter = require("./routes/reset.js");
 
@@ -15,6 +16,7 @@ router.get("/", (req, res) => {
 router.use("/home", homeRouter);
 router.use("/shows", showsRouter);
 router.use("/login", loginRouter); // dunno if this is right
+router.use("/logout", logoutRouter);
 router.use("/register", registerRouter);
 router.use("/reset", resetRouter);
 

@@ -6,7 +6,7 @@ export default class Router {
 
 
     // Get a particular uri and return a callback
-    get(uri, callback){
+    get(uri, callback, thisArg){
         // Check params--------------------------------------------------------
         // Check if empty
         if(!uri || !callback) throw new Error('uri or callback must be given');
@@ -17,18 +17,12 @@ export default class Router {
         // Check callback
         if(typeof callback !== "function") throw new TypeError('typeof callback must be a function');
 
-        
-
-
-        // Then we add routes
-        // const route = {
-        //     uri, 
-        //     callback
-        // }
+        thisArg = thisArg instanceof Router ? undefined : thisArg;
 
         let route = {
             uri: null,
             callback: null,
+            thisArg: thisArg,
             parameters: null,
             regExp: null,
             name: null,
@@ -46,15 +40,12 @@ export default class Router {
         route.parameters = this.proccessParameters(route.uri);
 
         this.routes.push(route);
+        return this;
     }
 
+
+    // Deal with urls that have params
     where(name, regExp){
-        
-        //validate type
-        if(!Utils.isSet(name)) throw new ArgNotFound("name");
-        if(!Utils.isSet(regExp)) throw new ArgNotFound("regExp");
-        if(!Utils.isString(name)) throw new ArgTypeError("name", "string", name);
-        if(!Utils.isString(regExp)) throw new ArgTypeError("regExp", "string", regExp);
 
         let route = this.routes[this.routes.length - 1]; // the target route
         
@@ -79,6 +70,63 @@ export default class Router {
         return this;
     }
 
+   
+
+
+    
+    // Compares with the current pathname
+    init(){
+        // for each route in the routes[]
+        this.routes.forEach((route)=>{
+            this.proccessRegExp(route);
+        }, this);
+
+       
+        let found = false;
+
+        // let routerObj = {
+        //     pathFor: (name, parameter)=>{
+        //         return this.pathFor(name, parameter);
+        //     },
+
+        //     goTo: (url, data, title)=>{
+        //         return this.goTo(url, data, title);
+        //     },
+
+        //     historyMode: this._historyMode
+        // };
+        this.routes.some((route)=>{
+            alert(this.requestPath())
+            alert(route.regExp)
+            if(this.requestPath().match(route.regExp)) {
+
+                route.current = true;
+                found = true;
+
+                let request = {};
+                request.param = this.processRequestParameters(route);
+                request.query = this.query;
+                request.uri = window.location.pathname;
+                console.log(request)
+                //return route.callback.call(route.thisArg, request, routerObj);
+                return route.callback.call(route.thisArg, request);
+            }
+        },this)
+
+        if(!found){
+            if(!this._notFoundFunction) return;
+            let request = {};
+            request.uri = window.location.pathname;
+            //return this.notFoundFunction(request, routerObj);
+            return this.notFoundFunction(request);
+        }
+  
+    }
+
+    // Class functions ----------------------------------------------------------------------
+
+    // This gets the {} in the uri and puts them in a []
+        // returns all the params so we have a list of them stored for each route in routes
     proccessParameters(uri){
         let parameters = [];
         let sn = 0;
@@ -93,11 +141,11 @@ export default class Router {
                         regExp: "([^\\/]+)", // catch any word except '/' forward slash
                         value: null
                     }
+                    
                     parameters.push(obj);
                 });
             });
         }
-        
         return parameters;
     }
 
@@ -106,20 +154,96 @@ export default class Router {
     }
 
 
-    
-    // Compares with the current pathname
-    init(){
-        this.routes.some(route=>{
+    // Check if ??
+    proccessRegExp(route){
+        let regExp = route.uri;
 
-            let regEx = new RegExp(`^${route.uri}$`); // Convert to regular express
-            let path = window.location.pathname; // get current path
+        // escape special characters
+        regExp = regExp.replace(/\//g, "\\/");
+        regExp = regExp.replace(/\./g, "\\.");
+        regExp = regExp.replace("/", "/?");
 
-            // Check if the current path is a match in the list of routes we have
-            if(path.match(regEx)){
 
-                let req = { path } 
-                return route.callback.call(this, req);
+        // If the route has {} params
+        if(this.containsParameter(route.uri)){
+            //replace uri parameters with their regular expression
+            regExp.replace(/{\w+}/g, (parameter)=>{
+         
+                let parameterName = parameter.replace("{","");
+                parameterName = parameterName.replace("}","");
+                
+                route.parameters.some((i)=>{
+                    // If the parameter is in routes.params from get()
+                    if(i[parameterName] !== undefined) {
+                        regExp = regExp.replace(parameter, i[parameterName].regExp)
+                        return regExp;
+                    }
+                });
+                return parameter;
+            });
+            
+        }
+        //regExp = "^${"+regExp+"}$";
+        regExp = `^${regExp}$`;
+        route.regExp = new RegExp(regExp);
+        return route;
+    }
+
+    requestPath(){
+        return window.location.pathname;
+    }
+
+    processRequestParameters(route){
+        let routeMatched = this.requestPath().match(route.regExp);
+        if (!routeMatched) return;
+        let param = {};
+        routeMatched.forEach((value, index)=>{
+            if(index !== 0){
+                let key = Object.getOwnPropertyNames(route.parameters[index - 1]);
+                param[key] = value;
             }
-        })
+        });
+        return param;
+    }
+
+
+    pathFor(name, parameters = {}){
+        let nameFound = false;
+        let uri;
+        this.routes.some(route=>{
+            if(route.name === name){
+                nameFound = true;
+                uri = route.uri;
+                if(this.containsParameter(uri)){
+
+                    let array  = [];
+                    for(let value of route.uri.match(/\{(\w+)\}/g)){
+                        value = value.replace("{","");
+                        value = value.replace("}","");
+                        array.push(value);
+                    }
+                    if(array.length !== Object.getOwnPropertyNames(parameters).length) throw new Error(`The route with name [${name}] contains ${array.length} parameters. ${Object.getOwnPropertyNames(parameters).length} given`)
+                    for(let parameter in parameters){
+                        if (!array.includes(parameter)) throw new Error(`Invalid parameter name [${parameter}]`);
+                        let r = new RegExp(`{${parameter}}`,"g");
+                        uri = uri.replace(r, parameters[parameter]);
+                    }
+                }
+            }
+        });
+        if (!nameFound) throw new Error(`Invalid route name [${name}]`);
+        return uri;
+    }
+
+    goTo(url, data = {}, title =""){
+
+        if(!this._historyMode){
+            let storage = window.localStorage;
+            storage.setItem("pushState", data);
+            return window.location.href= url;
+        }
+
+        window.history.pushState(data, title, url);
+        return this.init();
     }
 }

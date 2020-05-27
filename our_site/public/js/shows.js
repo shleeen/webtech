@@ -34,7 +34,7 @@ function getProductionDetails() {
     } 
   };
 
-  xhr.open("GET", "/shows/getProductionDetails", true);
+  xhr.open("GET", "/api/shows/getProductionDetails", true);
   xhr.send();
 
 }

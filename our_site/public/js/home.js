@@ -49,7 +49,7 @@ function getBanners() {
         
   };
         
-  xhr.open("GET", "/home/getBanners", true);
+  xhr.open("GET", "/api/home/getBanners", true);
   xhr.send();
 
 }

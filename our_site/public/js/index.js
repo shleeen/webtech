@@ -7,7 +7,6 @@ addEventListener("load", start);
 
 function start() {
 
-  // initRouter();
   addListeners();
 
   // Spash screen there so that the page loads
@@ -39,9 +38,6 @@ function start() {
     };
     navbar = document.getElementById("navbar");
   }, 1500);
-
-
-    
     
 } 
 

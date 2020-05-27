@@ -38,6 +38,15 @@ app.get("/account", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
+// /^stop[a-zA-Z]*/
+// /^\/shows.*$/
+// app.get(/^\/?shows\/([0-9]+)$/, function(req, res) {
+//   //res.send( "My route worked!" );
+//   console.log('sending index')
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
+
+
 //for these to work need to send resp to frontend to load
 /*
 app.get('/Home', function(req, res) {
@@ -63,7 +72,11 @@ app.get('/Shows', function(req, res) {
 app.use(express.static("public")); //serve static files from this folder
 
 
-app.use("/", routes);
+app.use("/api", routes);
+
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 
 /*app.get('/', (req, res) => {
     res.render('index', {

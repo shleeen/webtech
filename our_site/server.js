@@ -15,12 +15,14 @@ app.use(session({
   secret: "shhhh, very secret"
 }));
 
+
+
 //app.set('views', path.join(__dirname, 'views')); //what does this exactly do?
 //app.set('view engine', 'pug');
 
-/*app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-});*/
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/public/index.html'));
+// });
 
 
 // This needs to be here so that the url would redirect to index.html 
@@ -30,6 +32,7 @@ app.get("/home", function(req, res) {
 });
 
 app.get("/shows", function(req, res) {
+  console.log('showssss')
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
@@ -40,11 +43,11 @@ app.get("/account", function(req, res) {
 
 // /^stop[a-zA-Z]*/
 // /^\/shows.*$/
-// app.get(/^\/?shows\/([0-9]+)$/, function(req, res) {
-//   //res.send( "My route worked!" );
-//   console.log('sending index')
-//   res.sendFile(path.join(__dirname + "/public/index.html"));
-// });
+app.get(/^\/?shows\/([0-9]+)$/, function(req, res) {
+  //res.send( "My route worked!" );
+  console.log('sending index')
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
 
 
 //for these to work need to send resp to frontend to load
@@ -69,8 +72,8 @@ app.get('/Shows', function(req, res) {
 // })); //serve static files from this folder
 
 // Serve as HTML
-app.use(express.static("public")); //serve static files from this folder
-
+//app.use(express.static("public")); //serve static files from this folder
+app.use(express.static(__dirname + '/public'));
 
 app.use("/api", routes);
 

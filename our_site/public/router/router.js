@@ -96,8 +96,6 @@ export default class Router {
         //     historyMode: this._historyMode
         // };
         this.routes.some((route)=>{
-            alert(this.requestPath())
-            alert(route.regExp)
             if(this.requestPath().match(route.regExp)) {
 
                 route.current = true;

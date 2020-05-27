@@ -8,17 +8,29 @@ function initRouter() {
     displayPage("home");
   });
 
+  router.get('/Home', function(req, router){
+    displayPage("home");
+  });
+
   router.get('/shows', function(req, router){
     displayPage("shows");
   });
 
-  // router.get('/shows/{showID}', function(req, router){
-  //   console.log('need to implement route');
+  router.get('/Shows', function(req, router){
+    displayPage("shows");
+  });
 
-  //   //displayPage("shows");
-  // }).where("showID","[0-9]");
+  router.get('/shows/{showID}', function(req, router){
+    alert('need to implement route');
+
+    displayPage("shows");
+  }).where("showID","[0-9]");
 
   router.get('/account', function(req, router){
+    displayPage("account");
+  });
+
+  router.get('/Account', function(req, router){
     displayPage("account");
   });
 

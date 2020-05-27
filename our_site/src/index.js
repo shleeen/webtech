@@ -8,6 +8,7 @@ const registerRouter = require("./routes/register.js");
 const resetRouter = require("./routes/reset.js");
 
 router.get("/", (req, res) => {
+  console.log('hek is in here')
   res.render("index", {title: "Homepage"});
 });
 

@@ -149,6 +149,7 @@ function displayPage(pageName) {
     var haveToTransition = (toTransitionElems.length === 1);
     if (!haveTransition && !haveToTransition) {
       document.getElementById(pageName).classList.add("active");
+      document.getElementById(pageName).classList.remove("none_active");
       document.getElementById(pageName).style.opacity = "1";
     }
     else if (haveTransition && !haveToTransition) {

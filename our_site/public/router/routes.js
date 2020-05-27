@@ -4,6 +4,10 @@ const router = new Router();
 
 // I changed the url to match page names for now, can always do something better later
 function initRouter() {
+  router.get('/', function(req, router){
+    displayPage("home");
+  });
+
   router.get('/home', function(req, router){
     displayPage("home");
   });

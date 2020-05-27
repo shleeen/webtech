@@ -30,7 +30,8 @@ function getProductionDetails() {
       }
     }
     else {
-      console.log("error getting production details");
+      // think this is happening even when there are no errors
+      //console.log("error getting production details");
     } 
   };
 

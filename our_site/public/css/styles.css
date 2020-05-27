@@ -52,6 +52,15 @@ object{
   display: inline;
 }
 
+.transitioning {
+  display: inline;
+  transition: opacity 0.25s;
+}
+
+.to-transition {
+  display: none;
+}
+
 .none_active{
   display: none;
 }

@@ -91,9 +91,10 @@ function addLoginListeners() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 204) {
+        if (request.status === 200) {
           // If success show user logged in stuff
           document.getElementById("login").classList.add("non-active");
+          document.getElementById("login-user").textContent = "WELCOME, " + this.response.first_name;
           document.getElementById("login-user").classList.remove("non-active");
           document.getElementById("login-user").classList.add("active");
           closeModal();
@@ -103,6 +104,7 @@ function addLoginListeners() {
         }
       }
     };
+    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
 

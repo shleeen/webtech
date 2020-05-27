@@ -50,6 +50,7 @@ header{
     display: grid;
 }
 
+
 li{
     list-style: none;
 }
@@ -85,6 +86,7 @@ li{
 #login-user:hover{
     cursor: pointer;
 }
+
 
 #login-user:hover + ul > #my-account,
 #login-user:hover + ul > #logout{
@@ -137,6 +139,7 @@ li{
     cursor: pointer;
     color: #371545;
 }
+
 
 #logout:hover + #my-account{
     display: block;

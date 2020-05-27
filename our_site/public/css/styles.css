@@ -52,6 +52,10 @@ object{
   display: inline;
 }
 
+.active-block{
+  display: block;
+}
+
 .transitioning {
   display: inline;
   transition: opacity 0.25s;

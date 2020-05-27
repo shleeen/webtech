@@ -78,6 +78,24 @@ function addListeners() {
     displayPage("account");
   });
 
+  document.getElementById("login-user").addEventListener("mouseover", function() {
+    document.getElementById("my-account").style.display = 'block';
+    document.getElementById("logout").style.display = 'block';
+  });
+
+  document.getElementById("logout").addEventListener("mouseover", function() {
+    document.getElementById("my-account").style.display = 'block';
+    document.getElementById("logout").style.display = 'block';
+  });
+
+  document.getElementById("logout").addEventListener("mouseout", function() {
+    document.getElementById("my-account").style.display = 'none';
+    document.getElementById("logout").style.display = 'none';
+  });
+  
+
+  
+
   document.getElementById("home").addEventListener("transitionend", pageFadeEnd);
   document.getElementById("shows").addEventListener("transitionend", pageFadeEnd);
   document.getElementById("account").addEventListener("transitionend", pageFadeEnd);

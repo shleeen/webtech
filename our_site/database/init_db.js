@@ -22,13 +22,13 @@ async function initializeDB() {
                   "Contains strong language and sex references. | Flashing lights are used during this performance. | Contains references to suicide.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "Winston Theatre", 	"2020-06-07", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-07", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "Winston Theatre", "2020-06-08", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-08", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "Winston Theatre", "2020-06-09", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-09", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Legally Blonde", "Winston Theatre", 
@@ -37,19 +37,19 @@ async function initializeDB() {
                   "It is illegal to use recording equipment during this performance.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "Winston Theatre", 	"2020-06-19", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", 	"2020-06-19", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "Winston Theatre", "2020-06-20", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-20", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "Winston Theatre", "2020-06-21", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-21", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "Winston Theatre", "2020-06-21", "14:00", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-21", "14:00", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "Winston Theatre", "2020-06-22", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-22", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);

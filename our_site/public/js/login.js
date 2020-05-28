@@ -19,6 +19,7 @@ function addLoginListeners() {
 
   var loginForm = document.getElementById("login-content");
   var registerForm = document.getElementById("register-content");
+  var forgotForm = document.getElementById("forgot-content");
 
   function closeModal() {
     modal.style.display = "none";
@@ -138,6 +139,24 @@ function addLoginListeners() {
 
           // close modal
           closeModal();
+        }
+        else if (request.status === 400) {
+          console.log("BAD");
+        }
+      }
+    };
+    request.open("POST", event.target.action);
+    request.send(formData);
+  });
+
+  forgotForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var formData = new FormData(event.target);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 204) {
+          // TODO: show password reset email has been sent message or something
         }
         else if (request.status === 400) {
           console.log("BAD");

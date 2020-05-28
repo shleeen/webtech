@@ -37,6 +37,10 @@
     width: 216px;
 }
 
+.prod-poster:hover{
+    cursor: pointer;
+}
+
 .prod-info {
     /* background: #ffbb00; */
     padding: .5em;

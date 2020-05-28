@@ -27,9 +27,20 @@ function getProductionDetails() {
         console.log("one prod done");
       }
 
-      var prods = document.getElementsByClassName("prod-container");
-      for (var i = 0; i < prods.length; i++) {
-        prods[i].addEventListener("click", displayShow);
+      // var prods = document.getElementsByClassName("prod-container");
+      // for (var i = 0; i < prods.length; i++) {
+      //   prods[i].addEventListener("click", displayShow);
+      // }
+       
+      // sorry i decicded to try on jsut the poster but that one line should help
+      var posters = document.getElementsByClassName("prod-poster");
+      for (var i = 0; i < posters.length; i++) {
+        posters[i].addEventListener("click", function(){
+
+          // THIS IS THE LINE <3
+          window.parent.history.pushState("", "", "/shows/production");
+ 
+        });
       }
     }
   };
@@ -52,6 +63,8 @@ function displayShow() {
 
       // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
       // nicole help
+      // lol i see this now, use window.parent.history.pushState()
+      window.history.pushState({}, "",  "/" + "showname");
     }
   };
 

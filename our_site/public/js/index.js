@@ -176,8 +176,9 @@ function displayPage(pageName) {
   
   // Could change later to have url name different to id name
 
-  // window.history.pushState(stateObj, "", pageName);
-  window.history.replaceState({}, document.title, "/" + pageName);
+  window.history.pushState(stateObj, "", pageName);
+  alert(window.location.href)
+  //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 
 function pageFadeEnd(event) {

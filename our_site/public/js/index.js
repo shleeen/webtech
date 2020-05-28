@@ -100,6 +100,7 @@ function addListeners() {
 
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
+    alert(history.state.id)
     // The URL changed...
     if (history.state) {
       console.log("LOO");
@@ -175,9 +176,7 @@ function displayPage(pageName) {
   var stateObj = { id: pageName };
   
   // Could change later to have url name different to id name
-
-  window.history.pushState(stateObj, "", pageName);
-  alert(window.location.href)
+  window.history.pushState(stateObj, "", "/" + pageName);
   //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 

@@ -2,12 +2,14 @@
 addEventListener("load", start);
 function start() {
   addListeners();
+  getAccountDetails();
   console.log("account.html loaded");
 } 
 
 function addListeners(){
 
-  // maybe this can be one fucntion oops
+  // scrollintoview works but doesnt do a smooth scroll
+  // smooth scroll does the scroll but not the right position
   document.getElementById("acc-details-nav").addEventListener("click", function(event) {
     var target = document.getElementById('account-details')
     target.scrollIntoView();
@@ -27,16 +29,13 @@ function addListeners(){
   })
 }
 
+// Functions --------------------------------------------------------------
 
 function smoothScroll(target, duration){
   var target = document.getElementById(target)
-
   var targetPosition = target.getBoundingClientRect().top;
-
   var startPosition = window.pageYOffset;
-
   var distance = targetPosition - startPosition;
-
   var startTime = null;
 
   console.log(targetPosition)
@@ -59,6 +58,28 @@ function smoothScroll(target, duration){
   };
 
   requestAnimationFrame(animation);
+}
+
+
+function getAccountDetails(){
+  getUserInfo();
+
+  // get transaction deets as well
+}
+
+function getUserInfo(){
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
+      var res = xhr.response;
+      console.log(res)
+    }
+  };
+
+  xhr.open("GET", "/api/user/getUserInfo", true);
+  xhr.responseType = "json";
+  xhr.send();
 }
 
 

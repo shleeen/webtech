@@ -24,10 +24,15 @@ function initRouter() {
     displayPage("shows");
   });
 
+  // example route with params
   router.get('/shows/{showID}', function(req, router){
     alert('need to implement route');
 
+    // get the id from req
+
+    // display things
     displayPage("shows");
+
   }).where("showID","[0-9]");
 
   router.get('/account', function(req, router){

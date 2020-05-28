@@ -99,9 +99,8 @@ object{
 }
 
 .main{
-  overflow: hidden;
+  overflow: scroll;
   height: max-content;
-  margin-bottom: 60px;
 }
 /* Positions ========================================================================== */
 .float-left{
@@ -130,6 +129,11 @@ object{
   padding: 15px;
 }
 
+
+/* Font size ========================================================================== */
+.font18 {
+  font-size: 18px;
+}
 /* Footer ========================================================================== */
 /* I kinda dunno where else to put this */
 footer { 

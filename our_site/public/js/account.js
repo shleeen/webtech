@@ -9,18 +9,20 @@ function addListeners(){
 
   // maybe this can be one fucntion oops
   document.getElementById("acc-details-nav").addEventListener("click", function(event) {
+    var target = document.getElementById('account-details')
+    target.scrollIntoView();
 
-    // element to scroll to
-    // var dest = document.getElementById("account-details");
-    smoothScroll('account-details', 600);
+
+    //smoothScroll('account-details', 600);
 
   })
 
   document.getElementById("trans-details-nav").addEventListener("click", function(event) {
+    var target = document.getElementById('trans-details')
+    target.scrollIntoView();
 
-    // element to scroll to
-    // var dest = document.getElementById("account-details");
-    smoothScroll('trans-details', 600);
+    
+    //smoothScroll('trans-details', 600);
 
   })
 }
@@ -45,6 +47,7 @@ function smoothScroll(target, duration){
     if (startTime === null) startTime = currentTime;
     var timeElapsed = currentTime - startTime;
     var run = ease(timeElapsed, startPosition, distance, duration);
+    
     window.scrollTo(0, run);
     if (timeElapsed < duration) requestAnimationFrame(animation);
     

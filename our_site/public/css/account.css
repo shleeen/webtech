@@ -7,16 +7,49 @@
 }
 
 .account-container{
-    width: 100%;
-    height: 500px;
+    width: 50%;
+    height: 300px;
     background-color: #bcbcbc;
     margin-top: 2em;
     margin-bottom: 2em;
+    margin-left:  auto;
+    margin-right: auto;
+    border-radius: 3px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+    border: 2px solid rgba(7, 7, 7, 0.12);
+    transition: all 0.3s ease;
+}
+
+
+.account-container:hover{
+    height: 300px;
+    background-color: #cecece;
+
+}
+
+.account-container:hover .account p{
+    transition: all 0.3s ease;
+    opacity: 1;
+    font-size: 22px;
+
+}
+
+.trans-container{
+    width: 100%;
+    height: 400px;
+    background-color: #bcbcbc;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 3px;
 }
 
 .account-title{
     font-size: 30px;
 
+}
+
+.account-content p {
+    width: 45%;
 }
 .account-nav{
     text-align: center;
@@ -28,6 +61,7 @@
     display: inline-block;
     vertical-align: top;
 }
+
 
 .user-details-nav:hover, .trans-nav:hover{
     color: rgb(118, 118, 118);

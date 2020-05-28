@@ -7,6 +7,7 @@ const loginRouter = require("./routes/login.js");
 const logoutRouter = require("./routes/logout.js");
 const registerRouter = require("./routes/register.js");
 const resetRouter = require("./routes/reset.js");
+const userRouter = require("./routes/user.js");
 
 router.get("/", (req, res) => {
   console.log('hek is in here')
@@ -19,6 +20,7 @@ router.use("/login", loginRouter); // dunno if this is right
 router.use("/logout", logoutRouter);
 router.use("/register", registerRouter);
 router.use("/reset", resetRouter);
+router.use("/user", userRouter);
 
 
 router.use((req, res) => {

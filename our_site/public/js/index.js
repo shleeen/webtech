@@ -93,9 +93,6 @@ function addListeners() {
     document.getElementById("my-account").style.display = 'none';
     document.getElementById("logout").style.display = 'none';
   });
-  
-
-  
 
   document.getElementById("home").addEventListener("transitionend", pageFadeEnd);
   document.getElementById("shows").addEventListener("transitionend", pageFadeEnd);

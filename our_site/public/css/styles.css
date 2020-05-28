@@ -44,8 +44,9 @@ body {
 
 object{
   width: 100%;
-  height: 110vh;
+  height: 90vh;
   align-self: center;
+  overflow: hidden;
 }
 
 .active{

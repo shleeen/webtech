@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS ticket_type;
 DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS password_reset;
+DROP TABLE IF EXISTS email_verify;
 
 -- Use CAPITALS for SQL keywords and snake_case for table and column names.
 -- SQLite reccommends against using the AUTOINCREMENT KEYWORD, it will automatically assign unique id values anyway.
@@ -101,5 +102,12 @@ CREATE TABLE password_reset (
     user_id  INTEGER  NOT NULL,
     token    TEXT     NOT NULL,
     time     INTEGER  NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE email_verify (
+    id       INTEGER  PRIMARY KEY,
+    user_id  INTEGER  NOT NULL,
+    token    TEXT     NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id)
 );

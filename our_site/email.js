@@ -16,10 +16,24 @@ async function sendForgotPassword(email, reset_link) {
     from: "noreply@tick.et",
     to: email,
     subject: "Reset password",
-    text: "Please use the link below to reset your password. The link will expire in 10 minutes.\nReset link: " + reset_link,
-    html: "<p>Please use the link below to reset your password. The link will expire in 10 minutes.<br />Reset link: <a href=\"" + reset_link + "\">" + reset_link + "</a></p>"
+    text: "Please use the link below to reset your password. The link will expire in 1 hour.\nReset link: " + reset_link,
+    html: "<p>Please use the link below to reset your password. The link will expire in 1 hour.<br />Reset link: <a href=\"" + reset_link + "\">" + reset_link + "</a></p>"
   };
   await transporter.sendMail(message);
+  console.log("Password reset link: " + reset_link);
+}
+
+async function sendVerifyLink(email, verify_link) {
+  const message = {
+    from: "noreply@tick.et",
+    to: email,
+    subject: "Verify your email",
+    text: "Please click the link below to verify your email and fully activate your account.\nVerification link: " + verify_link,
+    html: "<p>Please click the link below to verify your email and fully activate your account.<br />Verification link: <a href=\"" + verify_link + "\">" + verify_link + "</a></p>"
+  };
+  await transporter.sendMail(message);
+  console.log("Email verify link: " + verify_link);
 }
 
 exports.sendForgotPassword = sendForgotPassword;
+exports.sendVerifyLink = sendVerifyLink;

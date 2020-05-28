@@ -53,6 +53,13 @@
 
 }
 
+.account-container:hover .transaction p{
+    transition: all 0.3s ease;
+    opacity: 1;
+    font-size: 22px;
+
+}
+
 .account-title{
     font-size: 30px;
 

@@ -86,6 +86,9 @@ function addLoginListeners() {
           document.getElementById("login-user").classList.remove("active");
           document.getElementById("login").classList.remove("non-active");
           document.getElementById("login").classList.add("active");
+
+          // need to redirect to home page
+          window.location.href = "http://localhost:80"
         }
       }
     };
@@ -94,6 +97,7 @@ function addLoginListeners() {
   }, false);
 
   // I'm super confused what this is about, can't get the logout button to stop disappearing
+  // yea should sort out that css it aint the best
   document.getElementById("logout").onmouseout = function()   {
     document.getElementById("my-account").classList.add("non-active");
     document.getElementById("logout").classList.add("non-active");
@@ -110,8 +114,13 @@ function addLoginListeners() {
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
+          // load account page coz logged in 
+          document.getElementById("account").innerHTML = "<object id=\"account-object\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
+
           // If success show user logged in stuff
           showAccountMenu(this.response.first_name);
+
+          
         }
         else if (request.status === 401) {
           console.log("BAD");

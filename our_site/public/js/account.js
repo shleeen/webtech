@@ -68,17 +68,22 @@ function getAccountDetails(){
 }
 
 function getUserInfo(){
-
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
-      console.log(res)
+      console.log(res.data)
+
+      document.getElementById('username').innerHTML = res.data.username;
+      document.getElementById('firstname').innerHTML = res.data.first_name;
+      document.getElementById('lastname').innerHTML = res.data.last_name;
+      document.getElementById('email').innerHTML = res.data.email;
     }
   };
 
   xhr.open("GET", "/api/user/getUserInfo", true);
   xhr.responseType = "json";
+
   xhr.send();
 }
 

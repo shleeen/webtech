@@ -35,13 +35,13 @@ function initRouter() {
 
   }).where("showID","[0-9]");
 
-  router.get('/account', function(req, router){
-    displayPage("account");
-  });
+  // router.get('/account', function(req, router){
+  //   displayPage("account");
+  // });
 
-  router.get('/Account', function(req, router){
-    displayPage("account");
-  });
+  // router.get('/Account', function(req, router){
+  //   displayPage("account");
+  // });
 
 
   router.init();

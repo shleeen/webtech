@@ -36,10 +36,11 @@ app.get("/shows", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 
-app.get("/account", function(req, res) {
-  // TODO: THIS SHOULD ONLY HAPPEN WHEN A SESSION IS THERE
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+// app.get("/account", function(req, res) {
+//   // TODO: THIS SHOULD ONLY HAPPEN WHEN A SESSION IS THERE
+//   res.send( "YOU NEED TO LOG IN MATE" );
+//   //res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 
 // /^stop[a-zA-Z]*/
 // /^\/shows.*$/

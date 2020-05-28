@@ -2,7 +2,7 @@ const userService = require("../service/user-info-service");
 
 exports.getUserInfo = async function(req, res) {
   try {
-    const userInfo = await userService.getUserInfo();
+    const userInfo = await userService.getUserInfo(req.session.user_id);
     res.status(200).json({
       valid: true,
       data: userInfo

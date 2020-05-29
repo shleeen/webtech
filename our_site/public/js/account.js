@@ -63,8 +63,7 @@ function smoothScroll(target, duration){
 
 function getAccountDetails(){
   getUserInfo();
-
-  // get transaction deets as well
+  getTransactions();
 }
 
 function getUserInfo(){
@@ -85,6 +84,25 @@ function getUserInfo(){
   xhr.responseType = "json";
 
   xhr.send();
+}
+
+function getTransactions(){
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
+      var res = xhr.response;
+      console.log(res.data)
+
+      
+    }
+  }
+
+
+  xhr.open("GET", "/api/user/getUserTransactions", true);
+  xhr.responseType = "json";
+
+  xhr.send();
+
 }
 
 

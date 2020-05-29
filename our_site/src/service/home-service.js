@@ -1,5 +1,6 @@
 const db = require("../../database/database.js");
 
+// This needs to update lol
 exports.getProductionBanners = async function(req, res) {
   let sql = "SELECT * FROM production";
   try {

@@ -10,3 +10,15 @@ exports.getUserInfo = async function(user_id) {
   }
 };
 
+
+// Need DO
+exports.userTransactions = async function(user_id) {
+  let sql = "SELECT * FROM user WHERE id = ?";
+  try {
+    const row = await db.get(sql, user_id);
+    return row;
+  } catch (err) {
+    console.log(err);
+  }
+}
+

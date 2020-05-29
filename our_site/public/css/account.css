@@ -60,6 +60,58 @@
 
 }
 
+.trans-content-wrapper{
+    height: max-content;
+    background-color: #ece9e9;
+    display: flex;
+}
+
+.prod-poster{
+    padding: .5em;
+    height: 300px; 
+    width: 216px;
+}
+
+.trans-info {
+    padding: .5em;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-ref{
+    padding: .2em;
+    height: 40px;
+    font-size: 22px;
+    align-items: center;
+    color: #371545;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.trans-content{
+    padding: .2em;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; 
+}
+
+.prod-details{
+    padding: .2em;
+    width: 300px;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.trans-details{
+    flex-grow: 2;
+}
+
+.ticket-details{
+    flex-grow: 3;
+}
+
 .account-title{
     font-size: 30px;
 

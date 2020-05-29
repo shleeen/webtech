@@ -4,7 +4,38 @@
 addEventListener("load", start);
 function start() {
   addLoginListeners(); // uh I dunno if this should be here of 
+  checkLogin();
   console.log("login.html loaded");
+}
+
+function checkLogin() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
+      showAccountMenu(this.response.data.first_name);
+    }
+  };
+
+  xhr.open("GET", "/api/user/getUserInfo", true);
+  xhr.responseType = "json";
+
+  xhr.send();
+}
+
+function showAccountMenu(firstName) {
+  document.getElementById("login").classList.add("non-active");
+  document.getElementById("login-user").textContent = "WELCOME, " + firstName;
+  document.getElementById("login-user").classList.remove("non-active");
+  document.getElementById("login-user").classList.add("active");
+  closeModal();
+}
+
+function closeModal() {
+  document.querySelector(".modal").style.display = "none";
+  // Set back to default state for next time it is opened
+  document.getElementById("login-content").classList.remove("none_active");
+  document.getElementById("register-content").classList.add("none_active");
+  document.getElementById("forgot-content").classList.add("none_active");
 }
 
 function addLoginListeners() {
@@ -20,22 +51,6 @@ function addLoginListeners() {
   var loginForm = document.getElementById("login-content");
   var registerForm = document.getElementById("register-content");
   var forgotForm = document.getElementById("forgot-content");
-
-  function closeModal() {
-    modal.style.display = "none";
-    // Set back to default state for next time it is opened
-    document.getElementById("login-content").classList.remove("none_active");
-    document.getElementById("register-content").classList.add("none_active");
-    document.getElementById("forgot-content").classList.add("none_active");
-  }
-  
-  function showAccountMenu(firstName) {
-    document.getElementById("login").classList.add("non-active");
-    document.getElementById("login-user").textContent = "WELCOME, " + firstName;
-    document.getElementById("login-user").classList.remove("non-active");
-    document.getElementById("login-user").classList.add("active");
-    closeModal();
-  }
 
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {
@@ -89,7 +104,7 @@ function addLoginListeners() {
           document.getElementById("login").classList.add("active");
 
           // need to redirect to home page
-          window.location.href = "http://localhost:80"
+          window.location.pathname = "/";
         }
       }
     };

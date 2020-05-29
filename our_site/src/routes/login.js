@@ -18,6 +18,9 @@ loginRouter.post("/", upload.none(), async (req, res) => {
       // in the session store to be retrieved,
       // or in this case the entire user object
       req.session.user_id = user_id;
+      if (req.body.remember === "on") {
+        req.session.cookie.maxAge = 7 * 24 * 3600 * 1000; // Stay logged in for a week
+      }
       res.status(200).json(info);
     });
   } else {

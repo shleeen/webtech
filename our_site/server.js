@@ -3,6 +3,7 @@ const path = require("path");
 const routes = require("./src/index");
 const helmet = require("helmet");
 const session = require("express-session");
+const SQLiteStore = require("connect-sqlite3")(session);
 // const bodyParser = require('body-parser');
 
 const app = express();
@@ -10,9 +11,11 @@ app.use(helmet());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
+  store: new SQLiteStore({ db: "sessions.db", dir: "database" }),
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored
-  secret: "shhhh, very secret"
+  secret: "shhhh, very secret",
+  name: "sessionId",
 }));
 
 

@@ -34,6 +34,15 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "Student", "7");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
+    await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "General", "10");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", "firstuser", "7", "2020-05-30 00:00:01", "1", "ref01", "0" );
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTickets("1", "1", "14");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
     await dbHelper.addProductions("firstuser", "Legally Blonde", "Winston Theatre", 
                   "img/legally_banner.png", "img/legally_poster.png", "Max Whale", "Nicole Li", 
                   "Music Theatre Bristol is bending and snapping our way to the Winston Theatre this June with the first of our main shows: Legally Blonde! Based on the 2001 film, Legally Blonde tells the story of Elle Woods – a sorority girl who follows love all the way to Harvard Law only to achieve more than anyone thought she was capable of! With only five performances be sure to get your tickets fast to avoid disappointment!", 
@@ -56,6 +65,9 @@ async function initializeDB() {
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "Student", "5");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTicketTypes("Legally Blonde", "General", "7");
   } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);

@@ -94,8 +94,7 @@ async function addBooking(prodname, username, orderTotal, bookingTime, paid, boo
   const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
   const show = await db.get("SELECT id FROM show WHERE production_id = ?", [production.id]);
   const user = await db.get("SELECT id FROM user WHERE username = ?", [username]);
-  await db.run("insert into booking (show_id, user_id, order_total, booking_time, paid, booking_ref, collected) values(?, ?, ?, ?, ?)", [show.id, user.id, orderTotal, bookingTime, paid, bookinfRef, collected]);
-  // get latest booking id and then addTickets()
+  await db.run("insert into booking (show_id, user_id, order_total, booking_time, paid, booking_ref, collected) values(?, ?, ?, ?, ?, ?, ?)", [show.id, user.id, orderTotal, bookingTime, paid, bookinfRef, collected]);
 }
 
 async function addTickets(bookingID, ticketTypeID, seatNumber){
@@ -123,4 +122,6 @@ exports.addUser = addUser;
 exports.addProductions = addProductions;
 exports.addShows = addShows;
 exports.addTicketTypes = addTicketTypes;
+exports.addBooking = addBooking;
+exports.addTickets = addTickets;
 exports.authenticate = authenticate;

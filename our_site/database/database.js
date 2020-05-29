@@ -81,6 +81,29 @@ async function addShows(prodname, date, doors_open, total_seats) {
   await db.run("insert into show (production_id, date, doors_open, total_seats, sold) values(?, ?, ?, ?, ?)", [production.id, date, doors_open, total_seats, "0"]);
 }
 
+async function addTicketTypes(prodname, category, price) {
+  if (!is_db_open) db = await openDB();
+  const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
+  const show = await db.get("SELECT id FROM show WHERE production_id = ?", [production.id]);
+  await db.run("insert into ticket_type (show_id, category, price) values(?, ?, ?)", [show.id, category, price]);
+}
+
+// eh hm order total needs to match ticket types
+async function addBooking(prodname, username, orderTotal, bookingTime, paid, bookinfRef, collected){
+  if (!is_db_open) db = await openDB();
+  const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
+  const show = await db.get("SELECT id FROM show WHERE production_id = ?", [production.id]);
+  const user = await db.get("SELECT id FROM user WHERE username = ?", [username]);
+  await db.run("insert into booking (show_id, user_id, order_total, booking_time, paid, booking_ref, collected) values(?, ?, ?, ?, ?)", [show.id, user.id, orderTotal, bookingTime, paid, bookinfRef, collected]);
+  // get latest booking id and then addTickets()
+}
+
+async function addTickets(bookingID, ticketTypeID, seatNumber){
+  if (!is_db_open) db = await openDB();
+  await db.run("insert into ticket (booking_id, ticket_type_id, seat_number) values(?, ?, ?)", [bookingID, ticketTypeID, seatNumber]);
+
+}
+
 async function authenticate(email, pass) {
   if (!is_db_open) db = await openDB();
   const user = await db.get("SELECT id, password_hash, password_salt FROM user WHERE email = ?", [email]);
@@ -99,4 +122,5 @@ exports.addUserType = addUserType;
 exports.addUser = addUser;
 exports.addProductions = addProductions;
 exports.addShows = addShows;
+exports.addTicketTypes = addTicketTypes;
 exports.authenticate = authenticate;

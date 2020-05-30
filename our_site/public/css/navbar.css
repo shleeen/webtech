@@ -182,11 +182,13 @@ nav a {
     padding-right: 20px;
     overflow: hidden;
     position: relative;
-
     background: linear-gradient(to right, #e1bcf0, #e1bcf0 50%, #F5F5F5 50%);
+    
+    /* This is non-standard */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     background-size: 200% 100%;
     background-position: 100%;
     transition: background-position 275ms ease;

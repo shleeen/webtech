@@ -66,7 +66,7 @@ app.get('/Shows', function(req, res) {
 */
 
 // Serve as XHTML
-// app.use(express.static("public", { //serve static files from this folder
+// app.use(express.static(__dirname + "/public", { //serve static files from this folder
 //   setHeaders: function(res, path) {
 //     // if file is a .xml file, then set content-type
 //     if (path.endsWith(".html")) {
@@ -77,7 +77,7 @@ app.get('/Shows', function(req, res) {
 
 // Serve as HTML
 //app.use(express.static("public")); //serve static files from this folder
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 
 app.use("/api", routes);
 

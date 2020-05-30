@@ -88,3 +88,98 @@
     flex-grow: 2;
     /* background: pink; */
 }
+
+#view-more{
+    color: white;
+    cursor: pointer;
+    background-color: lightseagreen;
+    border-radius: 8px;
+    padding: 5px;
+    font-weight:700;
+}
+
+#view-more:hover{
+    color: #0d4e4b;
+}
+
+/* CSS FOR SHOW DETAILS */
+#shows-return {
+    background-color:#419aaa;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+     margin-right: 10px ;
+	border-radius:8px;
+	cursor:pointer;
+	color:#ffffff;
+    font-family: Helvetica, sans-serif;
+	font-size:15px;
+	font-weight:700;
+}
+
+#shows-return:hover {
+    color: #102225;
+}
+
+#show-details{
+    margin: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center; 
+    border-radius: 5px;
+    height: 100px;
+    /* display: flex; */
+}
+
+#show-template{
+    background-color: rgb(223, 223, 223);
+}
+
+.show-name{
+    /* height: 50px; */
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+    padding: 10px;
+    color: #371545;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.show-blurb{
+    text-align: center;
+    align-items: center;
+    color: #000000;
+    flex-grow: 2;
+    width: 800px;
+}
+
+.show-dates{
+   /* flex-grow: 3; */
+}
+
+/* .dates{
+    flex-grow: 1;
+} */
+
+.top-box{
+    width: 100px;
+    background-color: lightskyblue;
+}
+/* .top-box:after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0.5em;
+    right: 0.5em;
+    background-color: lime;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    border-radius: 50%;
+} */
+
+.bottom-box{
+    width: 100px;
+    background-color: lightslategrey;
+}

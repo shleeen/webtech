@@ -14,19 +14,11 @@ function getProductionDetails() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
-      var prodDivID = "";
 
-      // for each production x, create and fill the 'shows' container
-      for (var x in res) {
-        prodDivID = "prod-container-";
-        prodDivID += res[x].production_id;
+      document.getElementById("shows-main").innerHTML += template.render("display-production", res, res.length);
 
-        document.getElementById("shows-main").innerHTML += template.render("display-production", { prod_id: prodDivID, poster_img: res[x].poster_path, 
-          name: res[x].name, blurb: res[x].blurb, dates: res[x].date });
-
-        console.log("one prod done");
-      }
-
+      // !? shouldnt just clicking the button and poster take you to show-details not clicking everything?
+      // yea i was just lazy and wanted to test
       var prods = document.getElementsByClassName("prod-container");
       for (var i = 0; i < prods.length; i++) {
         prods[i].addEventListener("click", displayShow);
@@ -51,8 +43,8 @@ function getProductionDetails() {
   xhr.open("GET", "/api/shows/getProductionDetails", true);
   xhr.responseType = "json";
   xhr.send();
-
 }
+
 
 function displayShow() {
   var prod_id = this.id.match(/\d+$/)[0];
@@ -70,7 +62,14 @@ function displayShow() {
       document.getElementById("shows-main").classList.add("non-active");
       
       // this currently breaks when clicked on the second time
+      // is there a way to "clear template"
       document.getElementById("show-details").innerHTML = template.render("show-template", res);
+
+      // testing to see if indv dates can be yeeted into another template 
+      for (var i = 0; i < res.date.length; i++) {
+        var adate = res.date[i];
+        document.getElementById("show-dates").innerHTML += template.render("date-template", {adate: adate, id: i});
+      }
 
       // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
       // nicole help
@@ -87,19 +86,12 @@ function displayShow() {
 
 
 function addShowsListeners() {
-  var showPageTrigger = document.getElementById("show-btn"); //this is the trigger
-  // var modal = document.querySelector(".modal");
-
-  // // close the modal using the cross button
-  // showPageTrigger.onclick = function() {
-  //   //go to a different page
-  //   console.log("clickk!!");
-  // };
-
-
-  // Add back button listener
+  // TODO: Add back button listener
     // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function () {
+
+    //TODO: clear the show-details template here as well ?? (since its displaying on prod page)
+
     document.getElementById("shows-return").classList.remove("active");
     document.getElementById("shows-return").classList.add("non-active");
 

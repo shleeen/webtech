@@ -28,11 +28,16 @@ exports.getUserTransactions = async function(req, res) {
       else userTransactions[u].collected = "no";
     }
       
-    // conbine rows of the same booking id -> so deat numbers are combined
+    // conbine rows of the same booking id -> so seat numbers are combined
     const transactions = combineTransactions(userTransactions);
+
+    // add in ticker count 
+    for (var t in transactions){
+      console.log(transactions[t].seat_number.length)
+      transactions[t].ticket_no = transactions[t].seat_number.length;
+    }
+    
     console.log(transactions)
-
-
     res.status(200).json(transactions);
   } catch (err) {
     res.status(400).json({errMessage: "Unable to get user transactions."});

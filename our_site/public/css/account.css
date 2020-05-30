@@ -53,10 +53,21 @@
 
 }
 
+.transaction{
+    padding-bottom: 10px;
+}
+
 .trans-container:hover .transaction p{
     transition: all 0.3s ease;
     opacity: 1;
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.trans-container:hover .trans-info{
+    background-color: #eaeaea;
+    border: 3px solid rgba(147, 147, 147, 0.12);
+    transition: all 0.3s ease;
 }
 
 .trans-content-wrapper{

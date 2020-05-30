@@ -101,6 +101,7 @@ function getTransactions(){
       //  seats: res[x].seat_number, totalAmount: res[x].order_total });
       document.getElementById("trans-details").innerHTML += template.render("display-trans", results, results.length);
 
+
     }
   }
 

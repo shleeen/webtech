@@ -11,10 +11,6 @@
     /* overflow: auto; */
 }
 
-.shows-filter{
-    
-}
-
 .shows-back{
     margin: 10px 40px;
     width: 100px;
@@ -156,9 +152,9 @@
     width: 800px;
 }
 
-.show-dates{
-   /* flex-grow: 3; */
-}
+/* .show-dates{
+   flex-grow: 3;
+} */
 
 /* .dates{
     flex-grow: 1;

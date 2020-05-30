@@ -9,11 +9,6 @@ const registerRouter = require("./routes/register.js");
 const resetRouter = require("./routes/reset.js");
 const userRouter = require("./routes/user.js");
 
-router.get("/", (req, res) => {
-  console.log('hek is in here')
-  res.render("index", {title: "Homepage"});
-});
-
 router.use("/home", homeRouter);
 router.use("/shows", showsRouter);
 router.use("/login", loginRouter); // dunno if this is right
@@ -21,7 +16,6 @@ router.use("/logout", logoutRouter);
 router.use("/register", registerRouter);
 router.use("/reset", resetRouter);
 router.use("/user", userRouter);
-
 
 router.use((req, res) => {
   res.status(404).send("Sorry can't find that!");

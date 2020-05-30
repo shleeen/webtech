@@ -16,7 +16,7 @@
         <button id="shows-return" class="shows-back pad10 non-active"> BACK TO SHOWS </button>
     </div>
 
-    <div id="shows-main" class="shows-main active">
+    <div id="shows-main" class="shows-main non-active">
         <div class="shows-filter">
             Here there will be some filters or a search bar
         </div>
@@ -39,31 +39,7 @@
         </template>
     </div>
     
-    <div id="show-details">
-        <template id="show-template">
-            <div class="show-name"> {{name}} </div>
-            <div class="show-blurb"> {{blurb}} </div>
-            {{date}} <!-- this works -->
-            <div class="show-dates" id="show-dates">
-                <!-- need to click on this to view seats/book tickets-->
-
-                <!-- template for displaying indv. dates since no. of dates changes -->
-                <template id="date-template">
-                    <div class="top-box">w</div>
-                    <div class="bottom-box">e</div>
-
-                    <div> {{adate}} {{id}} </div> <!-- this does not work-->
-                </template>
-
-            </div>
-            <div> {{venue}} </div>
-            <!-- temporary button -->
-            <div class="show-button"> BUY TICKETS </div>
-            <div>
-                {{producer}}
-                {{director}}
-            </div>
-        </template>
+    <div id="show-details" class="non-active">
         <!-- 
         <template id="show-template">
             <h1>{{name}}</h1>
@@ -75,6 +51,31 @@
             <img src="{{poster_path}}" />
         </template> -->
     </div>
+
+    <template id="show-template">
+        <div class="show-name"> {{name}} </div>
+        <div class="show-blurb"> {{blurb}} </div>
+        {{date}} <!-- this works -->
+        <div class="show-dates" id="show-dates">
+            <!-- need to click on this to view seats/book tickets-->
+
+            <!-- template for displaying indv. dates since no. of dates changes -->
+            <template id="date-template">
+                <div class="top-box">w</div>
+                <div class="bottom-box">e</div>
+
+                <div> {{adate}} {{id}} </div> <!-- this does not work-->
+            </template>
+
+        </div>
+        <div> {{venue}} </div>
+        <!-- temporary button -->
+        <div class="show-button"> BUY TICKETS </div>
+        <div>
+            {{producer}}
+            {{director}}
+        </div>
+    </template>
 
     
 </body>

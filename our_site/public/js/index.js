@@ -37,6 +37,7 @@ function start() {
       if (height > indexHeight) showObj.style.height = height + "px";
       else showObj.style.height = indexHeight + "px";
     };
+
     navbar = document.getElementById("navbar");
   }, 1500);
     
@@ -76,6 +77,9 @@ function addListeners() {
 
   document.getElementById("my-account").addEventListener("click", function() {
     console.log("click");
+    if (document.getElementById("my-account").getElementsByTagName("object")[0] == null){
+      document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
+    }
     displayPage("account");
   });
 

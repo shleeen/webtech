@@ -182,6 +182,27 @@ function addListeners() {
     */
 }
 
+
+// var navbar = window.parent.document.getElementById("navbar");
+// var prevScrollpos = window.pageYOffset;
+// window.onscroll = function () {
+//   if (window.scrollY == 0){
+//     navbar.classList.remove("hover");
+//   } else {
+//     navbar.classList.add("hover");
+//   }
+//   var currentScrollPos = window.pageYOffset;
+//   if (prevScrollpos > currentScrollPos) {
+    
+//     // remove hover
+//     window.parent.document.getElementById("navbar").style.top = "0";
+
+//   } else {
+//     window.parent.document.getElementById("navbar").style.top = "-60px";
+//   }
+//   prevScrollpos = currentScrollPos;
+// };
+
 function fadeColour(elem, from, to) {
   var r = parseInt(from.substr(0,2),16);
   var g = parseInt(from.substr(2,2),16);

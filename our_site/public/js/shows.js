@@ -14,20 +14,11 @@ function getProductionDetails() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
-      var prodDivID = "";
 
-      // for each production x, create and fill the 'prod' container
-      for (var x in res) {
-        prodDivID = "prod-container-";
-        prodDivID += res[x].production_id;
-
-        document.getElementById("shows-main").innerHTML += template.render("display-production", { prod_id: prodDivID, poster_img: res[x].poster_path, 
-          name: res[x].name, blurb: res[x].blurb });
-
-        console.log("one prod done");
-      }
+      document.getElementById("shows-main").innerHTML += template.render("display-production", res, res.length);
 
       // !? shouldnt just clicking the button and poster take you to show-details not clicking everything?
+      // yea i was just lazy and wanted to test
       var prods = document.getElementsByClassName("prod-container");
       for (var i = 0; i < prods.length; i++) {
         prods[i].addEventListener("click", displayShow);
@@ -71,7 +62,7 @@ function displayShow() {
       
       // this currently breaks when clicked on the second time
       // is there a way to "clear template"
-      console.log(res)
+      console.log(res);
       document.getElementById("show-details").innerHTML = template.render("show-template", res);
 
       // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH

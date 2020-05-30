@@ -5,10 +5,10 @@
     render : render
   };
 
-  function render(templateID, replacements) {
+  function render(templateID, replacements, iterations) {
     var html = document.getElementById(templateID).innerHTML;
     var values = getDynamicValues(html);
-    var new_html = applyDynamicValues(html, values, replacements);
+    var new_html = applyDynamicValues(html, values, replacements, iterations);
     return new_html;
   }
   
@@ -30,12 +30,27 @@
   }
   
   // We create a function to replace the curly braces with data values
-  function applyDynamicValues(str_html, values, replacements) {
-    for (var value of values) {
-      var regexp = new RegExp("{{" + value + "}}", "g");
-      str_html = str_html.replace(regexp, replacements[value]);
+  function applyDynamicValues(str_html, values, replacements, iterations) {
+    var value, regexp, old_html;
+    var new_html = "";
+    if (iterations) {
+      for (var i = 0; i < iterations; i++) {
+        old_html = str_html;
+        for (value of values) {  
+          regexp = new RegExp("{{" + value + "}}", "g");
+          old_html = old_html.replace(regexp, replacements[i][value]);
+        }
+        new_html += old_html;
+      }
     }
-    return str_html;
+    else {
+      for (value of values) {
+        regexp = new RegExp("{{" + value + "}}", "g");
+        str_html = str_html.replace(regexp, replacements[value]);
+      }
+      new_html = str_html;
+    }
+    return new_html;
   }
 
   window.template = exports;

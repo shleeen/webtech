@@ -67,12 +67,12 @@ function addListeners() {
 
   document.getElementById("shows_tab").addEventListener("click", function() {
     console.log("click");
-    displayPage("shows", true);
+    displayPage("shows", "/shows");
   });
 
   document.getElementById("home_tab").addEventListener("click", function() {
     console.log("click");
-    displayPage("home", true);
+    displayPage("home", "./");
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
@@ -81,7 +81,7 @@ function addListeners() {
       document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
     }
 
-    displayPage("account", true);
+    displayPage("account", "/account");
   });
 
   document.getElementById("login-user").addEventListener("mouseover", function() {
@@ -99,17 +99,17 @@ function addListeners() {
     document.getElementById("logout").style.display = 'none';
   });
 
-  document.getElementById("home").addEventListener("transitionend", pageFadeEnd);
-  document.getElementById("shows").addEventListener("transitionend", pageFadeEnd);
-  document.getElementById("account").addEventListener("transitionend", pageFadeEnd);
+  var pages = document.getElementsByClassName("subpage");
+  console.log(pages);
+  for (var page = 0; page < pages.length; page++) {
+    pages[page].addEventListener("transitionend", pageFadeEnd);
+  }
 
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
-    alert(history.state.id)
     // The URL changed...
     if (history.state) {
-      console.log("LOO");
-      displayPage(history.state.id, true);
+      displayPage(history.state.id, "/" + history.state.id);
     }
   });
   
@@ -119,7 +119,7 @@ function addListeners() {
 // @nicole seeing the same function pasted 3 times made me sad
 // DRYYYYYYYYYY
 // Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
-function displayPage(pageName, updateURL) {
+function displayPage(pageName, newURL) {
   console.log("displaying " + pageName);
 
   var main = document.getElementById("main");
@@ -131,7 +131,7 @@ function displayPage(pageName, updateURL) {
     old_page.classList.add("transitioning");
     old_page.classList.remove("active");
     document.getElementById(pageName).classList.add("to-transition");
-    document.getElementById(pageName).classList.remove("none_active");
+    document.getElementById(pageName).classList.remove("non-active");
     document.getElementById(pageName).style.opacity = "0";
     old_page.style.opacity = "0";
   }
@@ -139,12 +139,12 @@ function displayPage(pageName, updateURL) {
   //   case 1, no transitions, display page immediately
   //   case 2, target page is to-transition, do nothing
   //   case 3, target page is transitioning
-  //     if to-transition tag exists, remove it and make that page none_active, set target_page opacity to 1
+  //     if to-transition tag exists, remove it and make that page non-active, set target_page opacity to 1
   //     else, do nothing
   //   case 4, target page is neither, but both exist
-  //     remove to-transition tag, add none_active, and add to_transition to target page
+  //     remove to-transition tag, add non-active, and add to_transition to target page
   //   case 5, target page is neither, only transition exists
-  //     add to-transition and remove none_active from target page, set transition page opacity to 0
+  //     add to-transition and remove non-active from target page, set transition page opacity to 0
   else {
     var transitionElems = main.getElementsByClassName("transitioning");
     var toTransitionElems = main.getElementsByClassName("to-transition");
@@ -152,28 +152,28 @@ function displayPage(pageName, updateURL) {
     var haveToTransition = (toTransitionElems.length === 1);
     if (!haveTransition && !haveToTransition) {
       document.getElementById(pageName).classList.add("active");
-      document.getElementById(pageName).classList.remove("none_active");
+      document.getElementById(pageName).classList.remove("non-active");
       document.getElementById(pageName).style.opacity = "1";
     }
     else if (haveTransition && !haveToTransition) {
       if (transitionElems[0].id !== pageName) {
         document.getElementById(pageName).classList.add("to-transition");
-        document.getElementById(pageName).classList.remove("none_active");
+        document.getElementById(pageName).classList.remove("non-active");
         document.getElementById(pageName).style.opacity = "0";
         transitionElems[0].style.opacity = "0";
       }
     }
     else {
       if (transitionElems[0].id === pageName) {
-        toTransitionElems[0].classList.add("none_active");
+        toTransitionElems[0].classList.add("non-active");
         toTransitionElems[0].classList.remove("to-transition");
         document.getElementById(pageName).style.opacity = "1";
       }
       else if (toTransitionElems[0].id !== pageName) {
-        toTransitionElems[0].classList.add("none_active");
+        toTransitionElems[0].classList.add("non-active");
         toTransitionElems[0].classList.remove("to-transition");
         document.getElementById(pageName).classList.add("to-transition");
-        document.getElementById(pageName).classList.remove("none_active");
+        document.getElementById(pageName).classList.remove("non-active");
         document.getElementById(pageName).style.opacity = "0";
       }
     }
@@ -181,15 +181,16 @@ function displayPage(pageName, updateURL) {
   var stateObj = { id: pageName };
   
   // Could change later to have url name different to id name
-  if (updateURL) {
-    window.history.pushState(stateObj, "", "/" + pageName);
+  console.log(newURL);
+  if (newURL !== undefined) {
+    window.history.pushState(stateObj, "", newURL);
   }
   //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 
 function pageFadeEnd(event) {
   if (event.target.style.opacity === "0") {
-    event.target.classList.add("none_active");
+    event.target.classList.add("non-active");
     var new_page = document.getElementsByClassName("to-transition")[0];
     new_page.classList.add("transitioning");
     new_page.classList.remove("to-transition");

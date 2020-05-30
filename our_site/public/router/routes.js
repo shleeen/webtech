@@ -5,23 +5,15 @@ const router = new Router();
 // I changed the url to match page names for now, can always do something better later
 function initRouter() {
   router.get('/', function(req, router){
-    displayPage("home", true);
-  });
-
-  router.get('/home', function(req, router){
-    displayPage("home", true);
-  });
-
-  router.get('/Home', function(req, router){
-    displayPage("home", true);
+    displayPage("home", "./");
   });
 
   router.get('/shows', function(req, router){
-    displayPage("shows", true);
+    displayPage("shows", "shows");
   });
 
   router.get('/Shows', function(req, router){
-    displayPage("shows", true);
+    displayPage("shows", "shows");
   });
 
   // example route with params
@@ -30,7 +22,7 @@ function initRouter() {
     // get the id from req
 
     // display things
-    displayPage("shows", false);
+    displayPage("shows");
 
   }).where("showID","[0-9]");
 
@@ -41,6 +33,10 @@ function initRouter() {
   // router.get('/Account', function(req, router){
   //   displayPage("account");
   // });
+
+  router.notFoundFunction = function() {
+    displayPage("404-page");
+  }
 
 
   router.init();

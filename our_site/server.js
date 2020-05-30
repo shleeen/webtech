@@ -30,14 +30,14 @@ app.use(session({
 
 // This needs to be here so that the url would redirect to index.html 
 // which will then load home.html or shows.html 
-app.get("/home", function(req, res) {
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+// app.get("/home", function(req, res) {
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 
-app.get("/shows", function(req, res) {
-  console.log('showssss')
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+// app.get("/shows", function(req, res) {
+//   console.log('showssss')
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 
 // app.get("/account", function(req, res) {
 //   // TODO: THIS SHOULD ONLY HAPPEN WHEN A SESSION IS THERE
@@ -47,11 +47,11 @@ app.get("/shows", function(req, res) {
 
 // /^stop[a-zA-Z]*/
 // /^\/shows.*$/
-app.get(/^\/?shows\/([0-9]+)$/, function(req, res) {
-  //res.send( "My route worked!" );
-  console.log('sending index')
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+// app.get(/^\/?shows\/([0-9]+)$/, function(req, res) {
+//   //res.send( "My route worked!" );
+//   console.log('sending index')
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 
 
 //for these to work need to send resp to frontend to load
@@ -81,9 +81,9 @@ app.use(express.static(__dirname + '/public'));
 
 app.use("/api", routes);
 
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname + "/public/index.html"));
-// });
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
 
 /*app.get('/', (req, res) => {
     res.render('index', {

@@ -48,6 +48,16 @@ object{
 
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.success {
+  color: #0c0;
+  font-weight: bold;
+}
+
 .active{
   display: inline;
 }
@@ -71,6 +81,13 @@ object{
 
 .non-active{
   display: none;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;       
 }
 
 .overlay{

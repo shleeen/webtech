@@ -89,14 +89,12 @@
                     <input id="login-password" type="password" placeholder="Password" name="pwd" required="required"/>
 
                     <label class="label-wrapper">
-                        
                         Remember me
-                        
                         <input type="checkbox" checked="checked" name="remember"/> 
                         <span></span>
-                    </label>                  
-                    
+                    </label>                    
                 </div>
+                <p id="login-failed" class="error non-active">Incorrect email or password, please try again</p>
                 <div class="switch" id="modal-to-register"> <p> New User? Click here to register!</p> </div>
                 <div class="switch" id="modal-to-forget"> <p> Forgot password?</p> </div>
 
@@ -104,7 +102,7 @@
                     <button id="submit-login-btn" type="submit">Submit</button>            
                 </div>
             </form>
-            <form id="forgot-content" class="none_active" method="post" action="/api/reset">
+            <form id="forgot-content" class="non-active" method="post" action="/api/reset">
                 <div>
                     <object id="reset-svg" class="reset-svg" data="./img/resetpassword.svg" type="image/svg+xml">
                     </object>
@@ -113,13 +111,14 @@
                     <label for="forgot-email"><b>Email</b></label>
                     <input id="forgot-email" type="email" placeholder="Email Address" name="email" required="required"/>
                 </div>
+                <p id="reset-sent" class="success non-active">Password reset link has been sent</p>
                 <div class="switch" id="modal-forgot-to-login"> <p> Return to login</p> </div>
                 <div class="modal-footer" >
                     <button class="submit-btn" type="submit">Send password reset link</button>
                 </div>
             </form>
             
-            <form id="register-content" class="none_active" method="post" action="/api/register">
+            <form id="register-content" class="non-active" method="post" action="/api/register">
                 <div>
                     <object id="register-svg" class="register-svg" data="./img/register.svg" type="image/svg+xml">
                     </object>
@@ -128,10 +127,10 @@
                     <label for="register-first-name"><b>First Name</b></label>
                     <label for="register-last-name"><b>Last Name</b></label>
                     
-                    <input id="register-first-name" type="first" placeholder="First Name" name="first_name" required="required"/>
+                    <input id="register-first-name" type="text" placeholder="First Name" name="first_name" required="required"/>
 
                     
-                    <input id="register-last-name" type="last" placeholder="Last Name" name="last_name" required="required"/>
+                    <input id="register-last-name" type="text" placeholder="Last Name" name="last_name" required="required"/>
 
                     <label for="register-email"><b>Email</b></label>
                     <input id="register-email" type="email" placeholder="Email Address" name="email" required="required"/>
@@ -168,17 +167,21 @@
         <div id="content">
             
         </div>
-        <div id="home" class="none_active">
+        <div id="home" class="non-active subpage">
             <object id="home-object" type="text/html" data="../home.html" width="100%"></object>
         </div>
 
 
-        <div id="shows" class="none_active">
+        <div id="shows" class="non-active subpage">
             <object id="shows-object" type="text/html" data="../shows.html" width="100%"></object>
         </div>
 
-        <div id="account" class="none_active" >
+        <div id="account" class="non-active subpage">
             <!-- <object id="account-object" type="text/html" data="../account.html" width="100%"></object> -->
+        </div>
+
+        <div id="404-page" class="non-active subpage">
+            <object id="404-object" type="text/html" data="../404.html" width="100%"></object>   
         </div>
 
     </div>

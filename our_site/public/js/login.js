@@ -33,9 +33,11 @@ function showAccountMenu(firstName) {
 function closeModal() {
   document.querySelector(".modal").style.display = "none";
   // Set back to default state for next time it is opened
-  document.getElementById("login-content").classList.remove("none_active");
-  document.getElementById("register-content").classList.add("none_active");
-  document.getElementById("forgot-content").classList.add("none_active");
+  document.getElementById("login-content").classList.remove("non-active");
+  document.getElementById("register-content").classList.add("non-active");
+  document.getElementById("forgot-content").classList.add("non-active");
+  document.getElementById("login-failed").classList.add("non-active");
+  document.getElementById("reset-sent").classList.add("non-active");
 }
 
 function addLoginListeners() {
@@ -69,26 +71,29 @@ function addLoginListeners() {
   };
 
   toRegister.onclick = function() {
-    document.getElementById("register-content").classList.remove("none_active");
-    document.getElementById("login-content").classList.add("none_active");
+    document.getElementById("register-content").classList.remove("non-active");
+    document.getElementById("login-content").classList.add("non-active");
+    document.getElementById("login-failed").classList.add("non-active");
   };
 
   toForget.onclick = function() {
-    document.getElementById("forgot-content").classList.remove("none_active");
-    document.getElementById("login-content").classList.add("none_active");
+    document.getElementById("forgot-content").classList.remove("non-active");
+    document.getElementById("login-content").classList.add("non-active");
+    document.getElementById("login-failed").classList.add("non-active");
   };
 
   regToLogin.onclick = function(){
     // seems like the remove has to come first?
-    document.getElementById("login-content").classList.remove("none_active");
-    document.getElementById("register-content").classList.add("none_active");
+    document.getElementById("login-content").classList.remove("non-active");
+    document.getElementById("register-content").classList.add("non-active");
     drawLogin();
   };
 
   forgotToLogin.onclick = function(){
     // seems like the remove has to come first?
-    document.getElementById("login-content").classList.remove("none_active");
-    document.getElementById("forgot-content").classList.add("none_active");
+    document.getElementById("login-content").classList.remove("non-active");
+    document.getElementById("forgot-content").classList.add("non-active");
+    document.getElementById("reset-sent").classList.add("non-active");
     drawLogin();
   };
 
@@ -140,8 +145,7 @@ function addLoginListeners() {
           
         }
         else if (request.status === 401) {
-          console.log("BAD");
-          // TODO: should show a login failed message
+          document.getElementById("login-failed").classList.remove("non-active");
         }
       }
     };
@@ -181,7 +185,7 @@ function addLoginListeners() {
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 204) {
-          // TODO: show password reset email has been sent message or something
+          document.getElementById("reset-sent").classList.remove("non-active");
         }
         else if (request.status === 400) {
           console.log("BAD");

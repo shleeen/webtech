@@ -112,11 +112,11 @@ export default class Router {
         },this)
 
         if(!found){
-            if(!this._notFoundFunction) return;
-            let request = {};
-            request.uri = window.location.pathname;
+            // if(!this._notFoundFunction) return;
+            // let request = {};
+            // request.uri = window.location.pathname;
             //return this.notFoundFunction(request, routerObj);
-            return this.notFoundFunction(request);
+            return this.notFoundFunction();
         }
   
     }

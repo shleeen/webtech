@@ -18,8 +18,8 @@ exports.getUserInfo = async function(req, res) {
 exports.getUserTransactions = async function(req, res) {
   try {
     const userTransactions = await userService.userTransactions(req.session.user_id);
+    console.log(userTransactions)
     res.status(200).json({
-      valid: true,
       data: userTransactions
     });
   } catch (err) {

@@ -40,6 +40,7 @@ function getProductionDetails() {
 
           // THIS IS THE LINE <3
           // need to add in history state
+          // Would be nice to concatenate prod name
           window.parent.history.pushState("", "", "/shows/production");
  
         });
@@ -60,7 +61,7 @@ function displayShow() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
 
-      // TODO: display back button
+      // display back button
       document.getElementById("shows-return").classList.remove("non-active");
       document.getElementById("shows-return").classList.add("active");
 
@@ -74,6 +75,7 @@ function displayShow() {
       // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
       // nicole help
       // lol i see this now, use window.parent.history.pushState()
+      // Would be nice to concatenate prod name
       window.parent.history.pushState("", "", "/shows/production");
     }
   };
@@ -95,7 +97,7 @@ function addShowsListeners() {
   // };
 
 
-  // TODO: Add back button listener
+  // Add back button listener
     // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function () {
     document.getElementById("shows-return").classList.remove("active");
@@ -107,7 +109,6 @@ function addShowsListeners() {
     document.getElementById("shows-main").classList.add("active");
     document.getElementById("shows-main").classList.add("shows-main");
     
-
     // change path back to shows
     window.parent.history.pushState("", "", "/shows");
   })

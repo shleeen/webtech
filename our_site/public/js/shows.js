@@ -46,6 +46,7 @@ function getProductionDetails() {
 
           // THIS IS THE LINE <3
           // need to add in history state
+          // Would be nice to concatenate prod name
           window.parent.history.pushState("", "", "/shows/production");
  
         });
@@ -110,7 +111,7 @@ function displayShow(data) {
 }
 
 function addShowsListeners() {
-  // TODO: Add back button listener
+  // Add back button listener
     // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function () {
     showAllProductions();
@@ -137,3 +138,24 @@ function showAllProductions() {
   // change path back to shows
   //window.parent.history.pushState("", "", "/shows");
 }
+
+// listener to hide nav when scrolling down and show nav when scrolling up
+var navbar = window.parent.document.getElementById("navbar");
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  if (window.scrollY == 0){
+    navbar.classList.remove("hover");
+  } else {
+    navbar.classList.add("hover");
+  }
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    
+    // remove hover
+    window.parent.document.getElementById("navbar").style.top = "0";
+
+  } else {
+    window.parent.document.getElementById("navbar").style.top = "-60px";
+  }
+  prevScrollpos = currentScrollPos;
+};

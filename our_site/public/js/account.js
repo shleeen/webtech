@@ -93,7 +93,21 @@ function getTransactions(){
       var res = xhr.response;
       console.log(res.data)
 
-      
+      for (var x in res) {
+        //prodDivID = "prod-container-";
+        //prodDivID += res[x].production_id;
+        console.log(x)
+        console.log(res[x])
+
+        document.getElementById("trans-details").innerHTML += template.render("display-trans", {poster_img: res[x].poster_path, bookingRef: res[x].booking_ref, name: res[x].name, date: res[x].date, time: res[x].doors_open, bookTime: res[x].booking_time, paymentStat:res[x].paid,
+          seats: res[x].seat_number });
+
+        console.log("one trans done");
+      }
+
+     
+      // document.getElementById("shows-main").innerHTML += template.render("display-production", { prod_id: prodDivID, poster_img: res[x].poster_path, 
+        //name: res[x].name, blurb: res[x].blurb, dates: res[x].date });
     }
   }
 
@@ -104,5 +118,27 @@ function getTransactions(){
   xhr.send();
 
 }
+
+
+// listener to hide nav when scrolling down and show nav when scrolling up
+var navbar = window.parent.document.getElementById("navbar");
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  if (window.scrollY == 0){
+    navbar.classList.remove("hover");
+  } else {
+    navbar.classList.add("hover");
+  }
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    
+    // remove hover
+    window.parent.document.getElementById("navbar").style.top = "0";
+
+  } else {
+    window.parent.document.getElementById("navbar").style.top = "-60px";
+  }
+  prevScrollpos = currentScrollPos;
+};
 
 

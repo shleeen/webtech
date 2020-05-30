@@ -8,6 +8,7 @@
     <link href="css/account.css" rel="stylesheet" type="text/css"/>
 
     <script src="/js/account.js"></script>
+    <script src="/js/template.js"></script>
 </head>
 
 <body class="main">
@@ -87,39 +88,42 @@
                 </p>
             </div>
                 
-            <!-- <put everything inside a template once backend is done> -->
-            <div class="trans-content-wrapper pad15">
-                <div class="prod-poster"> <img src="{{poster_img}}"> </div>
-                <div class="trans-info"> 
-                    <div class="book-ref"> {{bookingRef}} </div>
-                    <div class="trans-content">
-                        <div class="prod-details">
-                            <div class="prod-name"> {{name}} </div>
-                            <div class="show-date"> {{date}} </div>
-                            <div class="show-time"> {{time}} </div>
+            <template id="display-trans">
+                <div class="trans-content-wrapper pad15">
+                    <div class="prod-poster"> <img src="{{poster_img}}"> </div>
+                    <div class="trans-info"> 
+                        <div class="book-ref"> 
+                            <p>Booking Reference: {{bookingRef}}</p>
+                             
                         </div>
-                        <div class="trans-details">
-                            <div class="tickets"> {{noOfTicksBought}} </div>
-                            <div class="book-time"> {{bookTime}} </div>
-                            <div class="payment"> {{paymentStat}} </div>
+                        <div class="trans-content">
+                            <div class="prod-details">
+                                <div class="prod-name"> {{name}} </div>
+                                <div class="show-date"> {{date}} </div>
+                                <div class="show-time"> {{time}} </div>
+                            </div>
+                            <div class="trans-details">
+                                <div class="tickets"> noOfTicksBought </div>
+                                <div class="book-time"> {{bookTime}} </div>
+                                <div class="payment"> {{paymentStat}} </div>
+                            </div>
+                            <div class="ticket-details">
+                                <button>More Details</button>
+                            </div>
                         </div>
-                        <div class="ticket-details">
-                            <button>More Details</button>
-                        </div>
+                        <div class="trans-content-more">
+                            <div class="ticket-seats">
+                                <div class="seats"> {{seats}} </div>
+                            </div>
+
+                            <div class="ticket-price">
+                                <div class="price"> prices </div>
+                                <div class="price"> times number = total  </div>
+                            </div>
+                        </div>       
                     </div>
-                    <div class="trans-content-more">
-                        <div class="ticket-seats">
-                            <div class="seats"> {{seats}} </div>
-                        </div>
-
-                        <div class="ticket-price">
-                            <div class="price"> {{prices}} </div>
-                            <div class="price"> {{times number = total}} </div>
-                        </div>
-                    </div>       
                 </div>
-            </div>
-
+            </template>
         </div>
     </div>
 

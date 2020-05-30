@@ -6,7 +6,7 @@ exports.getProd = async function(req, res) {
     const shows = combineShows(showData);
 
     if (req.params.prodId) {
-      res.status(200).json(shows[0]);
+      res.status(200).json(shows[req.params.prodId]);
     }
     else {
       res.status(200).json(shows);
@@ -39,9 +39,9 @@ function combineShows(shows) {
       shows[index].sold.push(shows[i].sold);
     }
   }
-  let result = [];
+  let result = {};
   for (const i of showMap.values()) {
-    result.push(shows[i]);
+    result[shows[i].production_id] = shows[i];
   }
   return result;
 }

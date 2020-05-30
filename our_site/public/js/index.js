@@ -67,12 +67,12 @@ function addListeners() {
 
   document.getElementById("shows_tab").addEventListener("click", function() {
     console.log("click");
-    displayPage("shows");
+    displayPage("shows", true);
   });
 
   document.getElementById("home_tab").addEventListener("click", function() {
     console.log("click");
-    displayPage("home");
+    displayPage("home", true);
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
@@ -80,7 +80,8 @@ function addListeners() {
     if (document.getElementById("my-account").getElementsByTagName("object")[0] == null){
       document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
     }
-    displayPage("account");
+
+    displayPage("account", true);
   });
 
   document.getElementById("login-user").addEventListener("mouseover", function() {
@@ -108,7 +109,7 @@ function addListeners() {
     // The URL changed...
     if (history.state) {
       console.log("LOO");
-      displayPage(history.state.id);
+      displayPage(history.state.id, true);
     }
   });
   
@@ -118,7 +119,7 @@ function addListeners() {
 // @nicole seeing the same function pasted 3 times made me sad
 // DRYYYYYYYYYY
 // Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
-function displayPage(pageName) {
+function displayPage(pageName, updateURL) {
   console.log("displaying " + pageName);
 
   var main = document.getElementById("main");
@@ -180,7 +181,9 @@ function displayPage(pageName) {
   var stateObj = { id: pageName };
   
   // Could change later to have url name different to id name
-  window.history.pushState(stateObj, "", "/" + pageName);
+  if (updateURL) {
+    window.history.pushState(stateObj, "", "/" + pageName);
+  }
   //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 

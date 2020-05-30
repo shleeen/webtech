@@ -114,24 +114,24 @@ function getTransactions(){
 
 
 // listener to hide nav when scrolling down and show nav when scrolling up
-// var navbar = window.parent.document.getElementById("navbar");
-// var prevScrollpos = window.pageYOffset;
-// window.onscroll = function () {
-//   if (window.scrollY == 0){
-//     navbar.classList.remove("hover");
-//   } else {
-//     navbar.classList.add("hover");
-//   }
-//   var currentScrollPos = window.pageYOffset;
-//   if (prevScrollpos > currentScrollPos) {
+var navbar = window.parent.document.getElementById("navbar");
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  if (window.scrollY == 0){
+    navbar.classList.remove("hover");
+  } else {
+    navbar.classList.add("hover");
+  }
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
     
-//     // remove hover
-//     window.parent.document.getElementById("navbar").style.top = "0";
+    // remove hover
+    window.parent.document.getElementById("navbar").style.top = "0";
 
-//   } else {
-//     window.parent.document.getElementById("navbar").style.top = "-60px";
-//   }
-//   prevScrollpos = currentScrollPos;
-// };
+  } else {
+    window.parent.document.getElementById("navbar").style.top = "-60px";
+  }
+  prevScrollpos = currentScrollPos;
+};
 
 

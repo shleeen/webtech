@@ -16,7 +16,6 @@
     // Regex Explanation:  In JavaScript, [^] represents a valid character class. Should be the same as .
     // Regex Explanation:  ([^]*?) -> +? or *?  means it will consume as few characters 
     // as possible instead of as many as possible (as is the default)
-  
     var result = str_html.match(/{{([^]*?)}}/g);
     if (result !== null) {
       // Filter the results to remove duplicates
@@ -45,8 +44,10 @@
     }
     else {
       for (value of values) {
-        regexp = new RegExp("{{" + value + "}}", "g");
-        str_html = str_html.replace(regexp, replacements[value]);
+        if (replacements[value] !== undefined) {
+          regexp = new RegExp("{{" + value + "}}", "g");
+          str_html = str_html.replace(regexp, replacements[value]);
+        }
       }
       new_html = str_html;
     }

@@ -66,10 +66,8 @@ function displayShow() {
 
       // testing to see if indv dates can be yeeted into another template 
       for (var i = 0; i < res.date.length; i++) {
-        console.log(res.date[i])
-        var adate = res.date[i]
-        console.log(adate)
-        document.getElementById("show-dates").innerHTML += template.render("date-template", {adate: adate, id: i });
+        var adate = res.date[i];
+        document.getElementById("show-dates").innerHTML += template.render("date-template", {adate: adate, id: i});
       }
 
       // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH

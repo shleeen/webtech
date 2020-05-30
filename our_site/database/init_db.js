@@ -69,6 +69,15 @@ async function initializeDB() {
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "General", "7");
   } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addBooking("Legally Blonde", "firstuser", "10", "2020-05-30 00:07:01", "1", "ref02", "0" );
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTickets("2", "3", "24");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTickets("2", "3", "25");
+  } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);
   }

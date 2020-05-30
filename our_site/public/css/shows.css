@@ -3,7 +3,7 @@
 .shows-main{
     /* width: 100%; */
     /* height: max-content;*/
-    margin: 40px 40px; /*cos page can only start after the nav */
+    margin: 65px 40px; /*cos page can only start after the nav */
     display: flex;
     justify-content: space-between;
     flex-direction: column;

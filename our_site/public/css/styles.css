@@ -37,14 +37,14 @@ body {
 
 .content_container {
   margin: 0 auto;
-  padding-top: 5em;
+  padding-top: 2em;
   overflow: hidden;
 
 }
 
 object{
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   align-self: center;
   overflow: hidden;
 }

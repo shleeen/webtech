@@ -12,7 +12,11 @@
 </head>
 
 <body class="main">
-    <div id="shows-main" class="shows-main">
+    <div>
+        <button id="shows-return" class="shows-back non-active"> GO BACK </button>
+    </div>
+
+    <div id="shows-main" class="shows-main active">
         <div class="shows-filter">
             Here there will be some filters or a search bar
         </div>
@@ -34,6 +38,7 @@
             </div>
         </template>
     </div>
+    
     <div id="show-details">
         <template id="show-template">
             <h1>{{name}}</h1>

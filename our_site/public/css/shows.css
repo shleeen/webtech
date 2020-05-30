@@ -151,9 +151,29 @@
 }
 
 .show-dates{
-   flex-grow: 3;
+   /* flex-grow: 3; */
 }
 
 /* .dates{
     flex-grow: 1;
 } */
+
+.top-box{
+    width: 100px;
+    background-color: lightskyblue;
+}
+/* .top-box:after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0.5em;
+    right: 0.5em;
+    background-color: lime;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    border-radius: 50%;
+} */
+
+.bottom-box{
+    width: 100px;
+    background-color: lightslategrey;
+}

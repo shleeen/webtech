@@ -57,13 +57,14 @@
     transition: all 0.3s ease;
     opacity: 1;
     font-size: 22px;
-
 }
 
 .trans-content-wrapper{
     height: max-content;
     background-color: #ece9e9;
     display: flex;
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
 .prod-poster{
@@ -107,13 +108,15 @@
 
 .prod-details{
     padding: .2em;
-    width: 300px;
+    width: 350px;
     margin-right: 10px;
     flex-grow: 1;
 }
 
 .trans-details{
     flex-grow: 2;
+    text-align: end;
+    padding-right: 30px;
 }
 
 .ticket-details{
@@ -121,7 +124,7 @@
 }
 
 .ticket-seats{
-    width: 300px;
+    width: 350px;
     flex-grow: 1;
 }
 

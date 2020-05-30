@@ -4,6 +4,7 @@ exports.getProd = async function(req, res) {
   try {
     const showData = await showsService.getProduction(req.params.prodId);
     const shows = combineShows(showData);
+    console.log(shows)
 
     if (req.params.prodId) {
       res.status(200).json(shows[req.params.prodId]);
@@ -11,7 +12,6 @@ exports.getProd = async function(req, res) {
     else {
       res.status(200).json(shows);
     }
-
     console.log("details received by SHOWS controller");
 
   } catch (err) {

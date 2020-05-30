@@ -91,23 +91,16 @@ function getTransactions(){
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
-      console.log(res.data)
+      var results = [];
 
-      for (var x in res) {
-        //prodDivID = "prod-container-";
-        //prodDivID += res[x].production_id;
-        console.log(x)
-        console.log(res[x])
-
-        document.getElementById("trans-details").innerHTML += template.render("display-trans", {poster_img: res[x].poster_path, bookingRef: res[x].booking_ref, name: res[x].name, date: res[x].date, time: res[x].doors_open, bookTime: res[x].booking_time, paymentStat:res[x].paid,
-          seats: res[x].seat_number });
-
-        console.log("one trans done");
+      for (var r in res) {
+        results.push(res[r]);
       }
 
-     
-      // document.getElementById("shows-main").innerHTML += template.render("display-production", { prod_id: prodDivID, poster_img: res[x].poster_path, 
-        //name: res[x].name, blurb: res[x].blurb, dates: res[x].date });
+      // document.getElementById("trans-details").innerHTML += template.render("display-trans", {poster_img: res[x].poster_path, bookingRef: res[x].booking_ref, name: res[x].name, date: res[x].date, time: res[x].doors_open, bookTime: res[x].booking_time, paymentStat:res[x].paid,
+      //  seats: res[x].seat_number, totalAmount: res[x].order_total });
+      document.getElementById("trans-details").innerHTML += template.render("display-trans", results, results.length);
+
     }
   }
 

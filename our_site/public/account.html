@@ -90,30 +90,35 @@
                 
             <template id="display-trans">
                 <div class="trans-content-wrapper pad15">
-                    <div class="prod-poster"> <img src="{{poster_img}}"> </div>
+                    <div class="prod-poster"> <img src="{{poster_path}}"> </div>
                     <div class="trans-info"> 
                         <div class="book-ref"> 
-                            <p>Booking Reference: {{bookingRef}}</p>
+                            <p>Booking Reference: {{booking_ref}}</p>
                              
                         </div>
                         <div class="trans-content">
                             <div class="prod-details">
                                 <div class="prod-name"> {{name}} </div>
                                 <div class="show-date"> {{date}} </div>
-                                <div class="show-time"> {{time}} </div>
+                                <div class="show-time"> {{doors_open}} (Doors Open)</div>
                             </div>
                             <div class="trans-details">
-                                <div class="tickets"> noOfTicksBought </div>
-                                <div class="book-time"> {{bookTime}} </div>
-                                <div class="payment"> {{paymentStat}} </div>
+                                <div class="tickets"> noOfTicksBought:  </div>
+                                <div class="book-time"> Booking Time:  </div>
+                                <div class="tickets"> Total amount(£): </div>
+                                <div class="payment"> Payment status:  </div>
                             </div>
                             <div class="ticket-details">
-                                <button>More Details</button>
-                            </div>
+                                <div class="tickets"> noOfTicksBought </div>
+                                <div class="book-time"> {{booking_time}} </div>
+                                <div class="tickets"> {{order_total}} </div>
+                                <div class="payment"> {{paid}} </div>
+                                <!-- <button>More Details</button> -->
+                            </div> 
                         </div>
                         <div class="trans-content-more">
                             <div class="ticket-seats">
-                                <div class="seats"> {{seats}} </div>
+                                <div class="seats"> Seat Number: {{seat_number}} </div>
                             </div>
 
                             <div class="ticket-price">

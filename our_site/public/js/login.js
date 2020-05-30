@@ -131,7 +131,8 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // load account page coz logged in 
-          document.getElementById("account").innerHTML = "<object id=\"account-object\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
+          // this needs to add classes non-active
+          document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
 
           // If success show user logged in stuff
           showAccountMenu(this.response.first_name);

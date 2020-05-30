@@ -86,7 +86,7 @@ function displayShow() {
 
 
 function addShowsListeners() {
-  // TODO: Add back button listener
+  // Add back button listener
     // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function () {
 

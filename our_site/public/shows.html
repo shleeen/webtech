@@ -13,7 +13,7 @@
 
 <body class="main">
     <div>
-        <button id="shows-return" class="shows-back non-active"> GO BACK </button>
+        <button id="shows-return" class="shows-back pad10 non-active"> BACK TO SHOWS </button>
     </div>
 
     <div id="shows-main" class="shows-main active">
@@ -32,7 +32,7 @@
                     <div class="prod-name"> {{name}} </div>
                     <div class="prod-details">
                         <div class="prod-blurb"> {{blurb}} </div>
-                        <div class="prod-dates"> {{dates}} </div>
+                        <div class="prod-button"> <p id="view-more"> View Dates & Times </p> </div>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,21 @@
     
     <div id="show-details">
         <template id="show-template">
+            <div class="show-name"> {{name}} </div>
+            <div class="show-blurb"> {{blurb}} </div>
+            <div class="show-dates">
+                <!-- need to click on this to view seats/book tickets -->
+                {{date}}
+            </div>
+            <!-- temporary button -->
+            <div class="show-button"> BUY TICKETS </div>
+            <div>
+                {{producer}}
+                {{director}}
+            </div>
+        </template>
+        <!-- 
+        <template id="show-template">
             <h1>{{name}}</h1>
             <img src="{{banner_path}}" />
             <p>{{blurb}}</p>
@@ -48,8 +63,7 @@
             <p>{{doors_open}}</p>
             <p>Producer: {{producer}} Director: {{director}}</p>
             <img src="{{poster_path}}" />
-        </template>
-
+        </template> -->
     </div>
 
     

@@ -32,7 +32,7 @@
   function applyDynamicValues(str_html, values, replacements, iterations) {
     var value, regexp, old_html;
     var new_html = "";
-    if (iterations) {
+    if (iterations !== undefined) {
       for (var i = 0; i < iterations; i++) {
         old_html = str_html;
         for (value of values) {  

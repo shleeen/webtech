@@ -86,6 +86,7 @@ function addLoginListeners() {
     // seems like the remove has to come first?
     document.getElementById("login-content").classList.remove("non-active");
     document.getElementById("register-content").classList.add("non-active");
+    document.getElementById("register-failed").classList.add("non-active");
     drawLogin();
   };
 
@@ -162,15 +163,15 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 201) {
           // what needs to be done here hm
-          alert("you're registered");
+          document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
+          showAccountMenu(formData.firstName);
 
           // clear form data
 
-          // close modal
-          closeModal();
         }
         else if (request.status === 400) {
-          console.log("BAD");
+          document.getElementById("register-failed").textContent = request.responseText;
+          document.getElementById("register-failed").classList.remove("non-active");
         }
       }
     };

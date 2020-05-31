@@ -23,7 +23,8 @@
     "sqlite": "^4.0.7",
     "sqlite3": "^4.2.0",
     "uuid": "^8.0.0",
-    "vanilla-router": "^1.2.8"
+    "vanilla-router": "^1.2.8",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "express-session": "^1.17.1",

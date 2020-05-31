@@ -100,7 +100,6 @@ function addListeners() {
   });
 
   var pages = document.getElementsByClassName("subpage");
-  console.log(pages);
   for (var page = 0; page < pages.length; page++) {
     pages[page].addEventListener("transitionend", pageFadeEnd);
   }
@@ -181,7 +180,6 @@ function displayPage(pageName, newURL) {
   var stateObj = { id: pageName };
   
   // Could change later to have url name different to id name
-  console.log(newURL);
   if (newURL !== undefined) {
     window.history.pushState(stateObj, "", newURL);
   }

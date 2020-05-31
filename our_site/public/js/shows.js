@@ -83,6 +83,18 @@ function getShow(prod_id) {
   }
 }
 
+var months = { "01": "JAN", "02": "FEB", "03": "MAR", "04": "APR", "05": "MAY", "06": "JUN", "07": "JUL", "08": "AUG", "09": "SEP", "10": "OCT", "11": "NOV", "12": "DEC" };
+
+function time24To12(time) {
+  var hours = parseInt(time.split(":")[0], 10);
+  var suffix = " AM";
+  if (hours >= 12) {
+    suffix = " PM";
+    hours -= 12;
+  }
+  return hours.toString() + ":" + time.split(":")[1] + suffix;
+}
+
 function displayShow(data) {
   document.getElementById("shows-return").classList.remove("non-active");
   document.getElementById("shows-return").classList.add("active");
@@ -100,8 +112,10 @@ function displayShow(data) {
 
   // testing to see if indv dates can be yeeted into another template 
   for (var i = 0; i < data.date.length; i++) {
-    var adate = data.date[i];
-    document.getElementById("show-dates").innerHTML += template.render("date-template", {adate: adate, id: i});
+    var rawDate = data.date[i];
+    var parts = rawDate.split("-");
+    var dateObj = { full_date: rawDate, year: parts[0], month: months[parts[1]], day: parts[2], time: time24To12(data.doors_open[i]) };
+    document.getElementById("show-dates").innerHTML += template.render("date-template", dateObj);
   }
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH

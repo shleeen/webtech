@@ -173,19 +173,8 @@ svg {
 }
 
 
-/* 
 .join-text{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-    color: #000;
-    
-} */
-
-.join-text{
-    margin-top: 250px;
+    margin-top: 280px;
     margin-bottom: 0px;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.800);

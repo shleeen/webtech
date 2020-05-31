@@ -244,6 +244,7 @@
     border: 2px solid rgba(7, 7, 7, 0.12);
     border-radius: 3px;
     transition: all 0.2s ease;
+    text-align: center;
 }
 
 .show-indv-date:hover{
@@ -259,19 +260,16 @@
 .top-box{
     width: 100px;
     color: rgb(250, 32, 32);
-    text-align: center;
     font-weight: 500;
 }
 
 .bottom-box{
     width: 100px;
-    text-align: center;
     font-weight: 800;
 }
 
 .third-box{
     width: 100px;
-    text-align: center;
     color: lightslategrey;
     font-weight: 500;
 }

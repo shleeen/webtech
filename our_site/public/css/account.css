@@ -27,8 +27,12 @@
 
 }
 
-.account-container:hover .account p{
+.account-container .account p{
     transition: all 0.3s ease;
+
+}
+
+.account-container:hover .account p{
     opacity: 1;
     font-size: 22px;
 
@@ -50,24 +54,29 @@
 
 .trans-container:hover{
     background-color: #cecece;
-
 }
 
 .transaction{
     padding-bottom: 10px;
 }
-
+.trans-container .transaction p{
+    transition: all 0.3s ease;
+}
 .trans-container:hover .transaction p{
     transition: all 0.3s ease;
     opacity: 1;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
 }
+
+.trans-container .trans-info{
+    transition: all 0.3s ease;
+}
+
 
 .trans-container:hover .trans-info{
     background-color: #eaeaea;
     border: 3px solid rgba(147, 147, 147, 0.12);
-    transition: all 0.3s ease;
 }
 
 .trans-content-wrapper{
@@ -85,6 +94,7 @@
 }
 
 .trans-info {
+    transition: all 0.3s ease;
     padding: .5em;
     flex-grow: 1;
     display: flex;

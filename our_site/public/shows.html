@@ -68,20 +68,28 @@
                     Venue: {{venue}} 
                 </p> 
 
-                <p class="pad10">
-                    Producer: {{producer}}
-                    <br> <!-- idk if ian likes this or not-->
-                    Director: {{director}}
-                </p>
+                <div class="pad10">
+                    <p>
+                        Producer: {{producer}}
+    
+                    </p>
+                    <p>
 
-                <div class="show-dates" id="show-dates">
+                        Director: {{director}}
+                    </p>
+                </div>
+                    
+
+                <div id="show-dates" class="show-dates pad10">
 
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div class="top-box"> JUN </div>
-                        <div class="bottom-box"> 21 </div>
-                        <div class="third-box"> 2:30 PM</div>
-                        <div> {{adate}} </div>
+                        <div class="show-indv-date">
+                            <div class="top-box"> JUN </div>
+                            <div class="bottom-box"> 21 </div>
+                            <div class="third-box"> 2:30 PM</div>
+                            <div> {{adate}} </div>
+                        </div>
                     </template>
 
                 </div>

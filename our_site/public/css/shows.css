@@ -230,9 +230,27 @@
     width: 800px;
 }
 
-/* .show-dates{
-   flex-grow: 3;
-} */
+.show-dates{
+   align-items: flex-start;
+   display: inline-flex;
+}
+
+.show-indv-date{
+    width: max-content;
+    height: max-content;
+    padding: 7px;
+    margin: 40px 0px;
+    margin-right: 30px;
+    border: 2px solid rgba(7, 7, 7, 0.12);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+
+.show-indv-date:hover{
+    cursor: pointer;
+    border: 2px solid rgba(33, 33, 33, 0.12);
+    background-color: rgb(223, 223, 223);
+}
 
 /* .dates{
     flex-grow: 1;

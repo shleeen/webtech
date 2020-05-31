@@ -11,20 +11,18 @@ function addListeners(){
   // scrollintoview works but doesnt do a smooth scroll
   // smooth scroll does the scroll but not the right position
   document.getElementById("acc-details-nav").addEventListener("click", function(event) {
-    var target = document.getElementById('account-details')
-    target.scrollIntoView();
+    // var target = document.getElementById('account-details')
+    // target.scrollIntoView();
 
-
-    //smoothScroll('account-details', 600);
+    smoothScroll('account-details', 600);
 
   })
 
   document.getElementById("trans-details-nav").addEventListener("click", function(event) {
-    var target = document.getElementById('trans-details')
-    target.scrollIntoView();
+    // var target = document.getElementById('trans-details')
+    // target.scrollIntoView();
 
-    
-    //smoothScroll('trans-details', 600);
+    smoothScroll('trans-details', 600);
 
   })
 }

@@ -36,6 +36,12 @@
     margin: 10px 0;
     height: 300px; 
     display: flex;
+    transition: all 0.3s ease;
+}
+
+.prod-container:hover { 
+    background: #d8afe8;
+
 }
 
 /* .show-container div {
@@ -61,6 +67,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    margin: 5px 24px;
 }
 
 
@@ -87,9 +94,13 @@
 .prod-blurb{
     padding: .2em;
     width: 500px;
-    margin-right: 10px;
+    margin-right: 50px;
     flex-grow: 1;
     /* background: whitesmoke; */
+}
+
+.prod-buttom{
+    margin-right: 10px;
 }
 
 .prod-dates{
@@ -102,7 +113,7 @@
     cursor: pointer;
     background-color: lightseagreen;
     border-radius: 8px;
-    padding: 5px;
+    padding: 8px;
     font-weight:700;
 }
 

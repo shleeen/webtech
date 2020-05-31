@@ -45,16 +45,7 @@
     </div>
     
     <div id="show-details" class="shows-main">
-        <!-- 
-        <template id="show-template">
-            <h1>{{name}}</h1>
-            <img src="{{banner_path}}" />
-            <p>{{blurb}}</p>
-            <p>{{date}}</p>
-            <p>{{doors_open}}</p>
-            <p>Producer: {{producer}} Director: {{director}}</p>
-            <img src="{{poster_path}}" />
-        </template> -->
+
     </div>
 
     <template id="show-template">
@@ -73,23 +64,18 @@
 
                 <p class="pad10">
                     Producer: {{producer}}
-                </p>
-                    
-                <p class="pad10">
+                    <br> <!-- idk if ian likes this or not-->
                     Director: {{director}}
                 </p>
 
-                
-                {{date}} <!-- this works -->
                 <div class="show-dates" id="show-dates">
-                    <!-- need to click on this to view seats/book tickets-->
 
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div class="top-box">w</div>
-                        <div class="bottom-box">e</div>
-
-                        <div> {{adate}} {{id}} </div> <!-- this does not work-->
+                        <div class="top-box"> JUN </div>
+                        <div class="bottom-box"> 21 </div>
+                        <div class="third-box"> 2:30 PM</div>
+                        <div> {{adate}} </div>
                     </template>
 
                 </div>

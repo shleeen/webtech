@@ -127,7 +127,7 @@
 }
 .show-poster{
     flex-grow: 1;
-    margin: 50px 5px;
+    margin: 40px 5px;
     width: 300px;
     height: auto;
 }
@@ -139,7 +139,7 @@
 
 .show-indv-details{
     flex-grow: 2;
-    padding: 35px 35px;
+    padding: 25px 35px;
     text-align: left;
 }
 
@@ -206,20 +206,20 @@
 
 .top-box{
     width: 100px;
-    background-color: lightskyblue;
+    color: rgb(250, 32, 32);
+    text-align: center;
+    font-weight: 500;
 }
-/* .top-box:after{
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 0.5em;
-    right: 0.5em;
-    background-color: lime;
-    border-bottom: 1px solid rgb(233, 233, 233);
-    border-radius: 50%;
-} */
 
 .bottom-box{
     width: 100px;
-    background-color: lightslategrey;
+    text-align: center;
+    font-weight: 800;
+}
+
+.third-box{
+    width: 100px;
+    text-align: center;
+    color: lightslategrey;
+    font-weight: 500;
 }

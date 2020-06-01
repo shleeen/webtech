@@ -1,9 +1,16 @@
 
+.home-main{
+    overflow: hidden;
+    height: max-content;
+  
+    
+  }
 
 .content{
     width: 100%;
     height: max-content;
     margin: 0 0; /* cos page can only start after the nav */
+    overflow: hidden;
 
 }
 

@@ -110,7 +110,7 @@ function addLoginListeners() {
           document.getElementById("login").classList.add("active");
 
           // need to redirect to home page
-          window.location.pathname = "/";
+          window.parent.displayPage("home", "");
         }
       }
     };

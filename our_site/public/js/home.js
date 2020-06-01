@@ -21,6 +21,8 @@ function getBanners() {
         var bannerDivID = "";
         var navDivID = "";
 
+        var prod_ids = {};
+
         for (var x in res.data) {
           // var imagePath = console.log(res["data"][x].banner_path)
           bannerDivID = "carousel-banner-";
@@ -40,6 +42,15 @@ function getBanners() {
 
             numberOfBanners++;
           }
+          prod_ids[x] = res.data[x].id;
+        }
+
+        var banners = document.getElementsByClassName("banner");
+        for (var b = 0; b < banners.length; b++) {
+          banners[b].addEventListener("click", function() {
+            var url = "/shows/" + prod_ids[this.id.split("-").pop()];
+            window.parent.displayPage("shows", url);
+          });
         }
                 
       } else {
@@ -69,7 +80,6 @@ function carouselChange(direction) {
         
     elem.classList.remove("carousel-content");
     elem.classList.add("carousel-content-hide");
-
     var newID = "carousel-banner-" + id;
     document.getElementById(newID).classList.remove("carousel-content-hide");
     document.getElementById(newID).classList.add("carousel-content");

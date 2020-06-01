@@ -84,12 +84,12 @@
 
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div class="show-indv-date">
+                        <div class="show-indv-date" id="chicken">
                             <div>{{year}}</div>
-                            <div class="top-box">{{month}}</div>
-                            <div class="bottom-box">{{day}}</div>
-                            <div class="third-box">{{time}}</div>
-                            <div>{{full_date}}</div>
+                            <div class="month-box">{{month}}</div>
+                            <div class="day-box">{{day}}</div>
+                            <div class="year-box">{{time}}</div>
+                            <!-- <div>{{full_date}}</div> -->
                         </div>
                     </template>
 
@@ -99,6 +99,8 @@
                 <div class="show-button"> BUY TICKETS </div>
             </div>
         </div>
+        
+        <object id="seats-svg" class="seats-svg" data="./img/seatmap.svg" type="image/svg+xml"> </object>
            
     </template>
     

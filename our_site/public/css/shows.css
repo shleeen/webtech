@@ -253,23 +253,19 @@
     background-color: rgb(223, 223, 223);
 }
 
-/* .dates{
-    flex-grow: 1;
-} */
-
-.top-box{
+.month-box{
     width: 100px;
     color: rgb(250, 32, 32);
     font-weight: 500;
 }
 
-.bottom-box{
+.day-box{
     width: 100px;
     font-weight: 800;
 }
 
-.third-box{
-    width: 100px;
+.year-box{
+    width: 100px;   
     color: lightslategrey;
     font-weight: 500;
 }

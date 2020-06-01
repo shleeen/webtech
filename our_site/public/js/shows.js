@@ -136,6 +136,9 @@ function addShowsListeners() {
     // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
+    document.getElementById("select-section").classList.remove("active");
+    document.getElementById("select-section").classList.add("non-active");
+
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });

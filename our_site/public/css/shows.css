@@ -269,3 +269,14 @@
     color: lightslategrey;
     font-weight: 500;
 }
+
+#select-section{
+    /* width: 100%; */
+    /* height: max-content;*/
+    opacity: 0;
+    margin: 30px 40px; /*cos page can only start after the nav */
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch; /*default is stretch, fills all space available
+    /* overflow: auto; */
+}

@@ -72,7 +72,7 @@ function addListeners() {
 
   document.getElementById("home_tab").addEventListener("click", function() {
     console.log("click");
-    displayPage("home", "./");
+    displayPage("home", "");
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
@@ -100,7 +100,6 @@ function addListeners() {
   });
 
   var pages = document.getElementsByClassName("subpage");
-  console.log(pages);
   for (var page = 0; page < pages.length; page++) {
     pages[page].addEventListener("transitionend", pageFadeEnd);
   }
@@ -108,8 +107,9 @@ function addListeners() {
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
     // The URL changed...
-    if (history.state) {
-      displayPage(history.state.id, "/" + history.state.id);
+    console.log(event.state);
+    if (event.state) {
+      displayPage(event.state.id, event.state.url);
     }
   });
   
@@ -178,12 +178,13 @@ function displayPage(pageName, newURL) {
       }
     }
   }
-  var stateObj = { id: pageName };
   
   // Could change later to have url name different to id name
-  console.log(newURL);
   if (newURL !== undefined) {
-    window.history.pushState(stateObj, "", newURL);
+    var state = { id: pageName, url: newURL };
+    newURL = location.protocol + "//" + location.host + newURL;
+    console.log(newURL);
+    window.top.history.pushState(state, "", newURL);
   }
   //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }

@@ -105,7 +105,6 @@ export default class Router {
                 request.param = this.processRequestParameters(route);
                 request.query = this.query;
                 request.uri = window.location.pathname;
-                console.log(request)
                 //return route.callback.call(route.thisArg, request, routerObj);
                 return route.callback.call(route.thisArg, request);
             }

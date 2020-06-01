@@ -1,6 +1,7 @@
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const hash_callback = require("pbkdf2-password")();
+const zxcvbn = require("zxcvbn");
 
 let is_db_open = false;
 let db;
@@ -59,10 +60,13 @@ async function addUserType(type) {
 async function addUser(username, usertype, first_name, last_name, email, pass) {
   if (!is_db_open) db = await openDB();
   if (await db.get("SELECT * FROM user WHERE username = ?", [username])) {
-    throw "username '" + username + "' already taken";
+    throw "Username '" + username + "' already taken";
   }
   if (await db.get("SELECT * FROM user WHERE email = ?", [email])) {
-    throw "email '" + email + "' already taken";
+    throw "Email '" + email + "' already taken";
+  }
+  if (zxcvbn(pass).score < 2) {
+    throw "Password is too weak";
   }
   const user = await hash( {password: pass} );
   const user_type = await db.get("SELECT id FROM user_type WHERE type = ?", [usertype]);

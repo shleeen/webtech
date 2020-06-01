@@ -8,10 +8,10 @@ const { v4: uuidv4 } = require("uuid");
 
 registerRouter.post("/", upload.none(), async (req, res) => {
   try {
+    // TODO: Validate email, maybe username too
     await dbHelper.addUser(req.body.username, "normal", req.body.first_name, req.body.last_name, req.body.email, req.body.pwd);
   } catch (err) {
-    console.log(err);
-    res.sendStatus(400);
+    res.status(400).send(err);
     return;
   }
   // This is the same as in login.js, maybe it can be moved to a service or something

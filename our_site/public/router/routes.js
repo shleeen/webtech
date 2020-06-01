@@ -5,15 +5,15 @@ const router = new Router();
 // I changed the url to match page names for now, can always do something better later
 function initRouter() {
   router.get('/', function(req, router){
-    displayPage("home", "./");
+    displayPage("home", "");
   });
 
   router.get('/shows', function(req, router){
-    displayPage("shows", "shows");
+    displayPage("shows", "/shows");
   });
 
   router.get('/Shows', function(req, router){
-    displayPage("shows", "shows");
+    displayPage("shows", "/shows");
   });
 
   // example route with params

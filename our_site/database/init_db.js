@@ -10,10 +10,10 @@ async function initializeDB() {
     await dbHelper.addUserType("admin");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addUser("firstuser", "normal", "John", "Smith", "jsmith@gmail.com", "johnpass");
+    await dbHelper.addUser("firstuser", "normal", "John", "Smith", "jsmith@gmail.com", "JohnPass444");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addUser("seconduser", "admin", "Jane", "Doe", "jdoe@gmail.com", "janepass");
+    await dbHelper.addUser("seconduser", "admin", "Jane", "Doe", "jdoe@gmail.com", "JanePass444");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Musical Theatre Bristol presents Showcase", "Winston Theatre", 
@@ -62,6 +62,21 @@ async function initializeDB() {
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addShows("Legally Blonde", "2020-06-22", "19:30", "201", "0");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addProductions("firstuser", "Silence of the Lambdas", "Winston Theatre", 
+                  "img/banner-lambda.png", "img/poster-lambda.png", "Max Whale", "Nicole Li", 
+                  "someone write something here", 
+                  "Contains functional programming", "");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "201", "0");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "201", "0");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "Student", "5");

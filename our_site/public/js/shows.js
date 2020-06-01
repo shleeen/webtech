@@ -6,6 +6,7 @@ function start() {
   var param = window.parent.location.pathname.split("/").pop();
   if (param !== "shows" && param !== "") {
     getShow(param);
+
   }
   else {
     showAllProductions();
@@ -56,16 +57,7 @@ function getProductionDetails() {
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
   getShow(prod_id);
-  document.getElementById("select-section").classList.remove("non-active");
-  document.getElementById("select-section").classList.add("active");
-
-  // add listeners for dates
-  var dates = document.getElementsByClassName("show-indv-date");
-  for (var i = 0; i < dates.length; i++) {
-    dates[i].addEventListener("click", function(){
-      document.getElementById("select-section").style.opacity = 1;
-    })
-  }
+  
 }
 
 function getShow(prod_id) {
@@ -85,6 +77,8 @@ function getShow(prod_id) {
     xhr.send();
   }
 }
+
+
 
 // woohoo
 var months = { "01": "JAN", "02": "FEB", "03": "MAR", "04": "APR", "05": "MAY", "06": "JUN", "07": "JUL", "08": "AUG", "09": "SEP", "10": "OCT", "11": "NOV", "12": "DEC" };
@@ -123,6 +117,7 @@ function displayShow(data) {
 
   }
 
+  addSeatSelection();
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
   // nicole help
@@ -131,6 +126,22 @@ function displayShow(data) {
   window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
+
+function addSeatSelection(){
+  document.getElementById("select-section").classList.remove("non-active");
+  document.getElementById("select-section").classList.add("active");
+
+  // add listeners for dates
+  var dates = document.getElementsByClassName("show-indv-date");
+  for (var i = 0; i < dates.length; i++) {
+    dates[i].addEventListener("click", function(){
+      document.getElementById("select-section").style.opacity = 1;
+    })
+  }
+  
+}
+
+
 function addShowsListeners() {
   // Add back button listener
     // onclick: hide back button, display list of productions
@@ -138,6 +149,8 @@ function addShowsListeners() {
     showAllProductions();
     document.getElementById("select-section").classList.remove("active");
     document.getElementById("select-section").classList.add("non-active");
+
+    document.getElementById("select-section").style.opacity = 0;
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);

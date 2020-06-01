@@ -82,6 +82,10 @@
     object-fit: cover;
 }
 
+.carousel-image:hover{
+    cursor: pointer;
+}
+
 .carousel-nav {
     width: min-content;
     margin: 0 auto;

@@ -2,6 +2,7 @@ const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const hash_callback = require("pbkdf2-password")();
 const zxcvbn = require("zxcvbn");
+const validator = require("validator");
 
 let is_db_open = false;
 let db;
@@ -17,6 +18,11 @@ const hash = (options) => {
 };
 
 const database_path = "./database/database.db";
+
+function validateString(string) {
+  if (typeof(string) !== "string") throw "invalid";
+  if (string === "") throw "empty";
+}
 
 async function openDB() {
   try {
@@ -59,9 +65,16 @@ async function addUserType(type) {
 
 async function addUser(username, usertype, first_name, last_name, email, pass) {
   if (!is_db_open) db = await openDB();
+  validateString(username);
+  validateString(first_name);
+  validateString(last_name);
   if (await db.get("SELECT * FROM user WHERE username = ?", [username])) {
     throw "Username '" + username + "' already taken";
   }
+  if (!validator.isEmail(email)) {
+    throw email + " is not a valid email address";
+  }
+  if (username.length < 3) throw "Username too short";
   if (await db.get("SELECT * FROM user WHERE email = ?", [email])) {
     throw "Email '" + email + "' already taken";
   }

@@ -161,7 +161,7 @@ object{
 footer { 
   position: relative;
   width: 100%; 
-  bottom: 15px; 
+  bottom: 25px; 
   align-items: center;
   height: 60px;
   background-color: #727272; 

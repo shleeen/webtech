@@ -172,8 +172,8 @@ svg {
     position: absolute;
     top: 0;
     left: 0;
-    width: 70%;
-    height: 100%;
+    width: 65%;
+    height: 105%;
     transform: translateZ(0px);
 }
 
@@ -238,6 +238,20 @@ svg {
     width: 300px;
     padding: 20px;
     text-align: center;
+}
+
+.contact{
+    margin-top: 20px;
+    width: 75%;
+    background-color: rgba(160, 160, 160, 0.756);
+    text-align: center;
+    padding: 2% 2%;
+    transform-origin: 0;
+    transform: translateZ(4px) scale(0.800);
+}
+
+.contact div p{
+    font-size: 14px;
 }
 
 

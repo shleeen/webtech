@@ -16,14 +16,10 @@ function start() {
     else accObj.style.height = indexHeight + "px";
   };
 
-
   console.log("account.html loaded");
 } 
 
 function addListeners(){
-
-  // scrollintoview works but doesnt do a smooth scroll
-  // smooth scroll does the scroll but not the right position
   document.getElementById("acc-details-nav").addEventListener("click", function(event) {
     // var target = document.getElementById('account-details')
     // target.scrollIntoView();
@@ -49,10 +45,6 @@ function smoothScroll(target, duration){
   var startPosition = window.pageYOffset;
   var distance = targetPosition - startPosition;
   var startTime = null;
-
-  console.log(targetPosition)
-  console.log(startPosition)
-
 
   function animation(currentTime){
     if (startTime === null) startTime = currentTime;
@@ -121,17 +113,12 @@ function getTransactions(){
       // document.getElementById("trans-details").innerHTML += template.render("display-trans", {poster_img: res[x].poster_path, bookingRef: res[x].booking_ref, name: res[x].name, date: res[x].date, time: res[x].doors_open, bookTime: res[x].booking_time, paymentStat:res[x].paid,
       //  seats: res[x].seat_number, totalAmount: res[x].order_total });
       document.getElementById("trans-details").innerHTML += template.render("display-trans", results, results.length);
-
-
     }
   }
-
-
   xhr.open("GET", "/api/user/getUserTransactions", true);
   xhr.responseType = "json";
 
   xhr.send();
-
 }
 
 

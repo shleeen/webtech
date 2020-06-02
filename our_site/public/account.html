@@ -36,42 +36,44 @@
                 </p>
             </div>
                 
-            <div class="account-content pad15">
-                <div class="account-row">
-                    <p class="pad10">
-                        Username
-                    </p>
-                    <p id="username" class="pad10">
-                        Username temp
-                    </p>
-                </div>
-
-                <div class="account-row">
-                    <p class="pad10">
-                        First Name
-                    </p>
-                    <p id="firstname" class="pad10">
-                        First Name temp
-                    </p>
-                </div>
-
-                <div class="account-row">
-                    <p class="pad10">
-                        Last Name
-                    </p>
-                    <p id="lastname" class="pad10">
-                        Last Name temp
-                    </p>
-                </div>
-
-                <div class="account-row">
-                    <p class="pad10">
-                        Email
-                    </p>
-                    <p id="email" class="pad10">
-                        Email temp
-                    </p>
-                </div>
+            <div id="account-content" class="account-content pad15">
+                <template id="account-template">
+                    <div class="account-row">
+                        <p class="pad10">
+                            Username
+                        </p>
+                        <p id="username" class="pad10">
+                            {{username}}
+                        </p>
+                    </div>
+    
+                    <div class="account-row">
+                        <p class="pad10">
+                            First Name
+                        </p>
+                        <p id="firstname" class="pad10">
+                            {{first_name}}
+                        </p>
+                    </div>
+    
+                    <div class="account-row">
+                        <p class="pad10">
+                            Last Name
+                        </p>
+                        <p id="lastname" class="pad10">
+                            {{last_name}}
+                        </p>
+                    </div>
+    
+                    <div class="account-row">
+                        <p class="pad10">
+                            Email
+                        </p>
+                        <p id="email" class="pad10">
+                            {{email}}
+                        </p>
+                    </div>
+                </template>
             </div>
                 
 

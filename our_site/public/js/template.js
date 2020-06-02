@@ -11,6 +11,15 @@
     var new_html = applyDynamicValues(html, values, replacements, iterations);
     return new_html;
   }
+
+  function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
   
   function getDynamicValues(str_html) {
     // Regex Explanation:  In JavaScript, [^] represents a valid character class. Should be the same as .
@@ -37,7 +46,7 @@
         old_html = str_html;
         for (value of values) {  
           regexp = new RegExp("{{" + value + "}}", "g");
-          old_html = old_html.replace(regexp, replacements[i][value]);
+          old_html = old_html.replace(regexp, escapeHtml(replacements[i][value].toString()));
         }
         new_html += old_html;
       }
@@ -46,7 +55,7 @@
       for (value of values) {
         if (replacements[value] !== undefined) {
           regexp = new RegExp("{{" + value + "}}", "g");
-          str_html = str_html.replace(regexp, replacements[value]);
+          str_html = str_html.replace(regexp, escapeHtml(replacements[value].toString()));
         }
       }
       new_html = str_html;

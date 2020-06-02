@@ -40,7 +40,7 @@ async function initializeDB() {
     await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", "firstuser", "7", "2020-05-30 00:00:01", "1", "ref01", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTickets("1", "1", "14");
+    await dbHelper.addTickets("1", "1", ["B7"]);
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Legally Blonde", "Winston Theatre", 
@@ -70,13 +70,13 @@ async function initializeDB() {
                   "Contains functional programming", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "201", "0");
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "201", "201"); // SOLD OUT
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "201", "0");
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "201", "50"); // some sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "201", "0");
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "201", "0"); // none sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "Student", "5");
@@ -88,10 +88,7 @@ async function initializeDB() {
     await dbHelper.addBooking("Legally Blonde", "firstuser", "10", "2020-05-30 00:07:01", "1", "ref02", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTickets("2", "3", "24");
-  } catch (err) { errors += "  " + err + "\n"; }
-  try {
-    await dbHelper.addTickets("2", "3", "25");
+    await dbHelper.addTickets("2", "3", ["A5", "A6"]);
   } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);

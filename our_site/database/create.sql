@@ -92,7 +92,8 @@ CREATE TABLE ticket (
     id              INTEGER  PRIMARY KEY,
     booking_id      INTEGER  NOT NULL,
     ticket_type_id  INTEGER  NOT NULL,
-    seat_number     INTEGER,
+    -- Have changed this to be TEXT since seat numbers will be like "A4, J5"
+    seat_number     TEXT,
     FOREIGN KEY (booking_id) REFERENCES booking(id),
     FOREIGN KEY (ticket_type_id) REFERENCES ticket_type(id)
 );

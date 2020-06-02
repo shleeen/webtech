@@ -31,13 +31,13 @@ async function initializeDB() {
     await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-09", "19:30", "201", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "Student", "7");
+    await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "Student", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "General", "10");
+    await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "General", "1000");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", "firstuser", "7", "2020-05-30 00:00:01", "1", "ref01", "0" );
+    await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", "firstuser", "700", "2020-05-30 00:00:01", "1", "ref01", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTickets("1", "1", ["B7"]);
@@ -79,13 +79,13 @@ async function initializeDB() {
     await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "201", "0"); // none sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTicketTypes("Legally Blonde", "Student", "5");
+    await dbHelper.addTicketTypes("Legally Blonde", "Student", "500");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTicketTypes("Legally Blonde", "General", "7");
+    await dbHelper.addTicketTypes("Legally Blonde", "General", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking("Legally Blonde", "firstuser", "10", "2020-05-30 00:07:01", "1", "ref02", "0" );
+    await dbHelper.addBooking("Legally Blonde", "firstuser", "1000", "2020-05-30 00:07:01", "1", "ref02", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTickets("2", "3", ["A5", "A6"]);

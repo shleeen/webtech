@@ -34,7 +34,7 @@
     background: #e1bcf0;
     border-radius: 5px;
     margin: 10px 0;
-    height: 300px; 
+    height: max-content; 
     display: flex;
     transition: all 0.3s ease;
 }
@@ -108,7 +108,7 @@
 .prod-name {
     padding: .2em;
     /* background: lightblue; */
-    height: 50px;
+    height: max-content;
     font-size: 30px;
     align-items: center;
     color: #371545;
@@ -127,7 +127,7 @@
 
 .prod-blurb{
     padding: .2em;
-    width: 500px;
+    width: 30%;
     margin-right: 50px;
     flex-grow: 1;
     /* background: whitesmoke; */

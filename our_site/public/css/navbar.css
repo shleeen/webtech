@@ -96,12 +96,10 @@ li {
     display: block;
 }
 
-#login-user:hover + ul, ul:hover,
-#nav-icon:hover + ul{
+#login-user:hover ~ #user-dropdown, ul:hover,
+#nav-icon:hover + #user-dropdown{
     display: block;
 }
-
-
 
 #my-account{
     display: block;

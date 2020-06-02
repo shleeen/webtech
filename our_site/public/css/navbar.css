@@ -96,9 +96,12 @@ li {
     display: block;
 }
 
-#login-user:hover + ul, ul:hover{
+#login-user:hover + ul, ul:hover,
+#nav-icon:hover + ul{
     display: block;
 }
+
+
 
 #my-account{
     display: block;
@@ -188,3 +191,25 @@ nav a:hover {
     cursor: pointer;
     background-position: 0 0;
 }
+
+#nav-icon{
+    display: none;
+}
+
+.icon-png{
+    width: 50px;
+    height: 50px;
+    filter: invert(91%) sepia(73%) saturate(2%) hue-rotate(60deg) brightness(112%) contrast(101%);;
+}
+
+
+@media screen and (max-width: 940px) {
+    #nav-icon{
+        display: inline;
+        cursor: pointer;
+    }
+
+    #login-user{
+        display: none;
+    }
+ }

@@ -187,7 +187,14 @@ svg {
 
 
 .join-text{
-    margin-top: 280px;
+    margin-top: 270px;
+    margin-bottom: 0px;
+    transform-origin: 0;
+    transform: translateZ(4px) scale(0.400);
+}
+
+.contact-text{
+    margin-top: 0px;
     margin-bottom: 0px;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.400);
@@ -195,6 +202,7 @@ svg {
 
 
 .join-desc{
+    margin-top: -90px;
     width: 150%;
     background-color: rgb(60, 60, 60);
     text-align: center;

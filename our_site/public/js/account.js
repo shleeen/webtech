@@ -83,12 +83,16 @@ function getUserInfo(){
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = xhr.response;
-      console.log(res.data)
-
-      document.getElementById('username').innerHTML = res.data.username;
-      document.getElementById('firstname').innerHTML = res.data.first_name;
-      document.getElementById('lastname').innerHTML = res.data.last_name;
-      document.getElementById('email').innerHTML = res.data.email;
+      if (res.valid) {
+        document.getElementById('username').innerHTML = res.data.username;
+        document.getElementById('firstname').innerHTML = res.data.first_name;
+        document.getElementById('lastname').innerHTML = res.data.last_name;
+        document.getElementById('email').innerHTML = res.data.email;
+      }
+      else {
+        // Not logged in, redirect home
+        window.top.displayPage("home", "");
+      }
     }
   };
 

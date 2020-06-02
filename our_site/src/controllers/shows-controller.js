@@ -45,4 +45,13 @@ function combineShows(shows) {
   }
   return result;
 }
+
+exports.getSeats = async function(req, res) {
+  try {
+    const seatsData = await showsService.getSeats(req.params.prodId);
+
+  } catch (err){
+    res.status(400).json({errMessage: "Unable to get seats data."});
+  }
+};
     

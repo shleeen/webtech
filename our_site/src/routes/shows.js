@@ -5,6 +5,7 @@ const showsController = require("../controllers/shows-controller");
 showsRouter.get("/getProductionDetails", showsController.getProd);
 showsRouter.get("/getProductionDetails/:prodId", showsController.getProd);
 
+showsRouter.get("/getProductionSeatStatus/:prodId", showsController.getSeats)
 module.exports = showsRouter;
 
 

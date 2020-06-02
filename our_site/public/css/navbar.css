@@ -84,7 +84,11 @@ li{
     text-transform: uppercase;
 }
 
-#user-dropdown {
+nav > ul{
+    display: inline;
+}
+
+ul {
     display: none;
 }
 

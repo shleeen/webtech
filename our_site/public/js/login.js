@@ -246,7 +246,6 @@ function startDrawingPath(path){
 function animate(path, len) {
   path.style.strokeDashoffset = len - 2;
   if (path.style.strokeDashoffset < 0) path.style.strokeDashoffset = 0;
-  console.log(path.style.strokeDashoffset);
 
   if (path.style.strokeDashoffset > 0) {
     // Do another step

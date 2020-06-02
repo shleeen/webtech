@@ -9,7 +9,11 @@ exports.getUserInfo = async function(req, res) {
         data: userInfo
       });
     }
-    else res.sendStatus(401);
+    else {
+      res.status(200).json({
+        valid: false
+      });
+    }
   } catch (err) {
     res.status(400).json({errMessage: "Unable to get userInfo."});
   }

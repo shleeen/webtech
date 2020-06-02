@@ -11,8 +11,9 @@ function start() {
 function checkLogin() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      showAccountMenu(this.response.data.first_name);
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      if (xhr.response.valid)
+        showAccountMenu(xhr.response.data.first_name);
     }
   };
 
@@ -156,7 +157,9 @@ function addLoginListeners() {
         if (request.status === 200) {
           // load account page coz logged in 
           // this needs to add classes non-active
-          document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
+
+          // i've commented this for now and put it back in the html, it was making life difficult
+          // document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
 
           // If success show user logged in stuff
           showAccountMenu(this.response.first_name);

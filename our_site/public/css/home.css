@@ -180,9 +180,9 @@ svg {
 .join-border{
     background-color: #111;
     color: #fff;
-    padding: 18px;
-    font-size: 25px;
-    letter-spacing: 10px;
+    padding: 36px;
+    font-size: 50px;
+    letter-spacing: 20px;
 }
 
 
@@ -190,29 +190,29 @@ svg {
     margin-top: 280px;
     margin-bottom: 0px;
     transform-origin: 0;
-    transform: translateZ(4px) scale(0.800);
+    transform: translateZ(4px) scale(0.400);
 }
 
 
 .join-desc{
-    width: 75%;
+    width: 150%;
     background-color: rgb(60, 60, 60);
     text-align: center;
-    padding: 5% 5%;
+    padding: 10% 10%;
     transform-origin: 0;
-    transform: translateZ(4px) scale(0.800);
+    transform: translateZ(4px) scale(0.400);
 }
 
 .join-desc h3 {
     color: #c7c7c7;
-    font-size: larger;
+    font-size: 38px;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
 .join-desc p {
     color: #c7c7c7;
-    font-size: large;
+    font-size: 36px;
 }
 
 .bg-image {

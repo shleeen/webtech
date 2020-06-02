@@ -158,6 +158,8 @@
 /* CSS FOR SHOW DETAILS */
 .show-page{
     display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 .show-poster{
     flex-grow: 1;
@@ -285,3 +287,26 @@
     height: 900px;
     width: auto;
 }
+
+@media screen and (max-width: 940px) {
+
+    .show-page{
+        display: flow-root;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .show-poster{
+        flex-grow: 1;
+        margin: auto;
+        width: 300px;
+        height: auto;
+    }
+
+    .show-indv-details{
+        flex-grow: 2;
+        padding: 25px 35px;
+        text-align: left;
+        text-align: center;
+    }
+ }

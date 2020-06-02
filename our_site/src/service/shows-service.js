@@ -11,3 +11,9 @@ exports.getProduction = async function(prod_id) {
     console.log(err);
   }
 };
+
+exports.getShows = async function(prod_id) {
+  // assuming we have a table seats with each row representing a show and 209 seats with values of 1/0(taken or not)
+  // getall shows for that production, and return seats that are taken
+  let sql = "";
+}

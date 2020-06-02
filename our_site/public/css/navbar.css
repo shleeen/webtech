@@ -84,29 +84,20 @@ li{
     text-transform: uppercase;
 }
 
-#login-user:hover{
-    cursor: pointer;
+ul {
+    display: none;
 }
 
-
-#login-user:hover + ul > #my-account,
-#login-user:hover + ul > #logout{
+li {
     display: block;
-    animation-name: slideDown2;
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
 }
 
-@keyframes slideDown2 {
-    from {
-      top: 0px;
-    }
-    to {
-      top: 100px;
-    }
-  }
+#login-user:hover + ul, ul:hover{
+    display: block;
+}
 
 #my-account{
+    display: block;
     list-style: none;
     font-size: 2.5ex;
     font-weight: 800;
@@ -116,17 +107,13 @@ li{
 }
 
 #my-account:hover{
-    display: block;
     cursor: pointer;
     color: #371545;
 }
 
-#my-account:hover ~ #logout{
-    display: block;
-    cursor: pointer;
-}
 
 #logout{
+    display: block;
     list-style: none;
     font-size: 2.5ex;
     font-weight: 800;
@@ -136,14 +123,12 @@ li{
 }
 
 #logout:hover{
-    display: block;
     cursor: pointer;
     color: #371545;
 }
 
 
 #logout:hover + #my-account{
-    display: block;
     cursor: pointer;
 }
 

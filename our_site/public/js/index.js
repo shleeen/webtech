@@ -84,20 +84,6 @@ function addListeners() {
     displayPage("account", "/account");
   });
 
-  document.getElementById("login-user").addEventListener("mouseover", function() {
-    document.getElementById("my-account").style.display = 'block';
-    document.getElementById("logout").style.display = 'block';
-  });
-
-  document.getElementById("logout").addEventListener("mouseover", function() {
-    document.getElementById("my-account").style.display = 'block';
-    document.getElementById("logout").style.display = 'block';
-  });
-
-  document.getElementById("logout").addEventListener("mouseout", function() {
-    document.getElementById("my-account").style.display = 'none';
-    document.getElementById("logout").style.display = 'none';
-  });
 
   var pages = document.getElementsByClassName("subpage");
   for (var page = 0; page < pages.length; page++) {
@@ -168,6 +154,8 @@ function displayPage(pageName, newURL) {
         toTransitionElems[0].classList.add("non-active");
         toTransitionElems[0].classList.remove("to-transition");
         document.getElementById(pageName).style.opacity = "1";
+
+        // Maybe add in a bit where if if its 'show' then reset to default shows so it resets each time
       }
       else if (toTransitionElems[0].id !== pageName) {
         toTransitionElems[0].classList.add("non-active");

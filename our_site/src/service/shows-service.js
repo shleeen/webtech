@@ -12,8 +12,14 @@ exports.getProduction = async function(prod_id) {
   }
 };
 
-exports.getShows = async function(prod_id) {
-  // assuming we have a table seats with each row representing a show and 209 seats with values of 1/0(taken or not)
-  // getall shows for that production, and return seats that are taken
-  let sql = "";
+exports.getSeats = async function(prod_id) {
+  // combine bookings and get seats that are ebought
+  let sql = "SELECT b.show_id, t.seat_number FROM ticket t INNER JOIN booking b ON b.id = t.booking_id INNER JOIN show s ON b.show_id = s.id WHERE s.production_id = ?";
+  try {
+    const rows = await db.all(sql, prod_id);
+    console.log(rows);
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
 }

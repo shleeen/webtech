@@ -39,8 +39,6 @@ function getProductionDetails() {
         prods[i].addEventListener("click", showClick);
       }
       
-      // TODO: add listeners to all the things we want to be clickable or keep it the whole thing
-      // sorry i decicded to try on jsut the poster but that one line should help
       var posters = document.getElementsByClassName("prod-poster");
       for (i = 0; i < posters.length; i++) {
         posters[i].addEventListener("click", showClick);
@@ -113,6 +111,8 @@ function displayShow(data) {
     var rawDate = data.date[i];
     var parts = rawDate.split("-");
     var dateObj = { full_date: rawDate, year: parts[0], month: months[parts[1]], day: parts[2], time: time24To12(data.doors_open[i]) };
+    
+    // should mke showid part of id
     document.getElementById("show-dates").innerHTML += template.render("date-template", dateObj);
 
   }
@@ -126,7 +126,9 @@ function displayShow(data) {
   window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
-
+// for the entire seat section
+// TODO: add for each date, currently its the same thing
+  // make those bought red
 function addSeatSelection(){
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");

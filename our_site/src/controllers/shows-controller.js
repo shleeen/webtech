@@ -50,8 +50,36 @@ exports.getSeats = async function(req, res) {
   try {
     const seatsData = await showsService.getSeats(req.params.prodId);
 
+    // Need to combine those of the same showid together and have a list of seat numbers instead of many rows
+    const seats = combineSeats(seatsData);
+
+    console.log(seats)
+    res.status(200).json(seats);
+
   } catch (err){
     res.status(400).json({errMessage: "Unable to get seats data."});
   }
 };
+
+
+function combineSeats(seats) {
+  let seatMap = new Map();
+  for (const i in seats) {
+    if (!seatMap.has(seats[i].show_id)) {
+      seatMap.set(seats[i].show_id, i);
+      seats[i].seat_number = [seats[i].seat_number];
+
+    }
+    else {
+      const index = seatMap.get(seats[i].show_id);
+      seats[index].seat_number.push(seats[i].seat_number);
+
+    }
+  }
+  let result = {};
+  for (const i of seatMap.values()) {
+    result[seats[i].show_id] = seats[i];
+  }
+  return result;
+}
     

@@ -31,7 +31,10 @@ function showAccountMenu(firstName) {
 }
 
 function closeModal() {
-  document.querySelector(".modal").style.display = "none";
+  //document.querySelector(".modal").style.display = "none";
+  document.querySelector(".modal-content").classList.remove("animate-in");
+  void document.querySelector(".modal-content").offsetWidth;
+  document.querySelector(".modal-content").classList.add("animate-out");
   // Set back to default state for next time it is opened
   document.getElementById("login-content").classList.remove("non-active");
   document.getElementById("register-content").classList.add("non-active");
@@ -54,6 +57,15 @@ function addLoginListeners() {
   var registerForm = document.getElementById("register-content");
   var forgotForm = document.getElementById("forgot-content");
 
+  document.querySelector(".modal-content").addEventListener("animationend", function(event) {
+    if (event.target.classList.contains("animate-out")) {
+      this.classList.remove("animate-out");
+      void this.offsetWidth;
+      this.classList.add("animate-in");
+      document.querySelector(".modal").style.display = "none";
+    }
+  });
+
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {
     modal.style.display = "block";
@@ -69,6 +81,12 @@ function addLoginListeners() {
       closeModal();
     }
   };
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
 
   toRegister.onclick = function() {
     document.getElementById("register-content").classList.remove("non-active");

@@ -98,6 +98,13 @@ function getUserInfo(){
   xhr.send();
 }
 
+function moneyToString(amount) {
+  var pounds = Math.floor(amount / 100);
+  var pence = (amount % 100).toString();
+  if (pence.length === 1) pence = "0" + pence;
+  return "£" + pounds + "." + pence;
+}
+
 function getTransactions(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
@@ -106,6 +113,8 @@ function getTransactions(){
       var results = [];
 
       for (var r in res) {
+        res[r].price = moneyToString(res[r].price);
+        res[r].order_total = moneyToString(res[r].order_total);
         results.push(res[r]);
       }
 

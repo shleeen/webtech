@@ -79,10 +79,10 @@ async function addProductions(creator, name, venue, banner_path, poster_path, pr
   await db.run("insert into production (user_id, name, venue, banner_path, poster_path, producer, director, blurb, warnings, special_note) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [user.id, name, venue, banner_path, poster_path, producer, director, blurb, warnings, special_note]);
 }
 
-async function addShows(prodname, date, doors_open, total_seats) {
+async function addShows(prodname, date, doors_open, total_seats, sold) {
   if (!is_db_open) db = await openDB();
   const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
-  await db.run("insert into show (production_id, date, doors_open, total_seats, sold) values(?, ?, ?, ?, ?)", [production.id, date, doors_open, total_seats, "0"]);
+  await db.run("insert into show (production_id, date, doors_open, total_seats, sold) values(?, ?, ?, ?, ?)", [production.id, date, doors_open, total_seats, sold]);
 }
 
 async function addTicketTypes(prodname, category, price) {
@@ -98,13 +98,14 @@ async function addBooking(prodname, username, orderTotal, bookingTime, paid, boo
   const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
   const show = await db.get("SELECT id FROM show WHERE production_id = ?", [production.id]);
   const user = await db.get("SELECT id FROM user WHERE username = ?", [username]);
-  await db.run("insert into booking (show_id, user_id, order_total, booking_time, paid, booking_ref, collected) values(?, ?, ?, ?, ?, ?, ?)", [show.id, user.id, orderTotal, bookingTime, paid, bookinfRef, collected]);
+  const result = await db.run("insert into booking (show_id, user_id, order_total, booking_time, paid, booking_ref, collected) values(?, ?, ?, ?, ?, ?, ?)", [show.id, user.id, orderTotal, bookingTime, paid, bookinfRef, collected]);
 }
 
-async function addTickets(bookingID, ticketTypeID, seatNumber){
+async function addTickets(bookingID, ticketTypeID, seatNumbers){
   if (!is_db_open) db = await openDB();
-  await db.run("insert into ticket (booking_id, ticket_type_id, seat_number) values(?, ?, ?)", [bookingID, ticketTypeID, seatNumber]);
-
+  for (const seatNum of seatNumbers) {
+    await db.run("insert into ticket (booking_id, ticket_type_id, seat_number) values(?, ?, ?)", [bookingID, ticketTypeID, seatNum]);
+  }
 }
 
 async function authenticate(email, pass) {

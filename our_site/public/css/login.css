@@ -181,6 +181,13 @@ button:hover {
   animation: animatezoom 0.6s
 }
 
+.animate-out {
+  -webkit-animation: animatezoom 0.6s;
+  -webkit-animation-direction: reverse;
+  animation: animatezoom 0.6s;
+  animation-direction: reverse;
+}
+
 .login-tab{
   width: 12vw;
   height: 5vw;

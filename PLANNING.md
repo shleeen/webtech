@@ -52,20 +52,20 @@
 ## UI:
 * Have a search bar in the nav??!
 * Home Page:  
-    * clicking carousel should take you to the indv show page
+    * ~~clicking carousel should take you to the indv show page~~
 * MODAL  
     * fix the cross button
         * make the cross button animate? like zoom in or fade in or what
-    * make the modal close when clicking ESC key
+    * ~~make the modal close when clicking ESC key~~
     * ~~fix inline issues~~
-    * add fade out when the modal is closed
+    * ~~add fade out when the modal is closed~~
     * ~~shade out background when clicked~~
     * should it have rounder edges instead of sharp?
-    * make the remember me actually rememebr me
+    * ~~make the remember me actually rememebr me~~
 * Do we want a footer?
     * Can add social media links
     * Add contact us links here
-* Fix the double scroll thing? it real uglyyy
+* ~~Fix the double scroll thing? it real uglyyy~~
 * NAV BAR
     * Make it snazzy - LIKE JAMIE OLIVERS WEBSITE :)
     * Make the logo link to the home page

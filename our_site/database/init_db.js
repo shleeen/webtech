@@ -1,5 +1,26 @@
 const dbHelper = require("./database");
 
+let winston_map = [];
+for (const c of "ABCDEFGHIJKL") {
+  let num_seats;
+  if (["A", "B"].some(v => c.includes(v))) num_seats = 17;
+  if (["C", "D", "E"].some(v => c.includes(v))) num_seats = 18;
+  if (["F", "G"].some(v => c.includes(v))) num_seats = 19;
+  if (["H", "I"].some(v => c.includes(v))) num_seats = 20;
+  if (["J"].some(v => c.includes(v))) num_seats = 15;
+  if (["K"].some(v => c.includes(v))) num_seats = 16;
+  if (["L"].some(v => c.includes(v))) num_seats = 12;
+  for (let i = 1; i <= num_seats; i++) {
+    winston_map.push(c + i.toString());
+  }
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
 async function initializeDB() {
   // initializing the database tables with test data
   let errors = "";
@@ -37,7 +58,7 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "General", "1000");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", "firstuser", "700", "2020-05-30 00:00:01", "1", "ref01", "0" );
+    await dbHelper.addBooking("Musical Theatre Bristol presents Showcase", 1, "firstuser", "700", "2020-05-30 00:00:01", "1", "ref01", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTickets("1", "1", ["B7"]);
@@ -70,13 +91,42 @@ async function initializeDB() {
                   "Contains functional programming", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "201", "201"); // SOLD OUT
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "209", "209"); // SOLD OUT
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "201", "50"); // some sold
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "209", "50"); // some sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "201", "0"); // none sold
+    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "209", "0"); // none sold
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTicketTypes("Silence of the Lambdas", "Student", "500");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addTicketTypes("Silence of the Lambdas", "General", "700");
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addBooking("Silence of the Lambdas", 11, "seconduser", "104500", "2020-05-30 00:07:01", "1", "ref03", "0" );
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    let seats = [];
+    for (let i = 0; i < 209; i++) {
+      seats.push(winston_map[i]);
+    }
+    await dbHelper.addTickets("2", "3", seats);
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    await dbHelper.addBooking("Silence of the Lambdas", 10, "seconduser", "25000", "2020-05-30 00:07:01", "1", "ref04", "0" );
+  } catch (err) { errors += "  " + err + "\n"; }
+  try {
+    let seats = [];
+    for (let i = 0; i < 50; i++) {
+      let s = getRandomInt(0, 209);
+      if (!seats.includes(winston_map[s]))
+        seats.push(winston_map[s]);
+      else i--;
+    }
+    await dbHelper.addTickets("3", "3", seats);
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "Student", "500");
@@ -85,10 +135,10 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Legally Blonde", "General", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking("Legally Blonde", "firstuser", "1000", "2020-05-30 00:07:01", "1", "ref02", "0" );
+    await dbHelper.addBooking("Legally Blonde", 4, "firstuser", "1000", "2020-05-30 00:07:01", "1", "ref02", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addTickets("2", "3", ["A5", "A6"]);
+    await dbHelper.addTickets("4", "5", ["A5", "A6"]);
   } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);

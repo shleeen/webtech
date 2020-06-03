@@ -55,7 +55,6 @@ function getProductionDetails() {
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
   getShow(prod_id);
-  
 }
 
 function getShow(prod_id) {
@@ -126,9 +125,11 @@ function displayShow(data) {
   window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
+
+
 // for the entire seat section
 // TODO: add for each date, currently its the same thing
-  // make those bought red
+  // make those bought red (and unclickable?)
 function addSeatSelection(){
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");
@@ -141,7 +142,37 @@ function addSeatSelection(){
       document.getElementById("select-section").style.opacity = 1;
     })
   }
-  
+
+  //add listeners for each seat click
+  var seatsvg = document.getElementById("seats-svg");
+  var svgDoc;
+  var selectedSeats = [];
+
+  seatsvg.addEventListener("load", function() {
+    svgDoc = seatsvg.contentDocument;
+    var gtags = svgDoc.querySelectorAll("g");
+    
+    for (var i = 1; i<gtags.length; i++) {
+      gtags[i].addEventListener("click", function(){
+        console.log("clicked "+ this.id);
+        var curSeatID = this.id;
+        var index = selectedSeats.indexOf(curSeatID);
+        if (index > -1 ){
+          selectedSeats.splice(index, 1);
+        }
+        else {
+          selectedSeats.push(curSeatID);
+        }
+        console.log(selectedSeats);
+      }, false);
+    }
+
+  }, false);
+
+  //  display selected seats in a template
+  // DOESNT WORK
+  // document.getElementById("select-section").innerHTML += template.render("template-seatnumber", {seats: selectedSeats});
+
 }
 
 
@@ -208,8 +239,8 @@ function smoothScroll(target, duration){
   var distance = targetPosition - startPosition;
   var startTime = null;
 
-  console.log(targetPosition)
-  console.log(startPosition)
+  // console.log(targetPosition)
+  // console.log(startPosition)
 
 
   function animation(currentTime){

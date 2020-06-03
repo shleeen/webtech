@@ -84,7 +84,7 @@
 
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div class="show-indv-date" id="chicken">
+                        <div class="show-indv-date">
                             <div>{{year}}</div>
                             <div class="month-box">{{month}}</div>
                             <div class="day-box">{{day}}</div>
@@ -94,21 +94,23 @@
                     </template>
 
                 </div>
-                <p>Please select a date.</p>
-                
-                <!-- temporary button -->
-                <div class="show-button"> BUY TICKETS </div>
+                <p>Please select a date.</p>                
             </div>
         </div>
-        
-        
-           
     </template>
 
-    <div id="select-section" class="non-active">
+
+    <div id="select-section" class="non-active center">
+        <template id="template-seatnumber">
+            <div>
+                You have selected seat(s): {{seats}}
+            </div>
+        </template>
+
         <object id="seats-svg" data="./img/seatmap.svg" type="image/svg+xml"> </object>
     </div>
     
+
     <footer>
         <div class="pad5">
             <p>Contact Us</p>

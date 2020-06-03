@@ -101,19 +101,25 @@ function displayShow(data) {
   document.getElementById("show-details").classList.add("active");
   document.getElementById("show-details").classList.remove("non-active");
   
-  // this currently breaks when clicked on the second time
-  // is there a way to "clear template"
+  // renders the data for each show details
   document.getElementById("show-details").innerHTML = template.render("show-template", data);
 
-  // testing to see if indv dates can be yeeted into another template 
+  // sorting through warnings, and displaying line by line into another template
+  var rawWarnings = data.warnings
+  var listWarnings = rawWarnings.split("|");
+  for (var i = 0; i < listWarnings.length; i++){
+    var warningObj = { warning: listWarnings[i] }
+    document.getElementById("show-warnings").innerHTML += template.render("warnings-template", warningObj);
+  }
+
+  // yeeting indv dates into another template 
   for (var i = 0; i < data.date.length; i++) {
     var rawDate = data.date[i];
     var parts = rawDate.split("-");
     var dateObj = { full_date: rawDate, year: parts[0], month: months[parts[1]], day: parts[2], time: time24To12(data.doors_open[i]) };
     
-    // should mke showid part of id
+    // should make showid part of id
     document.getElementById("show-dates").innerHTML += template.render("date-template", dateObj);
-
   }
 
   addSeatSelection();

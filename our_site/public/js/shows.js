@@ -185,7 +185,10 @@ function addSeatSelection(show_id){
                 selectedSeats.push(curSeatID);
                 this.firstElementChild.style.fill = "green";
               }
-              console.log(selectedSeats);
+              if (selectedSeats.length > 0)
+                document.getElementById("seat-numbers").innerHTML = template.render("template-seatnumber", {seats: selectedSeats});
+              else
+              document.getElementById("seat-numbers").innerHTML = "";
             }, false);
             gtags[i].addEventListener("mouseenter", function(){
               var ellipse = this.firstElementChild;

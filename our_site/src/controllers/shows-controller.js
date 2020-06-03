@@ -30,6 +30,7 @@ function combineShows(shows) {
       shows[i].doors_open = [shows[i].doors_open];
       shows[i].total_seats = [shows[i].total_seats];
       shows[i].sold = [shows[i].sold];
+      shows[i].id = [shows[i].id];
     }
     else {
       const index = showMap.get(shows[i].production_id);
@@ -37,6 +38,7 @@ function combineShows(shows) {
       shows[index].doors_open.push(shows[i].doors_open);
       shows[index].total_seats.push(shows[i].total_seats);
       shows[index].sold.push(shows[i].sold);
+      shows[index].id.push(shows[i].id);
     }
   }
   let result = {};
@@ -53,7 +55,7 @@ exports.getSeats = async function(req, res) {
     // Need to combine those of the same showid together and have a list of seat numbers instead of many rows
     const seats = combineSeats(seatsData);
 
-    console.log(seats)
+    console.log(seats);
     res.status(200).json(seats);
 
   } catch (err){
@@ -63,22 +65,9 @@ exports.getSeats = async function(req, res) {
 
 
 function combineSeats(seats) {
-  let seatMap = new Map();
-  for (const i in seats) {
-    if (!seatMap.has(seats[i].show_id)) {
-      seatMap.set(seats[i].show_id, i);
-      seats[i].seat_number = [seats[i].seat_number];
-
-    }
-    else {
-      const index = seatMap.get(seats[i].show_id);
-      seats[index].seat_number.push(seats[i].seat_number);
-
-    }
-  }
-  let result = {};
-  for (const i of seatMap.values()) {
-    result[seats[i].show_id] = seats[i];
+  let result = [];
+  for (const seat of seats) {
+    result.push(seat.seat_number);
   }
   return result;
 }

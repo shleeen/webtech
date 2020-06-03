@@ -26,10 +26,6 @@
             Here there will be some filters or a search bar
         </div>
 
-        <p>
-         Check out the current shows:
-        </p>
-
         <template id="display-production">
             <div class="prod-container" id="prod-container-{{production_id}}">                
                 <div class="prod-poster"> 
@@ -65,26 +61,29 @@
                 <div class="show-blurb"> {{blurb}} </div>
 
                 <p class="pad10">
-                    Venue: {{venue}} 
+                    <span style="font-weight:600;"> Venue: </span> {{venue}} 
                 </p> 
 
                 <div class="pad10">
-                    <p>
-                        Producer: {{producer}}
-    
-                    </p>
-                    <p>
+                    <p> <span style="font-weight:600;"> Producer: </span> {{producer}} </p>
+                    <p> <span style="font-weight:600;"> Director: </span> {{director}} </p>
+                </div>
 
-                        Director: {{director}}
-                    </p>
+                <div class="pad10 warnings" id="show-warnings">
+                    <p> <span style="font-weight:600; color: #ee1616c5;"> WARNING: </span>  </p>
+                    <template id="warnings-template">
+                        <ul>
+                            <li>{{warning}}</li>
+                        </ul>  
+                    </template>
                 </div>
                     
+                <p class="pad10"> <span style="font-weight:600"> Please select a date: </span> </p>
 
                 <div id="show-dates" class="show-dates pad10">
-
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div class="show-indv-date" id="chicken">
+                        <div id="show-date-{{show_id}}" class="show-indv-date">
                             <div>{{year}}</div>
                             <div class="month-box">{{month}}</div>
                             <div class="day-box">{{day}}</div>
@@ -92,23 +91,24 @@
                             <!-- <div>{{full_date}}</div> -->
                         </div>
                     </template>
-
                 </div>
-                <p>Please select a date.</p>
-                
-                <!-- temporary button -->
-                <div class="show-button"> BUY TICKETS </div>
             </div>
         </div>
-        
-        
-           
     </template>
 
-    <div id="select-section" class="non-active">
+
+    <div id="select-section" class="non-active center">
+        <div id="seat-numbers"></div>
+        <template id="template-seatnumber">
+            <div>
+                You have selected seat(s): {{seats}}
+            </div>
+        </template>
+
         <object id="seats-svg" data="./img/seatmap.svg" type="image/svg+xml"> </object>
     </div>
     
+
     <footer>
         <div class="pad5">
             <p>Contact Us</p>

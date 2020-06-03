@@ -43,13 +43,13 @@ async function initializeDB() {
                   "Contains strong language and sex references. | Flashing lights are used during this performance. | Contains references to suicide.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-07", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-07", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-08", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-08", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-09", "19:30", "201", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-09", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "Student", "700");
@@ -70,25 +70,25 @@ async function initializeDB() {
                   "It is illegal to use recording equipment during this performance.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", 	"2020-06-19", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", 	"2020-06-19", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-20", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-20", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-21", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-21", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-21", "14:00", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-21", "14:00", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-22", "19:30", "201", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-06-22", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Silence of the Lambdas", "Winston Theatre", 
                   "img/banner-lambda.png", "img/poster-lambda.png", "Max Whale", "Nicole Li", 
-                  "someone write something here", 
-                  "Contains functional programming", "");
+                  "Have you ever wondered what the worlds of Dr. Hannibal Lecter and Lambda calculus have in common? Theres only one way to find out... But be warned, this show is not for the faint hearted.", 
+                  "Contains functional programming.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "209", "209"); // SOLD OUT

@@ -2,7 +2,6 @@
     font-size: 30px;
 }
 
-
 /* arranges each show-container div below one another */
 .shows-main{
     /* width: 100%; */
@@ -50,8 +49,6 @@
 } */
 
 .prod-poster{
-    /* background: #ffbb00; */
-    /* margin: 10px 0; */
     padding: .5em;
     height: 300px; /* so that the poster sits nicely inside it */
     width: 216px;
@@ -94,9 +91,7 @@
 	transition: .3s ease-in-out;
 }
 
-
 .prod-info {
-    /* background: #ffbb00; */
     padding: .5em;
     flex-grow: 1;
     display: flex;
@@ -104,10 +99,8 @@
     margin: 5px 24px;
 }
 
-
 .prod-name {
     padding: .2em;
-    /* background: lightblue; */
     height: max-content;
     font-size: 30px;
     align-items: center;
@@ -119,7 +112,6 @@
 .prod-details{
     padding: .2em;
     flex-grow: 1;
-    /* background: steelblue; */
     display: flex;
     flex-direction: row;
     align-items: stretch; /*default is stretch, fills all space available*/
@@ -130,7 +122,6 @@
     width: 30%;
     margin-right: 50px;
     flex-grow: 1;
-    /* background: whitesmoke; */
 }
 
 .prod-buttom{
@@ -139,7 +130,6 @@
 
 .prod-dates{
     flex-grow: 2;
-    /* background: pink; */
 }
 
 #view-more{
@@ -155,7 +145,9 @@
     color: #0d4e4b;
 }
 
-/* CSS FOR SHOW DETAILS */
+/****************************************************************************************
+    CSS FOR SHOW DETAILS
+****************************************************************************************/
 .show-page{
     display: flex;
     margin-left: 50px;
@@ -241,7 +233,7 @@
     width: max-content;
     height: max-content;
     padding: 7px;
-    margin: 40px 0px;
+    margin: 10px 0px;
     margin-right: 30px;
     border: 2px solid rgba(7, 7, 7, 0.12);
     border-radius: 3px;
@@ -257,13 +249,13 @@
 
 .month-box{
     width: 100px;
-    color: rgb(250, 32, 32);
+    color: #4341df;
     font-weight: 500;
 }
 
 .day-box{
     width: 100px;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .year-box{
@@ -272,10 +264,25 @@
     font-weight: 500;
 }
 
+.warnings{
+    margin: 10px;
+    border-left: 6px solid #ee1616c5;
+    background-color: #f3bebec5;
+    border-radius: 3px;
+}
+
+.warnings li{
+    margin-left: 20px;
+}
+
+
+/****************************************************************************************
+    CSS FOR SEATS STUFF
+****************************************************************************************/
 #select-section{
     /* width: 100%; */
     /* height: max-content;*/
-    opacity: 0;
+    /* opacity: 0; */
     margin: 30px 40px; /*cos page can only start after the nav */
     justify-content: space-between;
     flex-direction: column;
@@ -284,7 +291,7 @@
 }
 
 #seats-svg{
-    height: 900px;
+    height: 400px;
     width: auto;
 }
 

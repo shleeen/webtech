@@ -17,6 +17,8 @@ function start() {
 // Globals to store show data so we don't do unnecessary requests
 var loadedProductions = false;
 var productionData = {};
+var svg_loaded = false;
+var selectedSeats = [];
 
 // for each production in db, should display the details on the Shows Page 
 function getProductionDetails() {
@@ -143,7 +145,7 @@ function displayShow(data) {
 
 // for the entire seat section
 // TODO: add for each date, currently its the same thing
-  // make those bought red (and unclickable?)
+// make those bought red (and unclickable?)
 function addSeatSelection(show_id){
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");
@@ -159,71 +161,84 @@ function addSeatSelection(show_id){
 
   //add listeners for each seat click
   var seatsvg = document.getElementById("seats-svg");
-  var svgDoc;
-  var selectedSeats = [];
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var booked = xhr.response;
-      console.log(booked);
-      seatsvg.addEventListener("load", function() {
-        svgDoc = seatsvg.contentDocument;
-        var gtags = svgDoc.querySelectorAll("g");
-        
-        for (var i = 1; i < gtags.length; i++) {
-          if (!booked.includes(gtags[i].id)) {
-            gtags[i].addEventListener("click", function(){
-              console.log("clicked "+ this.id);
-              var curSeatID = this.id;
-              var index = selectedSeats.indexOf(curSeatID);
-              if (index > -1 ){
-                selectedSeats.splice(index, 1);
-                this.firstElementChild.style.fill = "#b3b3b3";
-              }
-              else {
-                selectedSeats.push(curSeatID);
-                this.firstElementChild.style.fill = "green";
-              }
-              if (selectedSeats.length > 0)
-                document.getElementById("seat-numbers").innerHTML = template.render("template-seatnumber", {seats: selectedSeats});
-              else
-              document.getElementById("seat-numbers").innerHTML = "";
-            }, false);
-            gtags[i].addEventListener("mouseenter", function(){
-              var ellipse = this.firstElementChild;
-              var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
-              var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
-              ellipse.setAttributeNS(null, "rx", rx * 1.1);
-              ellipse.setAttributeNS(null, "ry", ry * 1.1);
-            }, false);
-            gtags[i].addEventListener("mouseleave", function(){
-              var ellipse = this.firstElementChild;
-              var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
-              var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
-              ellipse.setAttributeNS(null, "rx", rx / 1.1);
-              ellipse.setAttributeNS(null, "ry", ry / 1.1);
-            }, false);
-          }
-          else {
-            gtags[i].firstElementChild.style.fill = "red";
-          }
-        }
-
-      }, false);
+      if (svg_loaded) {
+        updateSeatMap(booked);
+      }
+      else {
+        seatsvg.addEventListener("load", function() {
+          svg_loaded = true;
+          updateSeatMap(booked);
+        }, false);
+      }
     }
   };
 
   xhr.open("GET", "/api/shows/getProductionSeatStatus/" + show_id, true);
   xhr.responseType = "json";
   xhr.send();
-
-  //  display selected seats in a template
-  // DOESNT WORK
-  // document.getElementById("select-section").innerHTML += template.render("template-seatnumber", {seats: selectedSeats});
-
 }
 
+function updateSeatMap(booked) {
+  var seatsvg = document.getElementById("seats-svg");
+  var svgDoc = seatsvg.contentDocument;
+  var gtags = svgDoc.querySelectorAll("g");
+  
+  for (var i = 1; i < gtags.length; i++) {
+    console.log("hi");
+    gtags[i].firstElementChild.style.fill = "#b3b3b3";
+    gtags[i].removeEventListener("click", onSeatClick, false);
+    gtags[i].removeEventListener("mouseenter", onSeatHover, false);
+    gtags[i].removeEventListener("mouseleave", onSeatUnhover, false);
+    if (!booked.includes(gtags[i].id)) {
+      gtags[i].addEventListener("click", onSeatClick, false);
+      gtags[i].addEventListener("mouseenter", onSeatHover, false);
+      gtags[i].addEventListener("mouseleave", onSeatUnhover, false);
+    }
+    else {
+      gtags[i].firstElementChild.style.fill = "red";
+    }
+  }
+  selectedSeats = [];
+  document.getElementById("seat-numbers").innerHTML = "";
+}
+
+function onSeatClick() {
+  var curSeatID = this.id;
+  var index = selectedSeats.indexOf(curSeatID);
+  if (index > -1 ){
+    selectedSeats.splice(index, 1);
+    this.firstElementChild.style.fill = "#b3b3b3";
+  }
+  else {
+    selectedSeats.push(curSeatID);
+    this.firstElementChild.style.fill = "#5ad442";
+  }
+  if (selectedSeats.length > 0)
+    document.getElementById("seat-numbers").innerHTML = template.render("template-seatnumber", {seats: selectedSeats});
+  else
+    document.getElementById("seat-numbers").innerHTML = "";
+}
+
+function onSeatHover() {
+  var ellipse = this.firstElementChild;
+  var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
+  var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
+  ellipse.setAttributeNS(null, "rx", rx * 1.1);
+  ellipse.setAttributeNS(null, "ry", ry * 1.1);
+}
+
+function onSeatUnhover() {
+  var ellipse = this.firstElementChild;
+  var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
+  var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
+  ellipse.setAttributeNS(null, "rx", rx / 1.1);
+  ellipse.setAttributeNS(null, "ry", ry / 1.1);
+}
 
 function addShowsListeners() {
   // Add back button listener
@@ -233,7 +248,8 @@ function addShowsListeners() {
     document.getElementById("select-section").classList.remove("active");
     document.getElementById("select-section").classList.add("non-active");
 
-    document.getElementById("select-section").style.opacity = 0;
+    document.getElementById("select-section").classList.add("non-active");
+    document.getElementById("select-section").classList.remove("active");
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);

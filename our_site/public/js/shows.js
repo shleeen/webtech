@@ -109,14 +109,22 @@ function displayShow(data) {
   for (var i = 0; i < data.date.length; i++) {
     var rawDate = data.date[i];
     var parts = rawDate.split("-");
-    var dateObj = { full_date: rawDate, year: parts[0], month: months[parts[1]], day: parts[2], time: time24To12(data.doors_open[i]) };
+    var dateObj = { show_id: data.id[i], year: parts[0], month: months[parts[1]], day: parts[2], time: time24To12(data.doors_open[i]) };
     
     // should mke showid part of id
     document.getElementById("show-dates").innerHTML += template.render("date-template", dateObj);
 
   }
 
-  addSeatSelection();
+  for (i = 0; i < data.id.length; i++) {
+
+    document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
+      addSeatSelection(this.id.split("-").pop());
+    });
+
+  }
+  console.log(data);
+  //addSeatSelection(show_id);
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
   // nicole help
@@ -130,44 +138,76 @@ function displayShow(data) {
 // for the entire seat section
 // TODO: add for each date, currently its the same thing
   // make those bought red (and unclickable?)
-function addSeatSelection(){
+function addSeatSelection(show_id){
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");
 
   // add listeners for dates
-  var dates = document.getElementsByClassName("show-indv-date");
-  for (var i = 0; i < dates.length; i++) {
-    dates[i].addEventListener("click", function(){
-      smoothScroll('select-section', 800);
-      document.getElementById("select-section").style.opacity = 1;
-    })
-  }
+  // var dates = document.getElementsByClassName("show-indv-date");
+  // for (var i = 0; i < dates.length; i++) {
+  //   dates[i].addEventListener("click", function(){
+  //     smoothScroll('select-section', 800);
+  //     document.getElementById("select-section").style.opacity = 1;
+  //   });
+  // }
 
   //add listeners for each seat click
   var seatsvg = document.getElementById("seats-svg");
   var svgDoc;
   var selectedSeats = [];
 
-  seatsvg.addEventListener("load", function() {
-    svgDoc = seatsvg.contentDocument;
-    var gtags = svgDoc.querySelectorAll("g");
-    
-    for (var i = 1; i<gtags.length; i++) {
-      gtags[i].addEventListener("click", function(){
-        console.log("clicked "+ this.id);
-        var curSeatID = this.id;
-        var index = selectedSeats.indexOf(curSeatID);
-        if (index > -1 ){
-          selectedSeats.splice(index, 1);
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
+      var booked = xhr.response;
+      console.log(booked);
+      seatsvg.addEventListener("load", function() {
+        svgDoc = seatsvg.contentDocument;
+        var gtags = svgDoc.querySelectorAll("g");
+        
+        for (var i = 1; i < gtags.length; i++) {
+          if (!booked.includes(gtags[i].id)) {
+            gtags[i].addEventListener("click", function(){
+              console.log("clicked "+ this.id);
+              var curSeatID = this.id;
+              var index = selectedSeats.indexOf(curSeatID);
+              if (index > -1 ){
+                selectedSeats.splice(index, 1);
+                this.firstElementChild.style.fill = "#b3b3b3";
+              }
+              else {
+                selectedSeats.push(curSeatID);
+                this.firstElementChild.style.fill = "green";
+              }
+              console.log(selectedSeats);
+            }, false);
+            gtags[i].addEventListener("mouseenter", function(){
+              var ellipse = this.firstElementChild;
+              var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
+              var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
+              ellipse.setAttributeNS(null, "rx", rx * 1.1);
+              ellipse.setAttributeNS(null, "ry", ry * 1.1);
+            }, false);
+            gtags[i].addEventListener("mouseleave", function(){
+              var ellipse = this.firstElementChild;
+              var rx = parseFloat(ellipse.getAttributeNS(null, "rx"));
+              var ry = parseFloat(ellipse.getAttributeNS(null, "ry"));
+              ellipse.setAttributeNS(null, "rx", rx / 1.1);
+              ellipse.setAttributeNS(null, "ry", ry / 1.1);
+            }, false);
+          }
+          else {
+            gtags[i].firstElementChild.style.fill = "red";
+          }
         }
-        else {
-          selectedSeats.push(curSeatID);
-        }
-        console.log(selectedSeats);
+
       }, false);
     }
+  };
 
-  }, false);
+  xhr.open("GET", "/api/shows/getProductionSeatStatus/" + show_id, true);
+  xhr.responseType = "json";
+  xhr.send();
 
   //  display selected seats in a template
   // DOESNT WORK

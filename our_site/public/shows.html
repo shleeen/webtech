@@ -97,15 +97,30 @@
     </template>
 
 
-    <div id="select-section" class="non-active center">
-        <div id="seat-numbers"></div>
+    <div id="select-section" class="non-active center pad10">
+        <!-- <div id="seat-box1"> -->
+        <p class="pad5"> <span style="font-weight:600"> Please select a seat: </span>  </p>
+
+        <p class="center">
+            <svg id="svg-legend" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="7" fill="#b3b3b3"/> <text x="65" y="54" fill="#2c2c2c"> Available seats </text>
+                <circle cx="50" cy="80" r="7" fill="red"/> <text x="65" y="84" fill="#2c2c2c"> Unavailable seats </text>
+                <circle cx="50" cy="110" r="7" fill="#5ad442"/> <text x="65" y="114" fill="#2c2c2c"> Selected seats </text>
+            </svg>
+        </p>
+
+        <div id="seat-numbers"> </div>
         <template id="template-seatnumber">
             <div>
                 You have selected seat(s): {{seats}}
             </div>
+            <div class="booking-button"> CONFIRM SEATS </div>
         </template>
+        <!-- </div> -->
 
-        <object id="seats-svg" data="./img/seatmap.svg" type="image/svg+xml"> </object>
+        <!-- <div id="seat-box2"> -->
+        <object id="seats-svg" class="center" data="./img/seatmap.svg" type="image/svg+xml"> </object>
+        <!-- </div> -->
     </div>
     
 

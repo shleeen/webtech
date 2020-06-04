@@ -278,17 +278,51 @@
     CSS FOR SEATS STUFF
 ****************************************************************************************/
 #select-section{
-    /* width: 100%; */
+    /* width: 600px; */
     /* height: max-content;*/
     /* opacity: 0; */
-    margin: 30px 40px; /*cos page can only start after the nav */
+    margin: 0px 40px;
+    margin-bottom: 40px;
     justify-content: space-between;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: row; */
     align-items: stretch; /*default is stretch, fills all space available
     /* overflow: auto; */
+    /* background-color: hotpink; */
 }
 
 #seats-svg{
     height: 400px;
     width: auto;
+}
+
+#svg-legend{
+    position: relative;
+    border: solid;
+    border-color: #b3b3b3;
+    border-radius: 1px;
+}
+
+/* #seat-box1{
+    background-color: indianred;
+    /* flex-grow: 1;
+}
+
+#seat-box2{
+    background-color: lavender;
+    flex-grow: 1;
+} */
+
+.booking-button{ 
+    color: white;
+    cursor: pointer;
+    background-color:#1c8a1c;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+    width: max-content;
+}
+
+.booking-button:hover{
+    color: #083008;
 }

@@ -6,7 +6,6 @@ function start() {
   var param = window.parent.location.pathname.split("/").pop();
   if (param !== "shows" && param !== "") {
     getShow(param);
-
   }
   else {
     showAllProductions();
@@ -144,8 +143,6 @@ function displayShow(data) {
 
 
 // for the entire seat section
-// TODO: add for each date, currently its the same thing
-// make those bought red (and unclickable?)
 function addSeatSelection(show_id){
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");
@@ -189,7 +186,6 @@ function updateSeatMap(booked) {
   var gtags = svgDoc.querySelectorAll("g");
   
   for (var i = 1; i < gtags.length; i++) {
-    console.log("hi");
     gtags[i].firstElementChild.style.fill = "#b3b3b3";
     gtags[i].removeEventListener("click", onSeatClick, false);
     gtags[i].removeEventListener("mouseenter", onSeatHover, false);
@@ -304,10 +300,6 @@ function smoothScroll(target, duration){
   var distance = targetPosition - startPosition;
   var startTime = null;
 
-  // console.log(targetPosition)
-  // console.log(startPosition)
-
-
   function animation(currentTime){
     if (startTime === null) startTime = currentTime;
     var timeElapsed = currentTime - startTime;
@@ -315,7 +307,6 @@ function smoothScroll(target, duration){
     
     window.scrollTo(0, run);
     if (timeElapsed < duration) requestAnimationFrame(animation);
-    
   }
 
   function ease(t, b, c, d){

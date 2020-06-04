@@ -101,8 +101,7 @@ async function addShows(prodname, date, doors_open, total_seats, sold) {
 async function addTicketTypes(prodname, category, price) {
   if (!is_db_open) db = await openDB();
   const production = await db.get("SELECT id FROM production WHERE name = ?", [prodname]);
-  const show = await db.get("SELECT id FROM show WHERE production_id = ?", [production.id]);
-  await db.run("insert into ticket_type (show_id, category, price) values(?, ?, ?)", [show.id, category, price]);
+  await db.run("insert into ticket_type (production_id, category, price) values(?, ?, ?)", [production.id, category, price]);
 }
 
 // eh hm order total needs to match ticket types

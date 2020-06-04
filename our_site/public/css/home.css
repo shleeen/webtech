@@ -250,4 +250,14 @@ svg {
     font-size: 14px;
 }
 
+@media screen and (max-width: 940px) {
+    .join-border{
+        background-color: #111;
+        color: #fff;
+        padding: 30px;
+        font-size: 40px;
+        letter-spacing: 20px;
+    }
+
+ }
 

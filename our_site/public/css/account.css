@@ -7,6 +7,7 @@
 }
 
 .account-container{
+    min-width: 450px;
     width: 50%;
     height: 320px;
     background-color: #bcbcbc;
@@ -127,6 +128,11 @@
     align-items: stretch; 
 }
 
+.details{
+    flex-grow: 2;
+    display: flex;
+}
+
 .prod-details{
     padding: .2em;
     width: 350px;
@@ -135,13 +141,13 @@
 }
 
 .trans-details{
-    flex-grow: 2;
+    flex-grow: 1;
     text-align: end;
     padding-right: 30px;
 }
 
 .ticket-details{
-    flex-grow: 3;
+    flex-grow: 2;
 }
 
 .ticket-seats{
@@ -194,3 +200,37 @@
     border-left: 2px solid rgb(75, 75, 75);
     height: 30px;
   }
+
+@media screen and (max-width: 940px) {
+    .trans-content{
+        padding: .2em;
+        flex-grow: 1;
+        display: flow-root;
+        flex-direction: row;
+        align-items: stretch; 
+    }
+
+    .trans-details{
+        flex-grow: 1;
+        text-align: justify;
+        padding-top: 10px;
+        padding-right: 20px;
+    }
+
+    .ticket-details{
+        flex-grow: 2;
+        padding-top: 10px;
+    }
+ }
+
+ @media screen and (max-width: 720px) {
+
+    .trans-content-wrapper {
+        height: max-content;
+        background-color: #ece9e9;
+        display: block;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+ }

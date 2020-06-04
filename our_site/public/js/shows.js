@@ -142,7 +142,6 @@ function displayShow(data) {
     });
 
   }
-  console.log(data);
   //addSeatSelection(show_id);
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
@@ -314,10 +313,6 @@ function smoothScroll(target, duration){
   var startPosition = window.pageYOffset;
   var distance = targetPosition - startPosition;
   var startTime = null;
-
-  // console.log(targetPosition)
-  // console.log(startPosition)
-
 
   function animation(currentTime){
     if (startTime === null) startTime = currentTime;

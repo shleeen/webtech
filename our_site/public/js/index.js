@@ -113,6 +113,8 @@ function addListeners() {
   window.addEventListener("popstate", function (event) {
     // The URL changed...
     console.log(event.state);
+    console.log(event.state.id);
+    console.log(event.state.url);
     if (event.state) {
       displayPage(event.state.id, event.state.url);
     }

@@ -104,27 +104,30 @@
                                 <div class="show-date"> {{date}} </div>
                                 <div class="show-time"> {{doors_open}} (Doors Open)</div>
                             </div>
-                            <div class="trans-details">
-                                <div class="book-time"> Booking time:  </div>
-                                <div class="payment"> Payment status:  </div>
-                                <div class="tickets"> Number of tickets:  </div>
+                            <div class="details">
+                                <div class="trans-details">
+                                    <div class="book-time"> Booking time:  </div>
+                                    <div class="payment"> Payment status:  </div>
+                                    <div class="tickets"> Number of tickets:  </div>
 
-                                <div class="price"> Ticket price: </div>
-                                
-                                <div class="tickets"> Total amount: </div>
-                                
+                                    <div class="price"> Ticket price: </div>
+                                    
+                                    <div class="tickets"> Total amount: </div>
+                                    
+                                </div>
+                                <div class="ticket-details">
+                                    <div class="book-time"> {{booking_time}} </div>
+                                    <div class="payment"> {{paid}} </div>
+                                    <div class="tickets"> {{ticket_no}} </div>
+
+                                    <div class="price"> {{price}} </div>
+                                    
+                                    <div class="tickets"> {{order_total}} </div>
+                                    
+                                    <!-- <button>More Details</button> -->
+                                </div> 
                             </div>
-                            <div class="ticket-details">
-                                <div class="book-time"> {{booking_time}} </div>
-                                <div class="payment"> {{paid}} </div>
-                                <div class="tickets"> {{ticket_no}} </div>
-
-                                <div class="price"> {{price}} </div>
                                 
-                                <div class="tickets"> {{order_total}} </div>
-                                
-                                <!-- <button>More Details</button> -->
-                            </div> 
                         </div>
                         <div class="trans-content-more">
                             <div class="ticket-seats">

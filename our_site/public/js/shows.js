@@ -10,6 +10,17 @@ function start() {
   else {
     showAllProductions();
   }
+
+  var showObj = document.getElementById("shows-object");
+  var indexHeight = window.parent.innerHeight;
+    showObj.onresize = function(){
+    //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+    var height = showObj.contentDocument.body.scrollHeight;
+
+    if (height > indexHeight) showObj.style.height = height + "px";
+    else showObj.style.height = indexHeight + "px";
+  };
+
   console.log("shows.html loaded");
 }
 
@@ -130,7 +141,6 @@ function displayShow(data) {
     });
 
   }
-  console.log(data);
   //addSeatSelection(show_id);
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH

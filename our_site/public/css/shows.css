@@ -150,6 +150,9 @@
 ****************************************************************************************/
 .show-page{
     display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+    min-height: 90vh;
 }
 .show-poster{
     flex-grow: 1;
@@ -219,7 +222,7 @@
     padding: 10px;
     align-items: center;
     color: #000000;
-    width: 800px;
+    width: 750px;
 }
 
 .show-dates{
@@ -326,3 +329,25 @@
 .booking-button:hover{
     color: #083008;
 }
+@media screen and (max-width: 940px) {
+
+    .show-page{
+        display: flow-root;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .show-poster{
+        flex-grow: 1;
+        margin: auto;
+        width: 300px;
+        height: auto;
+    }
+
+    .show-indv-details{
+        flex-grow: 2;
+        padding: 25px 35px;
+        text-align: left;
+        text-align: center;
+    }
+ }

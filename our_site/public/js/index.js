@@ -15,6 +15,14 @@ function start() {
     removeOverlaySpashScreen();
   }, 1000);
 
+  setHeight();
+
+  navbar = document.getElementById("navbar");
+    
+} 
+
+// -------------------------------------------------------------------------------------------------
+function setHeight(){
   setTimeout(function () {
     // Set height of contents
     var homeObj = document.getElementById("home-object");
@@ -38,13 +46,19 @@ function start() {
       else showObj.style.height = indexHeight + "px";
     };
 
-    navbar = document.getElementById("navbar");
-  }, 1500);
+    // // TODO: make it so that resizing wouldnt hide part of it
+    // var accountObj = document.getElementById("account-object");
+
+    // accountObj.onload = function(){
+    //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+    //   var height = accountObj.contentDocument.body.scrollHeight;
+
+    //   if (height > indexHeight) accountObj.style.height = height + "px";
+    //   else accountObj.style.height = indexHeight + "px";
+    // };
     
-} 
-
-// -------------------------------------------------------------------------------------------------
-
+  }, 1500);
+}
 // This gets params like url/?a=?
 //var dynamicContent = getParameterByName('dc');
 function getParameterByName(name, url) {
@@ -64,6 +78,11 @@ function removeOverlaySpashScreen() {
 }
 
 function addListeners() {
+  // window resize
+  window.addEventListener("resize", function () {
+    setHeight();
+
+  }); 
 
   document.getElementById("shows_tab").addEventListener("click", function() {
     console.log("click");
@@ -94,6 +113,8 @@ function addListeners() {
   window.addEventListener("popstate", function (event) {
     // The URL changed...
     console.log(event.state);
+    console.log(event.state.id);
+    console.log(event.state.url);
     if (event.state) {
       displayPage(event.state.id, event.state.url);
     }

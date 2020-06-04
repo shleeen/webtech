@@ -46,19 +46,16 @@ function setHeight(){
       else showObj.style.height = indexHeight + "px";
     };
 
-    // TODO: make it so that resizing wouldnt hide part of it
+    // // TODO: make it so that resizing wouldnt hide part of it
     // var accountObj = document.getElementById("account-object");
-    // if(accountObj){
-    //   accountObj.onload = function(){
-    //     //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-    //     var height = accountObj.contentDocument.body.scrollHeight;
 
-    //     if (height > indexHeight) accountObj.style.height = height + "px";
-    //     else accountObj.style.height = indexHeight + "px";
-    //   };
-    // }
-      
+    // accountObj.onload = function(){
+    //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+    //   var height = accountObj.contentDocument.body.scrollHeight;
 
+    //   if (height > indexHeight) accountObj.style.height = height + "px";
+    //   else accountObj.style.height = indexHeight + "px";
+    // };
     
   }, 1500);
 }
@@ -84,6 +81,7 @@ function addListeners() {
   // window resize
   window.addEventListener("resize", function () {
     setHeight();
+
   }); 
 
   document.getElementById("shows_tab").addEventListener("click", function() {

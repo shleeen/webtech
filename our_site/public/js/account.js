@@ -6,14 +6,14 @@ function start() {
 
   var accObj = window.parent.document.getElementById("account-object");
   var indexHeight = window.parent.innerHeight;
-  accObj.onload = function(){
+  accObj.onresize = function(){
     //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
     var height = accObj.contentDocument.body.scrollHeight;
-    console.log(height)
-    console.log(indexHeight)
 
-    if (height > indexHeight) accObj.style.height = height + "px";
-    else accObj.style.height = indexHeight + "px";
+    if (height > indexHeight) {
+      accObj.style.height = height + "px"; alert("here");
+    }
+      else accObj.style.height = indexHeight + "px";
   };
 
   console.log("account.html loaded");

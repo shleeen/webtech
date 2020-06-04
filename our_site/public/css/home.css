@@ -151,6 +151,10 @@ svg {
     perspective-origin: 0%;
 }
 
+.background-img{
+    margin-top: -5px;
+}
+
 .join-img{
     opacity: 0.65;
     position: absolute;

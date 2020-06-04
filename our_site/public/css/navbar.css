@@ -210,4 +210,59 @@ nav a:hover {
     #login-user{
         display: none;
     }
+
+    .navbar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 80px;
+        background-color: #371545;
+        color: #FFFFFF;
+        position: fixed;
+        padding: 15px 25px;
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+
+
+    nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        line-height: 40px;
+    }
+
+    nav li {
+        margin: 0;
+        height: 100%;
+        margin-top: 15px;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    nav a {
+        /* color: #ffbb00; */
+        text-decoration: none;
+        text-transform: uppercase;
+        display: block;
+        /* font-size: 18px; */
+        font-size: 2.5ex;
+        font-weight: 600;
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(to right, #e1bcf0, #e1bcf0 50%, #F5F5F5 50%);
+        
+        /* This is non-standard */
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        background-size: 200% 100%;
+        background-position: 100%;
+        transition: background-position 275ms ease;
+    }
  }

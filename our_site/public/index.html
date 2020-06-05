@@ -24,7 +24,7 @@
     <!-- <header>
     </header> -->
 
-    <div id="navbar" class="navbar">
+    <div id="navbar" class="navbar unselectable">
         <div id="logo">TICK.ET</div>
         <nav>    
             <ul>
@@ -42,7 +42,7 @@
             </div>
 
             <div id="nav-icon">
-                <img class="icon-png" src="./img/nav-icon.png" />
+                <img class="icon-png" src="/img/nav-icon.png" />
             </div>
             
             <ul id="user-dropdown">
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Splash screen -->
-    <div id="overlay" class="overlay">
+    <div id="overlay" class="overlay unselectable">
         <svg class="svg_center" version="1.1" xmlns="http://www.w3.org/2000/svg" height="500" width="500" viewBox="0 0 200 200" preserveAspectRatio="none">  
             <path id="stroke1" class="tstroke_1" d="M 0 0 L 5 15 l 90 0 l 5 -15 l -100 0 "></path>
             <rect class="tstroke_2" x="45" y="8" width="10" height="125">
@@ -71,11 +71,11 @@
     <!-- Modal Login (overlays over any page) -->
     <div id="modal-login" class="modal">
         <div class="modal-content animate-in">
-            <div class="close-btn pad10">×</div>
+            <div class="close-btn pad10 unselectable">×</div>
 
             <form id="login-content" method="post" action="/api/login">
                 <div>
-                    <object id="login-svg" class="login-svg" data="./img/login.svg" type="image/svg+xml">
+                    <object id="login-svg" class="login-svg" data="/img/login.svg" type="image/svg+xml">
                     </object>
                 </div>
                 <div class="modal-container">
@@ -101,7 +101,7 @@
             </form>
             <form id="forgot-content" class="non-active" method="post" action="/api/reset">
                 <div>
-                    <object id="reset-svg" class="reset-svg" data="./img/resetpassword.svg" type="image/svg+xml">
+                    <object id="reset-svg" class="reset-svg" data="/img/resetpassword.svg" type="image/svg+xml">
                     </object>
                 </div>
                 <div class="modal-container">
@@ -117,7 +117,7 @@
             
             <form id="register-content" class="non-active" method="post" action="/api/register">
                 <div>
-                    <object id="register-svg" class="register-svg" data="./img/register.svg" type="image/svg+xml">
+                    <object id="register-svg" class="register-svg" data="/img/register.svg" type="image/svg+xml">
                     </object>
                 </div>
                 <div class="modal-container">

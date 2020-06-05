@@ -26,10 +26,9 @@ exports.getTicketTypes = async function(prod_id) {
 
 exports.getSeats = async function(show_id) {
   // combine bookings and get seats that are ebought
-  let sql = "SELECT b.show_id, t.seat_number FROM ticket t INNER JOIN booking b ON b.id = t.booking_id INNER JOIN show s ON b.show_id = s.id WHERE b.show_id = ?";
+  const sql = "SELECT b.show_id, t.seat_number FROM ticket t INNER JOIN booking b ON b.id = t.booking_id INNER JOIN show s ON b.show_id = s.id WHERE b.show_id = ?";
   try {
     const rows = await db.all(sql, show_id);
-    console.log(rows);
     return rows;
   } catch (err) {
     console.log(err);
@@ -37,11 +36,14 @@ exports.getSeats = async function(show_id) {
 };
 
 exports.bookTickets = async function(prod_id, show_id, user_id, seat_nums, ticket_amounts) {
+  let taken_seats = await this.getSeats(show_id);
+  taken_seats = taken_seats.map(x => x.seat_number);
+  if (taken_seats.some(v => seat_nums.includes(v))) {
+    throw "Seat already taken";
+  }
   let total_price = 0;
   let num_tickets = 0;
   const ticket_types = await this.getTicketTypes(prod_id);
-  console.log(seat_nums);
-  console.log(ticket_amounts);
   for (const type of ticket_types) {
     total_price += ticket_amounts[type.id] * type.price;
     num_tickets += ticket_amounts[type.id];

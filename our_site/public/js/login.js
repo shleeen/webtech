@@ -70,7 +70,7 @@ function addLoginListeners() {
   // displays the modal when 'login/register' is clicked
   loginTrigger.onclick = function() {
     modal.style.display = "block";
-    drawLogin();
+    draw("login");
   };
 
   // close the modal using the cross button

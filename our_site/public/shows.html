@@ -18,9 +18,7 @@
     </div>
 
     <div id="shows-main" class="shows-main non-active">
-        <p class="shows-title pad15 center">
-            Current Shows
-         </p>
+        <p class="shows-title pad15 center"> Current Shows </p>
         
         <div id="shows-filter">
             <input type="text" id="prod-filter" onkeyup="filterProd()" placeholder="Search by show name..." title="Enter a show name">
@@ -45,9 +43,7 @@
         </div>
     </div>
     
-    <div id="show-details" class="shows-main">
-
-    </div>
+    <div id="show-details" class="shows-main"></div>
 
     <template id="show-template">
         <div class="show-page">
@@ -96,35 +92,47 @@
     </template>
 
 
-    <div id="select-section" class="non-active center pad10">
-        <!-- <div id="seat-box1"> -->
-        <p class="pad5"> <span style="font-weight:600"> Please select a seat: </span>  </p>
+    <div id="select-section" class="center pad10">
+        <div id="seat-box1" class="non-active">
+            <p class="pad5"> <span style="font-weight:600"> Please select a seat: </span>  </p>
 
-        <p class="center">
-            <svg id="svg-legend" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="7" fill="#b3b3b3"/> <text x="65" y="54" fill="#2c2c2c"> Available seats </text>
-                <circle cx="50" cy="80" r="7" fill="red"/> <text x="65" y="84" fill="#2c2c2c"> Unavailable seats </text>
-                <circle cx="50" cy="110" r="7" fill="#5ad442"/> <text x="65" y="114" fill="#2c2c2c"> Selected seats </text>
-            </svg>
-        </p>
-
-        <!-- This needs to be templated and stuff -->
-        <label for="ticket-type-1"><b>Amount of category1</b></label>
-        <input type="number" class="ticket-amount" name="ticket-type-1" id="ticket-type-1" min="0" value="0" step="1" />
-        <label for="ticket-type-2"><b>Amount of category2</b></label>
-        <input type="number" class="ticket-amount" name="ticket-type-2" id="ticket-type-2" min="0" value="0" step="1" />
-        <div id="seat-numbers"> </div>
-        <template id="template-seatnumber">
-            <div>
-                You have selected seat(s): {{seats}}
+            <div class="center" id="svg-legend">
+                <svg  xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="7" fill="#b3b3b3"/> <text x="65" y="54" fill="#2c2c2c"> Available seats </text>
+                    <circle cx="50" cy="80" r="7" fill="red"/> <text x="65" y="84" fill="#2c2c2c"> Unavailable seats </text>
+                    <circle cx="50" cy="110" r="7" fill="#5ad442"/> <text x="65" y="114" fill="#2c2c2c"> Selected seats </text>
+                </svg>
             </div>
-            <div id="booking-button"> CONFIRM SEATS </div>
-        </template>
-        <!-- </div> -->
 
-        <!-- <div id="seat-box2"> -->
-        <object id="seats-svg" class="center" data="./img/seatmap.svg" type="image/svg+xml"> </object>
-        <!-- </div> -->
+            <!-- template for each ticket category -->
+            <div id="ticket-types"> </div>
+            <template id="template-ticket-types">
+                <div class="ticket-div pad10">
+                    <label for="ticket-type-{{t_id}}"><b>{{t_category}}:</b>  {{t_price}}</label>
+                    <input type="number" class="ticket-amount" name="ticket-type-{{t_id}}" id="ticket-type" min="0" max="10" value="0" step="1" />
+                    <div class="ticket-nav">
+                        <div class="ticket-button ticket-up" id="ticket-up">+</div>
+                        <div class="ticket-button ticket-down" id="ticket-down">-</div>
+                    </div>
+                    <div>
+                        updated amt goes here
+                    </div>
+                </div>
+            </template>
+
+
+            <div id="seat-numbers"> </div>
+            <template id="template-seatnumber">
+                <div> 
+                    You have selected seat(s): {{seats}}
+                </div>
+                <div id="booking-button"> CONFIRM SEATS </div>
+            </template>
+        </div>
+
+        <div id="seat-box2" class="non-active">
+            <object id="seats-svg" class="center" data="./img/seatmap.svg" type="image/svg+xml"> </object>
+        </div>
     </div>
     
 
@@ -137,7 +145,6 @@
             <p>For any queries please contact support@tick.et.com</p>
             
         </div>
-        
     </footer>
 
     

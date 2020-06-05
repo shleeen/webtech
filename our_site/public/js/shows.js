@@ -31,6 +31,9 @@ var svg_loaded = false;
 var selectedSeats = [];
 var current_prod_id, current_show_id;
 
+//**************************************************************************** */
+//                          PRODUCTION PAGE
+//**************************************************************************** */
 // for each production in db, should display the details on the Shows Page 
 function getProductionDetails() {
   var xhr = new XMLHttpRequest();
@@ -65,6 +68,9 @@ function getProductionDetails() {
   xhr.send();
 }
 
+//**************************************************************************** */
+//                         SHOW PAGE
+//**************************************************************************** */
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
   getShow(prod_id);
@@ -88,7 +94,6 @@ function getShow(prod_id) {
     xhr.send();
   }
 }
-
 
 
 // woohoo
@@ -137,27 +142,29 @@ function displayShow(data) {
   }
 
   for (i = 0; i < data.id.length; i++) {
-
     document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
-      addSeatSelection(this.id.split("-").pop());
+      addSeatSelection(this.id.split("-").pop(), data);
     });
-
   }
 
-  // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
-  // nicole help
-  // lol i see this now, use window.parent.history.pushState()
   var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + data.production_id;
   window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
-
+function moneyToString(amount) {
+  var pounds = Math.floor(amount / 100);
+  var pence = (amount % 100).toString();
+  if (pence.length === 1) pence = "0" + pence;
+  return "£" + pounds + "." + pence;
+}
 
 // for the entire seat section
-function addSeatSelection(show_id){
+function addSeatSelection(show_id, data){
   current_show_id = show_id;
-  document.getElementById("select-section").classList.remove("non-active");
-  document.getElementById("select-section").classList.add("active");
+  document.getElementById("seat-box1").classList.remove("non-active");
+  document.getElementById("seat-box2").classList.remove("non-active");
+  document.getElementById("seat-box1").classList.add("active");
+  document.getElementById("seat-box2").classList.add("active");
 
   // add listeners for dates
   // var dates = document.getElementsByClassName("show-indv-date");
@@ -167,6 +174,15 @@ function addSeatSelection(show_id){
   //     document.getElementById("select-section").style.opacity = 1;
   //   });
   // }
+
+  // show ticket categories in a template
+  for (var i = 0; i < data.ticket_category.length; i++) {
+    var price = moneyToString(data.ticket_price[i]);
+    var ticketDetails = {t_id: data.ticket_id[i], t_category: data.ticket_category[i], t_price: price}
+    document.getElementById("ticket-types").innerHTML += template.render("template-ticket-types", ticketDetails);
+  }
+  // add listeners for the button arrows
+  ticketArrowListeners();
 
   //add listeners for each seat click
   var seatsvg = document.getElementById("seats-svg");
@@ -239,6 +255,8 @@ function onConfirmClick() {
   xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
   xhr.responseType = "json";
   xhr.send(formData);
+
+  //need to do if request successfully sent, then display "tickets bought"?
 }
 
 function onSeatNumChange() {
@@ -303,11 +321,16 @@ function addShowsListeners() {
   // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
-    document.getElementById("select-section").classList.remove("active");
-    document.getElementById("select-section").classList.add("non-active");
+    // i hate that this is repeated so much
+    document.getElementById("seat-box1").classList.remove("active");
+    document.getElementById("seat-box2").classList.remove("active");
+    document.getElementById("seat-box1").classList.add("non-active");
+    document.getElementById("seat-box2").classList.add("non-active");
 
-    document.getElementById("select-section").classList.add("non-active");
-    document.getElementById("select-section").classList.remove("active");
+    document.getElementById("seat-box1").classList.add("non-active");
+    document.getElementById("seat-box2").classList.add("non-active");
+    document.getElementById("seat-box1").classList.remove("active");
+    document.getElementById("seat-box2").classList.remove("active");
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
@@ -321,7 +344,6 @@ function addShowsListeners() {
 }
 
 function showAllProductions() {
-
   if (!loadedProductions) getProductionDetails();
   document.getElementById("show-details").innerHTML = "";
 
@@ -356,6 +378,38 @@ function filterProd() {
   }
 }
 
+function ticketArrowListeners(){
+  var input = document.getElementsByClassName("ticket-amount");
+  var max = input[0].max;
+  var min = input[0].min;
+
+  // for(var i=0; i<input.length; i++){
+    // listener for UP BUTTON
+    document.getElementById("ticket-up").addEventListener("click", function() {
+      console.log("clicked up");
+      var oldval = input[0].value;
+      if (oldval >= max) {
+        var newval = oldval;
+      } else {
+        var newval = oldval + 1;
+      }
+      input[0].value = newval;
+    });
+  // }
+
+  // listener for DOWN BUTTON
+  document.getElementById("ticket-down").addEventListener("click", function() {
+    console.log("clicked down");
+    var oldval = input[0].value;
+      if (oldval <= min) {
+        var newval = oldval;
+      } else {
+        var newval = oldval - 1;
+      }
+      input[0].value = newval;
+      // input[0].setAttribute(value, newval);
+  });
+}
 
 // listener to hide nav when scrolling down and show nav when scrolling up
 var navbar = window.parent.document.getElementById("navbar");

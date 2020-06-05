@@ -2,6 +2,7 @@
 
 // ----- Globals so they can be loaded after the entire site is loaded and used throughout------------------------------------------------------------
 var navbar;
+var showsObj;
 // ----------------------------------------------------------------------------
 
 addEventListener("load", start);
@@ -17,7 +18,14 @@ function start() {
 
   setHeight();
 
+
+  // Listen to when shows tab is clicked 
+  const mutationObserver = new MutationObserver(callback);
+  const showsTab = document.getElementById('shows');
+  mutationObserver.observe(showsTab, { attributes: true });
+
   navbar = document.getElementById("navbar");
+  showsObj = document.getElementById("shows-object");
     
 } 
 
@@ -214,6 +222,7 @@ function pageFadeEnd(event) {
   event.target.classList.remove("transitioning");
 }
 
+// SCROLL FUNCTION
    
 // listener to hide nav when scrolling down and show nav when scrolling up
 var prevScrollpos = window.pageYOffset;
@@ -234,3 +243,30 @@ window.onscroll = function () {
   }
   prevScrollpos = currentScrollPos;
 };
+
+
+// LISTENER FOR SHOWS TAB TO DISPLAY MAIN PAGE
+function callback(mutationsList, observer) {
+  console.log('Mutations:', mutationsList)
+  console.log('Observer:', observer)
+  mutationsList.forEach(mutation => {
+      if (mutation.attributeName === 'class') {
+          if (document.getElementById('shows').classList.contains("active")){
+            // hide others and shwo main
+            showsObj.contentDocument.getElementById("show-details").innerHTML = "";
+
+            showsObj.contentDocument.getElementById("shows-return").classList.remove("active");
+            showsObj.contentDocument.getElementById("shows-return").classList.add("non-active");
+
+            showsObj.contentDocument.getElementById("show-details").classList.remove("active");
+            showsObj.contentDocument.getElementById("show-details").classList.add("non-active");
+
+            showsObj.contentDocument.getElementById("shows-main").classList.remove("non-active");
+            showsObj.contentDocument.getElementById("shows-main").classList.add("shows-main");
+          }
+      }
+  })
+}
+
+
+

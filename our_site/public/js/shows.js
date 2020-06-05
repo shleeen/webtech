@@ -411,6 +411,8 @@ function ticketArrowListeners(){
   });
 }
 
+// SCROLL FUNCTIONS
+
 // listener to hide nav when scrolling down and show nav when scrolling up
 var navbar = window.parent.document.getElementById("navbar");
 var prevScrollpos = window.pageYOffset;

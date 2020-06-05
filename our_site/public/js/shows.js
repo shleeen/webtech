@@ -176,13 +176,15 @@ function addSeatSelection(show_id, data){
   // }
 
   // show ticket categories in a template
+  var prices = {};
   for (var i = 0; i < data.ticket_category.length; i++) {
     var price = moneyToString(data.ticket_price[i]);
-    var ticketDetails = {t_id: data.ticket_id[i], t_category: data.ticket_category[i], t_price: price}
+    prices[data.ticket_id[i]] = data.ticket_price[i];
+    var ticketDetails = {t_id: data.ticket_id[i], t_category: data.ticket_category[i], t_price: price};
     document.getElementById("ticket-types").innerHTML += template.render("template-ticket-types", ticketDetails);
   }
   // add listeners for the button arrows
-  ticketArrowListeners();
+  ticketArrowListeners(prices);
 
   //add listeners for each seat click
   var seatsvg = document.getElementById("seats-svg");
@@ -378,37 +380,52 @@ function filterProd() {
   }
 }
 
-function ticketArrowListeners(){
-  var input = document.getElementsByClassName("ticket-amount");
-  var max = input[0].max;
-  var min = input[0].min;
+function ticketArrowListeners(prices){
+  var inputs = document.getElementsByClassName("ticket-amount");
+  var up_btns = document.getElementsByClassName("ticket-up");
+  var down_btns = document.getElementsByClassName("ticket-down");
 
-  // for(var i=0; i<input.length; i++){
+  for(var i = 0; i < inputs.length; i++) {
+
     // listener for UP BUTTON
-    document.getElementById("ticket-up").addEventListener("click", function() {
+    up_btns[i].addEventListener("click", function() {
       console.log("clicked up");
-      var oldval = input[0].value;
+      var t_id = this.id.split("-").pop();
+      var inputElem = document.getElementById("ticket-type-" + t_id);
+      var max = parseInt(inputElem.max);
+      var oldval = parseInt(inputElem.value);
       if (oldval >= max) {
         var newval = oldval;
       } else {
         var newval = oldval + 1;
       }
-      input[0].value = newval;
+      inputElem.value = newval;
+      var amountElem = document.getElementById("ticket-sum-" + t_id);
+      amountElem.textContent = moneyToString(newval * prices[t_id]);
     });
-  // }
 
-  // listener for DOWN BUTTON
-  document.getElementById("ticket-down").addEventListener("click", function() {
-    console.log("clicked down");
-    var oldval = input[0].value;
+    // listener for DOWN BUTTON
+    down_btns[i].addEventListener("click", function() {
+      console.log("clicked down");
+      var t_id = this.id.split("-").pop();
+      var inputElem = document.getElementById("ticket-type-" + t_id);
+      var min = parseInt(inputElem.min);
+      var oldval = parseInt(inputElem.value);
       if (oldval <= min) {
         var newval = oldval;
       } else {
         var newval = oldval - 1;
       }
-      input[0].value = newval;
-      // input[0].setAttribute(value, newval);
-  });
+      inputElem.value = newval;
+      var amountElem = document.getElementById("ticket-sum-" + t_id);
+      if (newval > 0) {
+        amountElem.textContent = moneyToString(newval * prices[t_id]);
+      }
+      else {
+        amountElem.textContent = "None";
+      }
+    });
+  }
 }
 
 // listener to hide nav when scrolling down and show nav when scrolling up

@@ -117,10 +117,10 @@ function displayShow(data) {
   document.getElementById("show-details").innerHTML = template.render("show-template", data);
 
   // sorting through warnings, and displaying line by line into another template
-  var rawWarnings = data.warnings
+  var rawWarnings = data.warnings;
   var listWarnings = rawWarnings.split("|");
   for (var i = 0; i < listWarnings.length; i++){
-    var warningObj = { warning: listWarnings[i] }
+    var warningObj = { warning: listWarnings[i] };
     document.getElementById("show-warnings").innerHTML += template.render("warnings-template", warningObj);
   }
 
@@ -141,7 +141,6 @@ function displayShow(data) {
     });
 
   }
-  //addSeatSelection(show_id);
 
   // still need to actually route this properly and update URL and AAAAAAAAAAAAAAAAAAAAAH
   // nicole help
@@ -211,6 +210,15 @@ function updateSeatMap(booked) {
   }
   selectedSeats = [];
   document.getElementById("seat-numbers").innerHTML = "";
+
+  // TEMP
+  // var xhr = new XMLHttpRequest();
+  // var formData = new FormData();
+  // formData.set("seat_numbers", JSON.stringify(["B3", "B4", "B5", "B6"]));
+  // formData.set("ticket_amounts", JSON.stringify({1: 1, 2: 3}));
+  // xhr.open("POST", "/api/shows/buyTickets/1/1", true);
+  // xhr.responseType = "json";
+  // xhr.send(formData);
 }
 
 function onSeatClick() {

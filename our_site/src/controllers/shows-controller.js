@@ -93,6 +93,17 @@ exports.getSeats = async function(req, res) {
   }
 };
 
+exports.makeBooking = async function(req, res) {
+  try {
+    await showsService.bookTickets(req.params.prodId, req.params.showId, req.session.user_id, JSON.parse(req.body.seat_numbers), JSON.parse(req.body.ticket_amounts));
+    res.sendStatus(201);
+
+  } catch (err){
+    console.log(err);
+    res.status(400).json({errMessage: "Unable to make booking."});
+  }
+};
+
 
 function combineSeats(seats) {
   let result = [];

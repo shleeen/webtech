@@ -86,7 +86,7 @@ async function initializeDB() {
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Silence of the Lambdas", "Winston Theatre", 
-                  "img/banner-lambda.png", "img/poster-lambda.png", "Max Whale", "Nicole Li", 
+                  "img/banner_lambda.png", "img/poster_lambda.png", "Max Whale", "Nicole Li", 
                   "Have you ever wondered what the worlds of Dr. Hannibal Lecter and Lambda calculus have in common? Theres only one way to find out... But be warned, this show is not for the faint hearted.", 
                   "Contains functional programming.", "");
   } catch (err) { errors += "  " + err + "\n"; }

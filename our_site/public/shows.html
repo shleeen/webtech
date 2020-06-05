@@ -109,12 +109,17 @@
             </svg>
         </p>
 
+        <!-- This needs to be templated and stuff -->
+        <label for="ticket-type-1"><b>Amount of category1</b></label>
+        <input type="number" class="ticket-amount" name="ticket-type-1" id="ticket-type-1" min="0" value="0" step="1" />
+        <label for="ticket-type-2"><b>Amount of category2</b></label>
+        <input type="number" class="ticket-amount" name="ticket-type-2" id="ticket-type-2" min="0" value="0" step="1" />
         <div id="seat-numbers"> </div>
         <template id="template-seatnumber">
             <div>
                 You have selected seat(s): {{seats}}
             </div>
-            <div class="booking-button"> CONFIRM SEATS </div>
+            <div id="booking-button"> CONFIRM SEATS </div>
         </template>
         <!-- </div> -->
 

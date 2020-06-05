@@ -40,6 +40,8 @@ exports.bookTickets = async function(prod_id, show_id, user_id, seat_nums, ticke
   let total_price = 0;
   let num_tickets = 0;
   const ticket_types = await this.getTicketTypes(prod_id);
+  console.log(seat_nums);
+  console.log(ticket_amounts);
   for (const type of ticket_types) {
     total_price += ticket_amounts[type.id] * type.price;
     num_tickets += ticket_amounts[type.id];
@@ -47,7 +49,8 @@ exports.bookTickets = async function(prod_id, show_id, user_id, seat_nums, ticke
   if (num_tickets !== seat_nums.length)
     throw "Seat numbers and tickets don't match";
   const booking_time = new Date();
-  const result = await db.addBooking(show_id, user_id, total_price, booking_time.toISOString(), 1, "ref5temp", 0);
+  // Need to do something about booking ref
+  const result = await db.addBooking(show_id, user_id, total_price, booking_time.toISOString(), 1, "ref6temp", 0);
   num_tickets = 0;
   for (const type of ticket_types) {
     await db.addTickets(result.lastID, type.id, seat_nums.slice(num_tickets, num_tickets + ticket_amounts[type.id]));

@@ -29,6 +29,7 @@ var loadedProductions = false;
 var productionData = {};
 var svg_loaded = false;
 var selectedSeats = [];
+var current_prod_id, current_show_id;
 
 // for each production in db, should display the details on the Shows Page 
 function getProductionDetails() {
@@ -70,6 +71,7 @@ function showClick() {
 }
 
 function getShow(prod_id) {
+  current_prod_id = prod_id;
   if (productionData[prod_id]) {
     displayShow(productionData[prod_id]);
   }
@@ -153,6 +155,7 @@ function displayShow(data) {
 
 // for the entire seat section
 function addSeatSelection(show_id){
+  current_show_id = show_id;
   document.getElementById("select-section").classList.remove("non-active");
   document.getElementById("select-section").classList.add("active");
 
@@ -210,15 +213,50 @@ function updateSeatMap(booked) {
   }
   selectedSeats = [];
   document.getElementById("seat-numbers").innerHTML = "";
+}
 
-  // TEMP
-  // var xhr = new XMLHttpRequest();
-  // var formData = new FormData();
-  // formData.set("seat_numbers", JSON.stringify(["B3", "B4", "B5", "B6"]));
-  // formData.set("ticket_amounts", JSON.stringify({1: 1, 2: 3}));
-  // xhr.open("POST", "/api/shows/buyTickets/1/1", true);
-  // xhr.responseType = "json";
-  // xhr.send(formData);
+function onConfirmClick() {
+  var amountElems = document.getElementsByClassName("ticket-amount");
+  var amounts = {};
+  var total = 0;
+  for (var i = 0; i < amountElems.length; i++) {
+    var id = amountElems[i].id.split("-").pop();
+    amounts[id] = parseInt(amountElems[i].value);
+    total += parseInt(amountElems[i].value);
+  }
+  if (total !== selectedSeats.length) {
+    console.log("BAD TICKET AMOUNTS");
+    return;
+  }
+  console.log(amounts);
+  console.log(selectedSeats);
+
+  // needs to actually show something after the request is done
+  var xhr = new XMLHttpRequest();
+  var formData = new FormData();
+  formData.set("seat_numbers", JSON.stringify(selectedSeats));
+  formData.set("ticket_amounts", JSON.stringify(amounts));
+  xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
+  xhr.responseType = "json";
+  xhr.send(formData);
+}
+
+function onSeatNumChange() {
+  var amountElems = document.getElementsByClassName("ticket-amount");
+  var total_tickets = 0;
+  for (var i = 0; i < amountElems.length; i++) {
+    total_tickets += parseInt(amountElems[i].value);
+  }
+  var remaining = selectedSeats.length - total_tickets;
+  for (i = 0; i < amountElems.length; i++) {
+    amountElems[i].max = parseInt(amountElems[i].value) + remaining;
+    if (amountElems[i].max === "0") {
+      amountElems[i].disabled = true;
+    }
+    else {
+      amountElems[i].disabled = false;
+    }
+  }
 }
 
 function onSeatClick() {
@@ -232,8 +270,14 @@ function onSeatClick() {
     selectedSeats.push(curSeatID);
     this.firstElementChild.style.fill = "#5ad442";
   }
-  if (selectedSeats.length > 0)
+  if (selectedSeats.length > 0) {
     document.getElementById("seat-numbers").innerHTML = template.render("template-seatnumber", {seats: selectedSeats});
+    document.getElementById("booking-button").addEventListener("click", onConfirmClick);
+    var amountElems = document.getElementsByClassName("ticket-amount");
+    for (var i = 0; i < amountElems.length; i++) {
+      amountElems[i].max = selectedSeats.length;
+    }
+  }
   else
     document.getElementById("seat-numbers").innerHTML = "";
 }
@@ -256,7 +300,7 @@ function onSeatUnhover() {
 
 function addShowsListeners() {
   // Add back button listener
-    // onclick: hide back button, display list of productions
+  // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
     document.getElementById("select-section").classList.remove("active");
@@ -269,6 +313,11 @@ function addShowsListeners() {
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
 
+  // TEMPLATING PENDING
+  var amountElems = document.getElementsByClassName("ticket-amount");
+  for (var i = 0; i < amountElems.length; i++) {
+    amountElems[i].addEventListener("input", onSeatNumChange);
+  }
 }
 
 function showAllProductions() {

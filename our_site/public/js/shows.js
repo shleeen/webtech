@@ -177,6 +177,7 @@ function addSeatSelection(show_id, data){
 
   // show ticket categories in a template
   var prices = {};
+  document.getElementById("ticket-types").innerHTML = "";
   for (var i = 0; i < data.ticket_category.length; i++) {
     var price = moneyToString(data.ticket_price[i]);
     prices[data.ticket_id[i]] = data.ticket_price[i];
@@ -233,18 +234,37 @@ function updateSeatMap(booked) {
   document.getElementById("seat-numbers").innerHTML = "";
 }
 
+function getAmountOfTickets() {
+  var amountElems = document.getElementsByClassName("ticket-amount");
+  var total = 0;
+  for (var i = 0; i < amountElems.length; i++) {
+    total += parseInt(amountElems[i].value);
+  }
+  return total;
+}
+
+function updateConfirmButton() {
+  var button = document.getElementById("booking-button");
+  if (button) {
+    if (getAmountOfTickets() === selectedSeats.length && selectedSeats.length > 0) {
+      button.classList.remove("booking-button-inactive");
+      button.classList.add("booking-button-active");
+    } else {
+      button.classList.add("booking-button-inactive");
+      button.classList.remove("booking-button-active");
+    }
+  }
+}
+
 function onConfirmClick() {
+  if (this.classList.contains("booking-button-inactive")) {
+    return;
+  }
   var amountElems = document.getElementsByClassName("ticket-amount");
   var amounts = {};
-  var total = 0;
   for (var i = 0; i < amountElems.length; i++) {
     var id = amountElems[i].id.split("-").pop();
     amounts[id] = parseInt(amountElems[i].value);
-    total += parseInt(amountElems[i].value);
-  }
-  if (total !== selectedSeats.length) {
-    console.log("BAD TICKET AMOUNTS");
-    return;
   }
   console.log(amounts);
   console.log(selectedSeats);
@@ -261,28 +281,10 @@ function onConfirmClick() {
   //need to do if request successfully sent, then display "tickets bought"?
 }
 
-function onSeatNumChange() {
-  var amountElems = document.getElementsByClassName("ticket-amount");
-  var total_tickets = 0;
-  for (var i = 0; i < amountElems.length; i++) {
-    total_tickets += parseInt(amountElems[i].value);
-  }
-  var remaining = selectedSeats.length - total_tickets;
-  for (i = 0; i < amountElems.length; i++) {
-    amountElems[i].max = parseInt(amountElems[i].value) + remaining;
-    if (amountElems[i].max === "0") {
-      amountElems[i].disabled = true;
-    }
-    else {
-      amountElems[i].disabled = false;
-    }
-  }
-}
-
 function onSeatClick() {
   var curSeatID = this.id;
   var index = selectedSeats.indexOf(curSeatID);
-  if (index > -1 ){
+  if (index > -1 ) {
     selectedSeats.splice(index, 1);
     this.firstElementChild.style.fill = "#b3b3b3";
   }
@@ -300,6 +302,7 @@ function onSeatClick() {
   }
   else
     document.getElementById("seat-numbers").innerHTML = "";
+  updateConfirmButton();
 }
 
 function onSeatHover() {
@@ -337,12 +340,6 @@ function addShowsListeners() {
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
-
-  // TEMPLATING PENDING
-  var amountElems = document.getElementsByClassName("ticket-amount");
-  for (var i = 0; i < amountElems.length; i++) {
-    amountElems[i].addEventListener("input", onSeatNumChange);
-  }
 }
 
 function showAllProductions() {
@@ -402,6 +399,7 @@ function ticketArrowListeners(prices){
       inputElem.value = newval;
       var amountElem = document.getElementById("ticket-sum-" + t_id);
       amountElem.textContent = moneyToString(newval * prices[t_id]);
+      updateConfirmButton();
     });
 
     // listener for DOWN BUTTON
@@ -424,6 +422,7 @@ function ticketArrowListeners(prices){
       else {
         amountElem.textContent = "None";
       }
+      updateConfirmButton();
     });
   }
 }

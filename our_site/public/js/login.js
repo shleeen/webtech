@@ -131,6 +131,9 @@ function addLoginListeners() {
           document.getElementById("login").classList.remove("non-active");
           document.getElementById("login").classList.add("active");
 
+          document.querySelector(".modal-content").classList.remove("animate-out");
+          document.querySelector(".modal-content").classList.add("animate-in");
+
           // need to redirect to home page
           window.parent.displayPage("home", "");
         }

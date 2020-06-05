@@ -268,19 +268,25 @@ function onConfirmClick() {
     var id = amountElems[i].id.split("-").pop();
     amounts[id] = parseInt(amountElems[i].value);
   }
-  console.log(amounts);
-  console.log(selectedSeats);
 
-  // needs to actually show something after the request is done
   var xhr = new XMLHttpRequest();
   var formData = new FormData();
   formData.set("seat_numbers", JSON.stringify(selectedSeats));
   formData.set("ticket_amounts", JSON.stringify(amounts));
   xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
-  xhr.responseType = "json";
-  xhr.send(formData);
+  xhr.responseType = "text";
 
-  //need to do if request successfully sent, then display "tickets bought"?
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 201) {
+      document.getElementById("seat-box1").classList.remove("active");
+      document.getElementById("seat-box2").classList.remove("active");
+      document.getElementById("seat-box1").classList.add("non-active");
+      document.getElementById("seat-box2").classList.add("non-active");
+      alert("Booking successful! Your reference is " + xhr.response + ", visit your account page for details.");
+    }
+  };
+
+  xhr.send(formData);
 }
 
 function onSeatClick() {
@@ -333,11 +339,6 @@ function addShowsListeners() {
     document.getElementById("seat-box2").classList.remove("active");
     document.getElementById("seat-box1").classList.add("non-active");
     document.getElementById("seat-box2").classList.add("non-active");
-
-    document.getElementById("seat-box1").classList.add("non-active");
-    document.getElementById("seat-box2").classList.add("non-active");
-    document.getElementById("seat-box1").classList.remove("active");
-    document.getElementById("seat-box2").classList.remove("active");
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);

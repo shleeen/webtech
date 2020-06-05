@@ -93,12 +93,14 @@ function addLoginListeners() {
     document.getElementById("register-content").classList.remove("non-active");
     document.getElementById("login-content").classList.add("non-active");
     document.getElementById("login-failed").classList.add("non-active");
+    draw("register");
   };
 
   toForget.onclick = function() {
     document.getElementById("forgot-content").classList.remove("non-active");
     document.getElementById("login-content").classList.add("non-active");
     document.getElementById("login-failed").classList.add("non-active");
+    draw("reset");
   };
 
   regToLogin.onclick = function(){
@@ -106,7 +108,7 @@ function addLoginListeners() {
     document.getElementById("login-content").classList.remove("non-active");
     document.getElementById("register-content").classList.add("non-active");
     document.getElementById("register-failed").classList.add("non-active");
-    drawLogin();
+    draw("login");
   };
 
   forgotToLogin.onclick = function(){
@@ -114,7 +116,8 @@ function addLoginListeners() {
     document.getElementById("login-content").classList.remove("non-active");
     document.getElementById("forgot-content").classList.add("non-active");
     document.getElementById("reset-sent").classList.add("non-active");
-    drawLogin();
+    //drawLogin();
+    draw("login");
   };
 
 
@@ -221,16 +224,15 @@ function addLoginListeners() {
 
 // ---- Functions --------------------------------------------------------------------------------------------------
 
-function drawLogin(){
-  var orig = document.getElementById("login-svg");
+function draw(targetID){
+  var target = targetID + "-svg";
+  var orig = document.getElementById(target);
   var svgDoc;
-
   orig.addEventListener("load",function() {
     svgDoc = orig.contentDocument;
     var paths = svgDoc.getElementsByTagName("path"); 
     var i;
     for (i=0; i< paths.length; i++){
-      console.log(paths[i]);
       startDrawingPath(paths[i]);
     }
   }, false);

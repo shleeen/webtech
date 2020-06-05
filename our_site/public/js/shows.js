@@ -11,15 +11,16 @@ function start() {
     showAllProductions();
   }
 
-  var showObj = document.getElementById("shows-object");
-  var indexHeight = window.parent.innerHeight;
-    showObj.onresize = function(){
-    //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-    var height = showObj.contentDocument.body.scrollHeight;
+  // @nicole I tried fixing this but it doesn't seem to do anything
+  // var showObj = window.top.document.getElementById("shows-object");
+  // var indexHeight = window.top.innerHeight;
+  //   showObj.onresize = function(){
+  //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+  //   var height = showObj.contentDocument.body.scrollHeight;
 
-    if (height > indexHeight) showObj.style.height = height + "px";
-    else showObj.style.height = indexHeight + "px";
-  };
+  //   if (height > indexHeight) showObj.style.height = height + "px";
+  //   else showObj.style.height = indexHeight + "px";
+  // };
 
   console.log("shows.html loaded");
 }
@@ -225,6 +226,7 @@ function updateSeatMap(booked) {
       gtags[i].addEventListener("click", onSeatClick, false);
       gtags[i].addEventListener("mouseenter", onSeatHover, false);
       gtags[i].addEventListener("mouseleave", onSeatUnhover, false);
+      gtags[i].style.cursor = "pointer";
     }
     else {
       gtags[i].firstElementChild.style.fill = "red";

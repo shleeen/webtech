@@ -2,6 +2,14 @@
     font-size: 30px;
 }
 
+/* For the search bar */
+#prod-filter {
+    width: 100%;
+    font-size: 15px;
+    padding: 11px;
+    border: 1px solid #ddd;
+}
+
 /* arranges each show-container div below one another */
 .shows-main{
     /* width: 100%; */
@@ -329,6 +337,11 @@
 .booking-button:hover{
     color: #083008;
 }
+
+
+/****************************************************************************************
+    CSS FOR RESPONSIVENESS
+****************************************************************************************/
 @media screen and (max-width: 940px) {
 
     .show-page{

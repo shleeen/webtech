@@ -276,11 +276,29 @@ function showAllProductions() {
 
   document.getElementById("shows-main").classList.remove("non-active");
   document.getElementById("shows-main").classList.add("shows-main");
-  
 
   // change path back to shows
   //window.parent.history.pushState("", "", "/shows");
 }
+
+
+// function for filtering the show names for search bar
+function filterProd() {
+  var input = document.getElementById("prod-filter");
+  var filter = input.value.toUpperCase();
+  var prodNames = document.getElementsByClassName("prod-name");
+
+  for (var i = 0; i < prodNames.length; i++) {
+    var name = prodNames[i].innerHTML.toUpperCase(); //get name of the show
+    var prodContainer = prodNames[i].parentElement.parentElement; //get the parent container to hide
+    if (name.indexOf(filter) > -1) {
+      prodContainer.style.display = "";
+    } else {
+      prodContainer.style.display = "none";
+    }
+  }
+}
+
 
 // listener to hide nav when scrolling down and show nav when scrolling up
 var navbar = window.parent.document.getElementById("navbar");

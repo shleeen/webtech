@@ -322,7 +322,7 @@
     flex-grow: 2;
 }
 
-#booking-button{ 
+.booking-button-active{ 
     color: white;
     cursor: pointer;
     background-color:#1c8a1c;
@@ -332,7 +332,16 @@
     width: max-content;
 }
 
-#booking-button:hover{
+.booking-button-inactive{ 
+    color: white;
+    background-color:#707070;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+    width: max-content;
+}
+
+.booking-button-active:hover{
     color: #083008;
 }
 

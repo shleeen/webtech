@@ -95,8 +95,8 @@ exports.getSeats = async function(req, res) {
 
 exports.makeBooking = async function(req, res) {
   try {
-    await showsService.bookTickets(req.params.prodId, req.params.showId, req.session.user_id, JSON.parse(req.body.seat_numbers), JSON.parse(req.body.ticket_amounts));
-    res.sendStatus(201);
+    const booking_ref = await showsService.bookTickets(req.params.prodId, req.params.showId, req.session.user_id, JSON.parse(req.body.seat_numbers), JSON.parse(req.body.ticket_amounts));
+    res.status(201).send(booking_ref);
 
   } catch (err){
     console.log(err);

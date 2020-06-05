@@ -78,7 +78,7 @@
                 <div id="show-dates" class="show-dates pad10">
                     <!-- template for displaying indv. dates since no. of dates changes -->
                     <template id="date-template">
-                        <div id="show-date-{{show_id}}" class="show-indv-date">
+                        <div id="show-date-{{show_id}}" class="show-indv-date unselectable">
                             <div>{{year}}</div>
                             <div class="month-box">{{month}}</div>
                             <div class="day-box">{{day}}</div>
@@ -109,13 +109,12 @@
             <template id="template-ticket-types">
                 <div class="ticket-div pad10">
                     <label for="ticket-type-{{t_id}}"><b>{{t_category}}:</b>  {{t_price}}</label>
-                    <input type="number" class="ticket-amount" name="ticket-type-{{t_id}}" id="ticket-type" min="0" max="10" value="0" step="1" />
+                    <input type="number" class="ticket-amount" name="ticket-type-{{t_id}}" id="ticket-type-{{t_id}}" min="0" max="10" value="0" step="1" />
                     <div class="ticket-nav">
-                        <div class="ticket-button ticket-up" id="ticket-up">+</div>
-                        <div class="ticket-button ticket-down" id="ticket-down">-</div>
+                        <div class="ticket-button ticket-up" id="ticket-up-{{t_id}}">+</div>
+                        <div class="ticket-button ticket-down" id="ticket-down-{{t_id}}">-</div>
                     </div>
-                    <div>
-                        updated amt goes here
+                    <div id="ticket-sum-{{t_id}}">None
                     </div>
                 </div>
             </template>
@@ -126,7 +125,7 @@
                 <div> 
                     You have selected seat(s): {{seats}}
                 </div>
-                <div id="booking-button"> CONFIRM SEATS </div>
+                <div id="booking-button" class="booking-button-active"> CONFIRM SEATS </div>
             </template>
         </div>
 

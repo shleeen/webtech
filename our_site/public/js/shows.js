@@ -11,15 +11,16 @@ function start() {
     showAllProductions();
   }
 
-  var showObj = document.getElementById("shows-object");
-  var indexHeight = window.parent.innerHeight;
-    showObj.onresize = function(){
-    //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-    var height = showObj.contentDocument.body.scrollHeight;
+  // @nicole I tried fixing this but it doesn't seem to do anything
+  // var showObj = window.top.document.getElementById("shows-object");
+  // var indexHeight = window.top.innerHeight;
+  //   showObj.onresize = function(){
+  //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
+  //   var height = showObj.contentDocument.body.scrollHeight;
 
-    if (height > indexHeight) showObj.style.height = height + "px";
-    else showObj.style.height = indexHeight + "px";
-  };
+  //   if (height > indexHeight) showObj.style.height = height + "px";
+  //   else showObj.style.height = indexHeight + "px";
+  // };
 
   console.log("shows.html loaded");
 }
@@ -176,13 +177,16 @@ function addSeatSelection(show_id, data){
   // }
 
   // show ticket categories in a template
+  var prices = {};
+  document.getElementById("ticket-types").innerHTML = "";
   for (var i = 0; i < data.ticket_category.length; i++) {
     var price = moneyToString(data.ticket_price[i]);
-    var ticketDetails = {t_id: data.ticket_id[i], t_category: data.ticket_category[i], t_price: price}
+    prices[data.ticket_id[i]] = data.ticket_price[i];
+    var ticketDetails = {t_id: data.ticket_id[i], t_category: data.ticket_category[i], t_price: price};
     document.getElementById("ticket-types").innerHTML += template.render("template-ticket-types", ticketDetails);
   }
   // add listeners for the button arrows
-  ticketArrowListeners();
+  ticketArrowListeners(prices);
 
   //add listeners for each seat click
   var seatsvg = document.getElementById("seats-svg");
@@ -222,6 +226,7 @@ function updateSeatMap(booked) {
       gtags[i].addEventListener("click", onSeatClick, false);
       gtags[i].addEventListener("mouseenter", onSeatHover, false);
       gtags[i].addEventListener("mouseleave", onSeatUnhover, false);
+      gtags[i].style.cursor = "pointer";
     }
     else {
       gtags[i].firstElementChild.style.fill = "red";
@@ -231,56 +236,63 @@ function updateSeatMap(booked) {
   document.getElementById("seat-numbers").innerHTML = "";
 }
 
+function getAmountOfTickets() {
+  var amountElems = document.getElementsByClassName("ticket-amount");
+  var total = 0;
+  for (var i = 0; i < amountElems.length; i++) {
+    total += parseInt(amountElems[i].value);
+  }
+  return total;
+}
+
+function updateConfirmButton() {
+  var button = document.getElementById("booking-button");
+  if (button) {
+    if (getAmountOfTickets() === selectedSeats.length && selectedSeats.length > 0) {
+      button.classList.remove("booking-button-inactive");
+      button.classList.add("booking-button-active");
+    } else {
+      button.classList.add("booking-button-inactive");
+      button.classList.remove("booking-button-active");
+    }
+  }
+}
+
 function onConfirmClick() {
+  if (this.classList.contains("booking-button-inactive")) {
+    return;
+  }
   var amountElems = document.getElementsByClassName("ticket-amount");
   var amounts = {};
-  var total = 0;
   for (var i = 0; i < amountElems.length; i++) {
     var id = amountElems[i].id.split("-").pop();
     amounts[id] = parseInt(amountElems[i].value);
-    total += parseInt(amountElems[i].value);
   }
-  if (total !== selectedSeats.length) {
-    console.log("BAD TICKET AMOUNTS");
-    return;
-  }
-  console.log(amounts);
-  console.log(selectedSeats);
 
-  // needs to actually show something after the request is done
   var xhr = new XMLHttpRequest();
   var formData = new FormData();
   formData.set("seat_numbers", JSON.stringify(selectedSeats));
   formData.set("ticket_amounts", JSON.stringify(amounts));
   xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
-  xhr.responseType = "json";
+  xhr.responseType = "text";
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 201) {
+      document.getElementById("seat-box1").classList.remove("active");
+      document.getElementById("seat-box2").classList.remove("active");
+      document.getElementById("seat-box1").classList.add("non-active");
+      document.getElementById("seat-box2").classList.add("non-active");
+      alert("Booking successful! Your reference is " + xhr.response + ", visit your account page for details.");
+    }
+  };
+
   xhr.send(formData);
-
-  //need to do if request successfully sent, then display "tickets bought"?
-}
-
-function onSeatNumChange() {
-  var amountElems = document.getElementsByClassName("ticket-amount");
-  var total_tickets = 0;
-  for (var i = 0; i < amountElems.length; i++) {
-    total_tickets += parseInt(amountElems[i].value);
-  }
-  var remaining = selectedSeats.length - total_tickets;
-  for (i = 0; i < amountElems.length; i++) {
-    amountElems[i].max = parseInt(amountElems[i].value) + remaining;
-    if (amountElems[i].max === "0") {
-      amountElems[i].disabled = true;
-    }
-    else {
-      amountElems[i].disabled = false;
-    }
-  }
 }
 
 function onSeatClick() {
   var curSeatID = this.id;
   var index = selectedSeats.indexOf(curSeatID);
-  if (index > -1 ){
+  if (index > -1 ) {
     selectedSeats.splice(index, 1);
     this.firstElementChild.style.fill = "#b3b3b3";
   }
@@ -298,6 +310,7 @@ function onSeatClick() {
   }
   else
     document.getElementById("seat-numbers").innerHTML = "";
+  updateConfirmButton();
 }
 
 function onSeatHover() {
@@ -327,20 +340,9 @@ function addShowsListeners() {
     document.getElementById("seat-box1").classList.add("non-active");
     document.getElementById("seat-box2").classList.add("non-active");
 
-    document.getElementById("seat-box1").classList.add("non-active");
-    document.getElementById("seat-box2").classList.add("non-active");
-    document.getElementById("seat-box1").classList.remove("active");
-    document.getElementById("seat-box2").classList.remove("active");
-
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
-
-  // TEMPLATING PENDING
-  var amountElems = document.getElementsByClassName("ticket-amount");
-  for (var i = 0; i < amountElems.length; i++) {
-    amountElems[i].addEventListener("input", onSeatNumChange);
-  }
 }
 
 function showAllProductions() {
@@ -378,37 +380,54 @@ function filterProd() {
   }
 }
 
-function ticketArrowListeners(){
-  var input = document.getElementsByClassName("ticket-amount");
-  var max = input[0].max;
-  var min = input[0].min;
+function ticketArrowListeners(prices){
+  var inputs = document.getElementsByClassName("ticket-amount");
+  var up_btns = document.getElementsByClassName("ticket-up");
+  var down_btns = document.getElementsByClassName("ticket-down");
 
-  // for(var i=0; i<input.length; i++){
+  for(var i = 0; i < inputs.length; i++) {
+
     // listener for UP BUTTON
-    document.getElementById("ticket-up").addEventListener("click", function() {
+    up_btns[i].addEventListener("click", function() {
       console.log("clicked up");
-      var oldval = input[0].value;
+      var t_id = this.id.split("-").pop();
+      var inputElem = document.getElementById("ticket-type-" + t_id);
+      var max = parseInt(inputElem.max);
+      var oldval = parseInt(inputElem.value);
       if (oldval >= max) {
         var newval = oldval;
       } else {
         var newval = oldval + 1;
       }
-      input[0].value = newval;
+      inputElem.value = newval;
+      var amountElem = document.getElementById("ticket-sum-" + t_id);
+      amountElem.textContent = moneyToString(newval * prices[t_id]);
+      updateConfirmButton();
     });
-  // }
 
-  // listener for DOWN BUTTON
-  document.getElementById("ticket-down").addEventListener("click", function() {
-    console.log("clicked down");
-    var oldval = input[0].value;
+    // listener for DOWN BUTTON
+    down_btns[i].addEventListener("click", function() {
+      console.log("clicked down");
+      var t_id = this.id.split("-").pop();
+      var inputElem = document.getElementById("ticket-type-" + t_id);
+      var min = parseInt(inputElem.min);
+      var oldval = parseInt(inputElem.value);
       if (oldval <= min) {
         var newval = oldval;
       } else {
         var newval = oldval - 1;
       }
-      input[0].value = newval;
-      // input[0].setAttribute(value, newval);
-  });
+      inputElem.value = newval;
+      var amountElem = document.getElementById("ticket-sum-" + t_id);
+      if (newval > 0) {
+        amountElem.textContent = moneyToString(newval * prices[t_id]);
+      }
+      else {
+        amountElem.textContent = "None";
+      }
+      updateConfirmButton();
+    });
+  }
 }
 
 // SCROLL FUNCTIONS

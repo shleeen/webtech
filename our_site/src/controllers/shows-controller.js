@@ -3,8 +3,15 @@ const showsService = require("../service/shows-service");
 exports.getProd = async function(req, res) {
   try {
     const showData = await showsService.getProduction(req.params.prodId);
+    const ticketTypes = await showsService.getTicketTypes(req.params.prodId);
     const shows = combineShows(showData);
-    console.log(shows)
+    const types = combineTicketTypes(ticketTypes);
+    for (const i in shows) {
+      shows[i].ticket_id = types[i].ticket_id;
+      shows[i].ticket_price = types[i].ticket_price;
+      shows[i].ticket_category = types[i].ticket_category;
+    }
+    console.log(shows);
 
     if (req.params.prodId) {
       res.status(200).json(shows[req.params.prodId]);
@@ -48,6 +55,29 @@ function combineShows(shows) {
   return result;
 }
 
+function combineTicketTypes(types) {
+  let typeMap = new Map();
+  for (const i in types) {
+    if (!typeMap.has(types[i].production_id)) {
+      typeMap.set(types[i].production_id, i);
+      types[i].ticket_id = [types[i].id];
+      types[i].ticket_price = [types[i].price];
+      types[i].ticket_category = [types[i].category];
+    }
+    else {
+      const index = typeMap.get(types[i].production_id);
+      types[index].ticket_id.push(types[i].id);
+      types[index].ticket_price.push(types[i].price);
+      types[index].ticket_category.push(types[i].category);
+    }
+  }
+  let result = {};
+  for (const i of typeMap.values()) {
+    result[types[i].production_id] = types[i];
+  }
+  return result;
+}
+
 exports.getSeats = async function(req, res) {
   try {
     const seatsData = await showsService.getSeats(req.params.prodId);
@@ -60,6 +90,17 @@ exports.getSeats = async function(req, res) {
 
   } catch (err){
     res.status(400).json({errMessage: "Unable to get seats data."});
+  }
+};
+
+exports.makeBooking = async function(req, res) {
+  try {
+    await showsService.bookTickets(req.params.prodId, req.params.showId, req.session.user_id, JSON.parse(req.body.seat_numbers), JSON.parse(req.body.ticket_amounts));
+    res.sendStatus(201);
+
+  } catch (err){
+    console.log(err);
+    res.status(400).json({errMessage: "Unable to make booking."});
   }
 };
 

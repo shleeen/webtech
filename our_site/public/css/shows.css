@@ -324,7 +324,7 @@
     flex-grow: 1;
 } */
 
-.booking-button{ 
+#booking-button{ 
     color: white;
     cursor: pointer;
     background-color:#1c8a1c;
@@ -334,7 +334,7 @@
     width: max-content;
 }
 
-.booking-button:hover{
+#booking-button:hover{
     color: #083008;
 }
 

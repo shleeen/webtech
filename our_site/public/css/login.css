@@ -75,21 +75,21 @@ button:hover {
 .login-svg{
   height: 80px;
   animation-name: changeFilter;
-  animation-duration: 8s;
+  animation-duration: 6s;
   animation-fill-mode: forwards;
 }
 
 .register-svg{
   height: 80px;
   animation-name: changeFilter;
-  animation-duration: 8s;
+  animation-duration: 6s;
   animation-fill-mode: forwards;
 }
 
 .reset-svg{
   height: 80px;
   animation-name: changeFilter;
-  animation-duration: 8s;
+  animation-duration: 6s;
   animation-fill-mode: forwards;
 }
 

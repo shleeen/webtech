@@ -289,20 +289,23 @@
 #select-section{
     /* height: max-content;*/
     /* opacity: 0; */
-    margin: 0px 200px;
-    margin-bottom: 40px;
     justify-content: center;
-    display: flex;
-    flex-direction: row;
-    align-items: stretch; /*default is stretch, fills all space available */
-    /* overflow: auto; */
-    padding-bottom: 50px;
+    padding-bottom: 100px;
+    width: 1000px;
+    align-self: center;
+    margin: auto;
+    padding-left: 290px;
 }
 
 #seats-svg{
     height: 500px;
     width: auto;
     padding: 0 30px;
+}
+
+.seats-legend{
+    width: fit-content;
+    text-align: center;
 }
 
 #svg-legend{
@@ -313,10 +316,21 @@
     border-radius: 1px;
 }
 
+#seat-selection{
+    display: flex;
+}
+#seat-box0 p{
+    font-weight: 600;
+    width: fit-content;
+}
+
 #seat-box1{
     /* background-color: indianred; */
     flex-grow: 1;
     max-inline-size: fit-content;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #seat-box2{
@@ -362,6 +376,7 @@
     border: solid;
     border-color: #b3b3b3;
     border-radius: 1px;
+    padding: 5px;
 }
 
 /* for the ticket selecty boxy */
@@ -457,16 +472,12 @@ input[type=number]{
     }
 
     #select-section{
-        /* height: max-content;*/
-        /* opacity: 0; */
-        margin: 0px 80px;
-        margin-bottom: 40px;
-        justify-content: space-between;
-        display: flow-root;
-        flex-direction: row;
-        align-items: stretch; /*default is stretch, fills all space available */
-        /* overflow: auto; */
-        padding-bottom: 50px;
+        justify-content: center;
+        padding-bottom: 100px;
+        width: max-content;
+        align-self: center;
+        margin: auto;
+        padding-left: 0;
     }
 
     .prod-container { 
@@ -478,10 +489,23 @@ input[type=number]{
         transition: all 0.3s ease;
         min-width: 500px;
     }
+
+    #seat-selection{
+        display: flow-root;
+    }
+
+    #seats-svg{
+        height: 500px;
+        width: auto;
+        padding: 30px 30px;
+    }
+
+
  }
 
  @media screen and (max-width: 640px) {
     .prod-poster{
+        transition: all 0.2s ease;
         margin-top: 20px;
         margin-bottom: 30px;
         margin-left: auto;

@@ -160,7 +160,8 @@
     display: flex;
     margin-left: 50px;
     margin-right: 50px;
-    min-height: 90vh;
+    min-height: max-content;
+    margin-bottom: 25px;
 }
 .show-poster{
     flex-grow: 1;
@@ -288,21 +289,22 @@
     CSS FOR SEATS STUFF
 *************************************************************************************** */
 #select-section{
-    /* width: 600px; */
     /* height: max-content;*/
     /* opacity: 0; */
-    margin: 0px 40px;
+    margin: 0px 200px;
     margin-bottom: 40px;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     align-items: stretch; /*default is stretch, fills all space available */
     /* overflow: auto; */
+    padding-bottom: 50px;
 }
 
 #seats-svg{
     height: 500px;
     width: auto;
+    padding: 0 30px;
 }
 
 #svg-legend{
@@ -315,11 +317,13 @@
 #seat-box1{
     /* background-color: indianred; */
     flex-grow: 1;
+    width: fit-content;
 }
 
 #seat-box2{
     /* background-color: lavender; */
     flex-grow: 2;
+    max-inline-size: fit-content;
 }
 
 .booking-button-active{ 
@@ -330,6 +334,7 @@
     padding: 8px;
     font-weight: 700;
     width: max-content;
+    float: right;
 }
 
 .booking-button-inactive{ 
@@ -339,6 +344,7 @@
     padding: 8px;
     font-weight: 700;
     width: max-content;
+    float: right;
 }
 
 .booking-button-active:hover{
@@ -449,5 +455,18 @@ input[type=number]{
         padding: 25px 35px;
         text-align: left;
         text-align: center;
+    }
+
+    #select-section{
+        /* height: max-content;*/
+        /* opacity: 0; */
+        margin: 0px 80px;
+        margin-bottom: 40px;
+        justify-content: space-between;
+        display: flow-root;
+        flex-direction: row;
+        align-items: stretch; /*default is stretch, fills all space available */
+        /* overflow: auto; */
+        padding-bottom: 50px;
     }
  }

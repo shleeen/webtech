@@ -12,6 +12,7 @@ registerRouter.post("/", upload.none(), async (req, res) => {
   let user_id;
   try {
     user_id = await dbHelper.addUser(req.body.username, "normal", req.body.first_name, req.body.last_name, req.body.email, req.body.pwd);
+    console.log("User created");
   } catch (err) {
     res.status(400).send(err);
     return;

@@ -6,7 +6,6 @@ exports.getProduction = async function(prod_id) {
   if (prod_id) sql += " WHERE production.id = ?";
   try {
     const rows = await db.all(sql, prod_id);
-    console.log(rows);
     return rows;
   } catch (err) {
     console.log(err);
@@ -19,7 +18,6 @@ exports.getTicketTypes = async function(prod_id) {
   if (prod_id) sql += " WHERE production_id = ?";
   try {
     const rows = await db.all(sql, prod_id);
-    console.log(rows);
     return rows;
   } catch (err) {
     console.log(err);
@@ -63,6 +61,7 @@ exports.bookTickets = async function(prod_id, show_id, user_id, seat_nums, ticke
     await db.addTickets(result.lastID, type.id, seat_nums.slice(num_tickets, num_tickets + ticket_amounts[type.id]));
     num_tickets += ticket_amounts[type.id];
   }
+  console.log("Booking made");
   return booking_ref;
 };
 

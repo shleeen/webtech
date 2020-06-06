@@ -142,9 +142,9 @@ svg {
 
 .join-section{
     width: 100%;
-    margin: 0% 0%;
+    margin: 48px 0%;
     position: relative;
-    height: 1000px;
+    height: 100vh;
     perspective: 10px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -153,6 +153,9 @@ svg {
 
 .background-img{
     margin-top: -5px;
+    width: 100vw;
+    height: max-content;
+    object-fit: cover;
 }
 
 .join-img{

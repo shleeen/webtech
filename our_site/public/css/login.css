@@ -15,7 +15,7 @@ input[type=email], input[type=password], input[type=text] {
 }
 
 input[type=first], input[type=last] {
-  width: 46%;
+  width: 47%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -42,11 +42,12 @@ input:hover {
 button {
   background-color: #4CAF50;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  padding: 12px 18px;
+  margin: 6px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 15vw;
+  font-size: 15px;
 }
 
 form{
@@ -62,10 +63,6 @@ form p{
 
 button:hover {
   opacity: 0.8;
-}
-
-#submit-login-btn{
-  width: 20vw;
 }
   
 .login-psw {
@@ -299,3 +296,4 @@ span:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+

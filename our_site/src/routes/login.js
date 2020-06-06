@@ -1,30 +1,12 @@
 const express = require("express");
 const loginRouter = express.Router();
-const userInfo = require("../service/user-info-service");
+const loginService = require("../service/login-service");
 const multer = require("multer");
 const upload = multer();
-const dbHelper = require(process.cwd() + "/database/database");
 
 loginRouter.post("/", upload.none(), async (req, res) => {
-  const user_id = await dbHelper.authenticate(req.body.email, req.body.pwd);
-  console.log(user_id);
-  if (user_id) {
-    console.log("authentication success");
-    const info = await userInfo.getUserInfo(user_id);
-    // Regenerate session when signing in
-    // to prevent fixation
-    req.session.regenerate(() => {
-      // Store the user's primary key
-      // in the session store to be retrieved,
-      // or in this case the entire user object
-      req.session.user_id = user_id;
-      if (req.body.remember === "on") {
-        req.session.cookie.maxAge = 7 * 24 * 3600 * 1000; // Stay logged in for a week
-      }
-      res.status(200).json(info);
-    });
-  } else {
-    console.log("authentication failed");
+  const info = await loginService.login(req, res);
+  if (!info) {
     res.sendStatus(401);
   }
 });

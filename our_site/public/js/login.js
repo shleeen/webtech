@@ -188,10 +188,9 @@ function addLoginListeners() {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
-        if (request.status === 201) {
+        if (request.status === 200) {
           // what needs to be done here hm
-          document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
-          showAccountMenu(formData.firstName);
+          showAccountMenu(this.response.first_name);
 
           // clear form data
 
@@ -202,6 +201,7 @@ function addLoginListeners() {
         }
       }
     };
+    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
   });

@@ -11,22 +11,15 @@ const userRouter = require("./routes/user.js");
 
 router.use("/home", homeRouter);
 router.use("/shows", showsRouter);
-router.use("/login", loginRouter); // dunno if this is right
+router.use("/login", loginRouter);
 router.use("/logout", logoutRouter);
 router.use("/register", registerRouter);
 router.use("/reset", resetRouter);
 router.use("/user", userRouter);
 
+// Fallback for unknown API route
 router.use((req, res) => {
   res.status(404).send("Sorry can't find that!");
 });
-
-// router.METHOD(route, (req, res) => {
-//   // callback function
-//      req is an object full of information that’s coming in (such as form data or query parameters)
-//      res is an object full of methods for sending data back to the user
-//        an optional next parameter, which is useful if you don’t actually want to send any data back, 
-//         or if you want to pass the request off for something else to handle.
-// });
 
 module.exports = router;

@@ -9,7 +9,6 @@ showsRouter.get("/getProductionDetails/:prodId", showsController.getProd);
 
 showsRouter.get("/getProductionSeatStatus/:prodId", showsController.getSeats);
 
-// just a guess on what we need
 showsRouter.post("/buyTickets/:prodId/:showId", upload.none(), showsController.makeBooking);
 module.exports = showsRouter;
 

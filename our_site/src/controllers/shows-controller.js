@@ -19,7 +19,6 @@ exports.getProd = async function(req, res) {
     else {
       res.status(200).json(shows);
     }
-    console.log("details received by SHOWS controller");
 
   } catch (err) {
     console.log(err);
@@ -85,9 +84,7 @@ exports.getSeats = async function(req, res) {
     // Need to combine those of the same showid together and have a list of seat numbers instead of many rows
     const seats = combineSeats(seatsData);
 
-    console.log(seats);
     res.status(200).json(seats);
-
   } catch (err){
     res.status(400).json({errMessage: "Unable to get seats data."});
   }
@@ -103,7 +100,6 @@ exports.makeBooking = async function(req, res) {
     res.status(400).json({errMessage: "Unable to make booking."});
   }
 };
-
 
 function combineSeats(seats) {
   let result = [];

@@ -83,7 +83,8 @@ async function addUser(username, usertype, first_name, last_name, email, pass) {
   }
   const user = await hash( {password: pass} );
   const user_type = await db.get("SELECT id FROM user_type WHERE type = ?", [usertype]);
-  await db.run("insert into user (user_type_id, username, first_name, last_name, email, password_hash, password_salt) values(?, ?, ?, ?, ?, ?, ?)", [user_type.id, username, first_name, last_name, email, user.hash, user.salt]);
+  const result = await db.run("insert into user (user_type_id, username, first_name, last_name, email, password_hash, password_salt) values(?, ?, ?, ?, ?, ?, ?)", [user_type.id, username, first_name, last_name, email, user.hash, user.salt]);
+  return result.lastID;
 }
 
 async function addProductions(creator, name, venue, banner_path, poster_path, producer, director, blurb, warnings, special_note) {

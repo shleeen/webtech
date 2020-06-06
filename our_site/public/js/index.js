@@ -111,7 +111,7 @@ function addListeners() {
   window.addEventListener("popstate", function (event) {
     // The URL changed...
     if (event.state) {
-      displayPage(event.state.id, event.state.url);
+      displayPage(event.state.id, event.state.url, true);
     }
   });
   
@@ -121,12 +121,24 @@ function addListeners() {
 // @nicole seeing the same function pasted 3 times made me sad
 // DRYYYYYYYYYY
 // Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
-function displayPage(pageName, newURL) {
+function displayPage(pageName, newURL, popState) {
   console.log("displaying " + pageName);
 
   var main = document.getElementById("main");
   var currentActive = main.getElementsByClassName("active");
-    
+  
+  if (newURL !== undefined && !popState) {
+    var state = { id: pageName, url: newURL };
+    if (state.url !== history.state.url) {
+      newURL = location.protocol + "//" + location.host + newURL;
+      window.top.history.pushState(state, "", newURL);
+    }
+  }
+
+  if (window.renderFunctions[pageName]) {
+    window.renderFunctions[pageName]();
+  }
+
   if (currentActive.length === 1) {
     var old_page = currentActive[0];
     if (old_page.id === pageName) return;
@@ -136,9 +148,6 @@ function displayPage(pageName, newURL) {
     document.getElementById(pageName).classList.remove("non-active");
     document.getElementById(pageName).style.opacity = "0";
     old_page.style.opacity = "0";
-    if (window.renderFunctions[pageName]) {
-      window.renderFunctions[pageName]();
-    }
   }
   // This is a mess but it robustly handles the page transition behaviour
   //   case 1, no transitions, display page immediately
@@ -185,14 +194,6 @@ function displayPage(pageName, newURL) {
       }
     }
   }
-  
-  // Could change later to have url name different to id name
-  if (newURL !== undefined) {
-    var state = { id: pageName, url: newURL };
-    newURL = location.protocol + "//" + location.host + newURL;
-    window.top.history.pushState(state, "", newURL);
-  }
-  //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 
 function pageFadeEnd(event) {

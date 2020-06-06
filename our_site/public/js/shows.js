@@ -8,7 +8,8 @@ function start() {
 }
 
 function render() {
-  var param = window.parent.location.pathname.split("/").pop();
+  var param = window.top.location.pathname.split("/").pop();
+  console.log(param);
   document.getElementById("show-details").innerHTML = "";
   hideSeatSelection();
   if (param !== "shows" && param !== "") {
@@ -65,6 +66,8 @@ function getProductionDetails() {
 //**************************************************************************** */
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
+  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + prod_id;
+  window.top.history.pushState({id: "shows", url: "/shows/" + prod_id}, "", newURL);
   getShow(prod_id);
 }
 
@@ -138,9 +141,6 @@ function displayShow(data) {
       addSeatSelection(this.id.split("-").pop(), data);
     });
   }
-
-  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + data.production_id;
-  window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
 function moneyToString(amount) {

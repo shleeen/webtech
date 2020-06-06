@@ -129,8 +129,11 @@ function displayPage(pageName, newURL, popState) {
   
   if (newURL !== undefined && !popState) {
     var state = { id: pageName, url: newURL };
-    if (state.url !== history.state.url) {
-      newURL = location.protocol + "//" + location.host + newURL;
+    newURL = location.protocol + "//" + location.host + newURL;
+    if (!window.top.history.state) {
+      window.top.history.pushState(state, "", newURL);
+    }
+    else if (newURL !== window.top.history.state.url) {
       window.top.history.pushState(state, "", newURL);
     }
   }

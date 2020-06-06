@@ -1,5 +1,4 @@
 "use strict";
-//addEventListener('load', start);
 document.addEventListener("DOMContentLoaded", start, false);
 
 // this includes 0 oops
@@ -8,7 +7,6 @@ var numberOfBanners = 0;
 function start() {
   // Get banner images from server and populate html
   getBanners();
-  addListeners();
   console.log("home.html loaded");
 }
 
@@ -24,7 +22,6 @@ function getBanners() {
         var prod_ids = {};
 
         for (var x in res.data) {
-          // var imagePath = console.log(res["data"][x].banner_path)
           bannerDivID = "carousel-banner-";
           navDivID = "nav-button-";
           if (x === "0") {
@@ -151,67 +148,6 @@ function navCarouselChange(elem) {
   document.getElementById(nextBannerID).classList.remove("carousel-content-hide");
   document.getElementById(nextBannerID).classList.add("carousel-content");  
 }
-
-function addListeners() {
-  // document.getElementById("join-link").addEventListener("click", function() {
-  //   window.parent.document.getElementById("modal-login").style.display = "block";
-  // });
-    
-  // -------------------------NAV ARROWS--------------------------------
-  // For some reason this doesnt work but in-line on-click does 
-  /*
-    var carouselArrows = document.querySelectorAll('.carousel-arrow');
-    for (var j = 0; j < carouselArrows.length; j++) {
-        console.log('arrows');
-        carouselArrows[j].addEventListener('click', function(event) {
-            alert('f');
-        });
-    }
-    */
-
-  // -------------------------NAV BUTTONS--------------------------------
-  /*var carouselNav = document.querySelectorAll('.carousel-nav-button');
-    for (var i = 0; i < carouselNav.length; i++) {
-        carouselNav[i].addEventListener('click', function (event) {
-            //navCarouselChange.call(this, event);
-            //alert(this.id);
-            
-            const elem = document.getElementById('nav-svg-rect');
-            const colour = elem.style.getPropertyValue('fill');
-          
-            if (colour == '#FFFFFF') {
-                fadeColour(elem, color, '#371545');
-            } else {
-                fadeColour(elem, color, '#FFFFFF');
-            }
-            
-            console.log('nav thing is clicked', i);
-
-        }, false);
-    } 
-    */
-}
-
-
-// var navbar = window.parent.document.getElementById("navbar");
-// var prevScrollpos = window.pageYOffset;
-// window.onscroll = function () {
-//   if (window.scrollY == 0){
-//     navbar.classList.remove("hover");
-//   } else {
-//     navbar.classList.add("hover");
-//   }
-//   var currentScrollPos = window.pageYOffset;
-//   if (prevScrollpos > currentScrollPos) {
-    
-//     // remove hover
-//     window.parent.document.getElementById("navbar").style.top = "0";
-
-//   } else {
-//     window.parent.document.getElementById("navbar").style.top = "-60px";
-//   }
-//   prevScrollpos = currentScrollPos;
-// };
 
 function fadeColour(elem, from, to) {
   var r = parseInt(from.substr(0,2),16);

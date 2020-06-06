@@ -242,7 +242,7 @@ window.onscroll = function () {
 function callback(mutationsList, observer) {
   mutationsList.forEach(mutation => {
     if (mutation.attributeName === "class") {
-      if (document.getElementById("shows").classList.contains("active")){
+      if (document.getElementById("shows").classList.contains("active") && window.location.pathname === "/shows") {
         // hide others and shwo main
         showsObj.contentDocument.getElementById("show-details").innerHTML = "";
 

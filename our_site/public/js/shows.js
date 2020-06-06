@@ -3,16 +3,22 @@ document.addEventListener("DOMContentLoaded", start, false);
 
 function start() {
   addShowsListeners();
+  render();
+  console.log("shows.html loaded");
+}
+
+function render() {
   var param = window.parent.location.pathname.split("/").pop();
+  document.getElementById("show-details").innerHTML = "";
+  hideSeatSelection();
   if (param !== "shows" && param !== "") {
     getShow(param);
   }
   else {
     showAllProductions();
   }
-
-  console.log("shows.html loaded");
 }
+window.top.renderFunctions["shows"] = render;
 
 // Globals to store show data so we don't do unnecessary requests
 var loadedProductions = false;
@@ -324,17 +330,21 @@ function addShowsListeners() {
   // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
-    // i hate that this is repeated so much
-    document.getElementById("seat-box0").classList.remove("active");
-    document.getElementById("seat-box1").classList.remove("active");
-    document.getElementById("seat-box2").classList.remove("active");
-    document.getElementById("seat-box0").classList.add("non-active");
-    document.getElementById("seat-box1").classList.add("non-active");
-    document.getElementById("seat-box2").classList.add("non-active");
+    hideSeatSelection();
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
+}
+
+function hideSeatSelection() {
+  // i hate that this is repeated so much
+  document.getElementById("seat-box0").classList.remove("active");
+  document.getElementById("seat-box1").classList.remove("active");
+  document.getElementById("seat-box2").classList.remove("active");
+  document.getElementById("seat-box0").classList.add("non-active");
+  document.getElementById("seat-box1").classList.add("non-active");
+  document.getElementById("seat-box2").classList.add("non-active");
 }
 
 function showAllProductions() {

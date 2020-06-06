@@ -2,7 +2,8 @@
 
 // ----- Globals so they can be loaded after the entire site is loaded and used throughout------------------------------------------------------------
 var navbar;
-var showsObj;
+
+window.renderFunctions = {};
 // ----------------------------------------------------------------------------
 
 addEventListener("load", start);
@@ -18,15 +19,7 @@ function start() {
 
   setHeight();
 
-
-  // Listen to when shows tab is clicked 
-  const mutationObserver = new MutationObserver(callback);
-  const showsTab = document.getElementById("shows");
-  mutationObserver.observe(showsTab, { attributes: true });
-
   navbar = document.getElementById("navbar");
-  showsObj = document.getElementById("shows-object");
-    
 } 
 
 // -------------------------------------------------------------------------------------------------
@@ -143,6 +136,9 @@ function displayPage(pageName, newURL) {
     document.getElementById(pageName).classList.remove("non-active");
     document.getElementById(pageName).style.opacity = "0";
     old_page.style.opacity = "0";
+    if (window.renderFunctions[pageName]) {
+      window.renderFunctions[pageName]();
+    }
   }
   // This is a mess but it robustly handles the page transition behaviour
   //   case 1, no transitions, display page immediately
@@ -236,28 +232,6 @@ window.onscroll = function () {
   }
   prevScrollpos = currentScrollPos;
 };
-
-
-// LISTENER FOR SHOWS TAB TO DISPLAY MAIN PAGE
-function callback(mutationsList, observer) {
-  mutationsList.forEach(mutation => {
-    if (mutation.attributeName === "class") {
-      if (document.getElementById("shows").classList.contains("active") && window.location.pathname === "/shows") {
-        // hide others and shwo main
-        showsObj.contentDocument.getElementById("show-details").innerHTML = "";
-
-        showsObj.contentDocument.getElementById("shows-return").classList.remove("active");
-        showsObj.contentDocument.getElementById("shows-return").classList.add("non-active");
-
-        showsObj.contentDocument.getElementById("show-details").classList.remove("active");
-        showsObj.contentDocument.getElementById("show-details").classList.add("non-active");
-
-        showsObj.contentDocument.getElementById("shows-main").classList.remove("non-active");
-        showsObj.contentDocument.getElementById("shows-main").classList.add("shows-main");
-      }
-    }
-  });
-}
 
 
 

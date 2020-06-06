@@ -293,7 +293,7 @@
     /* opacity: 0; */
     margin: 0px 200px;
     margin-bottom: 40px;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     flex-direction: row;
     align-items: stretch; /*default is stretch, fills all space available */
@@ -317,7 +317,7 @@
 #seat-box1{
     /* background-color: indianred; */
     flex-grow: 1;
-    width: fit-content;
+    max-inline-size: fit-content;
 }
 
 #seat-box2{

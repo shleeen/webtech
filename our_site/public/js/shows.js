@@ -3,16 +3,22 @@ document.addEventListener("DOMContentLoaded", start, false);
 
 function start() {
   addShowsListeners();
-  var param = window.parent.location.pathname.split("/").pop();
+  render();
+  console.log("shows.html loaded");
+}
+
+function render() {
+  var param = window.top.location.pathname.split("/").pop();
+  document.getElementById("show-details").innerHTML = "";
+  hideSeatSelection();
   if (param !== "shows" && param !== "") {
     getShow(param);
   }
   else {
     showAllProductions();
   }
-
-  console.log("shows.html loaded");
 }
+window.top.renderFunctions["shows"] = render;
 
 // Globals to store show data so we don't do unnecessary requests
 var loadedProductions = false;
@@ -59,6 +65,8 @@ function getProductionDetails() {
 //**************************************************************************** */
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
+  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + prod_id;
+  window.top.history.pushState({id: "shows", url: "/shows/" + prod_id}, "", newURL);
   getShow(prod_id);
 }
 
@@ -132,9 +140,6 @@ function displayShow(data) {
       addSeatSelection(this.id.split("-").pop(), data);
     });
   }
-
-  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + data.production_id;
-  window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
 function moneyToString(amount) {
@@ -204,7 +209,7 @@ function updateSeatMap(booked) {
   var seatsvg = document.getElementById("seats-svg");
   var svgDoc = seatsvg.contentDocument;
   var gtags = svgDoc.querySelectorAll("g");
-  
+
   for (var i = 1; i < gtags.length; i++) {
     gtags[i].firstElementChild.style.fill = "#b3b3b3";
     gtags[i].removeEventListener("click", onSeatClick, false);
@@ -324,17 +329,25 @@ function addShowsListeners() {
   // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
-    // i hate that this is repeated so much
-    document.getElementById("seat-box0").classList.remove("active");
-    document.getElementById("seat-box1").classList.remove("active");
-    document.getElementById("seat-box2").classList.remove("active");
-    document.getElementById("seat-box0").classList.add("non-active");
-    document.getElementById("seat-box1").classList.add("non-active");
-    document.getElementById("seat-box2").classList.add("non-active");
+    hideSeatSelection();
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
+
+  document.getElementById("seats-svg").addEventListener("load", function() {
+    svg_loaded = true;
+  }, false);
+}
+
+function hideSeatSelection() {
+  // i hate that this is repeated so much
+  document.getElementById("seat-box0").classList.remove("active");
+  document.getElementById("seat-box1").classList.remove("active");
+  document.getElementById("seat-box2").classList.remove("active");
+  document.getElementById("seat-box0").classList.add("non-active");
+  document.getElementById("seat-box1").classList.add("non-active");
+  document.getElementById("seat-box2").classList.add("non-active");
 }
 
 function showAllProductions() {

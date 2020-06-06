@@ -54,7 +54,7 @@ header{
 #account-dropdown{
     position: relative;
     text-align: end;
-    align-self: end;
+    align-self: start;
     display: grid;
 }
 

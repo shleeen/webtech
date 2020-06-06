@@ -2,7 +2,8 @@
 
 // ----- Globals so they can be loaded after the entire site is loaded and used throughout------------------------------------------------------------
 var navbar;
-var showsObj;
+
+window.renderFunctions = {};
 // ----------------------------------------------------------------------------
 
 addEventListener("load", start);
@@ -18,15 +19,7 @@ function start() {
 
   setHeight();
 
-
-  // Listen to when shows tab is clicked 
-  const mutationObserver = new MutationObserver(callback);
-  const showsTab = document.getElementById("shows");
-  mutationObserver.observe(showsTab, { attributes: true });
-
   navbar = document.getElementById("navbar");
-  showsObj = document.getElementById("shows-object");
-    
 } 
 
 // -------------------------------------------------------------------------------------------------
@@ -118,7 +111,7 @@ function addListeners() {
   window.addEventListener("popstate", function (event) {
     // The URL changed...
     if (event.state) {
-      displayPage(event.state.id, event.state.url);
+      displayPage(event.state.id, event.state.url, true);
     }
   });
   
@@ -128,12 +121,27 @@ function addListeners() {
 // @nicole seeing the same function pasted 3 times made me sad
 // DRYYYYYYYYYY
 // Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
-function displayPage(pageName, newURL) {
+function displayPage(pageName, newURL, popState) {
   console.log("displaying " + pageName);
 
   var main = document.getElementById("main");
   var currentActive = main.getElementsByClassName("active");
-    
+  
+  if (newURL !== undefined && !popState) {
+    var state = { id: pageName, url: newURL };
+    newURL = location.protocol + "//" + location.host + newURL;
+    if (!window.top.history.state) {
+      window.top.history.pushState(state, "", newURL);
+    }
+    else if (newURL !== window.top.history.state.url) {
+      window.top.history.pushState(state, "", newURL);
+    }
+  }
+
+  if (window.renderFunctions[pageName]) {
+    window.renderFunctions[pageName]();
+  }
+
   if (currentActive.length === 1) {
     var old_page = currentActive[0];
     if (old_page.id === pageName) return;
@@ -189,14 +197,6 @@ function displayPage(pageName, newURL) {
       }
     }
   }
-  
-  // Could change later to have url name different to id name
-  if (newURL !== undefined) {
-    var state = { id: pageName, url: newURL };
-    newURL = location.protocol + "//" + location.host + newURL;
-    window.top.history.pushState(state, "", newURL);
-  }
-  //window.history.replaceState(stateObj, document.title, "/" + pageName);
 }
 
 function pageFadeEnd(event) {
@@ -236,28 +236,6 @@ window.onscroll = function () {
   }
   prevScrollpos = currentScrollPos;
 };
-
-
-// LISTENER FOR SHOWS TAB TO DISPLAY MAIN PAGE
-function callback(mutationsList, observer) {
-  mutationsList.forEach(mutation => {
-    if (mutation.attributeName === "class") {
-      if (document.getElementById("shows").classList.contains("active") && window.location.pathname === "/shows") {
-        // hide others and shwo main
-        showsObj.contentDocument.getElementById("show-details").innerHTML = "";
-
-        showsObj.contentDocument.getElementById("shows-return").classList.remove("active");
-        showsObj.contentDocument.getElementById("shows-return").classList.add("non-active");
-
-        showsObj.contentDocument.getElementById("show-details").classList.remove("active");
-        showsObj.contentDocument.getElementById("show-details").classList.add("non-active");
-
-        showsObj.contentDocument.getElementById("shows-main").classList.remove("non-active");
-        showsObj.contentDocument.getElementById("shows-main").classList.add("shows-main");
-      }
-    }
-  });
-}
 
 
 

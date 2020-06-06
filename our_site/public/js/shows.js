@@ -154,6 +154,16 @@ function addSeatSelection(show_id, data){
   document.getElementById("seat-box1").classList.add("active");
   document.getElementById("seat-box2").classList.add("active");
 
+
+  // add listeners for dates
+  var dates = document.getElementsByClassName("show-indv-date");
+  for (var i = 0; i < dates.length; i++) {
+    dates[i].addEventListener("click", function(){
+      smoothScroll("select-section", 800);
+      document.getElementById("select-section").style.opacity = 1;
+    });
+  }
+
   // show ticket categories in a template
   var prices = {};
   document.getElementById("ticket-types").innerHTML = "";

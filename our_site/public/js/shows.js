@@ -35,7 +35,7 @@ function getProductionDetails() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      productionData = xhr.response;
+      productionData = JSON.parse(xhr.responseText);
       var result = [];
 
       for (var p in productionData) {
@@ -56,7 +56,6 @@ function getProductionDetails() {
   };
 
   xhr.open("GET", "/api/shows/getProductionDetails", true);
-  xhr.responseType = "json";
   xhr.send();
 }
 
@@ -79,12 +78,11 @@ function getShow(prod_id) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-        displayShow(xhr.response); 
+        displayShow(JSON.parse(xhr.responseText)); 
       }
     };
   
     xhr.open("GET", "/api/shows/getProductionDetails/" + prod_id, true);
-    xhr.responseType = "json";
     xhr.send();
   }
 }
@@ -187,7 +185,7 @@ function addSeatSelection(show_id, data){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      var booked = xhr.response;
+      var booked = JSON.parse(xhr.responseText);
       if (svg_loaded) {
         updateSeatMap(booked);
       }
@@ -201,7 +199,6 @@ function addSeatSelection(show_id, data){
   };
 
   xhr.open("GET", "/api/shows/getProductionSeatStatus/" + show_id, true);
-  xhr.responseType = "json";
   xhr.send();
 }
 
@@ -215,7 +212,7 @@ function updateSeatMap(booked) {
     gtags[i].removeEventListener("click", onSeatClick, false);
     gtags[i].removeEventListener("mouseenter", onSeatHover, false);
     gtags[i].removeEventListener("mouseleave", onSeatUnhover, false);
-    if (!booked.includes(gtags[i].id)) {
+    if (booked.indexOf(gtags[i].id) === -1) {
       gtags[i].addEventListener("click", onSeatClick, false);
       gtags[i].addEventListener("mouseenter", onSeatHover, false);
       gtags[i].addEventListener("mouseleave", onSeatUnhover, false);
@@ -264,8 +261,8 @@ function onConfirmClick() {
 
   var xhr = new XMLHttpRequest();
   var formData = new FormData();
-  formData.set("seat_numbers", JSON.stringify(selectedSeats));
-  formData.set("ticket_amounts", JSON.stringify(amounts));
+  formData.append("seat_numbers", JSON.stringify(selectedSeats));
+  formData.append("ticket_amounts", JSON.stringify(amounts));
   xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
   xhr.responseType = "text";
 
@@ -277,10 +274,11 @@ function onConfirmClick() {
       document.getElementById("seat-box0").classList.add("non-active");
       document.getElementById("seat-box1").classList.add("non-active");
       document.getElementById("seat-box2").classList.add("non-active");
-      alert("Booking successful! Your reference is " + xhr.response + ". Visit your account page for the receipt.");
+      alert("Booking successful! Your reference is " + xhr.responseText + ". Visit your account page for the receipt.");
     }
   };
 
+  console.log("sending");
   xhr.send(formData);
 }
 

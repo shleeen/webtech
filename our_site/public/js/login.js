@@ -13,12 +13,10 @@ function checkLogin() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       if (xhr.response.valid)
-        showAccountMenu(xhr.response.data.first_name);
+        showAccountMenu(JSON.parse(xhr.responseText).data.first_name);
     }
   };
-
   xhr.open("GET", "/api/user/getUserInfo", true);
-  xhr.responseType = "json";
 
   xhr.send();
 }
@@ -161,14 +159,13 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // If success show user logged in stuff
-          showAccountMenu(this.response.first_name);        
+          showAccountMenu(JSON.parse(this.responseText).first_name);        
         }
         else if (request.status === 401) {
           document.getElementById("login-failed").classList.remove("non-active");
         }
       }
     };
-    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
   }, false);
@@ -181,7 +178,7 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // what needs to be done here hm
-          showAccountMenu(this.response.first_name);
+          showAccountMenu(JSON.parse(this.responseText).first_name);
 
           // clear form data
                   
@@ -192,7 +189,6 @@ function addLoginListeners() {
         }
       }
     };
-    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
   });

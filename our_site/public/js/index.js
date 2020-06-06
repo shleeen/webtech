@@ -94,10 +94,6 @@ function addListeners() {
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
-    if (document.getElementById("my-account").getElementsByTagName("object")[0] == null){
-      document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
-    }
-
     displayPage("account", "/account");
   });
 

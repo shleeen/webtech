@@ -4,6 +4,10 @@ html {
   height: max-content;
   
 }
+
+template {
+  display: none;
+}
   
 *, *::before, *::after {
   box-sizing: inherit; /* [1] */

@@ -74,7 +74,8 @@ function getUserInfo(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      var res = xhr.response;
+      var res = JSON.parse(xhr.responseText);
+      console.log(res);
       if (res.valid) {
         document.getElementById("account-content").innerHTML += template.render("account-template", res.data);
       }
@@ -84,9 +85,7 @@ function getUserInfo(){
       }
     }
   };
-
   xhr.open("GET", "/api/user/getUserInfo", true);
-  xhr.responseType = "json";
 
   xhr.send();
 }
@@ -102,7 +101,7 @@ function getTransactions(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      var res = xhr.response;
+      var res = JSON.parse(xhr.responseText);
       var results = [];
 
       for (var r in res) {
@@ -118,7 +117,6 @@ function getTransactions(){
     }
   }
   xhr.open("GET", "/api/user/getUserTransactions", true);
-  xhr.responseType = "json";
 
   xhr.send();
 }

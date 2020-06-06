@@ -84,14 +84,12 @@ function carouselChange(direction) {
     // need to update nav buttons
     // deselect current
     var currentElem = document.getElementsByClassName("nav-button-select")[0];
-    currentElem.classList.remove("nav-button-select");
-    currentElem.classList.add("nav-button-none-select");
+    currentElem.setAttribute("class", "nav-button-none-select");
 
     // select selected 
     var navDivID = "nav-button-" + id;
     var nextElem = document.getElementById(navDivID).childNodes;
-    nextElem[1].classList.remove("nav-button-none-select");
-    nextElem[1].classList.add("nav-button-select");
+    nextElem[1].setAttribute("class", "nav-button-select");
 
   } else {
     id = parseInt(id, 10) - 1;
@@ -107,14 +105,12 @@ function carouselChange(direction) {
     // need to update nav buttons
     // deselect current
     var currentElem = document.getElementsByClassName("nav-button-select")[0];
-    currentElem.classList.remove("nav-button-select");
-    currentElem.classList.add("nav-button-none-select");
+    currentElem.setAttribute("class", "nav-button-none-select");
 
     // select selected 
     var navDivID = "nav-button-" + id;
     var nextElem = document.getElementById(navDivID).childNodes;
-    nextElem[1].classList.remove("nav-button-none-select");
-    nextElem[1].classList.add("nav-button-select");
+    nextElem[1].setAttribute("class", "nav-button-select");
 
   }
 }
@@ -126,12 +122,10 @@ function navCarouselChange(elem) {
 
   // deselect current nav
   var currentElem = document.getElementsByClassName("nav-button-select")[0];
-  currentElem.classList.remove("nav-button-select");
-  currentElem.classList.add("nav-button-none-select");
+  currentElem.setAttribute("class", "nav-button-none-select");
 
   // select selected 
-  elem.childNodes[1].classList.remove("nav-button-none-select");
-  elem.childNodes[1].classList.add("nav-button-select");
+  elem.childNodes[1].setAttribute("class", "nav-button-select");
 
   // need to hget current banner id 
   var carouselElem = document.getElementsByClassName("carousel-content");

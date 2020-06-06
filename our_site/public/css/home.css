@@ -17,6 +17,9 @@
     height: max-content;
     margin: -2% 5%;
     position: relative;
+    transform-origin: 0;
+    transform: translateZ(4px) scale(0.550);
+    margin-top: -100px;
 
 }
 
@@ -27,6 +30,7 @@
     background-color: rgba(187, 187, 187, 0.829);
     z-index: 4;
     box-shadow: 2px 2px 5px 5px rgba(58, 58, 58, 0.824);
+    
 }
 
 
@@ -69,6 +73,7 @@
 
 .carousel-svg{
     width: 50px;
+    
     /* filter: invert(0.5) sepia(1) hue-rotate(200deg);   */
 }
 
@@ -101,6 +106,7 @@
     flex-direction: row; 
     justify-content: center; 
     align-items: center;
+    
 }
 
 .carousel-nav-button {

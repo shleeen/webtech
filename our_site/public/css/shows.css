@@ -228,7 +228,8 @@
     padding: 10px;
     align-items: center;
     color: #000000;
-    width: 750px;
+    max-width: 750px;
+    min-width: 600px;
 }
 
 .show-dates{

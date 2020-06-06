@@ -11,7 +11,6 @@ exports.getProd = async function(req, res) {
       shows[i].ticket_price = types[i].ticket_price;
       shows[i].ticket_category = types[i].ticket_category;
     }
-    console.log(shows);
 
     if (req.params.prodId) {
       res.status(200).json(shows[req.params.prodId]);

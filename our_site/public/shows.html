@@ -6,6 +6,7 @@
 
     <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     <link href="css/shows.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script src="/js/template.js"></script>
     <script src="/js/shows.js"></script>
@@ -21,11 +22,16 @@
         <p class="shows-title pad15 center"> Current Shows </p>
         
         <div id="shows-filter">
-            <input type="text" id="prod-filter" onkeyup="filterProd()" placeholder="Search by show name..." title="Enter a show name">
-
+            <div id="filter-box">
+                <div> <i class="material-icons pad10">search</i> </div>
+                <div>
+                    <input type="text" id="prod-filter" onkeyup="filterProd()" placeholder="Search by show name..." title="Enter a show name">    
+                </div>
+            </div>
+            
             <template id="display-production">
                 <div class="prod-container" id="prod-container-{{production_id}}">                
-                    <div class="prod-poster"> 
+                    <div class="prod-poster" id="prod-poster-{{production_id}}"> 
                         <figure>
                             <p>View Show</p>
                             <img src="{{poster_path}}"/> 
@@ -35,7 +41,7 @@
                         <div class="prod-name" id="prod-name"> {{name}} </div>
                         <div class="prod-details">
                             <div class="prod-blurb"> {{blurb}} </div>
-                            <div class="prod-button"> <p id="view-more"> View Dates &amp; Times </p> </div>
+                            <div class="prod-button" id="prod-button-{{production_id}}"> <p id="view-more"> View Dates &amp; Times </p> </div>
                         </div>
                     </div>
                 </div>
@@ -73,10 +79,10 @@
                     </template>
                 </div>
                     
-                <p class="pad10"> <span style="font-weight:600"> Please select a date: </span> </p>
+                <p class="pad10"> <span style="font-weight:600"> Currently showing on: </span> </p>
 
                 <div id="show-dates" class="show-dates pad10">
-                    <!-- template for displaying indv. dates since no. of dates changes -->
+                    <!-- template for displaying indv. dates -->
                     <template id="date-template">
                         <div id="show-date-{{show_id}}" class="show-indv-date unselectable">
                             <div>{{year}}</div>
@@ -91,24 +97,24 @@
         </div>
     </template>
 
+    <div id="seat-box0">
+        <p class="pad5 center"> <span style="font-weight:600"> Please select a seat(s) and ticket category. </span>  </p>
+
+        <div class="center" >
+            <svg id="svg-legend" xmlns="http://www.w3.org/2000/svg" height="40" width="470">
+                <circle cx="20" cy="20" r="7" fill="#b3b3b3"/> <text x="35" y="24.85" fill="#2c2c2c"> Available seats </text>
+                <circle cx="170" cy="20" r="7" fill="red"/> <text x="185" y="24.85" fill="#2c2c2c"> Unavailable seats </text>
+                <circle cx="340" cy="20" r="7" fill="#5ad442"/> <text x="355" y="24.85" fill="#2c2c2c"> Selected seats </text>
+            </svg>
+        </div>
+    </div>
 
     <div id="select-section" class="center pad10">
         <div id="seat-box1" class="non-active">
             <object id="seats-svg" class="center" data="./img/seatmap.svg" type="image/svg+xml"> </object>
-           
         </div>
 
         <div id="seat-box2" class="non-active">
-            <p class="pad5"> <span style="font-weight:600"> Please select a seat: </span>  </p>
-
-            <div class="center" id="svg-legend">
-                <svg  xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="7" fill="#b3b3b3"/> <text x="65" y="54" fill="#2c2c2c"> Available seats </text>
-                    <circle cx="50" cy="80" r="7" fill="red"/> <text x="65" y="84" fill="#2c2c2c"> Unavailable seats </text>
-                    <circle cx="50" cy="110" r="7" fill="#5ad442"/> <text x="65" y="114" fill="#2c2c2c"> Selected seats </text>
-                </svg>
-            </div>
-
             <!-- template for each ticket category -->
             <div id="ticket-types"> </div>
             <template id="template-ticket-types">
@@ -119,8 +125,7 @@
                         <div class="ticket-button ticket-up" id="ticket-up-{{t_id}}">+</div>
                         <div class="ticket-button ticket-down" id="ticket-down-{{t_id}}">-</div>
                     </div>
-                    <div id="ticket-sum-{{t_id}}">None
-                    </div>
+                    <div id="ticket-sum-{{t_id}}">None</div>
                 </div>
             </template>
 

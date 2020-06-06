@@ -2,9 +2,14 @@
     font-size: 30px;
 }
 
-/* For the search bar */
+/* for the search bar */
+#filter-box{
+    margin: 0px 580px;
+    display: flex;
+    align-items: center;
+}
+
 #prod-filter {
-    width: 100%;
     font-size: 15px;
     padding: 11px;
     border: 1px solid #ddd;
@@ -22,25 +27,10 @@
     /* overflow: auto; */
 }
 
-.button-back{
-    /* width: 100%; */
-    /* height: max-content;*/
-    margin: 55px 40px; /*cos page can only start after the nav */
-    display: absolute;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: stretch; /*default is stretch, fills all space available
-    /* overflow: auto; */
-    margin-bottom: 0;
-}
-
-
-
-/* contains */
 .prod-container { 
     background: #e1bcf0;
     border-radius: 5px;
-    margin: 10px 0;
+    margin: 10px 150px;
     height: max-content; 
     display: flex;
     transition: all 0.3s ease;
@@ -48,13 +38,7 @@
 
 .prod-container:hover { 
     background: #d8afe8;
-
 }
-
-/* .show-container div {
-    padding: .5em; /* this gives every div container under show-container the same padding */
-    /* add font css here?????
-} */
 
 .prod-poster{
     padding: .5em;
@@ -69,7 +53,7 @@
 }
 
 .prod-poster figure{
-    background: #7a3f93;
+    background: #20b2aa; /* 7a3f93 */
     height: 285px;
 }
 
@@ -121,18 +105,19 @@
     padding: .2em;
     flex-grow: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: stretch; /*default is stretch, fills all space available*/
 }
 
 .prod-blurb{
     padding: .2em;
-    width: 30%;
-    margin-right: 50px;
-    flex-grow: 1;
+    margin-bottom: 20px;
+    /* width: 30%; */
+    /* margin-right: 50px; */
 }
 
-.prod-buttom{
+.prod-button{
+    width: fit-content;
     margin-right: 10px;
 }
 
@@ -143,7 +128,7 @@
 #view-more{
     color: white;
     cursor: pointer;
-    background-color: lightseagreen;
+    background-color: #20b2aa;
     border-radius: 8px;
     padding: 8px;
     font-weight:700;
@@ -156,6 +141,15 @@
 /****************************************************************************************
     CSS FOR SHOW DETAILS
 ****************************************************************************************/
+.button-back{
+    margin: 55px 40px; /*cos page can only start after the nav */
+    display: absolute;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch; /*default is stretch, fills all space available*/
+    margin-bottom: 0;
+}
+
 .show-page{
     display: flex;
     margin-left: 50px;
@@ -217,7 +211,6 @@
 }
 
 .show-name{
-    /* height: 50px; */
     align-items: center;
     font-size: 30px;
     padding: 10px;
@@ -308,7 +301,8 @@
 }
 
 #svg-legend{
-    position: relative;
+    /* position: relative; */
+    /* width: 500px; */
     border: solid;
     border-color: #b3b3b3;
     border-radius: 1px;
@@ -321,9 +315,9 @@
 }
 
 #seat-box2{
-    /* background-color: lavender; */
+    background-color: lavender;
     flex-grow: 2;
-    max-inline-size: fit-content;
+    /* max-inline-size: fit-content; */
 }
 
 .booking-button-active{ 

@@ -49,16 +49,12 @@ function getProductionDetails() {
 
       document.getElementById("shows-main").innerHTML += template.render("display-production", result, result.length);
 
-      // !? shouldnt just clicking the button and poster take you to show-details not clicking everything?
-      // yea i was just lazy and wanted to test
-      var prods = document.getElementsByClassName("prod-container");
-      for (var i = 0; i < prods.length; i++) {
-        prods[i].addEventListener("click", showClick);
-      }
-      
+      // click on poster or button to view indv show
       var posters = document.getElementsByClassName("prod-poster");
-      for (i = 0; i < posters.length; i++) {
+      var buttons = document.getElementsByClassName("prod-button");
+      for (var i = 0; i < posters.length; i++) {
         posters[i].addEventListener("click", showClick);
+        buttons[i].addEventListener("click", showClick);
       }
       loadedProductions = true;
     }

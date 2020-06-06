@@ -32,7 +32,6 @@ function showAccountMenu(firstName) {
 }
 
 function closeModal() {
-  //document.querySelector(".modal").style.display = "none";
   document.querySelector(".modal-content").classList.remove("animate-in");
   void document.querySelector(".modal-content").offsetWidth;
   document.querySelector(".modal-content").classList.add("animate-out");
@@ -161,16 +160,8 @@ function addLoginListeners() {
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
-          // load account page coz logged in 
-          // this needs to add classes non-active
-
-          // i've commented this for now and put it back in the html, it was making life difficult
-          // document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
-
           // If success show user logged in stuff
-          showAccountMenu(this.response.first_name);
-
-          
+          showAccountMenu(this.response.first_name);        
         }
         else if (request.status === 401) {
           document.getElementById("login-failed").classList.remove("non-active");
@@ -193,7 +184,7 @@ function addLoginListeners() {
           showAccountMenu(this.response.first_name);
 
           // clear form data
-
+                  
         }
         else if (request.status === 400) {
           document.getElementById("register-failed").textContent = request.responseText;
@@ -214,9 +205,6 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 204) {
           document.getElementById("reset-sent").classList.remove("non-active");
-        }
-        else if (request.status === 400) {
-          console.log("BAD");
         }
       }
     };

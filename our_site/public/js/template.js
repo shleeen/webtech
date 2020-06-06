@@ -1,3 +1,7 @@
+// This template module was orginally based on the tutorial given here:
+//   http://blog.ibanyez.info/blogs/coding/20190126-create-your-own-framework/
+// But has many changes/simplifications
+
 ( function(window){
 
   "use strict";
@@ -14,12 +18,12 @@
 
   function escapeHtml(unsafe) {
     return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
- }
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
   
   function getDynamicValues(str_html) {
     // Regex Explanation:  In JavaScript, [^] represents a valid character class. Should be the same as .

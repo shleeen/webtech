@@ -75,7 +75,6 @@ function getUserInfo(){
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = JSON.parse(xhr.responseText);
-      console.log(res);
       if (res.valid) {
         document.getElementById("account-content").innerHTML += template.render("account-template", res.data);
       }

@@ -9,7 +9,7 @@ window.renderFunctions = {};
 addEventListener("load", start);
 
 function start() {
-
+  window.initRouter();
   addListeners();
 
   // Spash screen there so that the page loads

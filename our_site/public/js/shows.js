@@ -278,7 +278,6 @@ function onConfirmClick() {
     }
   };
 
-  console.log("sending");
   xhr.send(formData);
 }
 

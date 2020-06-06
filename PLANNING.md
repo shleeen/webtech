@@ -50,19 +50,19 @@
 
 
 ## UI:
-* Have a search bar in the nav??!
+* Have a search bar in the nav??! Nah
 * Home Page:  
     * ~~clicking carousel should take you to the indv show page~~
 * MODAL  
-    * fix the cross button
-        * make the cross button animate? like zoom in or fade in or what
+    * ~fix the cross button~
+        * ~make the cross button animate? like zoom in or fade in or what~
     * ~~make the modal close when clicking ESC key~~
     * ~~fix inline issues~~
     * ~~add fade out when the modal is closed~~
     * ~~shade out background when clicked~~
     * should it have rounder edges instead of sharp?
     * ~~make the remember me actually rememebr me~~
-* Do we want a footer?
+* Footer
     * Can add social media links
     * Add contact us links here
 * ~~Fix the double scroll thing? it real uglyyy~~
@@ -73,8 +73,7 @@
     * Create dropdowns for the tabs
 * header is diff colour from body -> do we want to change this
 * Shows Page
-    * Maybe search just on the shows page
-    * Filter by show/date
+    * ~Filter by show/date~
     * would be cool for it to display alphabetically
 * Box office page 
     * available to only admins and producers

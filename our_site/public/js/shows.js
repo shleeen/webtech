@@ -158,10 +158,13 @@ function moneyToString(amount) {
 // for the entire seat section
 function addSeatSelection(show_id, data){
   current_show_id = show_id;
+  document.getElementById("seat-box0").classList.remove("non-active");
   document.getElementById("seat-box1").classList.remove("non-active");
   document.getElementById("seat-box2").classList.remove("non-active");
+  document.getElementById("seat-box0").classList.add("active");
   document.getElementById("seat-box1").classList.add("active");
   document.getElementById("seat-box2").classList.add("active");
+
 
   // add listeners for dates
   // var dates = document.getElementsByClassName("show-indv-date");
@@ -274,11 +277,13 @@ function onConfirmClick() {
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 201) {
+      document.getElementById("seat-box0").classList.remove("active");
       document.getElementById("seat-box1").classList.remove("active");
       document.getElementById("seat-box2").classList.remove("active");
+      document.getElementById("seat-box0").classList.add("non-active");
       document.getElementById("seat-box1").classList.add("non-active");
       document.getElementById("seat-box2").classList.add("non-active");
-      alert("Booking successful! Your reference is " + xhr.response + ", visit your account page for details.");
+      alert("Booking successful! Your reference is " + xhr.response + ". Visit your account page for the receipt.");
     }
   };
 
@@ -331,8 +336,10 @@ function addShowsListeners() {
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
     // i hate that this is repeated so much
+    document.getElementById("seat-box0").classList.remove("active");
     document.getElementById("seat-box1").classList.remove("active");
     document.getElementById("seat-box2").classList.remove("active");
+    document.getElementById("seat-box0").classList.add("non-active");
     document.getElementById("seat-box1").classList.add("non-active");
     document.getElementById("seat-box2").classList.add("non-active");
 

@@ -167,13 +167,13 @@ function addSeatSelection(show_id, data){
 
 
   // add listeners for dates
-  // var dates = document.getElementsByClassName("show-indv-date");
-  // for (var i = 0; i < dates.length; i++) {
-  //   dates[i].addEventListener("click", function(){
-  //     smoothScroll('select-section', 800);
-  //     document.getElementById("select-section").style.opacity = 1;
-  //   });
-  // }
+  var dates = document.getElementsByClassName("show-indv-date");
+  for (var i = 0; i < dates.length; i++) {
+    dates[i].addEventListener("click", function(){
+      smoothScroll('select-section', 800);
+      document.getElementById("select-section").style.opacity = 1;
+    });
+  }
 
   // show ticket categories in a template
   var prices = {};

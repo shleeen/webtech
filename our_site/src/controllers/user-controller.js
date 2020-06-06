@@ -21,6 +21,10 @@ exports.getUserInfo = async function(req, res) {
 };
 
 exports.getUserTransactions = async function(req, res) {
+  if (!req.session.user_id) {
+    res.sendStatus(401);
+    return;
+  }
   try {
     const userTransactions = await userService.userTransactions(req.session.user_id);
 

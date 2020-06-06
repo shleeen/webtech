@@ -12,8 +12,9 @@ function checkLogin() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      if (xhr.response.valid)
-        showAccountMenu(JSON.parse(xhr.responseText).data.first_name);
+      var res = JSON.parse(xhr.responseText);
+      if (res.valid)
+        showAccountMenu(res.data.first_name);
     }
   };
   xhr.open("GET", "/api/user/getUserInfo", true);
@@ -154,12 +155,14 @@ function addLoginListeners() {
     // This sends the form without reloading the page
     event.preventDefault();
     var formData = new FormData(event.target);
+    if (!document.getElementById("login-remember").checked)
+      formData.append("remember", "off");
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // If success show user logged in stuff
-          showAccountMenu(JSON.parse(this.responseText).first_name);        
+          showAccountMenu(JSON.parse(this.responseText).first_name);
         }
         else if (request.status === 401) {
           document.getElementById("login-failed").classList.remove("non-active");
@@ -173,6 +176,8 @@ function addLoginListeners() {
   registerForm.addEventListener("submit", function(event) {
     event.preventDefault();
     var formData = new FormData(event.target);
+    if (!document.getElementById("login-remember").checked)
+      formData.append("remember", "off");
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {

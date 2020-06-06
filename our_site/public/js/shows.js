@@ -267,14 +267,19 @@ function onConfirmClick() {
   xhr.responseType = "text";
 
   xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 201) {
-      document.getElementById("seat-box0").classList.remove("active");
-      document.getElementById("seat-box1").classList.remove("active");
-      document.getElementById("seat-box2").classList.remove("active");
-      document.getElementById("seat-box0").classList.add("non-active");
-      document.getElementById("seat-box1").classList.add("non-active");
-      document.getElementById("seat-box2").classList.add("non-active");
-      alert("Booking successful! Your reference is " + xhr.responseText + ". Visit your account page for the receipt.");
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 201) {
+        document.getElementById("seat-box0").classList.remove("active");
+        document.getElementById("seat-box1").classList.remove("active");
+        document.getElementById("seat-box2").classList.remove("active");
+        document.getElementById("seat-box0").classList.add("non-active");
+        document.getElementById("seat-box1").classList.add("non-active");
+        document.getElementById("seat-box2").classList.add("non-active");
+        alert("Booking successful! Your reference is " + xhr.responseText + ". Visit your account page for the receipt.");
+      }
+      else if (xhr.status === 401) {
+        alert("Please login to make a booking.");
+      }
     }
   };
 

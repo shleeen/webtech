@@ -2,8 +2,6 @@
 .home-main{
     overflow: hidden;
     height: max-content;
-  
-    
   }
 
 .content{
@@ -184,6 +182,10 @@ svg {
     margin-bottom: 0px;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.400);
+    -webkit-transform-origin: 0;
+    -webkit-transform: translateZ(4px) scale(0.400);
+    -moz-transform-origin: 0;
+    -moz-transform: translateZ(4px) scale(0.400);
 }
 
 .contact-text{
@@ -191,6 +193,10 @@ svg {
     margin-bottom: 0px;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.400);
+    -webkit-transform-origin: 0;
+    -webkit-transform: translateZ(4px) scale(0.400);
+    -moz-transform-origin: 0;
+    -moz-transform: translateZ(4px) scale(0.400);
 }
 
 
@@ -202,6 +208,11 @@ svg {
     padding: 10% 10%;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.400);
+
+    -webkit-transform-origin: 0;
+    -webkit-transform: translateZ(4px) scale(0.400);
+    -moz-transform-origin: 0;
+    -moz-transform: translateZ(4px) scale(0.400);
 }
 
 .join-desc h3 {
@@ -235,6 +246,9 @@ svg {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+
     z-index: 2;
     width: 300px;
     padding: 20px;

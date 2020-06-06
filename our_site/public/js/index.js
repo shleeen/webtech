@@ -21,7 +21,7 @@ function start() {
 
   // Listen to when shows tab is clicked 
   const mutationObserver = new MutationObserver(callback);
-  const showsTab = document.getElementById('shows');
+  const showsTab = document.getElementById("shows");
   mutationObserver.observe(showsTab, { attributes: true });
 
   navbar = document.getElementById("navbar");
@@ -93,17 +93,14 @@ function addListeners() {
   }); 
 
   document.getElementById("shows_tab").addEventListener("click", function() {
-    console.log("click");
     displayPage("shows", "/shows");
   });
 
   document.getElementById("home_tab").addEventListener("click", function() {
-    console.log("click");
     displayPage("home", "");
   });
 
   document.getElementById("my-account").addEventListener("click", function() {
-    console.log("click");
     if (document.getElementById("my-account").getElementsByTagName("object")[0] == null){
       document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
     }
@@ -120,9 +117,6 @@ function addListeners() {
   // This changes according to things like when back is pressed
   window.addEventListener("popstate", function (event) {
     // The URL changed...
-    console.log(event.state);
-    console.log(event.state.id);
-    console.log(event.state.url);
     if (event.state) {
       displayPage(event.state.id, event.state.url);
     }
@@ -200,7 +194,6 @@ function displayPage(pageName, newURL) {
   if (newURL !== undefined) {
     var state = { id: pageName, url: newURL };
     newURL = location.protocol + "//" + location.host + newURL;
-    console.log(newURL);
     window.top.history.pushState(state, "", newURL);
   }
   //window.history.replaceState(stateObj, document.title, "/" + pageName);
@@ -247,25 +240,23 @@ window.onscroll = function () {
 
 // LISTENER FOR SHOWS TAB TO DISPLAY MAIN PAGE
 function callback(mutationsList, observer) {
-  console.log('Mutations:', mutationsList)
-  console.log('Observer:', observer)
   mutationsList.forEach(mutation => {
-      if (mutation.attributeName === 'class') {
-          if (document.getElementById('shows').classList.contains("active")){
-            // hide others and shwo main
-            showsObj.contentDocument.getElementById("show-details").innerHTML = "";
+    if (mutation.attributeName === "class") {
+      if (document.getElementById("shows").classList.contains("active") && window.location.pathname === "/shows") {
+        // hide others and shwo main
+        showsObj.contentDocument.getElementById("show-details").innerHTML = "";
 
-            showsObj.contentDocument.getElementById("shows-return").classList.remove("active");
-            showsObj.contentDocument.getElementById("shows-return").classList.add("non-active");
+        showsObj.contentDocument.getElementById("shows-return").classList.remove("active");
+        showsObj.contentDocument.getElementById("shows-return").classList.add("non-active");
 
-            showsObj.contentDocument.getElementById("show-details").classList.remove("active");
-            showsObj.contentDocument.getElementById("show-details").classList.add("non-active");
+        showsObj.contentDocument.getElementById("show-details").classList.remove("active");
+        showsObj.contentDocument.getElementById("show-details").classList.add("non-active");
 
-            showsObj.contentDocument.getElementById("shows-main").classList.remove("non-active");
-            showsObj.contentDocument.getElementById("shows-main").classList.add("shows-main");
-          }
+        showsObj.contentDocument.getElementById("shows-main").classList.remove("non-active");
+        showsObj.contentDocument.getElementById("shows-main").classList.add("shows-main");
       }
-  })
+    }
+  });
 }
 
 

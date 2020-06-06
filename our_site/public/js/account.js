@@ -108,6 +108,7 @@ function getTransactions(){
       for (var r in res) {
         res[r].price = moneyToString(res[r].price);
         res[r].order_total = moneyToString(res[r].order_total);
+        res[r].booking_time = res[r].booking_time.substr(0, 19).replace("T", " ");
         results.push(res[r]);
       }
 

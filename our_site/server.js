@@ -21,14 +21,14 @@ app.use(session({
 }));
 
 // Serve as XHTML
-// app.use(express.static(__dirname + "/public", { //serve static files from this folder
+// app.use(express.static(__dirname + "/public", {
 //   setHeaders: function(res, path) {
-//     // if file is a .xml file, then set content-type
+//     // if file is a .html file, then set content-type to xhtml
 //     if (path.endsWith(".html")) {
 //       res.setHeader("Content-Type", "application/xhtml+xml");
 //     }
 //   }
-// })); //serve static files from this folder
+// }));
 
 // Serve as HTML
 app.use(express.static(__dirname + "/public"));

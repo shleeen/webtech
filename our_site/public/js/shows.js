@@ -11,17 +11,6 @@ function start() {
     showAllProductions();
   }
 
-  // @nicole I tried fixing this but it doesn't seem to do anything
-  // var showObj = window.top.document.getElementById("shows-object");
-  // var indexHeight = window.top.innerHeight;
-  //   showObj.onresize = function(){
-  //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-  //   var height = showObj.contentDocument.body.scrollHeight;
-
-  //   if (height > indexHeight) showObj.style.height = height + "px";
-  //   else showObj.style.height = indexHeight + "px";
-  // };
-
   console.log("shows.html loaded");
 }
 
@@ -167,13 +156,13 @@ function addSeatSelection(show_id, data){
 
 
   // add listeners for dates
-  // var dates = document.getElementsByClassName("show-indv-date");
-  // for (var i = 0; i < dates.length; i++) {
-  //   dates[i].addEventListener("click", function(){
-  //     smoothScroll('select-section', 800);
-  //     document.getElementById("select-section").style.opacity = 1;
-  //   });
-  // }
+  var dates = document.getElementsByClassName("show-indv-date");
+  for (var i = 0; i < dates.length; i++) {
+    dates[i].addEventListener("click", function(){
+      smoothScroll("select-section", 800);
+      document.getElementById("select-section").style.opacity = 1;
+    });
+  }
 
   // show ticket categories in a template
   var prices = {};
@@ -392,7 +381,6 @@ function ticketArrowListeners(prices){
 
     // listener for UP BUTTON
     up_btns[i].addEventListener("click", function() {
-      console.log("clicked up");
       var t_id = this.id.split("-").pop();
       var inputElem = document.getElementById("ticket-type-" + t_id);
       var max = parseInt(inputElem.max);
@@ -410,7 +398,6 @@ function ticketArrowListeners(prices){
 
     // listener for DOWN BUTTON
     down_btns[i].addEventListener("click", function() {
-      console.log("clicked down");
       var t_id = this.id.split("-").pop();
       var inputElem = document.getElementById("ticket-type-" + t_id);
       var min = parseInt(inputElem.min);
@@ -457,7 +444,7 @@ window.onscroll = function () {
 };
 
 function smoothScroll(target, duration){
-  var target = document.getElementById(target)
+  var target = document.getElementById(target);
   var targetPosition = target.getBoundingClientRect().top;
   var startPosition = window.pageYOffset;
   var distance = targetPosition - startPosition;

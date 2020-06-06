@@ -9,7 +9,6 @@ function start() {
 
 function render() {
   var param = window.top.location.pathname.split("/").pop();
-  console.log(param);
   document.getElementById("show-details").innerHTML = "";
   hideSeatSelection();
   if (param !== "shows" && param !== "") {
@@ -210,7 +209,7 @@ function updateSeatMap(booked) {
   var seatsvg = document.getElementById("seats-svg");
   var svgDoc = seatsvg.contentDocument;
   var gtags = svgDoc.querySelectorAll("g");
-  
+
   for (var i = 1; i < gtags.length; i++) {
     gtags[i].firstElementChild.style.fill = "#b3b3b3";
     gtags[i].removeEventListener("click", onSeatClick, false);
@@ -335,6 +334,10 @@ function addShowsListeners() {
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
+
+  document.getElementById("seats-svg").addEventListener("load", function() {
+    svg_loaded = true;
+  }, false);
 }
 
 function hideSeatSelection() {

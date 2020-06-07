@@ -80,7 +80,8 @@ function getUserInfo(){
       }
       else {
         // Not logged in, redirect home
-        window.top.displayPage("home", "");
+        if (window.top.location.pathname === "/account")
+          window.top.displayPage("home", "");
       }
     }
   };

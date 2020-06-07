@@ -5,6 +5,8 @@
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
   }
 
 .tstroke_1{
@@ -14,6 +16,8 @@
     stroke-miterlimit: 20;
     stroke-width: 5;
     animation: draw1 2s infinite;
+    -webkit-animation: draw1 2s infinite;
+    -moz-animation: draw1 2s infinite;
     
 }
 
@@ -23,6 +27,14 @@
     animation-name: draw2;
     animation-duration: 2s;
     animation-delay: 0.25s;
+
+    -webkit-animation-name: draw2;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-delay: 0.25s;
+
+    -moz-animation-name: draw2;
+    -moz-animation-duration: 2s;
+    -moz-animation-delay: 0.25s;
 }
 
 @keyframes draw1 {

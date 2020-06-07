@@ -3,27 +3,22 @@ document.addEventListener("DOMContentLoaded", start, false);
 
 function start() {
   addShowsListeners();
-  var param = window.parent.location.pathname.split("/").pop();
+  render();
+  console.log("shows.html loaded");
+}
+
+function render() {
+  var param = window.top.location.pathname.split("/").pop();
+  document.getElementById("show-details").innerHTML = "";
+  hideSeatSelection();
   if (param !== "shows" && param !== "") {
     getShow(param);
   }
   else {
     showAllProductions();
   }
-
-  // @nicole I tried fixing this but it doesn't seem to do anything
-  // var showObj = window.top.document.getElementById("shows-object");
-  // var indexHeight = window.top.innerHeight;
-  //   showObj.onresize = function(){
-  //   //showObj.style.height = showObj.contentWindow.document.body.scrollHeight + 'px';
-  //   var height = showObj.contentDocument.body.scrollHeight;
-
-  //   if (height > indexHeight) showObj.style.height = height + "px";
-  //   else showObj.style.height = indexHeight + "px";
-  // };
-
-  console.log("shows.html loaded");
 }
+window.top.renderFunctions["shows"] = render;
 
 // Globals to store show data so we don't do unnecessary requests
 var loadedProductions = false;
@@ -40,7 +35,7 @@ function getProductionDetails() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      productionData = xhr.response;
+      productionData = JSON.parse(xhr.responseText);
       var result = [];
 
       for (var p in productionData) {
@@ -61,7 +56,6 @@ function getProductionDetails() {
   };
 
   xhr.open("GET", "/api/shows/getProductionDetails", true);
-  xhr.responseType = "json";
   xhr.send();
 }
 
@@ -70,6 +64,8 @@ function getProductionDetails() {
 //**************************************************************************** */
 function showClick() {
   var prod_id = this.id.match(/\d+$/)[0];
+  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + prod_id;
+  window.top.history.pushState({id: "shows", url: "/shows/" + prod_id}, "", newURL);
   getShow(prod_id);
 }
 
@@ -82,12 +78,11 @@ function getShow(prod_id) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-        displayShow(xhr.response); 
+        displayShow(JSON.parse(xhr.responseText)); 
       }
     };
   
     xhr.open("GET", "/api/shows/getProductionDetails/" + prod_id, true);
-    xhr.responseType = "json";
     xhr.send();
   }
 }
@@ -140,12 +135,17 @@ function displayShow(data) {
 
   for (i = 0; i < data.id.length; i++) {
     document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
+      // make sure others arent selected
+      var active = document.getElementsByClassName("show-indv-date-active"); 
+      for (var j = 0; j < active.length; j++){
+        active[j].classList.remove("show-indv-date-active");
+      }
+      this.classList.add('show-indv-date-active');
+      smoothScroll("select-section", 800);
+      document.getElementById("select-section").style.opacity = 1;
       addSeatSelection(this.id.split("-").pop(), data);
     });
   }
-
-  var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows/" + data.production_id;
-  window.top.history.pushState({id: "shows", url: "/shows/" + data.production_id}, "", newURL);
 }
 
 function moneyToString(amount) {
@@ -165,16 +165,6 @@ function addSeatSelection(show_id, data){
   document.getElementById("seat-box1").classList.add("active");
   document.getElementById("seat-box2").classList.add("active");
 
-
-  // add listeners for dates
-  var dates = document.getElementsByClassName("show-indv-date");
-  for (var i = 0; i < dates.length; i++) {
-    dates[i].addEventListener("click", function(){
-      smoothScroll('select-section', 800);
-      document.getElementById("select-section").style.opacity = 1;
-    });
-  }
-
   // show ticket categories in a template
   var prices = {};
   document.getElementById("ticket-types").innerHTML = "";
@@ -193,7 +183,7 @@ function addSeatSelection(show_id, data){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
-      var booked = xhr.response;
+      var booked = JSON.parse(xhr.responseText);
       if (svg_loaded) {
         updateSeatMap(booked);
       }
@@ -207,7 +197,6 @@ function addSeatSelection(show_id, data){
   };
 
   xhr.open("GET", "/api/shows/getProductionSeatStatus/" + show_id, true);
-  xhr.responseType = "json";
   xhr.send();
 }
 
@@ -215,13 +204,13 @@ function updateSeatMap(booked) {
   var seatsvg = document.getElementById("seats-svg");
   var svgDoc = seatsvg.contentDocument;
   var gtags = svgDoc.querySelectorAll("g");
-  
+
   for (var i = 1; i < gtags.length; i++) {
     gtags[i].firstElementChild.style.fill = "#b3b3b3";
     gtags[i].removeEventListener("click", onSeatClick, false);
     gtags[i].removeEventListener("mouseenter", onSeatHover, false);
     gtags[i].removeEventListener("mouseleave", onSeatUnhover, false);
-    if (!booked.includes(gtags[i].id)) {
+    if (booked.indexOf(gtags[i].id) === -1) {
       gtags[i].addEventListener("click", onSeatClick, false);
       gtags[i].addEventListener("mouseenter", onSeatHover, false);
       gtags[i].addEventListener("mouseleave", onSeatUnhover, false);
@@ -270,20 +259,25 @@ function onConfirmClick() {
 
   var xhr = new XMLHttpRequest();
   var formData = new FormData();
-  formData.set("seat_numbers", JSON.stringify(selectedSeats));
-  formData.set("ticket_amounts", JSON.stringify(amounts));
+  formData.append("seat_numbers", JSON.stringify(selectedSeats));
+  formData.append("ticket_amounts", JSON.stringify(amounts));
   xhr.open("POST", "/api/shows/buyTickets/" + current_prod_id + "/" + current_show_id, true);
   xhr.responseType = "text";
 
   xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 201) {
-      document.getElementById("seat-box0").classList.remove("active");
-      document.getElementById("seat-box1").classList.remove("active");
-      document.getElementById("seat-box2").classList.remove("active");
-      document.getElementById("seat-box0").classList.add("non-active");
-      document.getElementById("seat-box1").classList.add("non-active");
-      document.getElementById("seat-box2").classList.add("non-active");
-      alert("Booking successful! Your reference is " + xhr.response + ". Visit your account page for the receipt.");
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 201) {
+        document.getElementById("seat-box0").classList.remove("active");
+        document.getElementById("seat-box1").classList.remove("active");
+        document.getElementById("seat-box2").classList.remove("active");
+        document.getElementById("seat-box0").classList.add("non-active");
+        document.getElementById("seat-box1").classList.add("non-active");
+        document.getElementById("seat-box2").classList.add("non-active");
+        alert("Booking successful! Your reference is " + xhr.responseText + ". Visit your account page for the receipt.");
+      }
+      else if (xhr.status === 401) {
+        alert("Please login to make a booking.");
+      }
     }
   };
 
@@ -335,17 +329,25 @@ function addShowsListeners() {
   // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
-    // i hate that this is repeated so much
-    document.getElementById("seat-box0").classList.remove("active");
-    document.getElementById("seat-box1").classList.remove("active");
-    document.getElementById("seat-box2").classList.remove("active");
-    document.getElementById("seat-box0").classList.add("non-active");
-    document.getElementById("seat-box1").classList.add("non-active");
-    document.getElementById("seat-box2").classList.add("non-active");
+    hideSeatSelection();
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);
   });
+
+  document.getElementById("seats-svg").addEventListener("load", function() {
+    svg_loaded = true;
+  }, false);
+}
+
+function hideSeatSelection() {
+  // i hate that this is repeated so much
+  document.getElementById("seat-box0").classList.remove("active");
+  document.getElementById("seat-box1").classList.remove("active");
+  document.getElementById("seat-box2").classList.remove("active");
+  document.getElementById("seat-box0").classList.add("non-active");
+  document.getElementById("seat-box1").classList.add("non-active");
+  document.getElementById("seat-box2").classList.add("non-active");
 }
 
 function showAllProductions() {
@@ -392,7 +394,6 @@ function ticketArrowListeners(prices){
 
     // listener for UP BUTTON
     up_btns[i].addEventListener("click", function() {
-      console.log("clicked up");
       var t_id = this.id.split("-").pop();
       var inputElem = document.getElementById("ticket-type-" + t_id);
       var max = parseInt(inputElem.max);
@@ -410,7 +411,6 @@ function ticketArrowListeners(prices){
 
     // listener for DOWN BUTTON
     down_btns[i].addEventListener("click", function() {
-      console.log("clicked down");
       var t_id = this.id.split("-").pop();
       var inputElem = document.getElementById("ticket-type-" + t_id);
       var min = parseInt(inputElem.min);
@@ -457,7 +457,7 @@ window.onscroll = function () {
 };
 
 function smoothScroll(target, duration){
-  var target = document.getElementById(target)
+  var target = document.getElementById(target);
   var targetPosition = target.getBoundingClientRect().top;
   var startPosition = window.pageYOffset;
   var distance = targetPosition - startPosition;

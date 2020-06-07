@@ -1,7 +1,7 @@
 const db = require("../../database/database.js");
 
 exports.getProductionBanners = async function(req, res) {
-  const sql = "SELECT banner_path FROM production";
+  const sql = "SELECT id, banner_path FROM production";
   try {
     const rows = await db.all(sql);
     return rows;

@@ -12,13 +12,12 @@ function checkLogin() {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      if (xhr.response.valid)
-        showAccountMenu(xhr.response.data.first_name);
+      var res = JSON.parse(xhr.responseText);
+      if (res.valid)
+        showAccountMenu(res.data.first_name);
     }
   };
-
   xhr.open("GET", "/api/user/getUserInfo", true);
-  xhr.responseType = "json";
 
   xhr.send();
 }
@@ -32,7 +31,6 @@ function showAccountMenu(firstName) {
 }
 
 function closeModal() {
-  //document.querySelector(".modal").style.display = "none";
   document.querySelector(".modal-content").classList.remove("animate-in");
   void document.querySelector(".modal-content").offsetWidth;
   document.querySelector(".modal-content").classList.add("animate-out");
@@ -157,27 +155,20 @@ function addLoginListeners() {
     // This sends the form without reloading the page
     event.preventDefault();
     var formData = new FormData(event.target);
+    if (!document.getElementById("login-remember").checked)
+      formData.append("remember", "off");
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
-          // load account page coz logged in 
-          // this needs to add classes non-active
-
-          // i've commented this for now and put it back in the html, it was making life difficult
-          // document.getElementById("account").innerHTML = "<object id=\"account-object\" class=\"none-active\" type=\"text/html\" data=\"../account.html\" width=\"100%\"></object>";
-
           // If success show user logged in stuff
-          showAccountMenu(this.response.first_name);
-
-          
+          showAccountMenu(JSON.parse(this.responseText).first_name);
         }
         else if (request.status === 401) {
           document.getElementById("login-failed").classList.remove("non-active");
         }
       }
     };
-    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
   }, false);
@@ -185,15 +176,17 @@ function addLoginListeners() {
   registerForm.addEventListener("submit", function(event) {
     event.preventDefault();
     var formData = new FormData(event.target);
+    if (!document.getElementById("login-remember").checked)
+      formData.append("remember", "off");
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           // what needs to be done here hm
-          showAccountMenu(this.response.first_name);
+          showAccountMenu(JSON.parse(this.responseText).first_name);
 
           // clear form data
-
+                  
         }
         else if (request.status === 400) {
           document.getElementById("register-failed").textContent = request.responseText;
@@ -201,7 +194,6 @@ function addLoginListeners() {
         }
       }
     };
-    request.responseType = "json";
     request.open("POST", event.target.action);
     request.send(formData);
   });
@@ -214,9 +206,6 @@ function addLoginListeners() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 204) {
           document.getElementById("reset-sent").classList.remove("non-active");
-        }
-        else if (request.status === 400) {
-          console.log("BAD");
         }
       }
     };

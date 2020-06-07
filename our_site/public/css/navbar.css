@@ -18,14 +18,21 @@ header{
     color: #FFFFFF;
     position: fixed;
     padding: 15px 85px;
-    transition: 0.5s;
     z-index: 10;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
 }
 
 .hover:hover{
     animation-name: slideDown;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    -webkit-animation-name: slideDown;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: slideDown;
+    -moz-animation-duration: 1s;
 }
 
 @keyframes slideDown {
@@ -47,7 +54,7 @@ header{
 #account-dropdown{
     position: relative;
     text-align: end;
-    align-self: end;
+    align-self: start;
     display: grid;
 }
 
@@ -107,11 +114,23 @@ li {
     perspective: 1000px;
     opacity: 0;
     display: block;
+
     animation-name: menu;
     animation-duration: 300ms;
     animation-delay: 0ms;
     animation-fill-mode: forwards;
     transform-origin: top;
+
+    -webkit-animation-name: menu;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-delay: 0ms;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-transform-origin: top;
+
+    -moz-animation-name: menu;
+    -moz-animation-duration: 300ms;
+    -moz-animation-delay: 0ms;
+    -moz-transform-origin: top;
 }
 
 #login-user:hover ~ #user-dropdown li:nth-child(2),
@@ -124,6 +143,17 @@ li {
     animation-delay: 100ms;
     animation-fill-mode: forwards;
     transform-origin: top;
+
+    -webkit-animation-name: menu;
+    -webkit-animation-duration: 300ms;
+    -webkit-animation-delay: 100ms;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-transform-origin: top;
+
+    -moz-animation-name: menu;
+    -moz-animation-duration: 300ms;
+    -moz-animation-delay: 100ms;
+    -moz-transform-origin: top;
 }
 
 @keyframes menu {
@@ -221,6 +251,8 @@ nav a {
     background-size: 200% 100%;
     background-position: 100%;
     transition: background-position 275ms ease;
+    -webkit-transition: background-position 275ms ease;
+    -moz-transition: background-position 275ms ease;
 }
 
 nav a:hover {
@@ -303,5 +335,7 @@ nav a:hover {
         background-size: 200% 100%;
         background-position: 100%;
         transition: background-position 275ms ease;
+        -webkit-transition: background-position 275ms ease;
+        -moz-transition: background-position 275ms ease;
     }
  }

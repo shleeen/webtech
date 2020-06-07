@@ -14,6 +14,8 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
   store: new SQLiteStore({ db: "sessions.db", dir: "database" }),
+  cookie: { httpOnly: true, secure: "auto" }, // secure: "auto" means that cookies are set to secure when on HTTPS
+  httpOnly: true,
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored
   secret: "shhhh, very secret",

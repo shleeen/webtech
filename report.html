@@ -63,15 +63,20 @@
     <br/>
 
     <h2>Server</h2>
-    <p>Some text about Server</p>
+    <p>Our server uses express, and all the code uses the modern <code>async/await</code> style. It runs both on HTTP (port 8080) and HTTPS (port 8443). The HTTPS certificate is self-signed as the server is not hosted on a domain.
+       Cookies are used for login sessions, with the option of expiring with the browser session or after 7 days if the 'remember me' box is checked. The helmet package
+       was used to set appropriate HTTP headers for security. Cookies are set to HttpOnly, and secure (if on HTTPS).
+    </p>
     <br/>
 
     <h2>Database</h2>
-    <p>Some text about Database</p>
+    <p>Our database uses SQLite. A create/drop script (/database/create.sql) can be used to reset the database, and a Node script (/database/init_db.js) can be run to populate it with test values.
+       All databases accesses are done via a module (/database/database.js).
+    </p>
     <br/>
 
-    <h2>Database</h2>
-    <p>Some text about Database</p>
+    <h2>Dynamic pages</h2>
+    <p>Some text about Dynamic pages</p>
     <br/>
 
 </body>

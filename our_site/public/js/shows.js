@@ -102,7 +102,6 @@ function time24To12(time) {
 }
 
 function displayShow(data) {
-  console.log(data);
   document.getElementById("shows-return").classList.remove("non-active");
   document.getElementById("shows-return").classList.add("active");
 

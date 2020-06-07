@@ -102,6 +102,7 @@ function time24To12(time) {
 }
 
 function displayShow(data) {
+  console.log(data);
   document.getElementById("shows-return").classList.remove("non-active");
   document.getElementById("shows-return").classList.add("active");
 
@@ -134,19 +135,25 @@ function displayShow(data) {
   }
 
   for (i = 0; i < data.id.length; i++) {
-    document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
-      // make sure others arent selected
-      var active = document.getElementsByClassName("show-indv-date-active"); 
-      for (var j = 0; j < active.length; j++){
-        active[j].classList.remove("show-indv-date-active");
-      }
-      this.classList.add('show-indv-date-active');
+    if (data.sold[i] < data.total_seats[i]) {
+      document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
+        // make sure others arent selected
+        var active = document.getElementsByClassName("show-indv-date-active"); 
+        for (var j = 0; j < active.length; j++) {
+          active[j].classList.remove("show-indv-date-active");
+        }
+        this.classList.add("show-indv-date-active");
 
-      // This scroll is a bit dodge if you dont scroll up and then select date
-      smoothScroll("select-section", 800);
-      document.getElementById("select-section").style.opacity = 1;
-      addSeatSelection(this.id.split("-").pop(), data);
-    });
+        // This scroll is a bit dodge if you dont scroll up and then select date
+        smoothScroll("select-section", 800);
+        document.getElementById("select-section").style.opacity = 1;
+        addSeatSelection(this.id.split("-").pop(), data);
+      });
+    }
+    else {
+      document.getElementById("show-date-" + data.id[i]).classList.remove("show-indv-date");
+      document.getElementById("show-date-" + data.id[i]).classList.add("show-indv-date-soldout");
+    }
   }
 }
 

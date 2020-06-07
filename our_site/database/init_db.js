@@ -106,7 +106,7 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Silence of the Lambdas", "General", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking(11, 2, "104500", "2020-05-30 00:07:01", "1", "ref03", "0" );
+    await dbHelper.addBooking(9, 2, "104500", "2020-05-30 00:07:01", "1", "ref03", "0" );
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     let seats = [];

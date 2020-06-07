@@ -287,6 +287,20 @@
     background-color: rgb(223, 223, 223);
 }
 
+.show-indv-date-soldout{
+    width: max-content;
+    height: max-content;
+    padding: 7px;
+    margin: 10px 0px;
+    margin-right: 30px;
+    border: 2px solid rgba(33, 33, 33, 0.12);
+    background-color: rgb(180, 180, 180);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    text-align: center;
+}
+
 .month-box{
     width: 100px;
     color: #4341df;

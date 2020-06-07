@@ -332,6 +332,7 @@ function addShowsListeners() {
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
     hideSeatSelection();
+    document.getElementById("select-section").style.opacity = 0;
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);

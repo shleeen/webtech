@@ -51,6 +51,7 @@
     width: 216px;
     text-align: center;
     position: relative;
+    
 }
 
 .prod-poster:hover{
@@ -155,6 +156,9 @@
     flex-direction: column;
     align-items: stretch; /*default is stretch, fills all space available*/
     margin-bottom: 0;
+    top: 15px;
+    position: fixed;
+    z-index: 1;
 }
 
 .show-page{
@@ -174,6 +178,12 @@
 .show-poster img{
     width: 300px;
     height: auto;
+    box-shadow:
+                1px 1px #bcbcbc,
+                2px 2px #747474,
+                3px 3px #787878;
+        -webkit-transform: translateX(-2px);
+        transform: translateX(-2px);
 }
 
 .show-indv-details{
@@ -204,6 +214,7 @@
 }
 
 #show-details{
+    top: 20px;
     margin: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -211,6 +222,7 @@
     align-items: center; 
     border-radius: 5px;
     height: max-content;
+    padding-top: 140px;
 }
 
 #show-template{
@@ -256,6 +268,9 @@
     cursor: pointer;
     border: 2px solid rgba(33, 33, 33, 0.12);
     background-color: rgb(223, 223, 223);
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .show-indv-date-active{
@@ -313,6 +328,8 @@
     align-self: center;
     margin: auto;
     padding-left: 290px;
+    opacity: 0;
+    transition: height 1s, width 1s, padding 1s, visibility 1s, opacity 0.5s ease-out;
 }
 
 #seats-svg{
@@ -536,6 +553,12 @@ input[type=number]{
         text-align: center;
         position: relative;
         align-self: center;
+        box-shadow:
+                1px 1px #bcbcbc,
+                2px 2px #747474,
+                3px 3px #787878;
+        -webkit-transform: translateX(-2px);
+        transform: translateX(-2px);
     }
 
     .prod-container { 

@@ -122,7 +122,7 @@
                 <div id="ticket-types"> </div>
                 
                 <template id="template-ticket-types">
-                    <div class="ticket-div pad10">
+                    <div class="ticket-div pad5">
                         <label for="ticket-type-{{t_id}}"><b>{{t_category}}:</b>  {{t_price}}</label>
 
                         <input type="number" class="ticket-amount" name="ticket-type-{{t_id}}" id="ticket-type-{{t_id}}" min="0" max="10" value="0" step="1" />
@@ -140,7 +140,7 @@
                 <div id="seat-numbers"> </div>
                 
                 <template id="template-seatnumber">
-                    <div> 
+                    <div class="pad10"> 
                         You have selected seat(s): {{seats}}
                     </div>
                     <div id="booking-button" class="booking-button-active"> CONFIRM SEATS </div>

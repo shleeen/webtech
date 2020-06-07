@@ -135,6 +135,14 @@ function displayShow(data) {
 
   for (i = 0; i < data.id.length; i++) {
     document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
+      // make sure others arent selected
+      var active = document.getElementsByClassName("show-indv-date-active"); 
+      for (var j = 0; j < active.length; j++){
+        active[j].classList.remove("show-indv-date-active");
+      }
+      this.classList.add('show-indv-date-active');
+      smoothScroll("select-section", 800);
+      document.getElementById("select-section").style.opacity = 1;
       addSeatSelection(this.id.split("-").pop(), data);
     });
   }
@@ -156,16 +164,6 @@ function addSeatSelection(show_id, data){
   document.getElementById("seat-box0").classList.add("active");
   document.getElementById("seat-box1").classList.add("active");
   document.getElementById("seat-box2").classList.add("active");
-
-
-  // add listeners for dates
-  var dates = document.getElementsByClassName("show-indv-date");
-  for (var i = 0; i < dates.length; i++) {
-    dates[i].addEventListener("click", function(){
-      smoothScroll("select-section", 800);
-      document.getElementById("select-section").style.opacity = 1;
-    });
-  }
 
   // show ticket categories in a template
   var prices = {};

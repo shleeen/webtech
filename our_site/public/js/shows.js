@@ -141,6 +141,8 @@ function displayShow(data) {
         active[j].classList.remove("show-indv-date-active");
       }
       this.classList.add('show-indv-date-active');
+
+      // This scroll is a bit dodge if you dont scroll up and then select date
       smoothScroll("select-section", 800);
       document.getElementById("select-section").style.opacity = 1;
       addSeatSelection(this.id.split("-").pop(), data);

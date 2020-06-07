@@ -55,12 +55,7 @@ exports.getUserTransactions = async function(req, res) {
       // count the number of tickets for each price
       for (var p in transactions[t].price){
         if (current != transactions[t].price[p] ){
-          
-          
           if (count > 0 ){
-            console.log('add')
-            console.log(current)
-            console.log(count)
             transactions[t].prices.push(current)
             transactions[t].ticket_no.push(count)
           }
@@ -68,8 +63,6 @@ exports.getUserTransactions = async function(req, res) {
           current = transactions[t].price[p];
           
         } else count += 1;
-        
-
       } 
       if (current != null){
         transactions[t].prices.push(current)

@@ -188,7 +188,7 @@ object{
 /* Footer ========================================================================== */
 /* I kinda dunno where else to put this */
 footer { 
-  display: flex;
+  display: inline-flex;
   position: relative;
   width: 100%; 
   bottom: 10px; /*25px*/
@@ -198,6 +198,7 @@ footer {
   font-size:14px;
   margin: auto;
   /* align-items: normal; */
+  justify-content: center;
 }
 
 .social-icons{

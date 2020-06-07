@@ -105,7 +105,6 @@ function getTransactions(){
 
       for (var r in res) {
         for (var p in res[r].prices){
-          console.log(res[r].prices[p])
           res[r].prices[p] = moneyToString(res[r].prices[p]);
         }
         

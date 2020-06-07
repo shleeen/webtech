@@ -209,12 +209,12 @@ footer {
   transform: scaleX(-1);
 }
 
-.footer-box .footer-links:link { /* unvisited link */
+.footer-links:link { /* unvisited link */
   color: #ffee00;
   text-decoration: none;
 }
 
-.footer-box .footer-links:hover { /* mouse over link */
+.footer-links:hover { /* mouse over link */
   color: #e1bcf0;
 }
 

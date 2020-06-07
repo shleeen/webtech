@@ -263,20 +263,30 @@ svg {
 
 .contact{
     margin-top: 20px;
-    width: 75%;
+    width: 150%;
     background-color: rgba(160, 160, 160, 0.756);
     text-align: center;
     padding: 2% 2%;
     transform-origin: 0;
-    transform: translateZ(4px) scale(0.800);
+    transform: translateZ(4px) scale(0.400);
 }
 
-.contact div p{
-    font-size: 14px;
+.contact-content {
+    display: inline-flex;
+    position: relative;
+    font-size: 28px;
+    margin: auto;
+    /* align-items: normal; */
+    justify-content: center;
+}
+
+.contact-content img {
+    width: 70px;
+    height: 70px;
 }
 
 @media screen and (max-width: 940px) {
-    .join-border{
+    .join-border {
         background-color: #111;
         color: #fff;
         padding: 30px;
@@ -284,5 +294,5 @@ svg {
         letter-spacing: 20px;
     }
 
- }
+}
 

@@ -125,8 +125,7 @@
 }
 
 .prod-button{
-    width: fit-content;
-    margin-right: 10px;
+    margin-right: auto;
 }
 
 .prod-dates{

@@ -1,4 +1,5 @@
 const dbHelper = require("./database");
+const fs = require("fs");
 
 let winston_map = [];
 for (const c of "ABCDEFGHIJKL") {
@@ -15,6 +16,23 @@ for (const c of "ABCDEFGHIJKL") {
   }
 }
 
+const createScript = fs.readFileSync("./database/create.sql").toString();
+
+async function createDB() {
+  let filteredScript = createScript.replace(/^\s*\n/gm, "").replace(/^\s*--.*\n/gm, "").replace(/^\..*\n/gm, "");
+  const queries = filteredScript.toString().split(";");
+  for (let query of queries) {
+    if (query) {
+      query += ";";
+      try {
+        await dbHelper.run(query);
+      } catch (err) {
+        console.log("Error creating DB: " + err);
+      }
+    }
+  }
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -22,6 +40,7 @@ function getRandomInt(min, max) {
 }
 
 async function initializeDB() {
+  await createDB();
   // initializing the database tables with test data
   let errors = "";
   try {

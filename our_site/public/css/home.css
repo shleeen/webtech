@@ -27,10 +27,9 @@
     position: relative;
     width: 100%;
     height: 700px;
-    background-color: rgba(187, 187, 187, 0.829);
+    /* background-color: rgba(187, 187, 187, 0.829);*/
     z-index: 4;
     box-shadow: 2px 2px 5px 5px rgba(58, 58, 58, 0.824);
-    
 }
 
 
@@ -177,14 +176,14 @@ svg {
 .join-border{
     background-color: #111;
     color: #fff;
-    padding: 36px;
+    padding: 30px;
     font-size: 50px;
     letter-spacing: 20px;
 }
 
 
 .join-text{
-    margin-top: 270px;
+    margin-top: 190px;
     margin-bottom: 0px;
     transform-origin: 0;
     transform: translateZ(4px) scale(0.400);
@@ -264,7 +263,8 @@ svg {
 .contact{
     margin-top: 20px;
     width: 150%;
-    background-color: rgba(160, 160, 160, 0.756);
+    background-color:#025f5a;
+    color: #c7c7c7;
     text-align: center;
     padding: 2% 2%;
     transform-origin: 0;
@@ -285,11 +285,12 @@ svg {
     height: 70px;
 }
 
+
 @media screen and (max-width: 940px) {
     .join-border {
         background-color: #111;
         color: #fff;
-        padding: 30px;
+        padding: 24px;
         font-size: 40px;
         letter-spacing: 20px;
     }

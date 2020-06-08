@@ -22,6 +22,11 @@ function start() {
   console.log("account.html loaded");
 } 
 
+function render() {
+  getAccountDetails();
+}
+window.top.renderFunctions["account"] = render;
+
 function addListeners(){
   document.getElementById("acc-details-nav").addEventListener("click", function(event) {
     // var target = document.getElementById('account-details')
@@ -87,7 +92,7 @@ function getUserInfo(){
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
       var res = JSON.parse(xhr.responseText);
       if (res.valid) {
-        document.getElementById("account-content").innerHTML += template.render("account-template", res.data);
+        document.getElementById("account-content").innerHTML = template.render("account-template", res.data);
       }
       else {
         // Not logged in, redirect home
@@ -126,9 +131,9 @@ function getTransactions(){
         results.push(res[r]);
       }
 
-      document.getElementById("trans-details").innerHTML += template.render("display-trans", results, results.length);
+      document.getElementById("trans-details-content").innerHTML = template.render("display-trans", results, results.length);
     }
-  }
+  };
   xhr.open("GET", "/api/user/getUserTransactions", true);
 
   xhr.send();

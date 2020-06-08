@@ -67,13 +67,13 @@ async function initializeDB() {
                   "Contains strong language and sex references. | Flashing lights are used during this performance. | Contains references to suicide.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-07", "19:30", "209", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-08-07", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-08", "19:30", "209", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-08-08", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-06-09", "19:30", "209", "0");
+    await dbHelper.addShows("Musical Theatre Bristol presents Showcase", "2020-08-09", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "Student", "700");
@@ -91,19 +91,19 @@ async function initializeDB() {
                   "It is illegal to use recording equipment during this performance.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", 	"2020-06-19", "19:30", "209", "0");
+    await dbHelper.addShows("Legally Blonde", 	"2020-08-19", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-20", "19:30", "209", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-08-20", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-21", "19:30", "209", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-08-21", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-21", "14:00", "209", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-08-21", "14:00", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Legally Blonde", "2020-06-22", "19:30", "209", "0");
+    await dbHelper.addShows("Legally Blonde", "2020-08-22", "19:30", "209", "0");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Silence of the Lambdas", "Winston Theatre", 
@@ -112,13 +112,13 @@ async function initializeDB() {
                   "Contains functional programming.", "");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-08", "19:30", "209", "209"); // SOLD OUT
+    await dbHelper.addShows("Silence of the Lambdas", "2020-08-08", "19:30", "209", "209"); // SOLD OUT
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-09", "19:30", "209", "50"); // some sold
+    await dbHelper.addShows("Silence of the Lambdas", "2020-08-09", "19:30", "209", "50"); // some sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addShows("Silence of the Lambdas", "2020-07-10", "19:30", "209", "0"); // none sold
+    await dbHelper.addShows("Silence of the Lambdas", "2020-08-10", "19:30", "209", "0"); // none sold
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Silence of the Lambdas", "Student", "500");

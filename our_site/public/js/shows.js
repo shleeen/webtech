@@ -289,6 +289,7 @@ function onConfirmClick() {
       }
       else if (xhr.status === 401) {
         alert("Please login to make a booking.");
+        window.parent.document.querySelector(".modal").style.display = "block";
       }
     }
   };

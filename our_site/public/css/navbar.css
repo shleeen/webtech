@@ -105,7 +105,9 @@ li {
 
 #login-user:hover ~ #user-dropdown, #account-dropdown ul:hover,
 #nav-icon:hover + #user-dropdown{
+    position: absolute;
     display: block;
+    width: 250px;
 }
 
 
@@ -178,7 +180,9 @@ li {
     padding: 10px 20px;
     border-radius: 5px;
     background-color:#c2c2c2;
+    margin-top: 44px;
 }
+
 
 #my-account:hover{
     cursor: pointer;
@@ -263,6 +267,7 @@ nav a:hover {
 
 #nav-icon{
     display: none;
+    position: absolute;
 }
 
 .icon-png{
@@ -273,7 +278,15 @@ nav a:hover {
 
 
 @media screen and (max-width: 940px) {
+    #logo {
+        /* float: left; */
+        font-size: 2.8rem;
+        padding: 5px;
+    }
+
     #nav-icon{
+        right: 10px;
+        position: absolute;
         display: inline;
         cursor: pointer;
     }
@@ -290,6 +303,36 @@ nav a:hover {
         display: none;
     }
 
+    #login{
+        margin-top: -8px;
+        list-style: none;
+        font-size: 2.5ex;
+        font-weight: 650;
+        padding: 10px 10px;
+        border-radius: 5px;
+        background-color:#ffbb00;
+        text-transform: uppercase;
+    }
+
+    #my-account{
+        display: block;
+        list-style: none;
+        font-size: 2.5ex;
+        font-weight: 800;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color:#c2c2c2;
+        margin-top: 0px;
+    }
+    
+    #login-user:hover ~ #user-dropdown, #account-dropdown ul:hover,
+    #nav-icon:hover + #user-dropdown{
+        position: absolute;
+        width: 200px;
+        left: -220px;
+        top: 50px;
+    }
+
     .navbar {
         width: 100%;
         display: flex;
@@ -298,18 +341,16 @@ nav a:hover {
         background-color: #371545;
         color: #FFFFFF;
         position: fixed;
-        padding: 15px 25px;
+        padding: 25px 25px;
         transition: 0.5s;
         z-index: 10;
     }
-
-
 
     nav ul {
         padding: 0;
         margin: 0;
         list-style: none;
-        line-height: 40px;
+        line-height: 45px;
     }
 
     nav li {
@@ -317,7 +358,7 @@ nav a:hover {
         height: 100%;
         margin-top: 15px;
         display: inline-block;
-        margin-left: 10px;
+        margin-left: 5px;
     }
 
     nav a {
@@ -327,7 +368,7 @@ nav a:hover {
         display: block;
         /* font-size: 18px; */
         font-size: 2.5ex;
-        font-weight: 600;
+        font-weight: 500;
         width: 100%;
         padding-left: 5px;
         padding-right: 5px;

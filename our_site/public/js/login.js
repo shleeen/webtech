@@ -27,6 +27,14 @@ function showAccountMenu(firstName) {
   document.getElementById("login-user").textContent = "WELCOME, " + firstName;
   document.getElementById("login-user").classList.remove("non-active");
   document.getElementById("login-user").classList.add("active");
+
+  document.getElementById("user-nav").classList.remove("non-active");
+  document.getElementById("user-nav").classList.add("active");
+
+  document.getElementById("nav-icon").style.opacity = 1;
+  
+  // document.getElementById("user-dropdown").classList.remove("non-active");
+  // document.getElementById("user-dropdown").classList.add("active");
   closeModal();
 }
 
@@ -129,6 +137,11 @@ function addLoginListeners() {
           document.querySelector(".modal-content").classList.remove("animate-out");
           document.querySelector(".modal-content").classList.add("animate-in");
 
+          document.getElementById("nav-icon").classList.add("non-active");
+          document.getElementById("nav-icon").style.opacity = 0;
+          // document.getElementById("user-dropdown").classList.remove("active");
+          // document.getElementById("user-dropdown").classList.add("non-active");
+
           // need to redirect to home page
           window.parent.displayPage("home", "");
         }
@@ -158,6 +171,7 @@ function addLoginListeners() {
         if (request.status === 200) {
           // If success show user logged in stuff
           showAccountMenu(JSON.parse(this.responseText).first_name);
+
         }
         else if (request.status === 401) {
           document.getElementById("login-failed").classList.remove("non-active");

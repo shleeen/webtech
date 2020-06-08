@@ -15,6 +15,9 @@
 <body>
 
     <h1>Report</h1>
+    <h2>Group members</h2>
+    Max Whale (mw17440), Nicole Li (nl12747), Sharlene D'Silva (sd17085)
+
     <h2>Grade Estimations</h2>
     <ul>
         <li>X for HTML</li>
@@ -30,48 +33,58 @@
 
     <br/>
 
+    <h2>Overall</h2>
     <p>
-        An SPA of a ticketing website with the aim to improve user experience through a more modern look(?), a more interactive design and reduced loading time. We also
-        aim to understand frontend development more so we did not use any frontend frameworks and wrote our own router and template module, animation and designs.
+        An SPA of a ticketing website with the aim to improve user experience with a more interactive design and reduced loading time. We 
+        aimed to get a deeper understanding of frontend development so chose not to use any frontend frameworks, and instead wrote our own 
+        router and template module, along with creating our own animation and styles.
+        On our site, Tick.et, you can browse through the latest shows, view availability for seats by interacting with the seatmap and then purchase tickets.
     </p>
 
     <br/>
 
     <h2>HTML</h2>
-    <p>Some text about HTML</p>
+    <p> We did a lot of html. </p>
     <p>XHTML</p>
     <p>Structured for responsive convenience(?)</p>
     <p></p>
     <br/>
 
     <h2>CSS</h2>
-    <p>Some text about CSS</p>
-    <p>Animation with css. Responsiveness with css. Parallax effect with css. Transitions with css.  </p>
+    <p>
+    We created our own animations and transitions with css.
+    <br/>
+    We created a responsive website.
+    <br/>
+    Created a custom parallax effect with css for our home page.
+    </p>
     <br/>
 
     <h2>JS</h2>
-    <p>Some text about JS</p>
     <p>
-        Did not use any frontend frameworks, implemented our own router and template module.
-        The router performs client-side routing for the SPA. 
-            Initialising the router would populate an array of routes with parameters like uri, callback, parameters, regular expression etc.
-            The router then matches the current pathname and parameters to the corresponding route and displays the corresponding content.
-            The router also handles more complex pathnames using .where() with regular expressions that for each parameter. This is implemented for each individual show page. for e.g. http://localhost:8080/shows/1
-        Modify browser history states so its possible to navigate to previous page using the browser back button.
-        Animation and interaction done with js, for example:
-            svgs outline path drawing, 
-            smooth scrolls, 
-            page transitions, 
-            selection of seats, 
-            search bar,
-            carousel navigation,
-            everything.
-        The hiding of navbar when scrolling downwards on the shows and account page, will appear if hovered over and when scrolled upwards.
-    .</p>
+        <ul style="list-style-type: circle;">
+            <li> Did not use any frontend frameworks, implemented our own router and template module. </li>
+            <li>Router: performs client-side routing for the SPA.</li>
+            <ul style="list-style-type: '-';">
+                <li>Initialising the router would populate an array of routes with parameters like uri, callback, parameters, regular expression etc.</li>
+                <li>The router then matches the current pathname and parameters to the corresponding route and displays the corresponding content.</li>
+                <li>The router also handles more complex pathnames using .where() with regular expressions for each parameter. This is implemented for each individual show page. for e.g. http://localhost:8080/shows/1</li>
+            </ul>
+            <li>Modify browser history states so its possible to navigate to previous page using the browser back button.</li>
+            <li>The hiding of navbar when scrolling downwards on the shows and account page, will appear if hovered over and when scrolled upwards.</li>
+            <li>Animation and interaction was done with js, for example:</li>
+            <ul style="list-style-type: '-';">
+                <li>Draws the path outline for SVG (seen in the login modal)</li>
+                <li>Smooth scrolling effect (show details pages)</li>
+                <li>Interacting with the seatmap, including conditional formatting</li>
+                <li>Navigating the carousel and indicating the change in banner (home page)</li>
+                <li>Fade transitions between the different pages</li>
+                <li>Auto-completing search bar (on shows page)</li>
+            </ul>
+        </ul>
     <br/>
 
     <h2>PNG</h2>
-    <p>Some text about PNG</p>
     <p> 
         Created our own "Silence of the Lambdas" banner and poster.
         Created some of our own icons (?).
@@ -81,8 +94,8 @@
     <h2>SVG</h2>
     <p>Some text about SVG</p>
     <p>
-        All svgs in the img folder are created using inkscape and user interactions and animations with them are done with js and css for some styling.
-        There are also svgs created in the htmls, including the splash screen, carousel navigations and these animations and interactions are done with css and js.
+        All svgs in the img folder are created using inkscape. User interaction and animations with them are done in JS and CSS for styling.
+        We also created some SVGs in the HTML, including the splash screen, carousel navigations and legend for seatmap. The animations and interactions for this were also done with CSS and JS.
     </p>
     <br/>
 
@@ -100,12 +113,13 @@
     <br/>
 
     <h2>Dynamic pages</h2>
-    <p>Some text about Dynamic pages</p>
     <p>
         We implemented our own template rendering module to deliver dynamic content:
-            We request data from the server and insert them into existing templates on the client side using the template module. 
-            The module finds the template with the corresponding id and matches {{something something sometihng}}, this way we do not need to write code for every insertion of data. (?Need words)
-            It also deals with insertion of the same template but with different data.
+        <ul style="list-style-type: circle;">
+            <li>We request data from the server and insert them into existing templates on the client side using the template module. </li>
+            <li>The module finds the template with the corresponding id and matches {{something something sometihng}}, this way we do not need to write code for every insertion of data. (?Need words)</li>
+            <li>It also deals with insertion of the same template but with different data.</li>
+        </ul>
     </p>
     <br/>
 

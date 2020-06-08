@@ -16,18 +16,18 @@
 
     <h1>Report</h1>
     <h2>Group members</h2>
-    Max Whale (mw17440), Nicole Li (nl12747), Sharlene D'Silva (sd17085)
+    Max Whale (mw17440), Nicole Li (nl17247), Sharlene D'Silva (sd17085)
 
     <h2>Grade Estimations</h2>
     <ul>
-        <li>X for HTML</li>
-        <li>X for CSS</li>
-        <li>X for JS</li>
-        <li>X for PNG</li>
-        <li>X for SVG</li>
-        <li>X for Server</li>
-        <li>X for Database</li>
-        <li>X for Dynamic pages</li>
+        <li>A for HTML</li>
+        <li>A for CSS</li>
+        <li>A for JS</li>
+        <li>A for PNG</li>
+        <li>A for SVG</li>
+        <li>A for Server</li>
+        <li>A for Database</li>
+        <li>A for Dynamic pages</li>
         <li>X for Depth (out of 20)</li>
     </ul>
 
@@ -44,7 +44,7 @@
     <br/>
 
     <h2>HTML</h2>
-    <p> We did a lot of html. </p>
+    <p>Our HTML is written using the HTML5 standard, and has been validated using the W3C validation service. It has also been validated with XHTML delivery using Chrome.</p>
     <p>XHTML</p>
     <p>Structured for responsive convenience(?)</p>
     <p></p>
@@ -63,7 +63,8 @@
     <h2>JS</h2>
     <p>
         <ul style="list-style-type: circle;">
-            <li> Did not use any frontend frameworks, implemented our own router and template module. </li>
+            <li>Written in ES5, so that it is friendly to older browsers.</li>
+            <li>Did not use any frontend frameworks, implemented our own router and template module.</li>
             <li>Router: performs client-side routing for the SPA.</li>
             <ul style="list-style-type: '-';">
                 <li>Initialising the router would populate an array of routes with parameters like uri, callback, parameters, regular expression etc.</li>
@@ -85,31 +86,48 @@
     <br/>
 
     <h2>PNG</h2>
-    <p> 
-        Created our own "Silence of the Lambdas" banner and poster.
-        Created some of our own icons (?).
-    </p>
+        <ul>
+            <li>Created our own "<i>Silence of the Lambdas</i>" banner and poster</li>
+            <ul>
+                <li>GIMP was used to make these</li>
+                <li>Lots of layers were used to build up an image</li>
+                <li>GIMP's inbuilt filters were used to make the image look interesting without requiring any artistic talent</li>
+            </ul>
+            <li>Created some of our own icons (?)</li>
+        </ul>
     <br/>
 
     <h2>SVG</h2>
     <p>Some text about SVG</p>
     <p>
-        All svgs in the img folder are created using inkscape. User interaction and animations with them are done in JS and CSS for styling.
+        All SVGs in the img folder are created using inkscape. User interaction and animations with them are done in JS and CSS for styling.
         We also created some SVGs in the HTML, including the splash screen, carousel navigations and legend for seatmap. The animations and interactions for this were also done with CSS and JS.
     </p>
     <br/>
 
     <h2>Server</h2>
-    <p>Our server uses express, and all the code uses the modern <code>async/await</code> style. It runs both on HTTP (port 8080) and HTTPS (port 8443). The HTTPS certificate is self-signed as the server is not hosted on a domain.
-       Cookies are used for login sessions, with the option of expiring with the browser session or after 7 days if the 'remember me' box is checked. The helmet package
-       was used to set appropriate HTTP headers for security. Cookies are set to HttpOnly, and secure (if on HTTPS).
-    </p>
+    <ul>
+        <li>Written using express.js</li>
+        <li>Uses the code uses the modern <code>async/await</code> style</li>
+        <li>Runs both on HTTP (port 8080) and HTTPS (port 8443)</li>
+        <li>HTTPS certificate is self-signed as the server is not hosted on a domain</li>
+        <li>Cookies are used for login sessions, with the option of </li>
+        <ul>
+            <li>Cookies expire with the browser session, or after 7 days if the 'remember me' box is checked</li>
+            <li>Cookies are set to <i>HttpOnly</i>, and <i>secure</i> (if on HTTPS)</li>
+        </ul>
+        <li>The <i>helmet</i> package was used to set appropriate HTTP headers for security</li>
+    </ul>
     <br/>
 
     <h2>Database</h2>
-    <p>Our database uses SQLite. A create/drop script (/database/create.sql) can be used to reset the database, and a Node script (/database/init_db.js) can be run to populate it with test values.
-       All databases accesses are done via a module (/database/database.js).
-    </p>
+    <ul>
+        <li>We use a integrated SQLite database</li>
+        <li>When the server starts, it checks if the database file exists, and if not creates and initialises it</li>
+        <li>We wrote a database.js module, which provides many functions to help access the database</li>
+        <li>The <code>create.sql</code> script shows the structure of the database. We tried to stick to proper normal form</li>
+    </ul>
+    Our database uses SQLite. . 
     <br/>
 
     <h2>Dynamic pages</h2>

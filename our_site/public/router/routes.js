@@ -1,5 +1,3 @@
-
-
 var router = new window.Router();
 
 // I changed the url to match page names for now, can always do something better later
@@ -18,9 +16,6 @@ function initRouter() {
 
   // example route with params
   router.get("/shows/{showID}", function() {
-
-    // get the id from req
-
     // display things
     window.displayPage("shows");
 

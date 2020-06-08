@@ -1,7 +1,6 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", start, false);
 
-// this includes 0 oops
 var numberOfBanners = 0;
 
 function start() {

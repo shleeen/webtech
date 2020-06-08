@@ -3,7 +3,7 @@
 "use strict";
 addEventListener("load", start);
 function start() {
-  addLoginListeners(); // uh I dunno if this should be here of 
+  addLoginListeners(); 
   checkLogin();
   console.log("login.html loaded");
 }
@@ -102,7 +102,6 @@ function addLoginListeners() {
   };
 
   regToLogin.onclick = function(){
-    // seems like the remove has to come first?
     document.getElementById("login-content").classList.remove("non-active");
     document.getElementById("register-content").classList.add("non-active");
     document.getElementById("register-failed").classList.add("non-active");
@@ -110,11 +109,9 @@ function addLoginListeners() {
   };
 
   forgotToLogin.onclick = function(){
-    // seems like the remove has to come first?
     document.getElementById("login-content").classList.remove("non-active");
     document.getElementById("forgot-content").classList.add("non-active");
     document.getElementById("reset-sent").classList.add("non-active");
-    //drawLogin();
     draw("login");
   };
 
@@ -141,15 +138,13 @@ function addLoginListeners() {
     request.send();
   }, false);
 
-  // I'm super confused what this is about, can't get the logout button to stop disappearing
-  // yea should sort out that css it aint the best
+
   document.getElementById("logout").onmouseout = function()   {
     document.getElementById("my-account").classList.add("non-active");
     document.getElementById("logout").classList.add("non-active");
   };
 
-  // What happens when person tries to login?
-  // This would be neater in separate functions
+
   loginForm.addEventListener("submit", function(event) {
   
     // This sends the form without reloading the page
@@ -182,11 +177,7 @@ function addLoginListeners() {
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
-          // what needs to be done here hm
           showAccountMenu(JSON.parse(this.responseText).first_name);
-
-          // clear form data
-                  
         }
         else if (request.status === 400) {
           document.getElementById("register-failed").textContent = request.responseText;

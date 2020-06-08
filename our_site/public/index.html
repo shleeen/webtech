@@ -11,14 +11,11 @@
     <link href="/css/splash.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <!-- <script type="module" src="/router/router.js"></script> -->
     <script src="/js/index.js"></script>
     <script src="/js/login.js"></script>
     <script src="/router/router.js"></script>
     <script src="/router/routes.js"></script>
     
-    
-    <!--This will overwrite stylesheets prev imported aka navbar/ styles unless sequence is changed -->
 </head>
 
 
@@ -43,7 +40,7 @@
 
             <div id="nav-icon">
                 <!-- <img class="icon-png" src="/img/nav-icon.png" /> -->
-                <i class="material-icons  pad10">menu</i>
+                <i class="material-icons pad10">menu</i>
             </div>
             
             <ul id="user-dropdown">
@@ -59,13 +56,12 @@
 
     <!-- Splash screen -->
     <div id="overlay" class="overlay unselectable">
-        <svg class="svg_center" version="1.1" xmlns="http://www.w3.org/2000/svg" height="500" width="500" viewBox="0 0 200 200" preserveAspectRatio="none">  
-            <path id="stroke1" class="tstroke_1" d="M 0 0 L 5 15 l 90 0 l 5 -15 l -100 0 "></path>
-            <rect class="tstroke_2" x="45" y="8" width="10" height="125">
+        <svg class="svg-center" version="1.1" xmlns="http://www.w3.org/2000/svg" height="500" width="500" viewBox="0 0 200 200" preserveAspectRatio="none">  
+            <path id="stroke1" class="tstroke-1" d="M 0 0 L 5 15 l 90 0 l 5 -15 l -100 0 "></path>
+            <rect class="tstroke-2" x="45" y="8" width="10" height="125">
                 <!-- animate attributeName="height" from="10" to="125" dur="1.5s" fill="freeze" begin="stroke1.end"/ -->
             </rect>
-            <!-- <path class="tstroke_2" d="M 45 8 l 0 120 l 9 0 L 55 8 "> wee </path> -->
-            <Text class="logo_text" x="70" y="130" font-size="35">ICK.ET</Text>
+            <Text class="logo-text" x="70" y="130">ICK.ET</Text>
         </svg>
     </div>
 
@@ -167,11 +163,8 @@
             
         </div>
         <div id="home" class="non-active subpage">
-            <object id="home-object" type="text/html" data="../home.html"></object>
-            
+            <object id="home-object" type="text/html" data="../home.html"></object>            
         </div>
-
-
 
         <div id="shows" class="non-active subpage">
             <object id="shows-object" type="text/html" data="../shows.html"></object>
@@ -185,23 +178,8 @@
             <object id="404-object" type="text/html" data="../404.html"></object>   
         </div>
 
-    </div>
-
-    <!-- <footer>
-        <div class="pad5">
-            <p>Contact Us</p>
-            
-            <p>Social media links</p>
-            
-            <p>For any queries please contact support@tick.et.com</p>
-            
-        </div>
-        
-    </footer> -->
-    
+    </div>    
 
 </body>
-
-
 
 </html>

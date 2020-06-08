@@ -1,5 +1,5 @@
 
-.svg_center {
+.svg-center {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -9,7 +9,7 @@
     -moz-transform: translate(-50%, -50%);
   }
 
-.tstroke_1{
+.tstroke-1{
     stroke-dasharray: 100;
     stroke: #371545;
     fill: none;
@@ -22,7 +22,7 @@
 }
 
 /*This doesnt work*/
-.tstroke_2{
+.tstroke-2{
     fill: #371545;
     animation-name: draw2;
     animation-duration: 2s;
@@ -55,10 +55,11 @@
     }
   }
 
-.logo_text{
+.logo-text{
     fill: #371545;
     animation: textFade 4s;
     opacity: 0;
+    font-size: 35px;
 }
 
 @keyframes textFade {

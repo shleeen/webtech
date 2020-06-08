@@ -278,6 +278,14 @@ nav a:hover {
         cursor: pointer;
     }
 
+    #nav-icon i{
+        font-size: 30px;
+    }
+
+    #nav-icon i:hover{
+        color: #a5a5a5;
+    }
+
     #login-user{
         display: none;
     }

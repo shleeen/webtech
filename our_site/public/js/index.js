@@ -4,8 +4,8 @@
 var navbar;
 
 window.renderFunctions = {};
-// ----------------------------------------------------------------------------
 
+// ----------------------------------------------------------------------------
 addEventListener("load", start);
 
 function start() {
@@ -47,7 +47,6 @@ function setHeight(){
       else showObj.style.height = indexHeight + "px";
     };
 
-    // // TODO: make it so that resizing wouldnt hide part of it
     // var accountObj = document.getElementById("account-object");
 
     // accountObj.onload = function(){
@@ -113,10 +112,6 @@ function addListeners() {
   
 }
 
-
-// @nicole seeing the same function pasted 3 times made me sad
-// DRYYYYYYYYYY
-// Eh yea I was meant to fix that, got halfway and got bored and frustrated coz apparentl getelementbyclassname updates according to classlsit updates, tyvm
 function displayPage(pageName, newURL, popState) {
   console.log("displaying " + pageName);
 

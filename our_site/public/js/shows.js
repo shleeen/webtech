@@ -88,7 +88,6 @@ function getShow(prod_id) {
 }
 
 
-// woohoo
 var months = { "01": "JAN", "02": "FEB", "03": "MAR", "04": "APR", "05": "MAY", "06": "JUN", "07": "JUL", "08": "AUG", "09": "SEP", "10": "OCT", "11": "NOV", "12": "DEC" };
 
 function time24To12(time) {
@@ -105,7 +104,6 @@ function displayShow(data) {
   document.getElementById("shows-return").classList.remove("non-active");
   document.getElementById("shows-return").classList.add("active");
 
-  // slightly confused as to why removing shows-main would hide it but active and non-active doesnt
   document.getElementById("shows-main").classList.remove("shows-main");
   document.getElementById("shows-main").classList.add("non-active");
 
@@ -123,7 +121,7 @@ function displayShow(data) {
     document.getElementById("show-warnings").innerHTML += template.render("warnings-template", warningObj);
   }
 
-  // yeeting indv dates into another template 
+  // put indv dates into another template 
   for (var i = 0; i < data.date.length; i++) {
     var rawDate = data.date[i];
     var parts = rawDate.split("-");
@@ -143,7 +141,6 @@ function displayShow(data) {
         }
         this.classList.add("show-indv-date-active");
 
-        // This scroll is a bit dodge if you dont scroll up and then select date
         smoothScroll("select-section", 800);
         document.getElementById("select-section").style.opacity = 1;
         addSeatSelection(this.id.split("-").pop(), data);

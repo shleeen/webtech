@@ -65,16 +65,16 @@
                 <div class="show-blurb"> {{blurb}} </div>
 
                 <p class="pad10">
-                    <span style="font-weight:600;"> Venue: </span> {{venue}} 
+                    <span> Venue: </span> {{venue}} 
                 </p> 
 
                 <div class="pad10">
-                    <p> <span style="font-weight:600;"> Producer: </span> {{producer}} </p>
-                    <p> <span style="font-weight:600;"> Director: </span> {{director}} </p>
+                    <p> <span> Producer: </span> {{producer}} </p>
+                    <p> <span> Director: </span> {{director}} </p>
                 </div>
 
                 <div class="pad10 warnings" id="show-warnings">
-                    <p> <span style="font-weight:600; color: #ee1616c5;"> WARNING: </span>  </p>
+                    <p> <span class="red"> WARNING: </span>  </p>
                     <template id="warnings-template">
                         <ul>
                             <li>{{warning}}</li>
@@ -82,7 +82,7 @@
                     </template>
                 </div>
                     
-                <p class="pad10"> <span style="font-weight:600"> Currently showing on: </span> </p>
+                <p class="pad10"> <span> Currently showing on: </span> </p>
 
                 <div id="show-dates" class="show-dates pad10">
                     <!-- template for displaying indv. dates -->
@@ -92,7 +92,6 @@
                             <div class="month-box">{{month}}</div>
                             <div class="day-box">{{day}}</div>
                             <div class="year-box">{{time}}</div>
-                            <!-- <div>{{full_date}}</div> -->
                         </div>
                     </template>
                 </div>

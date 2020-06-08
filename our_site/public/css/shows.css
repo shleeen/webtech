@@ -3,6 +3,10 @@
     margin-top: 30px;
 }
 
+.red {
+    color: #ee1616c5
+}
+
 /* for the search bar */
 #filter-box{
     margin: 0px 580px;
@@ -192,6 +196,10 @@
     flex-grow: 2;
     padding: 25px 35px;
     text-align: left;
+}
+
+.show-indv-details p span{
+    font-weight: 600;
 }
 
 #shows-return {

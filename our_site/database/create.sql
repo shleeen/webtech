@@ -1,5 +1,4 @@
 -- Drop/Create script to initialise the database tables.
-.open database.db
 PRAGMA foreign_keys = OFF;
 
 DROP TABLE IF EXISTS user_type;

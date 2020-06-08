@@ -40,6 +40,11 @@ function getRandomInt(min, max) {
 }
 
 async function initializeDB() {
+  if (process.argv[2] === "check") {
+    if (fs.existsSync("./database/database.db")) {
+      return;
+    }
+  }
   await createDB();
   // initializing the database tables with test data
   let errors = "";

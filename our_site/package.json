@@ -4,6 +4,7 @@
   "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "node ./database/init_db.js check",
     "start": "nodemon ./start.js",
     "init_db": "node ./database/init_db.js"
   },

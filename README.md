@@ -21,8 +21,6 @@ https://github.com/validatorjs/validator.js#validators
 **what is our_site**  
 This is our actual site. :P  
 - ~~Has ians server with pug templating, and bootstrap css.~~
-- To start our server is also the same, run ```node start.js```, and go to *localhost:8080*.   
-or do ```npm start``` for it to update live changes.
-- In the database folder, there is a create script that can be run with sqlite3 command line tool to initialise the database like so: ```sqlite3 -cmd ".read create.sql"``` (could make a JS thing to do this as well if we want). There is a database.js module in the folder that the main server will use to interact with the database (all it does atm is open it).
-- Also in the database folder, there is the ```init_db.js``` script, which can be run with ```node``` to add some default test entries to the database.
+- To start our server is also the same, run ```npm start```, and go to *localhost:8080*. It will create and initialise the database automatically if it doens't exist.
+- To force a database reinitialisation, run ```npm run-script init_db```.
 

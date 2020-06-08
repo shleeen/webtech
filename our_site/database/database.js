@@ -37,7 +37,7 @@ async function openDB() {
   try {
     const db = await sqlite.open({
       filename: database_path,
-      mode: sqlite3.OPEN_READWRITE,
+      mode: sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE,
       driver: sqlite3.Database
     });
     await db.get("PRAGMA foreign_keys = ON");

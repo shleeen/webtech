@@ -1,4 +1,7 @@
 "use strict";
+
+// import { raw } from "body-parser";
+
 addEventListener("load", start);
 function start() {
   addListeners();
@@ -38,6 +41,14 @@ function addListeners(){
 }
 
 // Functions --------------------------------------------------------------
+var months = { "01": "JAN", "02": "FEB", "03": "MAR", "04": "APR", "05": "MAY", "06": "JUN", "07": "JUL", "08": "AUG", "09": "SEP", "10": "OCT", "11": "NOV", "12": "DEC" };
+
+function formatDate(rawdate){
+  var formattedDate = "";
+  var parts = rawdate.split("-");
+  var formattedDate = parts[2] + " " + months[parts[1]] + " " + parts[0];
+  return formattedDate;
+}
 
 function smoothScroll(target, duration){
   var target = document.getElementById(target)
@@ -110,12 +121,11 @@ function getTransactions(){
         }
         
         res[r].order_total = moneyToString(res[r].order_total);
+        res[r].date = formatDate(res[r].date);
         res[r].booking_time = res[r].booking_time.substr(0, 19).replace("T", " ");
         results.push(res[r]);
       }
 
-      // document.getElementById("trans-details").innerHTML += template.render("display-trans", {poster_img: res[x].poster_path, bookingRef: res[x].booking_ref, name: res[x].name, date: res[x].date, time: res[x].doors_open, bookTime: res[x].booking_time, paymentStat:res[x].paid,
-      //  seats: res[x].seat_number, totalAmount: res[x].order_total });
       document.getElementById("trans-details").innerHTML += template.render("display-trans", results, results.length);
     }
   }

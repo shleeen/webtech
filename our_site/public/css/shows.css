@@ -39,6 +39,7 @@
     display: flex;
     transition: all 0.3s ease;
     min-width: 500px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
 }
 
 .prod-container:hover { 

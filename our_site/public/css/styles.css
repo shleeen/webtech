@@ -161,6 +161,23 @@ object{
   font-size: 18px;
 }
 
+.font20 {
+  font-size: 20px;
+}
+
+.heading{
+  font-weight: 600;
+}
+
+.heading1{
+  font-weight: 500;
+  color: rgb(66, 66, 66);
+}
+
+.heading2{
+  font-weight: 600;
+  text-align: right;
+}
 
 /* Custom Scrollbar ========================================================================== */
 ::-webkit-scrollbar { /* width */

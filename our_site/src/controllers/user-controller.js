@@ -35,7 +35,7 @@ exports.getUserTransactions = async function(req, res) {
       else
         userTransactions[u].paid = "Not paid";
 
-      if (userTransactions[u].collected === "1")
+      if (userTransactions[u].collected === 1)
         userTransactions[u].collected = "Yes";
       else
         userTransactions[u].collected = "No";

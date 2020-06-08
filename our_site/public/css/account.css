@@ -1,3 +1,7 @@
+/* ffbb00 yellow
+   #419aaa blue
+*/
+
 #account-main{
     width: 85%;
     margin: 0 auto;
@@ -10,51 +14,47 @@
     min-width: 450px;
     width: 50%;
     height: 320px;
-    background-color: #bcbcbc;
+    background-color: #7cc6d3;
     margin-top: 2em;
     margin-bottom: 2em;
     margin-left:  auto;
     margin-right: auto;
     border-radius: 3px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
-    border: 2px solid rgba(7, 7, 7, 0.12);
+    border: 2px solid #42a7b9;
     transition: all 0.3s ease;
 }
 
-
 .account-container:hover{
     height: 320px;
-    background-color: #cecece;
-
+    background-color: #91d0db;
 }
 
 .account-container .account p{
     transition: all 0.3s ease;
-
 }
 
 .account-container:hover .account p{
     opacity: 1;
     font-size: 22px;
-
 }
 
 .trans-container{
     width: 100%;
     height: max-content;
-    background-color: #bcbcbc;
+    background-color: #bc8fce;
     margin-top: 2em;
     margin-bottom: 2em;
     padding-bottom: 2em;
     border-radius: 3px;
     border-radius: 3px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
-    border: 2px solid rgba(7, 7, 7, 0.12);
+    border: 2px solid #ac69c7;
     transition: all 0.3s ease;
 }
 
 .trans-container:hover{
-    background-color: #cecece;
+    background-color: #c89dda;
 }
 
 .transaction{
@@ -67,22 +67,20 @@
     transition: all 0.3s ease;
     opacity: 1;
     font-size: 22px;
-    font-weight: 400;
 }
 
 .trans-container .trans-info{
     transition: all 0.3s ease;
 }
 
-
 .trans-container:hover .trans-info{
-    background-color: #eaeaea;
+    background-color: rgb(231, 231, 231);
     border: 2px solid rgba(147, 147, 147, 0.12);
 }
 
 .trans-content-wrapper{
     height: max-content;
-    background-color: #ece9e9;
+    background-color: #f8f8f8;
     display: flex;
     border-radius: 3px;
     transition: all 0.3s ease;
@@ -105,9 +103,9 @@
 .book-ref{
     padding: .2em;
     height: 40px;
-    font-size: 22px;
+    font-size: 20px;
     align-items: center;
-    color: #371545;
+    color: #292929;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
 }
@@ -126,6 +124,7 @@
     display: flex;
     flex-direction: row;
     align-items: stretch; 
+    font-size: 16px;
 }
 
 .details{
@@ -138,6 +137,12 @@
     width: 350px;
     margin-right: 10px;
     flex-grow: 1;
+}
+
+.prod-name{
+    font-weight: 500;
+    font-size: 19px;
+    color: #4e265e;
 }
 
 .trans-details{
@@ -161,9 +166,7 @@
 
 .account-title{
     font-size: 30px;
-
 }
-
 
 .account-content .account-row p {
     width: 45%;

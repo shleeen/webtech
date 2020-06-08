@@ -31,7 +31,7 @@
 
         <div id="account-details" class="account-container pad15">
             <div class="account">
-                <p class="center pad15 font18">
+                <p class="center pad15 font20 heading">
                     Account Details
                 </p>
             </div>
@@ -39,7 +39,7 @@
             <div id="account-content" class="account-content pad15">
                 <template id="account-template">
                     <div class="account-row">
-                        <p class="pad10">
+                        <p class="pad10 heading2" >
                             Username
                         </p>
                         <p id="username" class="pad10">
@@ -48,7 +48,7 @@
                     </div>
     
                     <div class="account-row">
-                        <p class="pad10">
+                        <p class="pad10 heading2" >
                             First Name
                         </p>
                         <p id="firstname" class="pad10">
@@ -57,7 +57,7 @@
                     </div>
     
                     <div class="account-row">
-                        <p class="pad10">
+                        <p class="pad10 heading2" >
                             Last Name
                         </p>
                         <p id="lastname" class="pad10">
@@ -66,7 +66,7 @@
                     </div>
     
                     <div class="account-row">
-                        <p class="pad10">
+                        <p class="pad10 heading2" >
                             Email
                         </p>
                         <p id="email" class="pad10">
@@ -85,7 +85,7 @@
 
         <div id="trans-details" class="trans-container pad15">
             <div class="transaction">
-                <p class="center pad15 font18">
+                <p class="center pad15 font20 heading">
                     Transaction Details
                 </p>
             </div>
@@ -96,32 +96,26 @@
                     <div class="trans-info"> 
                         <div class="book-ref"> 
                             <p>Booking Reference: {{booking_ref}}</p>
-                             
                         </div>
                         <div class="trans-content">
                             <div class="prod-details">
                                 <div class="prod-name"> {{name}} </div>
                                 <div class="show-date"> {{date}} </div>
-                                <div class="show-time"> {{doors_open}} (Doors Open)</div>
                             </div>
                             <div class="details">
                                 <div class="trans-details">
-                                    <div class="book-time"> Booking time:  </div>
-                                    <div class="payment"> Payment status:  </div>
-                                    <div class="tickets"> Number of tickets:  </div>
-
-                                    <div class="price"> Ticket price: </div>
-                                    
-                                    <div class="tickets"> Total amount: </div>
+                                    <div class="book-time heading1"> Booking time:  </div>
+                                    <div class="payment heading1"> Payment status:  </div>
+                                    <div class="tickets heading1"> Number of tickets:  </div>
+                                    <div class="price heading1"> Ticket price: </div>
+                                    <div class="tickets heading1"> Total amount: </div>
                                     
                                 </div>
                                 <div class="ticket-details">
                                     <div class="book-time"> {{booking_time}} </div>
                                     <div class="payment"> {{paid}} </div>
                                     <div class="tickets"> {{ticket_no}} </div>
-
                                     <div class="price"> {{prices}} </div>
-                                    
                                     <div class="tickets"> {{order_total}} </div>
                                     
                                     <!-- <button>More Details</button> -->
@@ -131,11 +125,11 @@
                         </div>
                         <div class="trans-content-more">
                             <div class="ticket-seats">
-                                <div class="seats"> Seat Number(s): {{seat_number}} </div>
+                                <div class="show-time"> <span class="heading1">Doors Open:</span> {{doors_open}}</div>
+                                <div class="seats"> <span class="heading1">Seat Number(s):</span> {{seat_number}} </div>
                             </div>
 
                             <div class="ticket-price">
-                                
                                 <!-- <div class="price"> times number = total  </div> -->
                             </div>
                         </div>       

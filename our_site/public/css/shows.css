@@ -157,7 +157,6 @@
 ****************************************************************************************/
 .button-back{
     margin: 55px 40px; /*cos page can only start after the nav */
-    display: absolute;
     justify-content: space-between;
     flex-direction: column;
     align-items: stretch; /*default is stretch, fills all space available*/
@@ -383,7 +382,7 @@
 
 #seat-box1{
     flex-grow: 1;
-    max-inline-size: fit-content;
+    max-inline-size: max-content;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -392,7 +391,6 @@
 #seat-box2{
     flex-grow: 2;
     height: max-content;
-    /* max-inline-size: fit-content; */
 }
 
 .booking-button-active{ 

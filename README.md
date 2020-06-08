@@ -1,26 +1,14 @@
-# webtech
+# COMS32500 Web Technologies
+## Ticketing website
 
-### marking scheme:
-https://csijh.gitlab.io/COMSM0104/cw/final/
+**Usage**
+- To start the server, run `npm start`. It will create and initialise the database automatically if it doesn't exist.
+- Go to *localhost:8080* for HTTP or *localhost:8443* for HTTPS. 
+- To force a database reinitialisation, you can run `npm run-script init_db`.
 
-### NOTES:
-_im gonna add notes here to come back to so we don't forget_  
-* **Using Express**: In the server lab Ian points out that there can be a huge security vulnerability while using Express (beign able to access the admin page thru browser). So we just need to be careful.
-
-* All validators here:  
-https://github.com/validatorjs/validator.js#validators
-
-* I think ian talked about var vs consts somewhere (cant find it so have ignored thinking about that for now)
-
-
-**what is website_form**  
-- So in folder *website_form* is a website(?) of a form asking for name & email that I made following a tutorial basically to learn things.  
-- The gist is it's a node-express server, with pug templating engine, and bootstrap for frontend css.  
-- To run it cd into the directory and then: ```node start.js```. It should show up on ```localhost:3000```.  
-
-**what is our_site**  
-This is our actual site. :P  
-- ~~Has ians server with pug templating, and bootstrap css.~~
-- To start our server is also the same, run ```npm start```, and go to *localhost:8080*. It will create and initialise the database automatically if it doens't exist.
-- To force a database reinitialisation, run ```npm run-script init_db```.
+**Examples**
+- There is an example user John Smith, who has made a couple of bookings already. You can log in as him with email `jsmith@gmail.com`, password `JohnPass444`.
+- You are also able to register new users. Upon registering, a verification email will be sent, although verification isn't currently required for any site functions. You can view emails sent by the server by logging in at [ethereal](https://ethereal.email) with these credentials:
+    - Email: `wilfred.goyette@ethereal.email`
+    - Password: `Hj1T9CeqnTBQ1zm8dt`
 

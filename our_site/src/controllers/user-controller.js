@@ -30,7 +30,7 @@ exports.getUserTransactions = async function(req, res) {
 
     // Convert 1s and 0s to words
     for (const u in userTransactions){
-      if (userTransactions[u].paid === "1")
+      if (userTransactions[u].paid === 1)
         userTransactions[u].paid = "Paid";
       else
         userTransactions[u].paid = "Not paid";

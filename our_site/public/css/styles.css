@@ -124,6 +124,7 @@ object{
 
 .main{
   overflow: scroll;
+  overflow-x: hidden;
   height: max-content;
   
 }
@@ -191,7 +192,7 @@ footer {
   display: inline-flex;
   position: relative;
   width: 100%; 
-  bottom: 10px; /*25px*/
+  bottom: 25px; /*25px*/
   height: 75px; /*60px*/
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;

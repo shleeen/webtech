@@ -333,7 +333,6 @@ function onSeatUnhover() {
 }
 
 function addShowsListeners() {
-  // Add back button listener
   // onclick: hide back button, display list of productions
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
@@ -350,7 +349,6 @@ function addShowsListeners() {
 }
 
 function hideSeatSelection() {
-  // i hate that this is repeated so much
   document.getElementById("seat-box0").classList.remove("active");
   document.getElementById("seat-box1").classList.remove("active");
   document.getElementById("seat-box2").classList.remove("active");

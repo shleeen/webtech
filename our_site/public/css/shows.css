@@ -23,7 +23,7 @@
 .shows-main{
     /* width: 100%; */
     /* height: max-content;*/
-    margin: 30px 40px; /*cos page can only start after the nav */
+    margin: 40px 40px; /*cos page can only start after the nav */
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -211,6 +211,11 @@
 
 #shows-return:hover {
     color: #102225;
+}
+
+#arrow-img{
+    padding-bottom: 5px;
+    vertical-align: middle;    
 }
 
 #show-details{

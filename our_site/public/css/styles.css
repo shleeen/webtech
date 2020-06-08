@@ -201,6 +201,12 @@ object{
 ::-webkit-scrollbar-thumb:hover { /* Handle on hover */
   background: #ebac00; 
 }
+
+/* For firefox */
+*{
+  scrollbar-width: thin;
+  scrollbar-color: #ffbb00 #ebebeb;
+}
   
 
 /* Footer ========================================================================== */

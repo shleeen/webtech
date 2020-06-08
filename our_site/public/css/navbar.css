@@ -103,7 +103,11 @@ li {
     display: block;
 }
 
-#login-user:hover ~ #user-dropdown, #account-dropdown ul:hover,
+#login-user:hover ~ #user-dropdown, #account-dropdown ul:hover{
+    display: block;
+    width: 250px;
+}
+
 #nav-icon:hover + #user-dropdown{
     position: absolute;
     display: block;
@@ -285,6 +289,7 @@ nav a:hover {
     }
 
     #nav-icon{
+        top: -10px;
         right: 10px;
         position: absolute;
         display: inline;
@@ -324,14 +329,26 @@ nav a:hover {
         background-color:#c2c2c2;
         margin-top: 0px;
     }
+
     
-    #login-user:hover ~ #user-dropdown, #account-dropdown ul:hover,
-    #nav-icon:hover + #user-dropdown{
-        position: absolute;
+    #login-user:hover ~ #user-dropdown{
+        display: block;
         width: 200px;
         left: -220px;
         top: 50px;
     }
+
+    #account-dropdown ul:hover, #nav-icon:hover + #user-dropdown{
+        position: absolute;
+        display: block;
+        width: 200px;
+        left: -220px;
+        margin-top: 30px;
+    }
+
+    /* #user-dropdown:hover{
+        display: inherit;
+    } */
 
     .navbar {
         width: 100%;

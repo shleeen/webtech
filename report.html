@@ -53,23 +53,23 @@
 
     <h2>CSS</h2>
     <ul>
-        <li>Most of the animations, transitions and styling were done in CSS.</li>
-        <li>CSS was used to make the webite more responsive.</li>
-        <li>A custom parallax effect with css for our home page with the use of perspective, transform, scale and translate.</li>
-        <li>We used flex display for out layout.</li>
-        <li>We created our own main css to keep the style consistent throughout the website.</li>
+        <li>Most of the animations, transitions and styling were done in CSS</li>
+        <li>CSS was used to make the webite more responsive</li>
+        <li>A custom parallax effect for our home page with the use of perspective, transform, scale and translate</li>
+        <li>A flex display was used for the layout of most elements</li>
+        <li>A main css was written to keep styling consistent throughout the website</li>
     </ul>
     <br/>
 
     <h2>JS</h2>
         <ul>
-            <li>Written in ES5, so that it is friendly to older browsers.</li>
-            <li>Did not use any frontend frameworks, implemented our own router and template module.</li>
-            <li>Router: performs client-side routing for the SPA.</li>
+            <li>Written in ES5, so that it is friendly to older browsers</li>
+            <li>Did not use any frontend frameworks, implemented our own router and template module</li>
+            <li>Router: performs client-side routing for the SPA</li>
             <ul>
                 <li>Initialising the router would populate an array of routes with parameters like uri, callback, parameters, regular expression etc.</li>
                 <li>The router then matches the current pathname and parameters to the corresponding route and displays the corresponding content.</li>
-                <li>The router also handles more complex pathnames using .where() with regular expressions for each parameter. This is implemented for each individual show page. for e.g. http://localhost:8080/shows/1</li>
+                <li>The router also handles more complex pathnames using .where() with regular expressions for each parameter. This is implemented for each individual show page. For e.g. http://localhost:8080/shows/1</li>
             </ul>
             <li>Modify browser history states so its possible to navigate to previous page using the browser back button.</li>
             <li>The hiding of navbar when scrolling downwards on the shows and account page, will appear if hovered over and when scrolled upwards.</li>
@@ -79,7 +79,7 @@
                 <li>Smooth scrolling effect (show details pages)</li>
                 <li>Interacting with the seatmap, including conditional formatting</li>
                 <li>Navigating the carousel and indicating the change in banner (home page)</li>
-                <li>Fade transitions between the different pages</li>
+                <li>Fade transitions between the displaying of different pages</li>
                 <li>Auto-completing search bar (on shows page)</li>
             </ul>
         </ul>
@@ -93,15 +93,15 @@
                 <li>Lots of layers were used to build up an image.</li>
                 <li>GIMP's inbuilt filters were used to make the image look interesting without requiring any artistic talent.</li>
             </ul>
-            <li>Created some of our own icons, though in the end favicon was used for better resolution.</li>
+            <li>Created some of our own icons, but used favicon for some due to better resolution.</li>
         </ul>
     <br/>
 
     <h2>SVG</h2>
         <ul>
-            <li>All SVGs in the <i>img</i> folder are created using inkscape.</li>
-            <li>The seat map was modelled in Inkscape, and based on the real Winston Theatre (based in Bristol University's SU). Groups were used to identify each seat (circle).</li>
-            <li>There are also some SVGs created in the HTML, including the splash screen, carousel navigations and the legend for seatmap</li>
+            <li>There are also SVGs created in the HTML, including the splash screen, carousel navigations, the legend for seatmap, all carousel navigations.</li>
+            <li>All SVGs in the <i>img</i> folder are created using inkscape which involved grouping, ungrouping and path editing.</li>
+            <li>A lot of effort was put into modelling the seat map, which is based on the real Winston Theatre (based in Bristol University's SU). Groups were used to identify each seat (circle). [ADD]</li>
             <li>The patterns in the footer were also created in Inkspace by drawing by hand, and then smoothening and filling in the shape.</li>
             <li>User interaction and animations with them are done in JS and CSS for styling</li>
         </ul>
@@ -119,6 +119,7 @@
             <li>Cookies are set to <i>HttpOnly</i>, and <i>secure</i> (if on HTTPS)</li>
         </ul>
         <li>The <i>helmet</i> package was used to set best-practice HTTP headers</li>
+        <li>Server-side code is organised into routes, controllers and services.</li>
     </ul>
     <br/>
 
@@ -128,6 +129,7 @@
         <li>When the server starts, it checks if the database file exists, and if not creates and initialises it</li>
         <li>We wrote a database.js module, which provides many functions to help access the database</li>
         <li>The <code>create.sql</code> script shows the structure of the database. We tried to stick to proper relational database convention and normal form</li>
+        <li>Wrote complex sql queries to select required data from several tables all at once to avoid multiple requests.</li>
     </ul>
     <br/>
 

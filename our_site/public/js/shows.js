@@ -258,6 +258,13 @@ function onConfirmClick() {
   if (this.classList.contains("booking-button-inactive")) {
     return;
   }
+
+  // make sure others arent selected
+  var active = document.getElementsByClassName("show-indv-date-active"); 
+  for (var j = 0; j < active.length; j++) {
+    active[j].classList.remove("show-indv-date-active");
+  }
+
   var amountElems = document.getElementsByClassName("ticket-amount");
   var amounts = {};
   for (var i = 0; i < amountElems.length; i++) {

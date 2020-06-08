@@ -137,6 +137,7 @@ async function authenticate(email, pass) {
 }
 
 async function getTicketTypes(prod_id) {
+  if (!is_db_open) db = await openDB();
   let sql = "SELECT * FROM ticket_type";
   if (prod_id) sql += " WHERE production_id = ?";
   const rows = await db.all(sql, prod_id);
@@ -144,12 +145,14 @@ async function getTicketTypes(prod_id) {
 }
 
 async function getSeats(show_id) {
+  if (!is_db_open) db = await openDB();
   const sql = "SELECT b.show_id, t.seat_number FROM ticket t INNER JOIN booking b ON b.id = t.booking_id INNER JOIN show s ON b.show_id = s.id WHERE b.show_id = ?";
   const rows = await db.all(sql, show_id);
   return rows;
 }
 
 async function bookTickets(prod_id, show_id, user_id, seat_nums, ticket_amounts) {
+  if (!is_db_open) db = await openDB();
   let taken_seats = await this.getSeats(show_id);
   taken_seats = taken_seats.map(x => x.seat_number);
   // Check we're not trying to book seats that are already taken

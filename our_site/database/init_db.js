@@ -16,10 +16,9 @@ for (const c of "ABCDEFGHIJKL") {
   }
 }
 
-const createScript = fs.readFileSync("./database/create.sql").toString();
-
 async function createDB() {
-  let filteredScript = createScript.replace(/^\s*\n/gm, "").replace(/^\s*--.*\n/gm, "").replace(/^\..*\n/gm, "");
+  const createScript = fs.readFileSync("./database/create.sql").toString();
+  const filteredScript = createScript.replace(/\r/gm, "").replace(/^\s*\n/gm, "").replace(/^\s*--.*\n/gm, "").replace(/^\..*\n/gm, "");
   const queries = filteredScript.toString().split(";");
   for (let query of queries) {
     if (query) {

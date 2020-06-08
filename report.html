@@ -126,7 +126,7 @@
         <li>We use a integrated SQLite database</li>
         <li>When the server starts, it checks if the database file exists, and if not creates and initialises it</li>
         <li>We wrote a database.js module, which provides many functions to help access the database</li>
-        <li>The <code>create.sql</code> script shows the structure of the database. We tried to stick to proper normal form</li>
+        <li>The <code>create.sql</code> script shows the structure of the database. We tried to stick to proper relational database convention and normal form</li>
     </ul>
     <br/>
 
@@ -134,9 +134,10 @@
     <p>
         We implemented our own template rendering module to deliver dynamic content:
         <ul>
-            <li>We request data from the server and insert them into existing templates on the client side using the template module. </li>
-            <li>The module finds the template with the corresponding id and matches {{something something sometihng}}, this way we do not need to write code for every insertion of data. (?Need words)</li>
-            <li>It also deals with insertion of the same template but with different data.</li>
+            <li>We request data from the server and insert them into existing templates on the client side using the template module</li>
+            <li>The template engine simply takes a chunk of HTML, and replaces any values wrapped in double curly braces. It escapes any HTML characters from inserted strings to prevent HTML injection.</li>
+            <li>It also allows inserting many copies of the same template with different data (for example for the list of current shows)</li>
+            <li>The templates themselves are simply blocks of HTML wrapped in a &lt;template&gt; tag. These blocks are always hidden, so even if a browser doesn't support the &lt;template&gt; tag they won't show up</li>
         </ul>
     </p>
     <br/>

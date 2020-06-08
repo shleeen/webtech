@@ -31,7 +31,7 @@ CREATE TABLE user (
     email          TEXT     UNIQUE NOT NULL,
     password_hash  TEXT     NOT NULL,
     password_salt  TEXT     NOT NULL,
-    -- I'm assuming the purpose of this is to check we've verified someone's email // yes.
+    -- To check if the email has been verified
     activated      INTEGER  DEFAULT 0,
     FOREIGN KEY(user_type_id) REFERENCES user_type(id)
 );
@@ -41,7 +41,7 @@ CREATE TABLE production (
     user_id       INTEGER  NOT NULL,
     name          TEXT     NOT NULL,
     venue         TEXT     NOT NULL,
-    -- Some of these should probably be NOT NULL, but I don't know which
+    -- Some of these should probably be NOT NULL
     banner_path   TEXT,
     poster_path   TEXT,
     producer      TEXT,
@@ -66,8 +66,6 @@ CREATE TABLE show (
 
 CREATE TABLE ticket_type (
     id        INTEGER  PRIMARY KEY,
-    -- we also had a foreign key to production here, but surely that is not needed if we have one to show?
-    -- have changed it to production because it will make my life 10x easier
     production_id   INTEGER  NOT NULL,
     category  TEXT     NOT NULL,
     price     INTEGER,
@@ -78,7 +76,6 @@ CREATE TABLE booking (
     id            INTEGER  PRIMARY KEY,
     show_id       INTEGER  NOT NULL,
     user_id       INTEGER  NOT NULL,
-    -- Not too sure about the specifics of these
     order_total   INTEGER,
     booking_time  TEXT     NOT NULL,
     paid          INTEGER,

@@ -23,17 +23,17 @@ app.use(session({
 }));
 
 // Serve as XHTML
-// app.use(express.static(__dirname + "/public", {
-//   setHeaders: function(res, path) {
-//     // if file is a .html file, then set content-type to xhtml
-//     if (path.endsWith(".html")) {
-//       res.setHeader("Content-Type", "application/xhtml+xml");
-//     }
-//   }
-// }));
+app.use(express.static(__dirname + "/public", {
+  setHeaders: function(res, path) {
+    // if file is a .html file, then set content-type to xhtml
+    if (path.endsWith(".html")) {
+      res.setHeader("Content-Type", "application/xhtml+xml");
+    }
+  }
+}));
 
 // Serve as HTML
-app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + "/public"));
 
 // Set up API routes
 app.use("/api", routes);

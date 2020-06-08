@@ -14,18 +14,6 @@ input[type=email], input[type=password], input[type=text] {
   box-shadow:0 0 4px rgba(0,0,0,0.3);
 }
 
-input[type=first], input[type=last] {
-  width: 47%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  border-radius:10px;
-  margin-right: 10px;
-  box-shadow:0 0 4px rgba(0,0,0,0.3);
-}
-
 input{
   border-radius:10px;
   border: 1px solid #eee;

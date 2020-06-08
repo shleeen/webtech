@@ -9,7 +9,7 @@
     <link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
     <link href="/css/login.css" rel="stylesheet" type="text/css"/>
     <link href="/css/splash.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
     <script src="/js/index.js"></script>
     <script src="/js/login.js"></script>
@@ -118,13 +118,12 @@
                     </object>
                 </div>
                 <div class="modal-container">
-                    <label for="register-first-name"><b>First Name</b></label>
-                    <label for="register-last-name"><b>Last Name</b></label>
-                    
-                    <input id="register-first-name" type="first" placeholder="First Name" name="first_name" required="required"/>
 
-                    
-                    <input id="register-last-name" type="last" placeholder="Last Name" name="last_name" required="required"/>
+                    <label for="register-first-name"><b>First Name</b></label>
+                    <input id="register-first-name" type="text" placeholder="First Name" name="first_name" required="required"/>
+
+                    <label for="register-last-name"><b>Last Name</b></label>
+                    <input id="register-last-name" type="text" placeholder="Last Name" name="last_name" required="required"/>
 
                     <label for="register-email"><b>Email</b></label>
                     <input id="register-email" type="email" placeholder="Email Address" name="email" required="required"/>
@@ -163,19 +162,19 @@
             
         </div>
         <div id="home" class="non-active subpage">
-            <object id="home-object" type="text/html" data="../home.html"></object>            
+            <object id="home-object" type="text/html" data="../home.html">Home</object>            
         </div>
 
         <div id="shows" class="non-active subpage">
-            <object id="shows-object" type="text/html" data="../shows.html"></object>
+            <object id="shows-object" type="text/html" data="../shows.html">Shows</object>
         </div>
 
         <div id="account" class="non-active subpage">
-            <object id="account-object" class="none-active" type="text/html" data="../account.html" width="100%"></object>
+            <object id="account-object" class="none-active" type="text/html" data="../account.html">Account</object>
         </div>
 
         <div id="404-page" class="non-active subpage">
-            <object id="404-object" type="text/html" data="../404.html"></object>   
+            <object id="404-object" type="text/html" data="../404.html">404</object>   
         </div>
 
     </div>    

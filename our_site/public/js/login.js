@@ -129,6 +129,8 @@ function addLoginListeners() {
     request.onreadystatechange = function () {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 204) {
+          location.reload();
+          
           document.getElementById("login-user").classList.add("non-active");
           document.getElementById("login-user").classList.remove("active");
           document.getElementById("login").classList.remove("non-active");
@@ -139,10 +141,9 @@ function addLoginListeners() {
 
           document.getElementById("nav-icon").classList.add("non-active");
           document.getElementById("nav-icon").style.opacity = 0;
-          // document.getElementById("user-dropdown").classList.remove("active");
-          // document.getElementById("user-dropdown").classList.add("non-active");
 
           // need to redirect to home page
+          
           window.parent.displayPage("home", "");
         }
       }

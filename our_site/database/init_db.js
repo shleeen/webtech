@@ -20,7 +20,6 @@ async function createDB() {
   const createScript = fs.readFileSync("./database/create.sql").toString();
   const filteredScript = createScript.replace(/\r/gm, "").replace(/^\s*\n/gm, "").replace(/^\s*--.*\n/gm, "").replace(/^\..*\n/gm, "");
   const queries = filteredScript.toString().split(";");
-  console.log(queries);
   for (let query of queries) {
     if (query) {
       query += ";";

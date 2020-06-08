@@ -327,24 +327,16 @@
     text-align: center;
 }
 
-#svg-legend{
-    /* position: relative; */
-    /* width: 500px; */
-    border: solid;
-    border-color: #b3b3b3;
-    border-radius: 1px;
-}
-
 #seat-selection{
     display: flex;
 }
+
 #seat-box0 p{
     font-weight: 600;
     width: fit-content;
 }
 
 #seat-box1{
-    /* background-color: indianred; */
     flex-grow: 1;
     max-inline-size: fit-content;
     padding-right: 50px;
@@ -353,7 +345,6 @@
 }
 
 #seat-box2{
-    background-color: lavender;
     flex-grow: 2;
     height: max-content;
     /* max-inline-size: fit-content; */
@@ -391,14 +382,14 @@
 }
 
 /****************************************************************************************
-    CSS FOR TICKETS STUFF
+    CSS FOR TICKET CATEGORIES
 *************************************************************************************** */
-/* this needs MEGA sorting */
 #ticket-types{
-    border: solid;
-    border-color: #b3b3b3;
-    border-radius: 1px;
+    /* border: 1.5px solid #ee842d; 419aaa */
+    border-radius: 4px;
+    background-color: #f8dbc3;
     padding: 5px;
+    text-align: center;
 }
 
 /* for the ticket selecty boxy */
@@ -420,7 +411,7 @@ input[type=number]{
   display: block;
   padding: 0;
   margin: 0;
-  padding-left: 20px;
+  padding-left: 16px;
   border: 1px solid #eee;
 }
 
@@ -437,14 +428,13 @@ input[type=number]{
 .ticket-button {
   position: relative;
   cursor: pointer;
-  border-left: 1px solid #eee;
-  background-color: #d879a5;
+  background-color: #ee842d;
   width: 20px;
   text-align: center;
   color: #333;
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Trebuchet MS", Helvetica, sans-serif !important;
-  line-height: 1.7;
+  line-height: 1.5;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
   -webkit-user-select: none;
@@ -458,15 +448,17 @@ input[type=number]{
   position: absolute;
   height: 50%;
   top: 0;
-  border-bottom: 1px solid #eee;
 }
 
 .ticket-button.ticket-down {
   position: absolute;
-  bottom: -1px;
   height: 50%;
+  bottom: 0px;
 }
-/* sort all above */
+
+.ticket-button:hover{
+    background-color: #c97129;
+}
 
 /****************************************************************************************
     CSS FOR RESPONSIVENESS

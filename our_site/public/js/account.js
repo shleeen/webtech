@@ -80,7 +80,8 @@ function getUserInfo(){
       }
       else {
         // Not logged in, redirect home
-        window.top.displayPage("home", "");
+        if (window.top.location.pathname === "/account")
+          window.top.displayPage("home", "");
       }
     }
   };
@@ -104,7 +105,10 @@ function getTransactions(){
       var results = [];
 
       for (var r in res) {
-        res[r].price = moneyToString(res[r].price);
+        for (var p in res[r].prices){
+          res[r].prices[p] = moneyToString(res[r].prices[p]);
+        }
+        
         res[r].order_total = moneyToString(res[r].order_total);
         res[r].booking_time = res[r].booking_time.substr(0, 19).replace("T", " ");
         results.push(res[r]);

@@ -17,6 +17,15 @@ const hash = (options) => {
   });
 };
 
+// Used for booking reference
+function randomString(length, chars) {
+  var result = "";
+  for (var i = length; i > 0; --i) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return result;
+}
+
 const database_path = "./database/database.db";
 
 function validateString(string) {
@@ -127,6 +136,46 @@ async function authenticate(email, pass) {
   else return false;
 }
 
+async function getTicketTypes(prod_id) {
+  let sql = "SELECT * FROM ticket_type";
+  if (prod_id) sql += " WHERE production_id = ?";
+  const rows = await db.all(sql, prod_id);
+  return rows;
+}
+
+async function getSeats(show_id) {
+  const sql = "SELECT b.show_id, t.seat_number FROM ticket t INNER JOIN booking b ON b.id = t.booking_id INNER JOIN show s ON b.show_id = s.id WHERE b.show_id = ?";
+  const rows = await db.all(sql, show_id);
+  return rows;
+}
+
+async function bookTickets(prod_id, show_id, user_id, seat_nums, ticket_amounts) {
+  let taken_seats = await this.getSeats(show_id);
+  taken_seats = taken_seats.map(x => x.seat_number);
+  // Check we're not trying to book seats that are already taken
+  if (taken_seats.some(v => seat_nums.includes(v))) {
+    throw "Seat already taken";
+  }
+  let total_price = 0;
+  let num_tickets = 0;
+  const ticket_types = await this.getTicketTypes(prod_id);
+  for (const type of ticket_types) {
+    total_price += ticket_amounts[type.id] * type.price;
+    num_tickets += ticket_amounts[type.id];
+  }
+  // Check if we have the same amount of tickets and seat numbers
+  if (num_tickets !== seat_nums.length)
+    throw "Seat numbers and tickets don't match";
+  const booking_time = new Date();
+  const booking_ref = "REF-" + randomString(8, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  const result = await this.addBooking(show_id, user_id, total_price, booking_time.toISOString(), 1, booking_ref, 0);
+  num_tickets = 0;
+  for (const type of ticket_types) {
+    await this.addTickets(result.lastID, type.id, seat_nums.slice(num_tickets, num_tickets + ticket_amounts[type.id]));
+    num_tickets += ticket_amounts[type.id];
+  }
+  return booking_ref;
+}
 
 exports.openDB = openDB;
 exports.get = get;
@@ -140,3 +189,6 @@ exports.addTicketTypes = addTicketTypes;
 exports.addBooking = addBooking;
 exports.addTickets = addTickets;
 exports.authenticate = authenticate;
+exports.getTicketTypes = getTicketTypes;
+exports.getSeats = getSeats;
+exports.bookTickets = bookTickets;

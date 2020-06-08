@@ -58,10 +58,7 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Musical Theatre Bristol presents Showcase", "General", "1000");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking(1, 1, "700", "2020-05-30 00:00:01", "1", "ref01", "0" );
-  } catch (err) { errors += "  " + err + "\n"; }
-  try {
-    await dbHelper.addTickets("1", "1", ["B7"]);
+    await dbHelper.bookTickets(1, 1, 1, ["B7"], {1: 1, 2: 0});
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addProductions("firstuser", "Legally Blonde", "Winston Theatre", 
@@ -106,17 +103,11 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Silence of the Lambdas", "General", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking(11, 2, "104500", "2020-05-30 00:07:01", "1", "ref03", "0" );
-  } catch (err) { errors += "  " + err + "\n"; }
-  try {
     let seats = [];
     for (let i = 0; i < 209; i++) {
       seats.push(winston_map[i]);
     }
-    await dbHelper.addTickets("2", "3", seats);
-  } catch (err) { errors += "  " + err + "\n"; }
-  try {
-    await dbHelper.addBooking(10, 2, "25000", "2020-05-30 00:07:01", "1", "ref04", "0" );
+    await dbHelper.bookTickets(3, 9, 2, seats, {3: 209, 4: 0});
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     let seats = [];
@@ -126,7 +117,7 @@ async function initializeDB() {
         seats.push(winston_map[s]);
       else i--;
     }
-    await dbHelper.addTickets("3", "3", seats);
+    await dbHelper.bookTickets(3, 10, 2, seats, {3: 50, 4: 0});
   } catch (err) { errors += "  " + err + "\n"; }
   try {
     await dbHelper.addTicketTypes("Legally Blonde", "Student", "500");
@@ -135,10 +126,7 @@ async function initializeDB() {
     await dbHelper.addTicketTypes("Legally Blonde", "General", "700");
   } catch (err) { errors += "  " + err + "\n"; }
   try {
-    await dbHelper.addBooking(4, 1, "1000", "2020-05-30 00:07:01", "1", "ref02", "0" );
-  } catch (err) { errors += "  " + err + "\n"; }
-  try {
-    await dbHelper.addTickets("4", "5", ["A5", "A6"]);
+    await dbHelper.bookTickets(2, 4, 1, ["A5", "A6"], {5: 2, 6: 0});
   } catch (err) { errors += "  " + err + "\n"; }
   if (errors !== "") {
     console.error("Error(s) initalising database:\n" + errors);

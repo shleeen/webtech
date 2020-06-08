@@ -134,17 +134,25 @@ function displayShow(data) {
   }
 
   for (i = 0; i < data.id.length; i++) {
-    document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
-      // make sure others arent selected
-      var active = document.getElementsByClassName("show-indv-date-active"); 
-      for (var j = 0; j < active.length; j++){
-        active[j].classList.remove("show-indv-date-active");
-      }
-      this.classList.add('show-indv-date-active');
-      smoothScroll("select-section", 800);
-      document.getElementById("select-section").style.opacity = 1;
-      addSeatSelection(this.id.split("-").pop(), data);
-    });
+    if (data.sold[i] < data.total_seats[i]) {
+      document.getElementById("show-date-" + data.id[i]).addEventListener("click", function() {
+        // make sure others arent selected
+        var active = document.getElementsByClassName("show-indv-date-active"); 
+        for (var j = 0; j < active.length; j++) {
+          active[j].classList.remove("show-indv-date-active");
+        }
+        this.classList.add("show-indv-date-active");
+
+        // This scroll is a bit dodge if you dont scroll up and then select date
+        smoothScroll("select-section", 800);
+        document.getElementById("select-section").style.opacity = 1;
+        addSeatSelection(this.id.split("-").pop(), data);
+      });
+    }
+    else {
+      document.getElementById("show-date-" + data.id[i]).classList.remove("show-indv-date");
+      document.getElementById("show-date-" + data.id[i]).classList.add("show-indv-date-soldout");
+    }
   }
 }
 
@@ -330,6 +338,7 @@ function addShowsListeners() {
   document.getElementById("shows-return").addEventListener("click", function() {
     showAllProductions();
     hideSeatSelection();
+    document.getElementById("select-section").style.opacity = 0;
 
     var newURL = window.top.location.protocol + "//" + window.top.location.host + "/shows";
     window.top.history.pushState({id: "shows", url: "/shows"}, "", newURL);

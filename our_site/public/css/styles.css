@@ -188,16 +188,17 @@ object{
 /* Footer ========================================================================== */
 /* I kinda dunno where else to put this */
 footer { 
-  display: flex;
+  display: inline-flex;
   position: relative;
   width: 100%; 
   bottom: 10px; /*25px*/
   height: 75px; /*60px*/
-  background-color: #000000cc; 
-  color: #fff; 
-  font-size:14px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
   margin: auto;
   /* align-items: normal; */
+  justify-content: center;
 }
 
 .social-icons{
@@ -208,12 +209,12 @@ footer {
   transform: scaleX(-1);
 }
 
-.footer-box .footer-links:link { /* unvisited link */
+.footer-links:link { /* unvisited link */
   color: #ffee00;
   text-decoration: none;
 }
 
-.footer-box .footer-links:hover { /* mouse over link */
+.footer-links:hover { /* mouse over link */
   color: #e1bcf0;
 }
 

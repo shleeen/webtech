@@ -12,7 +12,7 @@
     "sqlite": "^4.0.7"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-validator": "^6.4.0",
     "pug": "^2.0.4",
     "sqlite3": "^4.1.1"
